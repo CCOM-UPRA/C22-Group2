@@ -9,6 +9,7 @@ from frontend_controller.shopController import *
 
 app = Flask(__name__, template_folder='frontend/')
 app.secret_key = 'akeythatissecret'
+#TEST
 
 # In this template, you will usually find functions with comments tying them to a specific controller
 # main.py accesses the frontend folders
