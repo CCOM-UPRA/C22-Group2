@@ -31,7 +31,7 @@
   font-size: 28px;
   line-height: 36px;
   margin-bottom: 5px;
-  color: var(--primary);
+  color: #2E8B57;
 }
 
 .user-form-title p {
@@ -148,7 +148,11 @@
   text-align: center;
   text-transform: uppercase;
   color: var(--white);
-  background: var(--primary);
+  background: #2E8B57;
+}
+/*Añadido*/
+.form-button button:hover{
+background: #6B8E23;
 }
 
 .form-button p {
@@ -160,7 +164,7 @@
 .form-button p a {
   font-weight: 500;
   margin-left: 5px;
-  color: var(--primary);
+  color:#2E8B57;
 }
 
 .form-button p a:hover {
@@ -183,7 +187,7 @@
 .user-form-remind p a {
   font-weight: 500;
   margin-left: 5px;
-  color: var(--primary);
+  color: #2E8B57;
 }
 
 .user-form-remind p a:hover {
