@@ -8,7 +8,7 @@ def logincontroller(email, password):
     print("testing login")
     if result is "true":
         print("login true")
-        return redirect("/products")
+        return redirect("/products") #TODO añadir links en products.html
     else:
         print("login false")
         return redirect("/message")
