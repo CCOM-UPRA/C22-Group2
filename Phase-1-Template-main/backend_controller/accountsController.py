@@ -8,3 +8,5 @@ def getaccounts():
 def getaccount(acc):
     return getaccountmodel(acc)
 
+def addaccount(acc):
+    acc

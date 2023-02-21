@@ -50,7 +50,7 @@ def register(message):
 
 @app.route("/registerinfo", methods=['POST'])
 def registerinfo():
-    # Processs the register info
+    # Process the register info
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
@@ -59,10 +59,12 @@ def registerinfo():
 
     if pass1 == pass2:
         # Process register info here
-        # Since it will not be functioning right now, let's simulate we registered with our usual login info:
         session['amount'] = 0
+        
+
         email = 'javier.quinones3@upr.edu'
         passcode = 'pass1234'
+
         logincontroller(email=email, password=passcode)
 
         return redirect('/shop')
