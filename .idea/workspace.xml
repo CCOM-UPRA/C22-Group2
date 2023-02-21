@@ -4,26 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/plants-ecommerce-site.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/plants-ecommerce-site.iml" afterDir="false" />
+    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Cambio foto de logo backend">
+      <change afterPath="$PROJECT_DIR$/Phase-1/Greeny/ltr/images/logo_pagina.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/Greeny/ltr/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/Greeny/ltr/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/accounts.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/accounts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/add_product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/change-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/change-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/create_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/create_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/login (2).html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/login (2).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/orders.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/single_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/single_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend/single_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend/single_product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend_controller/loginController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend_controller/loginController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1-Template-main/backend_model/loginModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1-Template-main/backend_model/loginModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/accounts.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/accounts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/add_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/change-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/change-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/create_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/create_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/login (2).html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/login (2).html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/single_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/single_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/single_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/single_product.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,14 +54,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/eddyfigueroa/Desktop/CCOM4440/plants-ecommerce-site/Phase-1/Greeny/ltr/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "terminal",
+    "settings.editor.selected.configurable": "configurable.group.project",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Phase-1/Greeny/ltr/images" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -75,11 +78,20 @@
       <updated>1676655188421</updated>
       <workItem from="1676930743645" duration="2287000" />
       <workItem from="1677001420549" duration="4369000" />
+      <workItem from="1677021648699" duration="2943000" />
     </task>
+    <task id="LOCAL-00001" summary="Cambio foto de logo backend">
+      <created>1677021886991</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677021886991</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
-    <option name="startingDirectory" value="$PROJECT_DIR$/Phase-1-Template-main" />
+    <option name="startingDirectory" value="$PROJECT_DIR$/Phase-1" />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -94,6 +106,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Cambio foto de logo backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio foto de logo backend" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/plants_ecommerce_site$main.coverage" NAME="main Coverage Results" MODIFIED="1676913667188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Phase-1-Template-main" />
