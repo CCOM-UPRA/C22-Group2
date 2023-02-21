@@ -1,6 +1,6 @@
 import json
 import os
-usersPath = os.getcwd() + '\\Phase-1\\users.json'
+usersPath = os.getcwd() + '\\Phase-1\\UserData\\users.json'
 
 def MagerDicts(dict1, dict2):
     if isinstance(dict1, list) and isinstance(dict2, list):

@@ -1,7 +1,7 @@
 from flask import session
 import os
 import json
-usersPath = os.getcwd() + '\\Phase-1\\logins.json'
+usersPath = os.getcwd() + '\\Phase-1\\UserData\\logins.json'
 
 # This is a very basic dictionary with information for logging in
 # Simulating our database
