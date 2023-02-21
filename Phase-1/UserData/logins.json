@@ -1,0 +1,18 @@
+{
+    "zulymar.garcia@upr.edu": {
+        "password": "pass1234",
+        "user": "Zulymar"
+    },
+    "francisco.marrero7@upr.edu": {
+        "password": "achomano",
+        "user": "marrero"
+    },
+    "aeiou@gmail.com": {
+        "password": "achomano",
+        "user": "Sus"
+    },
+    "km@gmail.com": {
+        "password": "achomano",
+        "user": "ae"
+    }
+}
