@@ -1,0 +1,50 @@
+{
+    "Echeverias": {
+        "location": "Indoors",
+        "family type": "Succulents",
+        "sun": "Part Sun",
+        "water": "Weekly"
+    },
+    "Kalanchoe": {
+        "location": "Outdoor",
+        "family type": "Succulents",
+        "sun": "Full Sun",
+        "water": "Biweekly"
+    },
+    "Monstera Deliciosa": {
+        "location": "Indoors",
+        "family type": "Araceae",
+        "sun": "Part Sun",
+        "water": "Biweekly"
+    },
+    "Anthurium": {
+        "location": "Indoors",
+        "family type": "Araceae",
+        "sun": "Part Sun",
+        "water": "Weekly"
+    },
+    "Golden Ball Cactus": {
+        "location": "Outdoor",
+        "family type": "Cactus",
+        "sun": "Full Sun",
+        "water": "Weekly"
+    },
+    "Moon Cactus": {
+        "location": "Indoors",
+        "family type": "Cactus",
+        "sun": "Part Sun",
+        "water": "Biweekly"
+    },
+    "Sunflower": {
+        "location": "Outdoor",
+        "family type": "Flowers",
+        "sun": "Full Sun",
+        "water": "Weekly"
+    },
+    "Rose": {
+        "location": "Outdoor",
+        "family type": "Flowers",
+        "sun": "Full Sun",
+        "water": "Weekly"
+    }
+}
