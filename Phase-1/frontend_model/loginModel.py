@@ -1,36 +1,27 @@
-from backend_model.accountsModel import *
+from backend_controller.accountsController import *
 from flask import session
-import os
-import json
 
-# This is a very basic dictionary with information for logging in
-# Simulating our database
-thisDict = {
-    "email": "zulymar.garcia@upr.edu",
-    "password": "pass1234",
-    "user": "Zulymar"
 
-}
-
-def loginmodel(email, password):
+def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
-    logins = getloginsmodel()
-    if email in logins.keys():
-        # User found! is password correct?
-        if dict(logins.get(email)).get('password') == password:
-            session['customer'] = dict(logins.get(email)).get('user')
-            return "true"
-    # No login lol
+    logins = getaccounts()
+
+    for key, user in dict(logins).items():
+            if dict(user).get('c_email') == email:
+                if dict(user).get('c_password') == password:
+                    session['customer'] = key
+                    return "true"
     return "false"
+             
 
 def addloginmodel(newUser : dict):
-    addaccountmodel(newUser)
+    addaccount(newUser)
 
 def getloginmodel(acc):
-    getaccountmodel(acc)
+    getaccount(acc)
 
 # Get all accounts
 def getloginsmodel():
-    getaccountsmodel()
+    getaccount()
 
 #print(getloginsmodel())

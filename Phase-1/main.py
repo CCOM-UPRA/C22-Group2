@@ -80,7 +80,7 @@ def registerinfo():
             }
         
         addloginmodel(newAccount)
-        logincontroller(email=email, password=pass1)
+        logincontroller(email, pass1)
         return redirect('/shop')
     else:
         return redirect('/register/<message>')
