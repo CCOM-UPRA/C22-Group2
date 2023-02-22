@@ -41,6 +41,10 @@ def addaccountmodel(acc : dict):
     
     return currentFile
 
+# TODO access admin "database"
+def getadmin():
+    return
+
 #print(getaccountsmodel())
 #print("sus")
 #print(userList)

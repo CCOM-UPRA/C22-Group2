@@ -14,7 +14,6 @@ app.secret_key = 'akeythatissecret'
 # main.py accesses the frontend folders
 # Every controller accesses its relevant model and will send the information back to this Flask app
 
-
 # Redirects us here if no url is given
 @app.route("/", defaults={'message': None})
 # Or if any url other than the ones set in this Flask application is provided, making it a <message>
