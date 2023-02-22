@@ -61,14 +61,25 @@ def registerinfo():
         # Process register info here
         session['amount'] = 0
         
-        newEntry = {
-            email: {
-            "password": pass1,
-            "user": fname
+        newAccount = {
+            "c_first_name": fname,
+            "c_last_name": lname,
+            "c_email": email,
+            "c_password": pass1,
+            "c_phone_number": "",
+            "c_status": "",
+            "c_address_line_1": "",
+            "c_address_line_2": "",
+            "c_city": "",
+            "c_state": "",
+            "c_zipcode": "",
+            "c_card_name": "",
+            "c_card_type": "",
+            "c_exp_date": "",
+            "c_card_num": ""
             }
-        }
         
-        addloginmodel(newEntry)
+        addloginmodel(newAccount)
         logincontroller(email=email, password=pass1)
         return redirect('/shop')
     else:
