@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Cambio foto de logo backend">
-      <change afterPath="$PROJECT_DIR$/Phase-1/Greeny/ltr/images/logo_pagina.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/accounts.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/accounts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/add_product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/change-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/change-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/create_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/create_account.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Phase-1/backend/login (2).html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/login (2).html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/orders.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/single_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/single_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/backend/single_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/single_product.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +45,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "configurable.group.project",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -78,7 +64,7 @@
       <updated>1676655188421</updated>
       <workItem from="1676930743645" duration="2287000" />
       <workItem from="1677001420549" duration="4369000" />
-      <workItem from="1677021648699" duration="2943000" />
+      <workItem from="1677021648699" duration="3951000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio foto de logo backend">
       <created>1677021886991</created>
@@ -87,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677021886991</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Cambio foto de logo backend">
+      <created>1677025156242</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677025156242</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
