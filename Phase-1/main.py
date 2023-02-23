@@ -65,13 +65,13 @@ def registerinfo():
             "c_last_name": lname,
             "c_email": email,
             "c_password": pass1,
-            "c_phone_number": "",
-            "c_status": "",
-            "c_address_line_1": "",
+            "c_phone_number": "9999999999",
+            "c_status": "Active",
+            "c_address_line_1": "Street num 1",
             "c_address_line_2": "",
-            "c_city": "",
-            "c_state": "",
-            "c_zipcode": "",
+            "c_city": "San Juan",
+            "c_state": "Puerto Rico",
+            "c_zipcode": "0000",
             "c_card_name": "",
             "c_card_type": "",
             "c_exp_date": "",
@@ -129,6 +129,8 @@ def profile():
 def editinfo():
     # make changes to profile info
     # doesn't do anything at the moment
+    
+
     return redirect("/profile")
 
 
