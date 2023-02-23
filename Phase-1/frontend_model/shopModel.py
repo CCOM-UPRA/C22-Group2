@@ -1,12 +1,21 @@
-
+import json
 # This is our simulation of the database
 # We have two products here.
 # The students must create their own productList when working on their eCommerce site
 # Product images are loaded into static/images/product-images/
 # Done in array instead of dictionaries to portray the differences
-productList = [['1', "Tello Drone", 'DJI', 'desc here', 'Yes', '480p', 'White', 'dji_tello.jpg', '15', 'active', '89', '89'],
-               ['2', 'Bebop 2', 'Parrot', 'desc', 'Yes', '1080p', 'Red', 'parrot_bebop_2.jpg', '3', 'active', '270', '290']]
 
+# Load JSON data into a dictionary
+with open('JSONfiles/products.json') as f:
+    data = json.load(f)
+
+# Access keys and sub-keys and put them into a Python list
+productList = []
+for key in data.keys():
+    item = [key]
+    for sub_key in data[key].keys():
+        item.append(data[key][sub_key])
+    productList.append(item)
 
 def getProductsModel():
     return productList
@@ -14,7 +23,7 @@ def getProductsModel():
 
 def getBrandsModel():
     # Simulating grabbing these filters via SQL from the database
-    brands = ["DJI", "Ruko", "Parrot"]
+    brands = ["Indoors", "Outdoors"]
     return brands
 
 def getColorsModel():
