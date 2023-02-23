@@ -1,4 +1,8 @@
 import json
+from pathlib import Path
+# Hacky fix
+path = Path(__file__).parent.parent.absolute()
+productsPath = str(path) + '\\JSONfiles\\products.json'
 # This is our simulation of the database
 # We have two products here.
 # The students must create their own productList when working on their eCommerce site
@@ -6,7 +10,7 @@ import json
 # Done in array instead of dictionaries to portray the differences
 
 # Load JSON data into a dictionary
-with open('JSONfiles/products.json') as f:
+with open(productsPath) as f:
     data = json.load(f)
 
 # Access keys and sub-keys and put them into a Python list
