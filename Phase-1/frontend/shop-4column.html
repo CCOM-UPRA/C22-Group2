@@ -326,8 +326,8 @@
                                 <div class="product-card">
                                     <div class="product-media">
 
-                                        <a class="product-image" href="static/images/product-images/{{product[7]}}">
-                                            <img src="static/images/product-images/{{product[7]}}" alt="product">
+                                        <a class="product-image" href="static/images/product-images/{{product[6]}}">
+                                            <img src="static/images/product-images/{{product[6]}}" alt="product">
                                         </a>
                                         <div class="product-widget">
                                             <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view-{{product[0]}}"></a>
@@ -338,7 +338,7 @@
                                             <a href="product-video.html">{{product[1]}}</a>
                                         </h6>
                                         <h6 class="product-price">
-                                            <span>{{product[10]}}.00</span>
+                                            <span>${{product[7]}}</span>
                                         </h6>
                                         <button class="product-add" title="Add to Cart">
                                             <i class="fas fa-shopping-basket"></i>
@@ -349,14 +349,14 @@
                                             <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
                                                <input type="hidden" id="p_id" name="p_id" value="{{product[0]}}">
                                                <input type="hidden" id="name" name="name" value="{{product[1]}}">
-                                                <input type="hidden" id="price" name="price" value="{{product[10]}}">
+                                                <input type="hidden" id="price" name="price" value="{{product[7]}}">
                                                 <input type="hidden" id="cost" name="cost" value="{{product[11]}}">
                                                 <input type="hidden" id="stock" name="stock" value="{{product[8]}}">
                                                 <input type="hidden" id="brand" name="brand" value="{{product[2]}}">
                                                 <input type="hidden" id="wifi" name="wifi" value="{{product[4]}}">
                                                 <input type="hidden" id="videores" name="videores" value="{{product[5]}}">
                                                 <input type="hidden" id="desc" name="desc" value="{{product[3]}}">
-                                                <input type="hidden" id="image" name="image" value="{{product[7]}}">
+                                                <input type="hidden" id="image" name="image" value="{{product[6]}}">
                                               <input style="width: 30%" type="submit" value="Add">
                                               </form>
                                         </div>
@@ -376,7 +376,7 @@
                                         <label class="view-label new">{{product[8]}} in stock</label>
                                     </div>
                                     <ul class="preview-slider">
-                                        <li><img src="static/images/product-images/{{product[7]}}" alt="product"></li>
+                                        <li><img src="static/images/product-images/{{product[6]}}" alt="product"></li>
                                     </ul>
 
                                 </div>
@@ -392,10 +392,10 @@
                                         <p>Video Res: {{product[5]}}</p>
                                     </div>
                                     <h3 class="view-price">
-                                        <del>{{product[11]}}.00</del>
-                                        <span>{{product[10]}}.00</span>
+                                        <!-- <del>{{product[11]}}</del> -->
+                                        <span>${{product[7]}}</span>
                                     </h3>
-                                    <p class="view-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit non tempora magni repudiandae sint suscipit tempore quis maxime explicabo veniam eos reprehenderit fuga</p>
+                                    <p class="view-desc">{{product[9]}}</p>
                                     <div class="view-add-group">
                                         <button class="product-add" title="Add to Cart">
                                             <span>Tap to add amount</span>
@@ -535,6 +535,7 @@
                 document.getElementById('submit').onclick = function(){
                     document.getElementById('quantity').value = document.getElementById('quantity1').value;
             };
+        }
         </script>
 
         <script>

@@ -1,15 +1,16 @@
-print("sus")
+import json
 
-print("sus")
+# Load JSON data into a dictionary
+with open('JSONfiles/products.json') as f:
+    data = json.load(f)
 
-print("hecka sus")
+# Access keys and sub-keys and put them into a Python list
+my_list = []
+for key in data.keys():
+    item = [key]
+    for sub_key in data[key].keys():
+        item.append(data[key][sub_key])
+    my_list.append(item)
 
-print("ae")
-
-print("pp")
-
-print("Penelope no me quiere :,(")
-
-print("; - ;")
-
-print(" aa ")
+# Print the list
+print(my_list)
