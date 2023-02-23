@@ -1,9 +1,9 @@
 import json
-import os
-from pathlib import Path
+#import os
+#from pathlib import Path
 # Hacky fix
-path = Path(__file__).parent.parent.absolute()
-usersPath = str(path) + '\\UserData\\users.json'
+# path = Path(__file__).parent.parent.absolute()
+usersPath = './UserData/users.json'
 
 def MagerDicts(dict1, dict2):
     if isinstance(dict1, list) and isinstance(dict2, list):

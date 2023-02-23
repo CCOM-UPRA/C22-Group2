@@ -1,3 +1,4 @@
+from backend_model.accountsModel import *
 dictUser1 = {1: {'c_first_name': "Milena", 'c_last_name': "Ríos",
                 'c_email': "milena.rios2@upr.edu", 'c_password': "aghetyeifc",
                 'c_phone_number': 7871621782, 'c_status': 'active',
@@ -28,13 +29,14 @@ def MagerDicts(dict1, dict2):
     return False
 
 
-userList = dictUser1
-userList = MagerDicts(userList, dictUser2)
-userList = MagerDicts(userList, dictUser3)
+# userList = dictUser1
+# userList = MagerDicts(userList, dictUser2)
+# userList = MagerDicts(userList, dictUser3)
 
 
 def getUserModel(customer):
-    for key, user in userList.items():
+    users = getaccountsmodel()
+    for key, user in users.items():
         if customer == user['c_first_name']:
             return user
 

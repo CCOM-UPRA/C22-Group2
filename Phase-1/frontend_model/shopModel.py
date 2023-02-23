@@ -1,8 +1,8 @@
 import json
-from pathlib import Path
+# from pathlib import Path
 # Hacky fix
-path = Path(__file__).parent.parent.absolute()
-productsPath = str(path) + '\\JSONfiles\\products.json'
+# path = Path(__file__).parent.parent.absolute()
+productsPath = './JSONfiles/products.json'
 # This is our simulation of the database
 # We have two products here.
 # The students must create their own productList when working on their eCommerce site
