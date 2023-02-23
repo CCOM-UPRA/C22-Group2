@@ -1,66 +1,27 @@
+from backend_controller.accountsController import *
 from flask import session
-import os
-import json
-usersPath = os.getcwd() + '\\Phase-1\\UserData\\logins.json'
-
-# This is a very basic dictionary with information for logging in
-# Simulating our database
-thisDict = {
-    "email": "zulymar.garcia@upr.edu",
-    "password": "pass1234",
-    "user": "Zulymar"
-
-}
-
-def MagerDicts(dict1, dict2):
-    if isinstance(dict1, list) and isinstance(dict2, list):
-        return dict1 + dict2
-    elif isinstance(dict1, dict) and isinstance(dict2, dict):
-        return dict(list(dict1.items()) + list(dict2.items()))
-    print("Merge failed!")
-    return False
 
 
-def loginmodel(email, password):
+def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
-    logins = getloginsmodel()
-    if email in logins.keys():
-        # User found! is password correct?
-        if dict(logins.get(email)).get('password') == password:
-            session['customer'] = dict(logins.get(email)).get('user')
-            return "true"
-    # No login lol
-    return "false"
+    logins = getaccounts()
 
-    if email in thisDict.values() and password in thisDict.values():
-        # If it found the email and pass in the dictionary
-        session['customer'] = thisDict['user']
-        # Create the session['customer']
-        return "true"
-    else:
-        # If it didn't find user
-        return "false"
+    for key, user in dict(logins).items():
+            if dict(user).get('c_email') == email:
+                if dict(user).get('c_password') == password:
+                    session['customer'] = key
+                    return "true"
+    return "false"
+             
 
 def addloginmodel(newUser : dict):
-    currentFile = getloginsmodel()
-    currentFile = MagerDicts(currentFile, newUser)
+    addaccount(newUser)
 
-    with open(usersPath, "w") as f:
-        json.dump(currentFile, f)
-    return currentFile
-
-def getloginsmodel(acc):
-    with open(usersPath, "r") as f:
-        data = json.load(f)
-    
-    for key, user in dict(data).items():
-        if key == acc:
-            return user
+def getloginmodel(acc):
+    getaccount(acc)
 
 # Get all accounts
 def getloginsmodel():
-    with open(usersPath, "r") as f:
-        data = json.load(f)
-    return dict(data)
+    getaccount()
 
 #print(getloginsmodel())

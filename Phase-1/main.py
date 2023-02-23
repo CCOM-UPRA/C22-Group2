@@ -14,7 +14,6 @@ app.secret_key = 'akeythatissecret'
 # main.py accesses the frontend folders
 # Every controller accesses its relevant model and will send the information back to this Flask app
 
-
 # Redirects us here if no url is given
 @app.route("/", defaults={'message': None})
 # Or if any url other than the ones set in this Flask application is provided, making it a <message>
@@ -61,15 +60,26 @@ def registerinfo():
         # Process register info here
         session['amount'] = 0
         
-        newEntry = {
-            email: {
-            "password": pass1,
-            "user": fname
+        newAccount = {
+            "c_first_name": fname,
+            "c_last_name": lname,
+            "c_email": email,
+            "c_password": pass1,
+            "c_phone_number": "9999999999",
+            "c_status": "Active",
+            "c_address_line_1": "Street num 1",
+            "c_address_line_2": "",
+            "c_city": "San Juan",
+            "c_state": "Puerto Rico",
+            "c_zipcode": "0000",
+            "c_card_name": "",
+            "c_card_type": "",
+            "c_exp_date": "",
+            "c_card_num": ""
             }
-        }
         
-        addloginmodel(newEntry)
-        logincontroller(email=email, password=pass1)
+        addloginmodel(newAccount)
+        logincontroller(email, pass1)
         return redirect('/shop')
     else:
         return redirect('/register/<message>')
@@ -119,6 +129,8 @@ def profile():
 def editinfo():
     # make changes to profile info
     # doesn't do anything at the moment
+    
+
     return redirect("/profile")
 
 

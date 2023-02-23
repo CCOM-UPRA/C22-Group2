@@ -1,13 +1,15 @@
 import json
 import os
-usersPath = os.getcwd() + '\\Phase-1\\UserData\\users.json'
+from pathlib import Path
+# Hacky fix
+path = Path(__file__).parent.parent.absolute()
+usersPath = str(path) + '\\UserData\\users.json'
 
 def MagerDicts(dict1, dict2):
     if isinstance(dict1, list) and isinstance(dict2, list):
         return dict1 + dict2
     elif isinstance(dict1, dict) and isinstance(dict2, dict):
         return dict(list(dict1.items()) + list(dict2.items()))
-    print("Merge failed!")
     return False
 
 # Get all accounts
@@ -41,6 +43,10 @@ def addaccountmodel(acc : dict):
         json.dump(currentFile, f)
     
     return currentFile
+
+# TODO access admin "database"
+def getadmin():
+    return
 
 #print(getaccountsmodel())
 #print("sus")
