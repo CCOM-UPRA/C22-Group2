@@ -15,7 +15,7 @@ def MagerDicts(dict1, dict2):
 
 # Get all accounts
 def getaccountsmodel(admin = False):
-    path = usersPath if not admin else adminsPath
+    path = adminsPath if admin else usersPath
     with open(path, "r") as f:
         data = json.load(f)
     return dict(data)
@@ -24,7 +24,7 @@ def getaccountsmodel(admin = False):
 # Get the specific account requested
 # In this case, we're requesting it via the key
 def getaccountmodel(acc, admin = False):
-    path = usersPath if not admin else adminsPath
+    path = adminsPath if admin else usersPath
     with open(path, "r") as f:
         data = json.load(f)
     
@@ -33,7 +33,7 @@ def getaccountmodel(acc, admin = False):
             return user
 
 def addaccountmodel(acc : dict, admin = False):
-    path = usersPath if not admin else adminsPath
+    path = adminsPath if admin else usersPath
     currentFile = getaccountsmodel(admin=admin)
     # assign new key to account
     lastKey = int(list(currentFile)[-1])

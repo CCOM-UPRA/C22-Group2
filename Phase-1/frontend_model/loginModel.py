@@ -1,10 +1,10 @@
-from backend_controller.accountsController import *
+from backend_model.accountsModel import *
 from flask import session
 
 
 def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
-    logins = getaccounts()
+    logins = getaccountsmodel(admin=False)
 
     for key, user in dict(logins).items():
             if dict(user).get('c_email') == email:
@@ -15,13 +15,13 @@ def loginmodel(email : str, password : str):
              
 
 def addloginmodel(newUser : dict):
-    addaccount(newUser)
+    addaccountmodel(newUser, admin=False)
 
 def getloginmodel(acc):
-    getaccount(acc)
+    return getaccountmodel(acc, admin=False)
 
 # Get all accounts
 def getloginsmodel():
-    getaccount()
+    return getaccountsmodel(admin=False)
 
 #print(getloginsmodel())
