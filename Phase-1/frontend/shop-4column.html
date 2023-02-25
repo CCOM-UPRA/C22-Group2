@@ -22,7 +22,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Shop 4 Column - Greeny</title>
+        <title>Shop - Urban Gardens</title>
 
         <!--=====================================
                     CSS LINK PART START
@@ -41,8 +41,12 @@
         <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
 
+
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+
+        <!-- URBAN GARDENS css-->
+        <link rel="stylesheet" href="{{url_for('static',filename='css/urban-gardens.css')}}">
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -65,12 +69,12 @@
                 <div class="header-content">
                     <div class="header-media-group">
                         <button class="header-user"><img src="static/images/user.png" alt="user"></button>
-                        <a href="index.html"><img src="static/images/logo.png" alt="logo"></a>
+                        <a href="index.html"><img src="static/images/logo_pagina.png" alt="logo"></a>
                         <button class="header-src"><i class="fas fa-search"></i></button>
                     </div>
 
                     <a href="index.html" class="header-logo">
-                        <img src="static/images/logo.png" alt="logo">
+                        <img src="static/images/logo_pagina.png" alt="logo">
                     </a>
 
                     {% if 'customer' in session %}
@@ -170,7 +174,17 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+        <!-- <section class="inner-section single-banner" style="background: url(Phase-1\static\images\banner_pagina.jpg) no-repeat center;">
+            <img src="images\banner_pagina.jpg" >
+            <div class="container">
+                <h2>Shop</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Shop/</a></li>
+                </ol>
+            </div>
+        </section> -->
+        <section class="inner-section single-banner" style="urban-gardens">
+            <img src="images\banner_pagina.jpg" >
             <div class="container">
                 <h2>Shop</h2>
                 <ol class="breadcrumb">
@@ -224,14 +238,14 @@
                          </ul>
                                 <button class="shop-widget-btn">
                                     <i class="fas fa-search"></i>
-                                    <span>Search by brands</span>
+                                    <span>Search by Recommended location</span>
                                 </button>
                             </form>
                         </div>
 
 
                         <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Color</h6>
+                            <h6 class="shop-widget-title">Filter by Family type</h6>
                             <form>
                                 <ul class="shop-widget-list">
 
@@ -248,14 +262,14 @@
                          </ul>
                                 <button class="shop-widget-btn">
                                     <i class="fas fa-search"></i>
-                                    <span>Search by colors</span>
+                                    <span>Search by Family type</span>
                                 </button>
                             </form>
                         </div>
 
 
                         <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Video Resolution</h6>
+                            <h6 class="shop-widget-title">Filter by Recommended sun exposure</h6>
                             <form action="{{url_for('filter')}}" method="post">
                                 <ul class="shop-widget-list">
 
@@ -272,14 +286,14 @@
                          </ul>
                                 <button class="shop-widget-btn">
                                     <i class="fas fa-search"></i>
-                                    <span>Search by Resolution</span>
+                                    <span>Search by Sun exposure</span>
                                 </button>
                             </form>
                         </div>
 
 
                         <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Wi-Fi Availability</h6>
+                            <h6 class="shop-widget-title">Filter by Recommended watering</h6>
                             <form>
                                 <ul class="shop-widget-list">
 
@@ -296,7 +310,7 @@
                          </ul>
                                 <button class="shop-widget-btn">
                                     <i class="fas fa-search"></i>
-                                    <span>Search by Wi-Fi</span>
+                                    <span>Search by Watering</span>
                                 </button>
                             </form>
                         </div>

@@ -29,20 +29,25 @@
   height: 100%;
   z-index: -1;
   opacity: 0.05;
-  background: url(../images/banner-shape.png);
+  /* background: url(../images/banner_pagina.png); */
+  background: url(Phase-1\static\images\banner_pagina.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
 .banner-1 {
-  background: -webkit-gradient(linear, left top, right top, from(#45f76354), to(#ffc3d024));
-  background: linear-gradient(to right, #45f76354, #ffc3d024);
+  /* background: -webkit-gradient(linear, left top, right top, from(#45f76354), to(#ffc3d024));
+  background: linear-gradient(to right, #45f76354, #ffc3d024); */
+  background: url(Phase-1\static\images\banner_pagina.jpg);
+
 }
 
 .banner-2 {
-  background: -webkit-gradient(linear, right top, left top, from(#45f76354), to(#ffc3d024));
-  background: linear-gradient(to left, #45f76354, #ffc3d024);
+  /* background: -webkit-gradient(linear, right top, left top, from(#45f76354), to(#ffc3d024));
+  background: linear-gradient(to left, #45f76354, #ffc3d024); */
+  background: url(Phase-1\static\images\banner_pagina.jpg);
+
 }
 
 .banner-content h1 {
