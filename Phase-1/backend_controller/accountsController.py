@@ -1,11 +1,11 @@
 from backend_model.accountsModel import *
 
 
-def getaccounts():
-    return getaccountsmodel(admin=True)
+def getaccounts(admin = True):
+    return getaccountsmodel(admin)
 
-def getaccount(acc):
-    return getaccountmodel(acc, admin=True)
+def getaccount(acc, admin=True):
+    return getaccountmodel(acc, admin)
 
-def addaccount(acc : dict):
-    addaccountmodel(acc, admin=True)
+def addaccount(acc : dict, admin=True):
+    addaccountmodel(acc, admin)

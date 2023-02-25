@@ -132,7 +132,6 @@ def profile():
 def editinfo():
     # make changes to profile info
     # doesn't do anything at the moment
-    
 
     return redirect("/profile")
 

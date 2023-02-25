@@ -89,11 +89,15 @@ def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
 
-
 @app.route("/accounts")
-def accounts():
+@app.route("/accounts/<userType>")
+def accounts(userType = 'user'):
     # Retrieve all accounts from 'database' and redirect us to accounts page
-    acc = getaccounts()
+    if userType == 'admin':
+        isAdmin = True
+    else:
+        isAdmin = False
+    acc = getaccounts(isAdmin)
     return render_template("accounts.html", accounts=acc)
 
 
