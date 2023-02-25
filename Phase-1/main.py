@@ -20,6 +20,8 @@ app.secret_key = 'akeythatissecret'
 @app.route("/<message>")
 def enterpage(message):
     # This is the very page you enter when booting up Flask. You will be redirected to the login page.
+    if (message == None or message == "index.html"):
+        return shop()
     return render_template('login (2).html', message=message)
 
 
