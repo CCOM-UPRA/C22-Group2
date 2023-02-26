@@ -99,9 +99,15 @@ def shop():
 
     # Find the different filter options for the products by accessing the functions from shopController
     locations = getLocation()
+<<<<<<< Updated upstream
     family = getFamlyType()
     sun = getSunExpo()
     watering = getWatering()
+=======
+    family = getFamily()
+    sun = getSun()
+    watering= getWatering()
+>>>>>>> Stashed changes
 
     # Set the amount of items user currently has in cart
     amount = 2
@@ -114,8 +120,13 @@ def shop():
     session['total'] = 48.00
 
     # Redirect to shop page with the variables used
+<<<<<<< Updated upstream
     return render_template("shop-4column.html", products=products, amount=amount, total=total, brands=locations,
                            family=family, sun=sun, watering=watering)
+=======
+    return render_template("shop-4column.html", products=products, amount=amount, family=family, locations=locations,
+                           sun=sun, watering=watering)
+>>>>>>> Stashed changes
 
 
 @app.route("/profile")

@@ -9,27 +9,31 @@ productsPath = './JSONfiles/products.json'
 # Product images are loaded into static/images/product-images/
 # Done in array instead of dictionaries to portray the differences
 
-# Load JSON data into a dictionary
-with open(productsPath) as f:
-    data = json.load(f)
 
-# Access keys and sub-keys and put them into a Python list
-productList = []
-for key in data.keys():
-    item = [key]
+
+def getProductsModel():
+    
+    # Load JSON data into a dictionary
+    with open(productsPath) as f:
+        data = json.load(f)
+
+    # Access keys and sub-keys and put them into a Python list
+    productList = []
+    for key in data.keys():
+     item = [key]
     for sub_key in data[key].keys():
         item.append(data[key][sub_key])
     productList.append(item)
 
-def getProductsModel():
     return productList
 
 
 def getLocationModel():
     # Simulating grabbing these filters via SQL from the database
-    brands = ["Indoors", "Outdoors"]
-    return brands
+    locations = ["Indoors", "Outdoors"]
+    return locations
 
+<<<<<<< Updated upstream
 def getFamilyModel():
     family = ["Succulents", "Araceae", "Cactus", "Flowers"]
     return family
@@ -37,6 +41,16 @@ def getFamilyModel():
 
 def getSunExpoModel():
     sun = ["Part Sun", "Full Sun", "Part Shade", "Full Shade"]
+=======
+def getFamilyModel():    
+
+    family = ["Succulents", "Araceae", "Cactus","Flowers"]
+    return family
+
+
+def getSunModel():
+    sun = ["Part Sun", "Full Sun"]
+>>>>>>> Stashed changes
     return sun
 
 

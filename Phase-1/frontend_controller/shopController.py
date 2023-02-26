@@ -10,12 +10,21 @@ def getLocation():
     return getLocationModel()
 
 
+<<<<<<< Updated upstream
 def getFamlyType():
     return getFamilyModel()
 
 
 def getSunExpo():
     return getSunExpoModel()
+=======
+def getFamily():
+    return getFamilyModel()
+
+
+def getSun():
+    return getSunModel()
+>>>>>>> Stashed changes
 
 
 def getWatering():
