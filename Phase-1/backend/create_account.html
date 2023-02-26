@@ -154,7 +154,7 @@
                 <div style='text-align: center'>
 
                         <br><br>
-                        <h2>Create Account</h2>
+                        <h2>Create {{userType}} Account</h2>
                         <br>
 
                     </div>
@@ -163,7 +163,7 @@
                     <div class="col-lg-6">
                         <div class="details-content">
                             <div style="width:100%">
-                                 <form style="width:100%" class="modal-form">
+                                <form style="width:100%" class="modal-form" action="{{url_for('accountinfo', userType=userType)}}" method="POST">
                                     <div class="form-title">
                                         <h3>general info</h3>
                                     </div>
@@ -172,18 +172,26 @@
                                         <label class="form-label">First Name</label>
                                         <input type="text" name="fname" class="form-control" placeholder="first name"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Last Name</label>
                                         <input type="text" name="lname" class="form-control" placeholder="last name"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Phone Number</label>
                                         <input type="number" name="pnumber" class="form-control" placeholder="city"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">email</label>
                                         <input type="text" name="email" class="form-control" placeholder="email"></input>
                                     </div>
+
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="pass1" placeholder="Enter password">
+                                    </div>
+
                                      <div class="form-group">
                                         <label class="form-label">status</label><br>
                                          <label for="active">Active</label>
@@ -191,8 +199,7 @@
                                          <label for="inactive">Inactive</label>
                                         <input type="radio" id='inactive' value="Inactive" name="group1">
                                     </div>
-                                </form>
-                                <form style="width:100%" class="modal-form">
+
                                     <div class="form-title">
                                         <h3>address info</h3>
                                     </div>
@@ -201,24 +208,27 @@
                                         <label class="form-label">Address Line 1</label>
                                         <input type="text" name="aline1" class="form-control" placeholder="line1"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Address Line 2</label>
                                         <input type="text" name="aline2" class="form-control" placeholder="line2"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">City</label>
                                         <input type="text" name="city" class="form-control" placeholder="city"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">State</label>
                                         <input type="text" name="state" class="form-control" placeholder="state"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Zipcode</label>
                                         <input type="text" name="zipcode" class="form-control" placeholder="zip"></input>
                                     </div>
-                                </form>
-                                <form style="width:100%" class="modal-form">
+
                                     <div class="form-title">
                                         <h3>payment info</h3>
                                     </div>
@@ -227,29 +237,30 @@
                                         <label class="form-label">Name on card</label>
                                         <input type="text" name="cname" class="form-control" placeholder="name"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Card number</label>
                                         <input type="number" name="cnumber" class="form-control" ></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Card type</label>
                                         <input type="text" name="ctype" class="form-control" placeholder="type"></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Expiration Date</label>
                                         <input type="date" name="cdate" class="form-control"></input>
                                     </div>
+
+                                    <div class="details-add-group">
+                                        <button type="submit" class="product-add" title="Save changes">
+                                        <span>Save changes</span></button>
+                                    </div>
                                 </form>
                             </div>
-
-                            <div class="details-add-group">
-                                <form action="{{url_for('accounts')}}">
-                                <button class="product-add" title="Save changes">
-                                    <span>Save changes</span>
-                                </button></form>
-                            </form>
-
                         </div>
+                   
                     </div>
                 </div>
             </div>

@@ -100,11 +100,53 @@ def accounts(userType = 'user'):
     acc = getaccounts(isAdmin)
     return render_template("accounts.html", accounts=acc)
 
-
-@app.route("/createaccount")
-def createaccount():
+@app.route("/createaccount/<userType>")
+def createaccount(userType):
     # Redirect us to account creation page
-    return render_template("create_account.html")
+    return render_template("create_account.html", userType=userType)
+
+
+@app.route("/accountinfo/<userType>", methods=['POST'])
+def accountinfo(userType):
+    print("Account info called")
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    pnumber = request.form.get('pnumber')
+    email = request.form.get('email')
+    pass1 = request.form.get('pass1')
+    aline1 = request.form.get('aline1')
+    aline2 = request.form.get('aline2')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    zipcode = request.form.get('zipcode')
+    cname = request.form.get('cname')
+    cnumber = request.form.get('cnumber')
+    ctype = request.form.get('ctype')
+    cdate = request.form.get('cdate')
+        # Process register info here
+        
+    newAccount = {
+        "c_first_name": fname,
+        "c_last_name": lname,
+        "c_email": email,
+        "c_password": pass1,
+        "c_phone_number": pnumber,
+        "c_status": "Active",
+        "c_address_line_1": aline1,
+        "c_address_line_2": aline2,
+        "c_city": city,
+        "c_state": state,
+        "c_zipcode": zipcode,
+        "c_card_name": cname,
+        "c_card_type": ctype,
+        "c_exp_date": cdate,
+        "c_card_num": cnumber
+        }
+    
+    isAdmin = True if userType == "admin" else False
+
+    addaccount(newAccount, isAdmin)
+    return redirect('/accounts')
 
 
 @app.route("/editaccount/<acc>")
@@ -131,7 +173,7 @@ def editorder(order):
     # Go to separate page for that order
     return render_template('order.html', products=orderProducts, order=order)
 
-
+  
 @app.route("/reports")
 def reports():
     return render_template("reports.html")

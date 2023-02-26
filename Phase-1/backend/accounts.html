@@ -157,11 +157,11 @@
                         <h2>Accounts</h2>
 
                      <div style='padding: 0 40%' class="view-add-group">
-                       <form action="{{url_for('createaccount')}}">
+                       <form action="{{url_for('createaccount', userType='user')}}">
                            <button style="" class="product-add">Add User</button>
                        </form>
                        
-                        <form action="{{url_for('createaccount')}}">
+                        <form action="{{url_for('createaccount', userType='admin')}}">
                             <button style="" class="product-add">Add Administrator</button>
                         </form>
 

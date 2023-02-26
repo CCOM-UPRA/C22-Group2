@@ -8,4 +8,5 @@ def getaccount(acc, admin=True):
     return getaccountmodel(acc, admin)
 
 def addaccount(acc : dict, admin=True):
+    print("Account added")
     addaccountmodel(acc, admin)
