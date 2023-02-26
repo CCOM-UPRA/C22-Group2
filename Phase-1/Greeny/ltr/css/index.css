@@ -21,7 +21,9 @@
 }
 
 .banner-part::before {
+  /* position: absolute; */
   position: absolute;
+
   content: "";
   top: 0px;
   left: 0px;
