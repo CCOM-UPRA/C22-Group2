@@ -194,13 +194,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for key, acc in accounts.items() %}
+                                {% for key in accounts.keys() %}
                                 <tr>
-                                        <td class="table-name"><h6>{{acc['c_first_name']}}</h6></td>
-                                        <td class="table-name"><h6>{{acc['c_last_name']}}</h6></td>
-                                        <td class="table-price"><h6>{{acc['c_phone_number']}}</h6></td>
-                                        <td class="table-brand"><h6>{{acc['c_email']}}</h6></td>
-                                         <td class="table-brand"><h6>{{acc['c_status']}}</h6></td>
+                                        <td class="table-name"><h6>{{accounts.get(key)['c_first_name']}}</h6></td>
+                                        <td class="table-name"><h6>{{accounts.get(key)['c_last_name']}}</h6></td>
+                                        <td class="table-price"><h6>{{accounts.get(key)['c_phone_number']}}</h6></td>
+                                        <td class="table-brand"><h6>{{accounts.get(key)['c_email']}}</h6></td>
+                                         <td class="table-brand"><h6>{{accounts.get(key)['c_status']}}</h6></td>
                                         <td class="table-action">
                                             <a class="view" href="{{url_for('editaccount', userType=userType, acc=key)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
                                         </td>
