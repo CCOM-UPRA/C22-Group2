@@ -115,7 +115,7 @@ def shop():
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, family=family, locations=locations,
-                           sun=sun, watering=watering)
+                           sun=sun, watering=watering, total=total)
 
 
 @app.route("/profile")
