@@ -6,17 +6,17 @@ def getProducts():
     return products
 
 
-def getBrands():
-    return getBrandsModel()
+def getLocation():
+    return getLocationModel()
 
 
-def getColors():
-    return getColorsModel()
+def getFamlyType():
+    return getFamilyModel()
 
 
-def getVideoRes():
-    return getVideoResModel()
+def getSunExpo():
+    return getSunExpoModel()
 
 
-def getWifi():
-    return getWifiModel()
+def getWatering():
+    return getWateringModel()

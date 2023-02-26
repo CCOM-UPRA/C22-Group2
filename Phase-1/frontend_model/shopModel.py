@@ -25,21 +25,21 @@ def getProductsModel():
     return productList
 
 
-def getBrandsModel():
+def getLocationModel():
     # Simulating grabbing these filters via SQL from the database
     brands = ["Indoors", "Outdoors"]
     return brands
 
-def getColorsModel():
-    colors = ["Succulents", "Araceae", "Cactus", "Flowers"]
-    return colors
+def getFamilyModel():
+    family = ["Succulents", "Araceae", "Cactus", "Flowers"]
+    return family
 
 
-def getVideoResModel():
-    videores = ["Part Sun", "Full Sun", "Part Shade", "Full Shade"]
-    return videores
+def getSunExpoModel():
+    sun = ["Part Sun", "Full Sun", "Part Shade", "Full Shade"]
+    return sun
 
 
-def getWifiModel():
-    wifi = ['Weekly', 'Biweekly']
-    return wifi
+def getWateringModel():
+    watering = ['Weekly', 'Biweekly']
+    return watering
