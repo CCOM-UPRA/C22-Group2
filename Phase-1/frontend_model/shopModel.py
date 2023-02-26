@@ -33,7 +33,6 @@ def getLocationModel():
     locations = ["Indoors", "Outdoors"]
     return locations
 
-<<<<<<< Updated upstream
 def getFamilyModel():
     family = ["Succulents", "Araceae", "Cactus", "Flowers"]
     return family
@@ -41,16 +40,6 @@ def getFamilyModel():
 
 def getSunExpoModel():
     sun = ["Part Sun", "Full Sun", "Part Shade", "Full Shade"]
-=======
-def getFamilyModel():    
-
-    family = ["Succulents", "Araceae", "Cactus","Flowers"]
-    return family
-
-
-def getSunModel():
-    sun = ["Part Sun", "Full Sun"]
->>>>>>> Stashed changes
     return sun
 
 
