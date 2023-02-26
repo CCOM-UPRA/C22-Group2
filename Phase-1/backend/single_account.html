@@ -163,7 +163,7 @@
                     <div class="col-lg-6">
                         <div class="details-content">
                             <div style="width:100%">
-                                 <form style="width:100%" class="modal-form">
+                                 <form style="width:100%" class="modal-form" action="{{url_for('editinfo', userType=userType, acc=acc)}}" method="POST">
                                     <div class="form-title">
                                         <h3>general info</h3>
                                     </div>
@@ -201,8 +201,6 @@
                                             <input type="radio" id='inactive1' value="Inactive" name="group1">
                                         </div>
                                      {% endif %}
-                                </form>
-                                <form style="width:100%" class="modal-form">
                                     <div class="form-title">
                                         <h3>address info</h3>
                                     </div>
@@ -227,8 +225,6 @@
                                         <label class="form-label">Zipcode</label>
                                         <input type="text" name="zipcode" class="form-control" value="{{acc['c_zipcode']}}"></input>
                                     </div>
-                                </form>
-                                <form style="width:100%" class="modal-form">
                                     <div class="form-title">
                                         <h3>payment info</h3>
                                     </div>
@@ -249,15 +245,14 @@
                                         <label class="form-label">Expiration Date</label>
                                         <input type="date" name="cdate" class="form-control" value="{{acc['c_exp_date']}}"></input>
                                     </div>
+                                    <div class="details-add-group">
+                                        <button type="submit" class="product-add" title="Save changes">
+                                            <span>Save changes</span>
+                                        </button>
                                 </form>
                             </div>
 
-                            <div class="details-add-group">
-                                <form action="{{url_for('accounts')}}">
-                                <button class="product-add" title="Save changes">
-                                    <span>Save changes</span>
-                                </button></form>
-                            </form>
+                            
 
                         </div>
                     </div>
