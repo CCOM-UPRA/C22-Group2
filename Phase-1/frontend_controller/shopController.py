@@ -10,7 +10,7 @@ def getLocation():
     return getLocationModel()
 
 
-def getFamlyType():
+def getFamilyType():
     return getFamilyModel()
 
 

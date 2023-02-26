@@ -99,7 +99,7 @@ def shop():
 
     # Find the different filter options for the products by accessing the functions from shopController
     locations = getLocation()
-    family = getFamlyType()
+    family = getFamilyType()
     sun = getSunExpo()
     watering = getWatering()
 
