@@ -18,14 +18,14 @@ def getProductsModel():
         data = json.load(f)
 
     # Access keys and sub-keys and put them into a Python list
-    productList = []
-    for key in data.keys():
-     item = [key]
-    for sub_key in data[key].keys():
-        item.append(data[key][sub_key])
-    productList.append(item)
+    # productList = []
+    # for key in data.keys():
+    #  item = [key]
+    # for sub_key in data[key].keys():
+    #     item.append(data[key][sub_key])
+    # productList.append(item)
 
-    return productList
+    return data
 
 
 def getLocationModel():
