@@ -122,7 +122,7 @@
             <div class="cart-header">
                 <div class="cart-total">
                     <i class="fas fa-shopping-basket"></i>
-                    <span>total item (3)</span>
+                    <span>total item (2)</span>
                 </div>
                 <button class="cart-close"><i class="icofont-close"></i></button>
             </div>
@@ -132,7 +132,7 @@
                     {% for key, item in session['cart'].items() %}
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="images/product/05.jpg" alt="product"></a>
+                        <a href="#"><img src="static/images/product-images/{{item['name']}}.jpg" alt="product"></a>
                         <form action="{{url_for('delete', id=key)}}">
                         <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
                         </form>
@@ -174,8 +174,8 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: url(Phase-1\static\images\banner_pagina.jpg) no-repeat center;">
-            <img src="images\banner_pagina.jpg" >
+        <section class="inner-section single-banner" style="background: grey url(static/images/banner_pagina.jpg) no-repeat center;">
+            <img src="static/images/banner_pagina.jpg" >
             <div class="container">
                 <h2>Urban Gardens</h2>
                 <ol class="breadcrumb">
@@ -184,7 +184,7 @@
             </div>
         </section>
         <!-- <section class="inner-section single-banner" style="urban-gardens">
-            <img src="images\banner_pagina.jpg" >
+            <img src="images/banner_pagina.jpg" >
             <div class="container">
                 <h2>Shop</h2>
                 <ol class="breadcrumb">

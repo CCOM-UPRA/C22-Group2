@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Foto">
+    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Cart fix. Banner fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-1/UserData/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/UserData/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/frontend_model/shopModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/frontend_model/shopModel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +40,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/eddyfigueroa/Desktop/CCOM4440/plants-ecommerce-site/Phase-1/Greeny/ltr/images",
+    "last_opened_file_path": "/Users/eddyfigueroa/Desktop/CCOM4115/plants-ecommerce-site",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -69,6 +69,8 @@
       <workItem from="1676930743645" duration="2287000" />
       <workItem from="1677001420549" duration="4369000" />
       <workItem from="1677021648699" duration="3951000" />
+      <workItem from="1677362207451" duration="3922000" />
+      <workItem from="1677367511759" duration="4421000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio foto de logo backend">
       <created>1677021886991</created>
@@ -91,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677341091351</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Cart fix. Banner fix">
+      <created>1677370801334</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677370801334</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -114,7 +123,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cambio foto de logo backend" />
     <MESSAGE value="Foto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Foto" />
+    <MESSAGE value="Cart fix. Banner fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cart fix. Banner fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/plants_ecommerce_site$main.coverage" NAME="main Coverage Results" MODIFIED="1676913667188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Phase-1-Template-main" />
