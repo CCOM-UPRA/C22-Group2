@@ -13,3 +13,6 @@ def addaccount(acc : dict, admin=True):
 
 def editaccountcontroller(acc, edits : dict, admin=True):
     editaccountmodel(acc, edits, admin=admin)
+
+def deleteaccount(acc : str, admin = False):
+    deleteaccountmodel(acc, admin=admin)
