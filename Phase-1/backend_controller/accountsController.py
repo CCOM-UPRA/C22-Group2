@@ -10,3 +10,6 @@ def getaccount(acc, admin=True):
 def addaccount(acc : dict, admin=True):
     print("Account added")
     addaccountmodel(acc, admin)
+
+def editaccount(acc, edits : dict, admin=True):
+    editaccountmodel(acc, edits, admin=admin)

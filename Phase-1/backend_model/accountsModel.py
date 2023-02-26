@@ -45,3 +45,27 @@ def addaccountmodel(acc : dict, admin = False):
     # write to json
     with open(path, "w") as f:
         json.dump(currentFile, f)
+
+# Edits the user account
+def editaccountmodel(acc, edits:dict, admin = False):
+    currentUser = getaccountmodel(acc, admin=admin)
+
+    for key in dict(currentUser).keys():
+        if key in edits.keys():
+            dict(currentUser)[key] = edits[key]
+
+    deleteaccountmodel(currentUser)
+    addaccountmodel(currentUser)
+    
+        
+def deleteaccountmodel(acc, admin = False):
+    path = adminsPath if admin else usersPath
+    currentUsers = getaccountsmodel(admin=admin)
+    currentUsers.pop(acc)
+    # write to json
+    with open(path, "w") as f:
+        json.dump(currentUsers, f)
+
+
+
+

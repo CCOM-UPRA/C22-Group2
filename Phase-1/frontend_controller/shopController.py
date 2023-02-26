@@ -2,8 +2,7 @@ from frontend_model.shopModel import *
 
 
 def getProducts():
-    products = getProductsModel()
-    return products
+    return getProductsModel()
 
 
 def getLocation():

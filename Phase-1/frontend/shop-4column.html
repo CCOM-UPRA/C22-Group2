@@ -334,25 +334,25 @@
                             </div>
                         </div>
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
-
-                            {% for product in products %}
+                            {{ product}}
+                            {% for product in products.keys() %}
                             <div class="col">
                                 <div class="product-card">
                                     <div class="product-media">
 
-                                        <a class="product-image" href="static/images/product-images/{{product[6]}}">
-                                            <img src="static/images/product-images/{{product[6]}}" alt="product">
+                                        <a class="product-image" href="static/images/product-images/{{products.get(product)['img']}}">
+                                            <img src="static/images/product-images/{{products.get(product)['img']}}" alt="product">
                                         </a>
                                         <div class="product-widget">
-                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view-{{product[0]}}"></a>
+                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view-{{product}}"></a>
                                         </div>
                                     </div>
                                     <div class="product-content">
                                         <h6 class="product-name">
-                                            <a href="product-video.html">{{product[1]}}</a>
+                                            <a href="product-video.html">{{products.get(product)['name']}}</a>
                                         </h6>
                                         <h6 class="product-price">
-                                            <span>${{product[7]}}</span>
+                                            <span>${{products.get(product)['price']}}</span>
                                         </h6>
                                         <button class="product-add" title="Add to Cart">
                                             <i class="fas fa-shopping-basket"></i>
@@ -361,16 +361,16 @@
                                         <div class="product-action">
                                             <form action="{{url_for('addcart')}}" method="post">
                                             <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
-                                               <input type="hidden" id="p_id" name="p_id" value="{{product[0]}}">
-                                               <input type="hidden" id="name" name="name" value="{{product[1]}}">
-                                                <input type="hidden" id="price" name="price" value="{{product[7]}}">
-                                                <input type="hidden" id="cost" name="cost" value="{{product[11]}}">
-                                                <input type="hidden" id="stock" name="stock" value="{{product[8]}}">
-                                                <input type="hidden" id="brand" name="brand" value="{{product[2]}}">
-                                                <input type="hidden" id="wifi" name="wifi" value="{{product[4]}}">
-                                                <input type="hidden" id="videores" name="videores" value="{{product[5]}}">
-                                                <input type="hidden" id="desc" name="desc" value="{{product[3]}}">
-                                                <input type="hidden" id="image" name="image" value="{{product[6]}}">
+                                               <input type="hidden" id="p_id" name="p_id" value="WIP">
+                                               <input type="hidden" id="name" name="name" value="{{products.get(product)['name']}}">
+                                                <input type="hidden" id="price" name="price" value="{{products.get(product)['price']}}">
+                                                <input type="hidden" id="cost" name="cost" value="None for now">
+                                                <input type="hidden" id="stock" name="stock" value="{{products.get(product)['stock']}}">
+                                                <input type="hidden" id="brand" name="brand" value="Does not apply">
+                                                <input type="hidden" id="wifi" name="wifi" value="does not apply">
+                                                <input type="hidden" id="videores" name="videores" value="does not apply">
+                                                <input type="hidden" id="desc" name="desc" value="{{products.get(product)['desc']}}">
+                                                <input type="hidden" id="image" name="image" value="{{products.get(product)['img']}}">
                                               <input style="width: 30%" type="submit" value="Add">
                                               </form>
                                         </div>
@@ -378,7 +378,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="product-view-{{product[0]}}">
+                            <div class="modal fade" id="product-view-{{product}}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>

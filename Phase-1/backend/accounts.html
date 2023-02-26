@@ -202,7 +202,7 @@
                                         <td class="table-brand"><h6>{{acc['c_email']}}</h6></td>
                                          <td class="table-brand"><h6>{{acc['c_status']}}</h6></td>
                                         <td class="table-action">
-                                            <a class="view" href="{{url_for('editaccount', acc=key)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
+                                            <a class="view" href="{{url_for('editaccount', userType=userType, acc=key)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}

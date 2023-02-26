@@ -44,13 +44,6 @@ def profile():
     return render_template("profile.html", user1=admin)
 
 
-@app.route("/editinfo", methods=["POST"])
-def editinfo():
-    # make changes to profile info
-    # not implemented in this phase
-    return redirect("/profile")
-
-
 @app.route("/password", methods=["POST"])
 def password():
     # make password changes
@@ -89,8 +82,8 @@ def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
 
-@app.route("/accounts")
 @app.route("/accounts/<userType>")
+@app.route("/accounts")
 def accounts(userType = 'user'):
     # Retrieve all accounts from 'database' and redirect us to accounts page
     if userType == 'admin':
@@ -98,7 +91,7 @@ def accounts(userType = 'user'):
     else:
         isAdmin = False
     acc = getaccounts(isAdmin)
-    return render_template("accounts.html", accounts=acc)
+    return render_template("accounts.html", accounts=acc, userType=userType)
 
 @app.route("/createaccount/<userType>")
 def createaccount(userType):
@@ -144,17 +137,57 @@ def accountinfo(userType):
         }
     
     isAdmin = True if userType == "admin" else False
-
     addaccount(newAccount, isAdmin)
     return redirect('/accounts')
 
 
-@app.route("/editaccount/<acc>")
-def editaccount(acc):
+@app.route("/editaccount/<userType>/<acc>")
+def editaccount(userType, acc):
+    print(userType)
     # Fetch account given via url and then enter the edit page for that account
-    account = getaccount(acc)
-    return render_template("single_account.html", acc=account)
+    isAdmin = True if userType == 'admin' else False
+    account = getaccount(acc, isAdmin)
+    return render_template("single_account.html", userType=userType, acc=account)
 
+@app.route("/editinfo/<userType>/<acc>", methods=['POST'])
+def editinfo(userType, acc):
+    
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    pnumber = request.form.get('pnumber')
+    email = request.form.get('email')
+    pass1 = request.form.get('pass1')
+    aline1 = request.form.get('aline1')
+    aline2 = request.form.get('aline2')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    zipcode = request.form.get('zipcode')
+    cname = request.form.get('cname')
+    cnumber = request.form.get('cnumber')
+    ctype = request.form.get('ctype')
+    cdate = request.form.get('cdate')
+
+    editAccount = {
+        "c_first_name": fname,
+        "c_last_name": lname,
+        "c_email": email,
+        "c_password": pass1,
+        "c_phone_number": pnumber,
+        "c_status": "Active",
+        "c_address_line_1": aline1,
+        "c_address_line_2": aline2,
+        "c_city": city,
+        "c_state": state,
+        "c_zipcode": zipcode,
+        "c_card_name": cname,
+        "c_card_type": ctype,
+        "c_exp_date": cdate,
+        "c_card_num": cnumber
+        }
+    
+    #isAdmin = True if userType == 'admin' else False
+    editaccount(acc, editAccount)
+    redirect('/accounts', userType=userType)
 
 @app.route("/orders")
 def orders():
