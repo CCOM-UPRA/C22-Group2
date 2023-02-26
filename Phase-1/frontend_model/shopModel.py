@@ -25,7 +25,7 @@ def getProductsModel():
     #     item.append(data[key][sub_key])
     # productList.append(item)
 
-    return data
+    return dict(data)
 
 
 def getLocationModel():
