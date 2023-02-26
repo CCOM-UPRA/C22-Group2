@@ -163,7 +163,7 @@
                     <div class="col-lg-6">
                         <div class="details-content">
                             <div style="width:100%">
-                                 <form style="width:100%" class="modal-form" action="{{url_for('editinfo', userType=userType, acc=acc)}}" method="POST">
+                                 <form style="width:100%" class="modal-form" action="{{url_for('editinfo', userType=userType, acc=account)}}" method="POST">
                                     <div class="form-title">
                                         <h3>general info</h3>
                                     </div>
@@ -183,6 +183,10 @@
                                     <div class="form-group">
                                         <label class="form-label">email</label>
                                         <input type="text" name="email" class="form-control" value="{{acc['c_email']}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">password</label>
+                                        <input type="text" name="pass1" class="form-control" value="{{acc['c_password']}}">
                                     </div>
                                      {% if acc['c_status'] == 'active' %}
                                          <div class="form-group">

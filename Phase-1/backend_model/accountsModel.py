@@ -1,4 +1,5 @@
 import json
+from random import randrange
 #import os
 #from pathlib import Path
 # Hacky fix
@@ -36,8 +37,9 @@ def addaccountmodel(acc : dict, admin = False):
     path = adminsPath if admin else usersPath
     currentFile = getaccountsmodel(admin=admin)
     # assign new key to account
-    lastKey = int(list(currentFile)[-1])
-    newKey = lastKey + 1
+    newKey = randrange(0, 999999999)
+    while(newKey in currentFile.keys()):
+        newKey = randrange(0, 999999999)
 
     newEntry = {str(newKey):dict(acc)}
     # add account to dictionary
@@ -48,20 +50,21 @@ def addaccountmodel(acc : dict, admin = False):
 
 # Edits the user account
 def editaccountmodel(acc, edits:dict, admin = False):
-    currentUser = getaccountmodel(acc, admin=admin)
+    path = adminsPath if admin else usersPath
+    users = getaccountsmodel(admin=admin)
 
-    for key in dict(currentUser).keys():
-        if key in edits.keys():
-            dict(currentUser)[key] = edits[key]
+    print("Editing account: " + acc)
+    for key in dict(users.get(acc)).keys():
+        if key in edits and edits != None:
+            users.get(acc)[key] = edits[key]
+    with open(path, "w") as f:
+        json.dump(users, f)
 
-    deleteaccountmodel(currentUser)
-    addaccountmodel(currentUser)
     
         
-def deleteaccountmodel(acc, admin = False):
+def deleteaccountmodel(acc : str, admin = False):
     path = adminsPath if admin else usersPath
-    currentUsers = getaccountsmodel(admin=admin)
-    currentUsers.pop(acc)
+    currentUsers = getaccountsmodel(admin=admin).pop(acc)
     # write to json
     with open(path, "w") as f:
         json.dump(currentUsers, f)
