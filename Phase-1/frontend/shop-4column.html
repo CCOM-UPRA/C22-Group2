@@ -251,11 +251,11 @@
                             <form>
                                 <ul class="shop-widget-list">
 
-                        {% for color in colors %}
+                        {% for f in family %}
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag3">
-                                    <label for="tag1">{{color}}</label>
+                                    <label for="tag1">{{f}}</label>
                                 </div>
 
                             </li>
@@ -275,11 +275,11 @@
                             <form action="{{url_for('filter')}}" method="post">
                                 <ul class="shop-widget-list">
 
-                        {% for res in videores %}
+                        {% for s in sun %}
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="{{res}}" name="videores" value="{{res}}">
-                                    <label for="tag1">{{res}}</label>
+                                    <label for="tag1">{{s}}</label>
                                 </div>
 
                             </li>
@@ -299,7 +299,7 @@
                             <form>
                                 <ul class="shop-widget-list">
 
-                        {% for w in wifi %}
+                        {% for w in watering %}
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag4" name="check" onclick="onlyOne(this)">
