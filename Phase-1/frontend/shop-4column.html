@@ -174,7 +174,7 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: grey url(static/images/banner_pagina.jpg) no-repeat center;">
+        <section class="inner-section single-banner" style="background: rgb(251, 215, 215) url(static/images/banner_pagina.jpg) no-repeat center;">
             <img src="static/images/banner_pagina.jpg" >
             <div class="container">
                 <h2>Urban Gardens</h2>
@@ -225,11 +225,11 @@
                             <form>
                                 <ul class="shop-widget-list">
 
-                        {% for brand in brands %}
+                        {% for location in locations %}
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag1">
-                                    <label for="tag1">{{brand}}</label>
+                                    <label for="tag1">{{location}}</label>
                                 </div>
 
                             </li>

@@ -98,10 +98,10 @@ def shop():
     getCart()
 
     # Find the different filter options for the products by accessing the functions from shopController
-    brands = getBrands()
-    colors = getColors()
-    videores = getVideoRes()
-    wifi = getWifi()
+    locations = getLocation()
+    family = getFamlyType()
+    sun = getSunExpo()
+    watering = getWatering()
 
     # Set the amount of items user currently has in cart
     amount = 2
@@ -114,8 +114,8 @@ def shop():
     session['total'] = 48.00
 
     # Redirect to shop page with the variables used
-    return render_template("shop-4column.html", products=products, amount=amount, total=total, brands=brands,
-                           colors=colors, videores=videores, wifi=wifi)
+    return render_template("shop-4column.html", products=products, amount=amount, family=family, locations=locations,
+                           sun=sun, watering=watering)
 
 
 @app.route("/profile")
