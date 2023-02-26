@@ -20,7 +20,10 @@ app.secret_key = 'akeythatissecret'
 @app.route("/<message>")
 def enterpage(message):
     # This is the very page you enter when booting up Flask. You will be redirected to the login page.
-    return render_template('login (2).html', message=message)
+    if (message == None or message == "index.html"):
+        return shop()
+    elif message == "login":
+        return render_template('login (2).html', message=message)
 
 
 @app.route("/clear")
@@ -101,14 +104,14 @@ def shop():
     wifi = getWifi()
 
     # Set the amount of items user currently has in cart
-    amount = 3
+    amount = 2
     # And set the amount for the entire site to access
-    session['amount'] = 3
+    session['amount'] = 2
 
     # Set the cart's total amount for the page
-    total = 150.00
+    total = 48.00
     # And set the total for the entire site to access
-    session['total'] = 150.00
+    session['total'] = 48.00
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, total=total, brands=brands,

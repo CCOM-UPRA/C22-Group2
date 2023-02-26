@@ -6743,8 +6743,9 @@ tbody tr td:last-child {
   left: 0px;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear, right top, left top, from(rgba(6, 23, 56, 0.6)), to(rgba(17, 151, 68, 0.6)));
-  background: linear-gradient(to left, rgba(6, 23, 56, 0.6), rgba(17, 151, 68, 0.6));
+  /* background: -webkit-gradient(linear, right top, left top, from(rgba(6, 23, 56, 0.6)), to(rgba(17, 151, 68, 0.6)));
+  background: linear-gradient(to left, rgba(6, 23, 56, 0.6), rgba(17, 151, 68, 0.6)); */
+  background-image: url(Phase-1\static\images\banner_pagina.jpg);
   z-index: -1;
 }
 

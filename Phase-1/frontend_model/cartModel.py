@@ -10,12 +10,13 @@ def MagerDicts(dict1, dict2):
 
 
 # Cart items simulated
-dictitems1 = {'1': {'name': "Tello Drone", 'price': 89.00, 'quantity': 2, 'total_price': 178.00,
-                  'stock': 15, 'brand': "DJI", 'wifi': "Yes", 'videores': "480p", 'desc': "Tello Drone description",
-                  'image': "dji_tello.jpg", 'cost': 89.00}}
-dictitems2 = {'3': {'name': "F11 Pro", 'price': 399.00, 'quantity': 1, 'total_price': 399.00,
-                  'stock': 10, 'brand': "Ruko", 'wifi': "Yes", 'videores': "4k", 'desc': "F11 Pro description",
-                  'image': "ruko_f11_pro.jpg", 'cost': 350.00}}
+dictitems1 = {'1': {'name': "Echeveria", 'price': 13.75, 'quantity': 2, 'total_price': 27.50,
+                  'stock': 15, 'family type': "Succulents", 'water': "Weekly", 'sun': "Part Sun", 'desc': "Echeverias description",
+                  'image': "echeverias.jpg", 'location': "Indoors"}}
+dictitems2 = {'2': {'name': "Kalanchoe", 'price': 20.50, 'quantity': 1, 'total_price': 20.50,
+                  'stock': 10, 'family type': "Succulents", 'water': "Biweekly", 'sun': "Full Sun", 'desc': "Kalanchoe description",
+                  'image': "kalanchoe.jpg", 'location': "Outdoor"}}
+
 
 def getCartModel():
     # Checking if cart is in session or not and adding the dictionaries to it

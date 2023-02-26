@@ -31,15 +31,15 @@ def getBrandsModel():
     return brands
 
 def getColorsModel():
-    colors = ["White", "Gray", "Red"]
+    colors = ["Succulents", "Araceae", "Cactus", "Flowers"]
     return colors
 
 
 def getVideoResModel():
-    videores = ["480p", "1080p", "4k"]
+    videores = ["Part Sun", "Full Sun", "Part Shade", "Full Shade"]
     return videores
 
 
 def getWifiModel():
-    wifi = ['Yes', 'No']
+    wifi = ['Weekly', 'Biweekly']
     return wifi
