@@ -1,0 +1,9 @@
+
+{
+	"1": {"name": "Echeveria", "location": "Indoor", "quantity": 15},
+	"2": {"name": "Kalanchoe", "location": "Outdoor", "quantity": 4},
+	"3": {"name": "Golden Ball Cactus", "location": "Outdoor", "quantity": 3},
+	"4": {"name": "Moon Cactus", "location": "Indoor", "quantity": 5},
+	"5": {"name": "Sunflower", "location": "Outdoor", "quantity": 15},
+	"6": {"name": "Rose", "location": "Outdoor", "quantity": 12}
+}

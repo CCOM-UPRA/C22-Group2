@@ -1,0 +1,7 @@
+{
+"1": {"name": "Echeveria", "location": "Indoors", "date": "2023-01-01", "price": "13.75", "quantity": 2, "total_price": 27.50},
+"2": {"name": "Kalanchoe", "location": "Outdoor", "date": "2023-01-04", "price": "20.50", "quantity": 1, "total_price": 20.50},
+"3": {"name": "Kalanchoe", "location": "Outdoor", "date": "2023-12-5", "price": "20.50", "quantity": 3, "total_price": 61.50},
+"4": {"name": "Monstera Deliciosa", "location": "Indoors", "date": "2023-04-12", "price": "35.00", "quantity": 1, "total_price": 35.00},
+"5": {"name": "Anthurium", "location": "Indoors", "date": "2023-01-01", "price": "45.50", "quantity": 2, "total_price": 91.00}
+}
