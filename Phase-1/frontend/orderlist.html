@@ -116,7 +116,7 @@
             <div class="cart-header">
                 <div class="cart-total">
                     <i class="fas fa-shopping-basket"></i>
-                    <span>total item (3)</span>
+                    <span>total item (2)</span>
                 </div>
                 <button class="cart-close"><i class="icofont-close"></i></button>
             </div>
@@ -126,7 +126,7 @@
                     {% for key, item in session['cart'].items() %}
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="images/product-images/05.jpg" alt="product"></a>
+                        <a href="#"><img src="static/images/product-images/{{item['name']}}.jpg" alt="product"></a>
                         <form action="{{url_for('delete', id=key)}}">
                         <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
                         </form>
@@ -174,7 +174,7 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+        <section class="inner-section single-banner" style="background: rgb(3, 79, 9) url(static/images/banner_pagina.jpg) no-repeat center; max-width: 100%;">
             <div class="container">
                 <h2>Order History</h2>
                 <ol class="breadcrumb">
@@ -284,7 +284,7 @@
                                                     <tr>
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Image</th>
-                                                        <th scope="col">Brand</th>
+                                                        <th scope="col">Family</th>
                                                         <th scope="col">Price</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Total Price</th>
@@ -295,7 +295,7 @@
                                                     <tr>
                                                         <td class="table-serial"><h6>{{product['name']}}</h6></td>
                                                         <td class="table-image"><img src="static/images/product-images/{{product['image']}}" alt="product"></td>
-                                                        <td class="table-name"><h6>{{product['brand']}}</h6></td>
+                                                        <td class="table-name"><h6>{{product['family']}}</h6></td>
                                                         <td class="table-price"><h6>${{product['price']}}0</h6></td>
                                                         <td class="table-brand"><h6>{{product['quantity']}}</h6></td>
                                                         <td class="table-quantity"><h6>${{product['total_price']}}0</h6></td>
@@ -382,7 +382,7 @@
                                                     <tr>
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Image</th>
-                                                        <th scope="col">Brand</th>
+                                                        <th scope="col">Family</th>
                                                         <th scope="col">Price</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Total Price</th>
@@ -393,8 +393,8 @@
                                                     <tr>
                                                         <td class="table-serial"><h6>{{product['name']}}</h6></td>
                                                         <td class="table-image"><img src="static/images/product-images/{{product['image']}}" alt="product"></td>
-                                                        <td class="table-name"><h6>{{product['brand']}}</h6></td>
-                                                        <td class="table-price"><h6>${{product['price']}}0</h6></td>
+                                                        <td class="table-name"><h6>{{product['family']}}</h6></td>
+                                                        <td class="table-price"><h6>${{product['price']}}</h6></td>
                                                         <td class="table-brand"><h6>{{product['quantity']}}</h6></td>
                                                         <td class="table-quantity"><h6>${{product['total_price']}}0</h6></td>
                                                     </tr>

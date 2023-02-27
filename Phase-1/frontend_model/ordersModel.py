@@ -30,42 +30,42 @@ order2 = {"tracking_num": "92391290",
     "status": 'delivered'}
 
 productDict1 = {"1": {
-    "image": 'ruko_f11_pro.jpg',
-    "name": 'F11 Pro',
-    "brand": 'Ruko',
-    "price": 399.00,
+    "image": 'goldenballcactus.jpg',
+    "name": 'Golden Ball Cactus',
+    "family": 'Cactus',
+    "price": 65.75,
     "quantity": 1,
-    "total_price": 399.00
+    "total_price": 65.75
 }}
 
 productDict2 = {"2": {
-    "image": 'dji_tello.jpg',
-    "name": 'Tello Drone',
-    "brand": 'DJI',
-    "price": 89.00,
+    "image": 'rose.jpg',
+    "name": 'Rose',
+    "family": 'Flowers',
+    "price": 59.99,
     "quantity": 2,
-    "total_price": 178.00
+    "total_price": 119.98
 }}
 
 productsOrder1 = productDict1
 productsOrder1 = MagerDicts(productsOrder1, productDict2)
 
 productDict3 = {"3": {
-    "image": 'parrot_bebop_2.jpg',
-    "name": 'Bebop 2',
-    "brand": 'Parrot',
-    "price": 270.00,
+    "image": 'MonsteraDeliciosa.jpg',
+    "name": 'Monstera Deliciosa',
+    "family": 'Araceae',
+    "price": 35.00,
     "quantity": 2,
-    "total_price": 540.00
+    "total_price": 70.00
 }}
 
 productDict4 = {"4": {
-    "image": 'dji_tello.jpg',
-    "name": 'Tello Drone',
-    "brand": 'DJI',
-    "price": 89.00,
+    "image": 'anthurium.jpg',
+    "name": 'Anthurium',
+    "family": 'Araceae',
+    "price": 45.50,
     "quantity": 1,
-    "total_price": 89.00
+    "total_price": 45.50
 }}
 
 productsOrder2 = productDict3
