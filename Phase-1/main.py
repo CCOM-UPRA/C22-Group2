@@ -4,7 +4,7 @@ from frontend_controller.checkoutController import getUserCheckout
 from frontend_controller.invoiceController import getOrder, getOrderProducts
 from frontend_controller.loginController import *
 from frontend_controller.ordersController import getorder1, getorder2, getorder1products, getorder2products
-from frontend_controller.profileController import getUser
+from frontend_controller.profileController import *
 from frontend_controller.shopController import *
 
 app = Flask(__name__, template_folder='frontend/')
@@ -131,8 +131,41 @@ def profile():
 @app.route("/editinfo", methods=["POST"])
 def editinfo():
     # make changes to profile info
-    # doesn't do anything at the moment
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    pnumber = request.form.get('pnumber')
+    email = request.form.get('email')
+    pass1 = request.form.get('pass1')
+    aline1 = request.form.get('aline1')
+    aline2 = request.form.get('aline2')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    zipcode = request.form.get('zipcode')
+    cname = request.form.get('cname')
+    cnumber = request.form.get('cnumber')
+    ctype = request.form.get('ctype')
+    cdate = request.form.get('cdate')
+        # Process register info here
+        
+    editAccount = {
+        "c_first_name": fname,
+        "c_last_name": lname,
+        "c_email": email,
+        "c_password": pass1,
+        "c_phone_number": pnumber,
+        "c_status": "Active",
+        "c_address_line_1": aline1,
+        "c_address_line_2": aline2,
+        "c_city": city,
+        "c_state": state,
+        "c_zipcode": zipcode,
+        "c_card_name": cname,
+        "c_card_type": ctype,
+        "c_exp_date": cdate,
+        "c_card_num": cnumber
+        }
 
+    changeinfo(session['customer'], editAccount)
     return redirect("/profile")
 
 
