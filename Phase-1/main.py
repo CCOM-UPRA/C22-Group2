@@ -242,10 +242,11 @@ def invoice():
     return render_template("invoice.html", order=order, products=products, amount=amount)
 
 
-@app.route("/filter")
+@app.route("/filter", methods=["POST"])
 def filter():
     # filter happens here
     # not in function currently
+    
     return redirect("/shop")
 
 
