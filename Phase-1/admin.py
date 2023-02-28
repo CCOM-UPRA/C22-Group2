@@ -75,7 +75,29 @@ def single_product(prodID):
 @app.route("/editproduct", methods=['POST'])
 def editproduct():
     # process the changes to a product's information
-    # not implemented in this phase
+    print("Edit product called")
+    name = request.form.get('name')
+    location = request.form.get('location')
+    family = request.form.get('family')
+    sun = request.form.get('sun')
+    water = request.form.get('water')
+    img = request.form.get('img')
+    price = request.form.get('price')
+    stock = request.form.get('stock')
+    desc = request.form.get('desc')
+
+    newProduct = {
+    "name": name,
+    "location": location,
+    "family type": family,
+    "sun": sun,
+    "water": water,
+    "img": img,
+    "price": price,
+    "stock": stock,
+    "desc": desc,
+    }
+    addproductController(newProduct)
     return redirect('/products')
 
 

@@ -7,3 +7,7 @@ def getProducts():
 
 def getsingleproduct(prodID):
     return getsingleproductmodel(prodID)
+
+def addproductController(prod : dict):
+    print("Product added")
+    addproductmodel(prod)

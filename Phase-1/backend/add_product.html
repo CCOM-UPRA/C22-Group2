@@ -171,58 +171,57 @@
                     <div class="col-lg-6">
                         <div class="details-content">
                             <h3 class="details-name"><a href="#">Details</a></h3>
-                            <form action="{{url_for('editproduct')}}" method="post">
-                            <label for="name">Name: </label>
-                            <input type="text" id="name" title="Name of product" placeholder="Name"><br>
+                            <form style="width:100%" class="modal-form"
+                                  action="{{url_for('editproduct')}}" method="POST">
+                                <label class="form-label">Name:
+                                    <input type="text" name="name" class="form-control" placeholder="Product name"></input></label><br>
 
-                            <label for="family">Family Type: </label>
-                            <input type="text" id="family" title="Family of product" placeholder="Family"><br>
+                                <label class="form-label">Family Type:
+                                    <input type="text" name="family" class="form-control" placeholder="Product family"></input></label><br>
 
-                            <label for="sun">Sun Exposure: </label>
-                            <input type="text" id="sun" title="Sun exposure" placeholder="Sun"><br>
+                                <label class="form-label">Sun Exposure:
+                                    <input type="text" name="sun" class="form-control" placeholder="Full sun, full shade..."></input></label><br>
 
-                            <label for="watering">Watering frequency: </label>
-                            <input type="text" id="watering" title="Watering frequency of product" placeholder="Watering">
+                                <label class="form-label">Watering frequency:
+                                    <input type="text" name="water" class="form-control" placeholder="Weekly, biweekly..."></input></label><br>
 
-                            <p>Location:</p>
-
-                                    <input type="radio" id="indoor" name="location" value="Indoor" checked>
-                                    <label for="indoor">Indoor</label>
-                                    <input type="radio" id="outdoor" name="location" value="Outdoor">
-                                    <label for="outdoor">Outdoor</label><br>
+                                <label class="form-label">Location:
+                                    <input type="text" name="location" class="form-control" placeholder="Indoors, Outdoor..."></input></label><br>
 
 
-<!--                            <label for="cost">Cost in $: </label>-->
-<!--                            <input type="number" id='cost' value="Cost"><br>-->
-                            <label for="price">Price in $: </label>
-                            <input type="number" id='price' value="Price"><br>
+    <!--                            <label for="cost">Cost in $: </label>-->
+    <!--                            <input type="number" id='cost' value="Cost"><br>-->
+                                <label class="form-label">Price:
+                                    <input type="text" name="price" class="form-control" placeholder="$$..."></input></label><br>
 
-                            <label for="stock">Stock: </label>
-                            <input type="number" id='stock' value="Amount"><br>
-
-
-                            <label for="desc">Description: </label>
-                            <input type="text" id='desc' title="Description" placeholder="Description goes here...">
-                            <br>
-
-                            <label for="myfile">Select an image:</label>
-                            <input type="file" id="myfile" name="myfile">
-
-                            <p>Status:</p>
-
-                                    <input type="radio" id="active" name="status" value="Active" checked>
-                                    <label for="active">Active</label>
-                                    <input type="radio" id="inactive" name="status" value="Inactive">
-                                    <label for="inactive">Inactive</label><br>
+                                <label class="form-label">Stock:
+                                    <input type="text" name="stock" class="form-control" placeholder="..."></input></label><br>
 
 
-                            <div class="details-add-group">
-                                <button class="product-add" title="Save changes">
-                                    <span>Add Product</span>
-                                </button>
+                                <label class="form-label">Description:
+                                    <input type="text" name="desc" class="form-control" placeholder="Description..."></input></label><br>
+
+                                <label class="form-label">Image:
+                                    <input type="text" name="desc" class="form-control" placeholder="example.jpg"></input></label><br>
+<!--                                <label for="myfile">Select an image:</label>-->
+<!--                                <input type="file" id="myfile" name="myfile">-->
+
+<!--                                <p>Status:</p>-->
+
+<!--                                        <input type="radio" id="active" name="status" value="Active" checked>-->
+<!--                                        <label for="active">Active</label>-->
+<!--                                        <input type="radio" id="inactive" name="status" value="Inactive">-->
+<!--                                        <label for="inactive">Inactive</label><br>-->
+
+
+
+                                <div class="details-add-group">
+                                    <button type="submit" class="product-add" title="Save changes">
+                                        <span>Add Product</span></button>
+                                    </div>
                             </form>
 
-                        </div>
+
                     </div>
                 </div>
             </div>
