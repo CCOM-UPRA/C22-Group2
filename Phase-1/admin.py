@@ -17,7 +17,7 @@ app.secret_key = 'akeythatissecret'
 @app.route("/", defaults={'message': None})
 @app.route("/<message>")
 def enterpage(message):
-    return render_template('login (2).html', message=message)
+    return login()
 
 
 @app.route("/clear")
@@ -26,17 +26,19 @@ def clear():
     session.clear()
     return redirect("/")
 
+@app.route("/login")
+@app.route("/login/<message>")
+def login(message = None):
+    return render_template('login (2).html', message=message)
 
-@app.route("/login", methods=['POST'])
-def login():
+@app.route("/attemptlogin", methods=['POST'])
+def attemptlogin():
     email = request.form.get('email')
     password = request.form.get('password')
     session['amount'] = 0
     # POINTER: loginModel creates a session['admin'] instead
     # Always advisable to name your frontend and backend sessions differently to not cause errors via lingering sessions
     return logincontroller(email=email, password=password)
-
-
 
 @app.route("/profile")
 def profile():

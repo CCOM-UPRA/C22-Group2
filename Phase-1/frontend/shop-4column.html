@@ -40,7 +40,7 @@
         <link rel="stylesheet" href="{{url_for('static', filename='vendor/slickslider/slick.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
@@ -331,10 +331,27 @@
                             <div class="col-lg-12">
                                 <div class="top-filter">
                                     <div>
-
+    
+                                        <ul class="dropdown">
+                                            <a class="navbar-link dropdown-arrow" href="#">Sort by <i class="fa fa-filter"></i></a>
+                                            <ul class="dropdown-position-list">
+                                                <li><a href=>Name</a></li>
+                                                <li><a href=>Price</a></li>
+                                            </ul>
+                                        </ul>
+                                        <ul class="dropdown">
+                                            <a class="navbar-link dropdown-arrow" href="#"><i class="fa fa-sort"></i></a>
+                                            <ul class="dropdown-position-list">
+                                                <li><a href="#">Ascendent</a></li>
+                                                <li><a href="#">Descendent</a></li>
+                                            </ul>
+                                        </ul>
+                                        <!-- <a><i class="fa fa-sort"></i></a> -->
+    
                                     </div>
+                                </div>
                             </div>
-                        </div>
+                                    
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
                             {{ product}}
                             {% for product in products.keys() %}
