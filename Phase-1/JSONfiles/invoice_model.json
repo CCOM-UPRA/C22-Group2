@@ -4,8 +4,8 @@
     "name": "Echeverias",
     "location": "Indoors",
     "price":15.99, 
-    "quantity": 1,
-    "total_price": 15.99
+    "quantity": 2,
+    "total_price": 31.98
 	},
 
 "2":{
@@ -13,7 +13,7 @@
     "name": "Kalanchoe",
     "location": "Outdoor",
     "price": 24.99,
-    "quantity": 2,
-    "total_price": 49.98
+    "quantity": 1,
+    "total_price": 24.99
 	}
 }

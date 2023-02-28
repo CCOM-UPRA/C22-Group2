@@ -92,7 +92,7 @@
                         <button class="header-widget header-cart" title="Cartlist">
                             <i class="fas fa-shopping-basket"></i>
                             <sup>{{session['amount']}}</sup>
-                            <span>total price<small>${{session['total']}}0</small></span>
+                            <span>total price<small>${{session['total']}}</small></span>
                         </button>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     {% for key, item in session['cart'].items() %}
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="images/product/05.jpg" alt="product"></a>
+                        <a href="#"><img src="static/images/product-images/{{item['name']}}.jpg" alt="product"></a>
                         <form action="{{url_for('delete', id=key)}}">
                         <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
                         </form>
@@ -149,7 +149,7 @@
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">${{total}}</span>
+                    <span class="checkout-price">${{session['total']}}</span>
                 </a>
             </div>
         </aside>

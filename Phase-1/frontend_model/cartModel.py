@@ -11,10 +11,10 @@ def MagerDicts(dict1, dict2):
 
 # Cart items simulated
 dictitems1 = {'1': {'name': "Echeveria", 'price': 15.99, 'quantity': 2, 'total_price': 31.98,
-                  'stock': 15, 'family type': "Succulents", 'water': "Weekly", 'sun': "Part Sun", 'desc': "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg",
+                  'stock': 7, 'family type': "Succulents", 'water': "Weekly", 'sun': "Part Sun", 'desc': "Echeverias prefer bright, indirect light and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily.",
                   'image': "echeveria.jpg", 'location': "Indoors"}}
 dictitems2 = {'2': {'name': "Kalanchoe", 'price': 24.99, 'quantity': 1, 'total_price': 24.99,
-                  'stock': 10, 'family type': "Succulents", 'water': "Biweekly", 'sun': "Full Sun", 'desc': "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg",
+                  'stock': 7, 'family type': "Succulents", 'water': "Biweekly", 'sun': "Full Sun", 'desc': "Kalanchoes prefer bright, indirect light and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily.",
                   'image': "kalanchoe.jpg", 'location': "Outdoor"}}
 
 

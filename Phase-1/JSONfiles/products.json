@@ -1,1 +1,90 @@
-{"1": {"name": "Echeverias", "location": "Indoors", "family type": "Succulents", "sun": "Part Sun", "water": "Weekly", "img": "echeveria.jpg", "price": "13.75", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "2": {"name": "Kalanchoe", "location": "Outdoor", "family type": "Succulents", "sun": "Full Sun", "water": "Biweekly", "img": "Kalanchoe.jpg", "price": "20.50", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "3": {"name": "Monstera Deliciosa", "location": "Indoors", "family type": "Araceae", "sun": "Part Sun", "water": "Biweekly", "img": "MonsteraDeliciosa.jpg", "price": "35.00", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "4": {"name": "Anthurium", "location": "Indoors", "family type": "Araceae", "sun": "Part Sun", "water": "Weekly", "img": "anthurium.jpg", "price": "45.50", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "5": {"name": "Golden Ball Cactus", "location": "Outdoor", "family type": "Cactus", "sun": "Full Sun", "water": "Weekly", "img": "goldenballcactus.jpg", "price": "65.75", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "6": {"name": "Moon Cactus", "location": "Indoors", "family type": "Cactus", "sun": "Part Sun", "water": "Biweekly", "img": "mooncactus.jpg", "price": "25.00", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "7": {"name": "Sunflower", "location": "Outdoor", "family type": "Flowers", "sun": "Full Sun", "water": "Weekly", "img": "sunflower.jpg", "price": "18.99", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}, "8": {"name": "Rose", "location": "Outdoor", "family type": "Flowers", "sun": "Full Sun", "water": "Weekly", "img": "rose.jpg", "price": "59.99", "stock": "7", "desc": "Soy una planta, y soy verde :3... ayuda, esto no es un simulacro, Laura dejame ver a mis hijos, no sea rata :,v... ;faskgjak;gagqag4agg"}}
+{
+    "1": {
+        "name": "Echeverias",
+        "location": "Indoors",
+        "family type": "Succulents",
+        "sun": "Part Sun",
+        "water": "Weekly",
+        "img": "echeveria.jpg",
+        "price": "15.99",
+        "stock": "7",
+        "desc": "Echeverias prefer bright, indirect light and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily."
+    },
+    "2": {
+        "name": "Kalanchoe",
+        "location": "Outdoor",
+        "family type": "Succulents",
+        "sun": "Full Sun",
+        "water": "Biweekly",
+        "img": "Kalanchoe.jpg",
+        "price": "24.99",
+        "stock": "7",
+        "desc": "Kalanchoes prefer bright, indirect light and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily."
+    },
+    "3": {
+        "name": "Monstera Deliciosa",
+        "location": "Indoors",
+        "family type": "Araceae",
+        "sun": "Part Sun",
+        "water": "Biweekly",
+        "img": "MonsteraDeliciosa.jpg",
+        "price": "34.99",
+        "stock": "7",
+        "desc": "Monstera Deliciosa prefers bright, indirect sunlight and well-draining soil to thrive, so make sure to place it near a window with filtered light and use a potting mix that allows water to drain easily."
+    },
+    "4": {
+        "name": "Anthurium",
+        "location": "Indoors",
+        "family type": "Araceae",
+        "sun": "Part Sun",
+        "water": "Weekly",
+        "img": "anthurium.jpg",
+        "price": "49.99",
+        "stock": "7",
+        "desc": "Anthuriums thrive in bright, indirect light and require consistently moist, but not waterlogged, soil to stay healthy and produce beautiful flowers, so make sure to place them near a window with filtered light and water them regularly."
+    },
+    "5": {
+        "name": "Golden Ball Cactus",
+        "location": "Outdoor",
+        "family type": "Cactus",
+        "sun": "Full Sun",
+        "water": "Weekly",
+        "img": "goldenballcactus.jpg",
+        "price": "64.99",
+        "stock": "7",
+        "desc": "Golden Ball Cactus requires bright, direct sunlight and well-draining soil to thrive, so make sure to place it in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily."
+    },
+    "6": {
+        "name": "Moon Cactus",
+        "location": "Indoors",
+        "family type": "Cactus",
+        "sun": "Part Sun",
+        "water": "Biweekly",
+        "img": "mooncactus.jpg",
+        "price": "24.99",
+        "stock": "7",
+        "desc": "Moon Cactus are colorful and unique plants that require bright, direct sunlight and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily."
+    },
+    "7": {
+        "name": "Sunflower",
+        "location": "Outdoor",
+        "family type": "Flowers",
+        "sun": "Full Sun",
+        "water": "Weekly",
+        "img": "sunflower.jpg",
+        "price": "24.99",
+        "stock": "7",
+        "desc": "Sunflowers require full sun and well-draining soil to thrive, so make sure to plant them in a sunny spot with fertile, well-draining soil, and water the soil regularly to keep it moist but not waterlogged."
+    },
+    "8": {
+        "name": "Rose",
+        "location": "Outdoor",
+        "family type": "Flowers",
+        "sun": "Full Sun",
+        "water": "Weekly",
+        "img": "rose.jpg",
+        "price": "39.99",
+        "stock": "7",
+        "desc": "Roses prefer full sun and well-draining soil to thrive, so make sure to plant them in a sunny spot with fertile, well-draining soil, and water them deeply once a week during dry periods to keep the soil moist but not waterlogged."
+    }
+}
