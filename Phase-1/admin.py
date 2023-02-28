@@ -17,12 +17,17 @@ app.secret_key = 'akeythatissecret'
 @app.route("/", defaults={'message': None})
 @app.route("/<message>")
 def enterpage(message):
-    return login()
-
+    # Defaults to product page if logged in
+    if session:
+        return redirect("/products")
+    else:
+        return redirect("/login")
+    
 
 @app.route("/clear")
 def clear():
     # Clear session information
+    
     session.clear()
     return redirect("/")
 
@@ -141,7 +146,7 @@ def accountinfo(userType):
     ctype = request.form.get('ctype')
     cdate = request.form.get('cdate')
         # Process register info here
-        
+    
     newAccount = {
         "c_first_name": fname,
         "c_last_name": lname,
