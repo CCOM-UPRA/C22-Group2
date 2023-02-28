@@ -22,9 +22,6 @@ def enterpage(message):
     # This is the very page you enter when booting up Flask. You will be redirected to the login page.
     if (message == None or message == "index.html"):
         return shop()
-    elif message == "login":
-        return render_template('login (2).html', message=message)
-
 
 @app.route("/clear")
 def clear():
@@ -32,9 +29,13 @@ def clear():
     session.clear()
     return redirect("/")
 
+@app.route("/login")
+@app.route("/login/<message>")
+def login(message = None):
+    return render_template('login (2).html', message=message)
 
-@app.route("/login", methods=['POST'])
-def login():
+@app.route("/attemptlogin", methods=['POST'])
+def attemptlogin():
     # Enters here when logging in
     email = request.form.get('email')
     passcode = request.form.get('password')

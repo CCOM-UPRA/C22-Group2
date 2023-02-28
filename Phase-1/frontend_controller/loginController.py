@@ -16,4 +16,4 @@ def logincontroller(email, password):
         return redirect("/shop")
     else:
         # If user doesn't exist, return to login and trigger error message
-        return redirect("/message")
+        return redirect("/login/incorrect")
