@@ -91,7 +91,7 @@
                         <button class="header-widget header-cart" title="Cartlist">
                             <i class="fas fa-shopping-basket"></i>
                             <sup>{{session['amount']}}</sup>
-                            <span>total price<small>${{session['total']}}0</small></span>
+                            <span>total price<small>${{session['total']}}</small></span>
                         </button>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">${{session['total']}}0</span>
+                    <span class="checkout-price">${{session['total']}}</span>
                 </a>
             </div>
         </aside>
@@ -176,11 +176,11 @@
         =======================================-->
         <section class="inner-section single-banner" style="background: rgb(3, 79, 9) url(static/images/banner_pagina.jpg) no-repeat center; max-width: 100%;">
             <div class="container">
-                <h2>Order History</h2>
+                <!-- <h2>Order History</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url_for('shop')}}">Shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Orders</li>
-                </ol>
+                </ol> -->
             </div>
         </section>
         <!--=====================================
@@ -261,7 +261,7 @@
                                         <ul class="orderlist-details">
                                             <li>
                                                 <h6>Total</h6>
-                                                <p>${{order1['total']}}0</p>
+                                                <p>${{order1['total']}}</p>
                                             </li>
                                             <li>
                                                 <h6>Amount of items</h6>
@@ -296,9 +296,9 @@
                                                         <td class="table-serial"><h6>{{product['name']}}</h6></td>
                                                         <td class="table-image"><img src="static/images/product-images/{{product['image']}}" alt="product"></td>
                                                         <td class="table-name"><h6>{{product['family']}}</h6></td>
-                                                        <td class="table-price"><h6>${{product['price']}}0</h6></td>
+                                                        <td class="table-price"><h6>${{product['price']}}</h6></td>
                                                         <td class="table-brand"><h6>{{product['quantity']}}</h6></td>
-                                                        <td class="table-quantity"><h6>${{product['total_price']}}0</h6></td>
+                                                        <td class="table-quantity"><h6>${{product['total_price']}}</h6></td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
@@ -359,7 +359,7 @@
                                         <ul class="orderlist-details">
                                             <li>
                                                 <h6>Total</h6>
-                                                <p>${{order2['total']}}0</p>
+                                                <p>${{order2['total']}}</p>
                                             </li>
                                             <li>
                                                 <h6>Amount of items</h6>
@@ -396,7 +396,7 @@
                                                         <td class="table-name"><h6>{{product['family']}}</h6></td>
                                                         <td class="table-price"><h6>${{product['price']}}</h6></td>
                                                         <td class="table-brand"><h6>{{product['quantity']}}</h6></td>
-                                                        <td class="table-quantity"><h6>${{product['total_price']}}0</h6></td>
+                                                        <td class="table-quantity"><h6>${{product['total_price']}}</h6></td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>

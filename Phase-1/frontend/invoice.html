@@ -99,13 +99,13 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+        <section class="inner-section single-banner" style="background: rgb(3, 79, 9) url(static/images/banner_pagina.jpg) no-repeat center; max-width: 100%;">
             <div class="container">
-                <h2>Order invoice</h2>
+                <!-- <h2>Order invoice</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url_for('shop')}}">shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page">invoice</li>
-                </ol>
+                </ol> -->
             </div>
         </section>
         <!--=====================================
@@ -133,7 +133,7 @@
                                 <div class="invoice-recieved">
                                     <h6>order tracking number <span>{{order['tracking_num']}}</span></h6>
                                     <h6>order date <span>{{order['order_date']}}</span></h6>
-                                    <h6>total amount <span>${{order['total']}}0</span></h6>
+                                    <h6>total amount <span>${{order['total']}}</span></h6>
                                     <h6>payment method <span>{{order['payment_method']}}</span></h6>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                     </li>
                                     <li>
                                         <h6>Total</h6>
-                                        <p>${{order['total']}}0</p>
+                                        <p>${{order['total']}}</p>
                                     </li>
 
                                 </ul>
@@ -192,7 +192,7 @@
                                 <thead>
                                     <tr>
                                          <th scope="col">Product</th>
-                                        <th scope="col">Brand</th>
+                                        <th scope="col">Location</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
@@ -203,11 +203,11 @@
                                 {% for key, product in products.items() %}
                                     <tr>
                                        <td class="table-image"><img src="static/images/product-images/{{product['image']}}" alt="product"></td>
-                                        <td class="table-name"><h6>{{product['brand']}}</h6></td>
+                                        <td class="table-name"><h6>{{product['location']}}</h6></td>
                                         <td class="table-name"><h6>{{product['name']}}</h6></td>
                                         <td class="table-price"><h6>${{product['price']}}</h6></td>
                                         <td class="table-brand"><h6>{{product['quantity']}}</h6></td>
-                                         <td class="table-brand"><h6>${{product['total_price']}}0</h6></td>
+                                         <td class="table-brand"><h6>${{product['total_price']}}</h6></td>
 
                                     </tr>
                                 {% endfor %}

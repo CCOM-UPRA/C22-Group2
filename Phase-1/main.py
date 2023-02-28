@@ -104,14 +104,14 @@ def shop():
     watering = getWatering()
 
     # Set the amount of items user currently has in cart
-    amount = 2
+    amount = 3
     # And set the amount for the entire site to access
-    session['amount'] = 2
+    session['amount'] = amount
 
     # Set the cart's total amount for the page
-    total = 48.00
+    total = 56.97
     # And set the total for the entire site to access
-    session['total'] = 48.00
+    session['total'] = total
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, family=family, locations=locations,

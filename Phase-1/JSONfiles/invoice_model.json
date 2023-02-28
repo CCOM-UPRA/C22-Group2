@@ -3,17 +3,17 @@
     "image": "echeveria.jpg",
     "name": "Echeverias",
     "location": "Indoors",
-    "price":13.75, 
+    "price":15.99, 
     "quantity": 1,
-    "total_price": 13.75
+    "total_price": 15.99
 	},
 
 "2":{
     "image": "Kalanchoe.jpg",
     "name": "Kalanchoe",
     "location": "Outdoor",
-    "price": 20.50,
+    "price": 24.99,
     "quantity": 2,
-    "total_price": 41.00
+    "total_price": 49.98
 	}
 }

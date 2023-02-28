@@ -103,11 +103,11 @@
         =======================================-->
         <section class="inner-section single-banner" style="background: rgb(3, 79, 9) url(static/images/banner_pagina.jpg) no-repeat center; max-width: 100%;">
             <div class="container">
-                <h2>checkout</h2>
+                <!-- <h2>checkout</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url_for('shop')}}">shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page">checkout</li>
-                </ol>
+                </ol> -->
             </div>
         </section>
         <!--=====================================
@@ -146,9 +146,9 @@
                                         <tr>
                                                 <td class="table-image"><img src="static/images/product-images/{{item['image']}}" alt="product"></td>
                                                 <td class="table-name"><h6>{{item['name']}}</h6></td>
-                                                <td class="table-price"><h6>${{item['price']}}0</h6></td>
+                                                <td class="table-price"><h6>${{item['price']}}</h6></td>
                                                 <td class="table-brand"><h6>{{item['quantity']}}</h6></td>
-                                                 <td class="table-brand"><h6>${{item['total_price']}}0</h6></td>
+                                                 <td class="table-brand"><h6>${{item['total_price']}}</h6></td>
                                                 <td class="table-action">
                                                     <a class="view" href="#" title="Edit Amount" data-bs-toggle="modal" data-bs-target="#product-view-{{key}}"><i class="fas fa-edit"></i></a>
                                                     <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>
@@ -179,17 +179,13 @@
                                         <a href="product-video.html">{{item['name']}}</a>
                                     </h3>
                                     <div class="view-meta">
-                                        <p>Brand:<span>{{item['brand']}}</span></p>
-                                    </div>
-                                    <div class="view-meta">
-                                        <p>Wi-fi: {{item['wifi']}}</p>
-                                    </div>
-                                    <div class="view-meta">
-                                        <p>Video Res: {{item['videores']}}</p>
+                                        <p>Location:<span>{{item['location']}}</span></p><br>
+                                        <p>Family Type: {{item['family type']}}</p><br>
+                                        <p>When to Water: {{item['water']}}</p>
                                     </div>
                                     <h3 class="view-price">
-                                        <del>${{item['cost']}}0</del>
-                                        <span>${{item['price']}}0</span>
+                                        <!-- <del>${{item['cost']}}0</del> -->
+                                        <span>${{item['price']}}</span>
                                     </h3>
                                     <p class="view-desc">{{item['desc']}}</p>
                                     <form action="{{url_for('checkout')}}" method="post">
@@ -219,7 +215,7 @@
                                     <ul>
                                         <li>
                                             <span>Total</span>
-                                            <span>${{total}}0</span>
+                                            <span>${{total}}</span>
                                         </li>
                                     </ul>
                                 </div>

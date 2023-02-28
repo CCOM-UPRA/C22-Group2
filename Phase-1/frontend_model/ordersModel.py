@@ -14,7 +14,7 @@ order1 = {"tracking_num": "71287249",
     "arrival_date": "01/20/23",
     "address_line_1": "Vista Azulin Calle 11 L13",
     "address_line_2": "Arecibor Puerto Ricor, 00614",
-    "total": 1197.00,
+    "total": 144.97,
     "amount": 3,
     "payment_method": "Mastercard",
     "status": 'shipped'}
@@ -24,7 +24,7 @@ order2 = {"tracking_num": "92391290",
     "arrival_date": "01/23/23",
     "address_line_1": "Vista Azulin Calle 11 L13",
     "address_line_2": "Arecibor Puerto Ricor, 00614",
-    "total": 629.00,
+    "total": 109.97,
     "amount": 3,
     "payment_method": "Mastercard",
     "status": 'delivered'}
@@ -33,18 +33,18 @@ productDict1 = {"1": {
     "image": 'goldenballcactus.jpg',
     "name": 'Golden Ball Cactus',
     "family": 'Cactus',
-    "price": 65.75,
+    "price": 64.99,
     "quantity": 1,
-    "total_price": 65.75
+    "total_price": 64.99
 }}
 
 productDict2 = {"2": {
     "image": 'rose.jpg',
     "name": 'Rose',
     "family": 'Flowers',
-    "price": 59.99,
+    "price": 39.99,
     "quantity": 2,
-    "total_price": 119.98
+    "total_price": 79.98
 }}
 
 productsOrder1 = productDict1
@@ -54,18 +54,18 @@ productDict3 = {"3": {
     "image": 'MonsteraDeliciosa.jpg',
     "name": 'Monstera Deliciosa',
     "family": 'Araceae',
-    "price": 35.00,
+    "price": 34.99,
     "quantity": 2,
-    "total_price": 70.00
+    "total_price": 69.98
 }}
 
 productDict4 = {"4": {
     "image": 'anthurium.jpg',
     "name": 'Anthurium',
     "family": 'Araceae',
-    "price": 45.50,
+    "price": 39.99,
     "quantity": 1,
-    "total_price": 45.50
+    "total_price": 39.99
 }}
 
 productsOrder2 = productDict3
