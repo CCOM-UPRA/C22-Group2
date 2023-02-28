@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="">
+    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="orderlist &amp; checkout, fix banner and products">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/add_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-1/backend/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-1/backend/products.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
