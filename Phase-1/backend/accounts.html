@@ -93,7 +93,7 @@
 
                     <form class="header-form">
                         <input type="text" placeholder="Search anything...">
-                        <button><i class="fas fa-search"></i></button>
+                        <button><i class="fas fa-search" href="#"></i></button>
                     </form>
 
                     <div class="header-widget-group">
@@ -129,7 +129,7 @@
                                 </li>
 
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="{{url_for('accounts')}}">Accounts</a>
+                                    <a class="navbar-link" href="{{url_for('accounts', userType='user')}}">Accounts</a>
                                 </li>
                             </ul>
 
@@ -165,6 +165,8 @@
                             <button style="" class="product-add">Add Administrator</button>
                         </form>
 
+                  
+
                        <ul class="dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">Account list</a>
                                         <ul class="dropdown-position-list">
@@ -172,6 +174,8 @@
                                             <li><a href="{{url_for('accounts', userType='admin')}}">Administrators</a></li>
                                         </ul>
                         </ul>
+
+
                     </div>
 
                 <div class="row">
@@ -229,7 +233,7 @@
          <!--=====================================
                      FOOTER PART START
         =======================================-->
-        <footer style="background-color: rgb(3, 41, 10)" class="footer-part">
+                <footer style="background-color: rgb(3, 41, 10)" class="footer-part">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-xl-3">

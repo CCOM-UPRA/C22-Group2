@@ -2,8 +2,7 @@ from backend_model.productsModel import *
 
 
 def getProducts():
-    products = getProductsModel()
-    return products
+    return getProductsModel()
 
 
 def getsingleproduct(prodID):
