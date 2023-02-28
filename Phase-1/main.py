@@ -22,6 +22,8 @@ def enterpage(message):
     # This is the very page you enter when booting up Flask. You will be redirected to the login page.
     if (message == None or message == "index.html"):
         return shop()
+    elif (message =='filter'):
+        return shop()
 
 @app.route("/clear")
 def clear():
