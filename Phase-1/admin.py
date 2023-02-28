@@ -149,8 +149,9 @@ def editaccount(userType, acc):
     account = getaccount(acc, isAdmin)
     return render_template("single_account.html", userType=userType, acc=account, account=acc)
 
+@app.route("/editinfo", methods=['POST'])
 @app.route("/editinfo/<userType>/<acc>", methods=['POST'])
-def editinfo(userType, acc):
+def editinfo(userType = None, acc = None):
     
     fname = request.form.get('fname')
     lname = request.form.get('lname')
@@ -185,9 +186,13 @@ def editinfo(userType, acc):
         "c_card_num": cnumber
         }
     
-    isAdmin = True if userType == 'admin' else False
-    editaccountcontroller(acc, editAccount, isAdmin)
-    return redirect('/accounts/' + userType)
+    if userType != None and acc != None:
+        isAdmin = True if userType == 'admin' else False
+        editaccountcontroller(acc, editAccount, isAdmin)
+        return redirect('/accounts/' + userType)
+    else:
+        editaccountcontroller(session['admin'], editAccount, True)
+        return redirect('/profile')
 
 @app.route("/orders")
 def orders():
