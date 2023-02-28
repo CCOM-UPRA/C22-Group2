@@ -15,8 +15,5 @@ def getProductsModel():
 
 # Find the specific product given the ID, found in element 0 of the sub-arrays
 def getsingleproductmodel(prodID):
-    productList=[]
-
-    for product in productList:
-        if product[0] == prodID:
-            return product
+    productList = getProductsModel()
+    return dict(productList).get(prodID)
