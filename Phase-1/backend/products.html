@@ -165,13 +165,14 @@
 
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
-                            {% for product in products %}
+                            {{ product}}
+                            {% for product in products.keys() %}
                             <div class="col">
                                 <div class="product-card">
                                     <div class="product-media">
 
-                                        <a class="product-image" href="static/images/product-images/{{product[7]}}">
-                                            <img src="static/images/product-images/{{product[7]}}" alt="product">
+                                        <a class="product-image" href="static/images/product-images/{{products.get(product)['img']}}">
+                                            <img src="static/images/product-images/{{products.get(product)['img']}}" alt="product">
                                         </a>
                                         <div class="product-widget">
                                             <a title="Product View" href="{{url_for('product', prod=product[0])}}" class="fas fa-eye"></a>
@@ -179,13 +180,13 @@
                                     </div>
                                     <div class="product-content">
                                         <h6 class="product-name">
-                                            <a href="product-video.html">{{product[1]}}</a>
+                                            <a href="product-video.html">{{products.get(product)['name']}}</a>
                                         </h6>
                                          <h6 class="product-name">
-                                            <a>{{product[2]}}</a>
+                                            <a>{{products.get(product)['name']}}</a>
                                         </h6>
                                         <h6 class="product-price">
-                                            <span>${{product[10]}}</span>
+                                            <span>${{products.get(product)['price']}}</span>
                                         </h6>
                                         <h6 class="product-name">
                                             <a>{{product[8]}} in stock</a>
@@ -224,10 +225,10 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-gallery">
                                     <div class="view-label-group">
-                                        <label class="view-label new">{{product[8]}} in stock</label>
+                                        <label class="view-label new">{{products.get(product)['stock']}} in stock</label>
                                     </div>
                                     <ul class="preview-slider">
-                                        <li><img src="static/images/product-images/{{product[7]}}" alt="product"></li>
+                                        <li><img src="static/images/product-images/{{products.get(product)['img']}}" alt="product"></li>
                                     </ul>
 
                                 </div>
@@ -235,18 +236,18 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-details">
                                     <h3 class="view-name">
-                                        <a href="product-video.html">{{product[1]}}</a>
+                                        <a href="product-video.html">{{products.get(product)['name']}}</a>
                                     </h3>
                                     <div class="view-meta">
-                                        <p>Brand:<span>{{product[2]}}</span></p><br>
-                                        <p>Wi-fi: {{product[4]}}</p><br>
-                                        <p>Video Res: {{product[5]}}</p>
+                                        <p>Location:<span>{{products.get(product)['location']}}</span></p><br>
+                                        <p>Family Type: {{products.get(product)['family type']}}</p><br>
+                                        <p>When to Water: {{products.get(product)['water']}}</p>
                                     </div>
                                     <h3 class="view-price">
-                                        <del>{{product[11]}}</del>
-                                        <span>{{product[10]}}</span>
+<!--                                        <del>{{product[11]}}</del>-->
+                                        <span>${{products.get(product)['price']}}</span>
                                     </h3>
-                                    <p class="view-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit non tempora magni repudiandae sint suscipit tempore quis maxime explicabo veniam eos reprehenderit fuga</p>
+                                    <p class="view-desc">{{products.get(product)['desc']}}</p>
 
                                 </div>
                             </div>
