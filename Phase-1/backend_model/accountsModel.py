@@ -53,10 +53,6 @@ def editaccountmodel(acc, edits:dict, admin = False):
     path = adminsPath if admin else usersPath
     users = getaccountsmodel(admin=admin)
 
-    # for key in dict(users.get(acc)).keys():
-    #     if key in edits and edits != None:
-    #         users.get(acc)[key] = edits[key]
-    
     for key in edits.keys():
         if key in users[acc] and edits[key] != None:
             users.get(acc)[key] = edits[key]
@@ -72,7 +68,3 @@ def deleteaccountmodel(acc : str, admin = False):
     # write to json
     with open(path, "w") as f:
         json.dump(currentUsers, f)
-
-
-
-
