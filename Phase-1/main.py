@@ -22,8 +22,13 @@ def enterpage(message):
     # This is the very page you enter when booting up Flask. You will be redirected to the login page.
     if (message == None or message == "index.html"):
         return shop()
-    elif (message =='filter'):
-        return shop()
+
+@app.route("/filter", methods=["POST", "GET"])
+def filter():
+    # filter happens here
+    # not in function currently
+    
+    return redirect("/shop")
 
 @app.route("/clear")
 def clear():
@@ -242,14 +247,6 @@ def invoice():
     # Total amount of items in this simulated order:
     amount = 3
     return render_template("invoice.html", order=order, products=products, amount=amount)
-
-
-@app.route("/filter", methods=["POST"])
-def filter():
-    # filter happens here
-    # not in function currently
-    
-    return redirect("/shop")
 
 
 # Press the green button in the gutter to run the script.

@@ -148,7 +148,7 @@
                                 <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{item['quantity']}}">
                                 <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
                             </div>
-                             <form action="{{url_for('editcart')}}" method="post">
+                             <form action="{{url_for('editcart')}}" method="POST">
                                     <button class="action">Edit</button>
                              </form>
                             <h6>${{item['total_price']}}</h6>
@@ -217,7 +217,7 @@
 
                         <div class="shop-widget">
                             <h6 class="shop-widget-title">Filter by Price</h6>
-                            <form action="{{url_for('filter')}}" method="post">
+                            <form action="{{url_for('filter')}}" method="POST">
                                 <div class="shop-widget-group">
                                     <input type="text" placeholder="Min - 00">
                                     <input type="text" placeholder="Max - 5k">
@@ -232,7 +232,7 @@
 
                         <div class="shop-widget">
                             <h6 class="shop-widget-title">Filter by Recommended Location</h6>
-                            <form action="{{url_for('filter')}}" method="post">
+                            <form action="{{url_for('filter')}}" method="POST">
                                 <ul class="shop-widget-list">
 
                         {% for location in locations %}
@@ -256,7 +256,7 @@
 
                         <div class="shop-widget">
                             <h6 class="shop-widget-title">Filter by Family type</h6>
-                            <form action="{{url_for('filter')}}" method="post">
+                            <form action="{{url_for('filter')}}" method="POST">
                                 <ul class="shop-widget-list">
 
                         {% for f in family %}
@@ -280,7 +280,7 @@
 
                         <div class="shop-widget">
                             <h6 class="shop-widget-title">Filter by Recommended sun exposure</h6>
-                            <form action="{{url_for('filter')}}" method="post">
+                            <form action="{{url_for('filter')}}" method="POST">
                                 <ul class="shop-widget-list">
 
                         {% for s in sun %}
@@ -304,7 +304,7 @@
 
                         <div class="shop-widget">
                             <h6 class="shop-widget-title">Filter by Recommended watering</h6>
-                            <form action="{{url_for('filter')}}" method="post">
+                            <form action="{{url_for('filter')}}" method="POST">
                                 <ul class="shop-widget-list">
 
                         {% for w in watering %}
@@ -385,7 +385,7 @@
                                             <span>add</span>
                                         </button>
                                         <div class="product-action">
-                                            <form action="{{url_for('addcart')}}" method="post">
+                                            <form action="{{url_for('addcart')}}" method="POST">
                                             <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
                                                <input type="hidden" id="p_id" name="p_id" value="WIP">
                                                <input type="hidden" id="name" name="name" value="{{products.get(product)['name']}}">
