@@ -23,13 +23,6 @@ def enterpage(message):
     if (message == None or message == "index.html"):
         return shop()
 
-@app.route("/filter", methods=["POST", "GET"])
-def filter():
-    # filter happens here
-    # not in function currently
-    
-    return redirect("/shop")
-
 @app.route("/clear")
 def clear():
     # Whenever you wish to log out or clear the session info, you can type /clear at the end of the Flask address
@@ -238,6 +231,14 @@ def checkout():
         session['checkout'] = True
         return redirect("/wrong")
 
+
+
+@app.route("/filter", methods=["POST", "GET"])
+def filter():
+    # filter happens here
+    # not in function currently
+    
+    return redirect("/shop")
 
 @app.route("/invoice")
 def invoice():
