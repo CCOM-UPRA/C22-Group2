@@ -127,7 +127,6 @@
                 <button class="cart-close"><i class="icofont-close"></i></button>
             </div>
             <ul class="cart-list">
-                {% if 'customer' in session %}
                 {% if session['cart'] %}
                     {% for key, item in session['cart'].items() %}
                 <li class="cart-item">
@@ -158,7 +157,7 @@
                     {% endfor %}
                 {% endif %}
             </ul>
-            
+            {% if 'customer' in session %}
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
@@ -167,7 +166,7 @@
             {% else %}
             <div class="cart-footer">
             <a class="cart-checkout-btn" href="{{url_for('login', message='wrong')}}">
-                <span class="checkout-label">Login</span>
+                <span class="checkout-label">Login To Checkout</span>
                 <!-- <span class="checkout-price">${{total}}</span> -->
             </a>
             </div>
