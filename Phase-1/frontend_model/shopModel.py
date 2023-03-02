@@ -1,7 +1,5 @@
 import json
-# from pathlib import Path
-# Hacky fix
-# path = Path(__file__).parent.parent.absolute()
+
 productsPath = './JSONfiles/products.json'
 # This is our simulation of the database
 # We have two products here.

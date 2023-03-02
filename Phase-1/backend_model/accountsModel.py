@@ -1,12 +1,10 @@
 import json
 from random import randrange
-#import os
-#from pathlib import Path
-# Hacky fix
-# path = Path(__file__).parent.parent.absolute()
+
 usersPath = './UserData/users.json'
 adminsPath = './UserData/admins.json'
 
+# Merge dictionaries
 def MagerDicts(dict1, dict2):
     if isinstance(dict1, list) and isinstance(dict2, list):
         return dict1 + dict2
@@ -33,6 +31,7 @@ def getaccountmodel(acc, admin = False):
         if key == acc:
             return user
 
+# Assigns key to account and adds to json
 def addaccountmodel(acc : dict, admin = False):
     path = adminsPath if admin else usersPath
     currentFile = getaccountsmodel(admin=admin)
@@ -59,9 +58,8 @@ def editaccountmodel(acc, edits:dict, admin = False):
     
     with open(path, "w") as f:
         json.dump(users, f)
-
-    
-        
+ 
+ # Pop account 
 def deleteaccountmodel(acc : str, admin = False):
     path = adminsPath if admin else usersPath
     currentUsers = getaccountsmodel(admin=admin).pop(acc)

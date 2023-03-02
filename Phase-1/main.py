@@ -31,6 +31,7 @@ def clear():
     session.clear()
     return redirect("/")
 
+# Login page
 @app.route("/login")
 @app.route("/login/<message>")
 def login(message = None):
@@ -130,10 +131,10 @@ def profile():
     # Since I specified the variable as user1, that is how it will be called on the html page
     return render_template("profile.html", user1=user)
 
-
+# make changes to profile info
 @app.route("/editinfo", methods=["POST"])
 def editinfo():
-    # make changes to profile info
+    # Process register info here
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     pnumber = request.form.get('pnumber')
@@ -148,7 +149,7 @@ def editinfo():
     cnumber = request.form.get('cnumber')
     ctype = request.form.get('ctype')
     cdate = request.form.get('cdate')
-        # Process register info here
+        
         
     editAccount = {
         "c_first_name": fname,

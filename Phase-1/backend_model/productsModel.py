@@ -1,10 +1,9 @@
 import json
 from random import randrange
-# from pathlib import Path
-# Hacky fix
-# path = Path(__file__).parent.parent.absolute()
+
 productsPath = './JSONfiles/products.json'
 
+# Merge dictionaries
 def MagerDicts(dict1, dict2):
     if isinstance(dict1, list) and isinstance(dict2, list):
         return dict1 + dict2
