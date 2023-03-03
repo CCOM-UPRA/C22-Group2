@@ -127,28 +127,36 @@ def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
 
-@app.route("/accounts/<userType>")
-#@app.route("/accounts")
+
+@app.route("/accounts")
 @login_required
-def accounts(userType = 'user'):
+def accounts():
+    userType = request.args.get('userType')
     # Retrieve all accounts from 'database' and redirect us to accounts page
     if userType == 'admin':
         isAdmin = True
-    else:
+    elif userType == 'user':
         isAdmin = False
+    else:
+        if userType == None:
+            userType = 'user'
+        isAdmin = False
+
     acc = getaccounts(isAdmin)
     return render_template("accounts.html", accounts=acc, userType=userType)
 
-@app.route("/createaccount/<userType>")
+@app.route("/createaccount/")
 @login_required
-def createaccount(userType):
+def createaccount():
+    userType = request.args.get('userType')
     # Redirect us to account creation page
     return render_template("create_account.html", userType=userType)
 
 
-@app.route("/accountinfo/<userType>", methods=['POST'])
+@app.route("/accountinfo/", methods=['POST'])
 @login_required
-def accountinfo(userType):
+def accountinfo():
+    userType = request.args.get('userType')
     print("Account info called")
     fname = request.form.get('fname')
     lname = request.form.get('lname')
@@ -189,9 +197,12 @@ def accountinfo(userType):
     return redirect('/accounts')
 
 
-@app.route("/editaccount/<userType>/<acc>")
+@app.route("/editaccount")
 @login_required
-def editaccount(userType, acc):
+def editaccount():
+    userType = request.args.get('userType')
+    acc = request.args.get('acc')
+
     print(userType)
     # Fetch account given via url and then enter the edit page for that account
     isAdmin = True if userType == 'admin' else False
@@ -199,10 +210,11 @@ def editaccount(userType, acc):
     return render_template("single_account.html", userType=userType, acc=account, account=acc)
 
 @app.route("/editinfo", methods=['POST'])
-@app.route("/editinfo/<userType>/<acc>", methods=['POST'])
 @login_required
-def editinfo(userType = None, acc = None):
-    
+def editinfo():
+    userType = request.args.get('userType')
+    acc = request.args.get('acc')
+
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     pnumber = request.form.get('pnumber')
@@ -239,7 +251,7 @@ def editinfo(userType = None, acc = None):
     if userType != None and acc != None:
         isAdmin = True if userType == 'admin' else False
         editaccountcontroller(acc, editAccount, isAdmin)
-        return redirect('/accounts/' + userType)
+        return redirect('/accounts')
     else:
         editaccountcontroller(session['admin'], editAccount, True)
         return redirect('/profile')
