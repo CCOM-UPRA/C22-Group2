@@ -61,43 +61,7 @@
         <!--=====================================
                     HEADER PART START
         =======================================-->
-        <header class="header-part">
-            <div class="container">
-                <div class="header-content">
-                    <div class="header-media-group">
-                        <button class="header-user"><img src="static/images/user.png" alt="user"></button>
-                        <a href="index.html"><img src="static/images/logo_pagina.png" alt="logo"></a>
-                        <button class="header-src"><i class="fas fa-search"></i></button>
-                    </div>
-
-                    <a href="index.html" class="header-logo">
-                        <img src="static/images/logo_pagina.png" alt="logo">
-                    </a>
-                    <ul class="dropdown">
-                    <a class="navbar-link dropdown-arrow" href="#">My Account</a>
-                                    <ul class="dropdown-position-list">
-                                        <li><a href="{{url_for('profile')}}">Account Info</a></li>
-                                        <li><a href="{{url_for('orders')}}">My Orders</a></li>
-                                        <li><a href="{{url_for('clear')}}">Logout</a></li>
-                                    </ul>
-                    </ul>
-
-                    <form class="header-form">
-                        <input type="text" placeholder="Search anything...">
-                        <button><i class="fas fa-search"></i></button>
-                    </form>
-
-                    <div class="header-widget-group">
-
-                        <button class="header-widget header-cart" title="Cartlist">
-                            <i class="fas fa-shopping-basket"></i>
-                            <sup>{{session['amount']}}</sup>
-                            <span>total price<small>${{session['total']}}</small></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
+        {% include 'header.html' %}
         <!--=====================================
                     HEADER PART END
         =======================================-->

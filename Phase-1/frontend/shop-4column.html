@@ -63,53 +63,7 @@
         <!--=====================================
                     HEADER PART START
         =======================================-->
-
-        <header class="header-part">
-            <div class="container">
-                <div class="header-content">
-                    <div class="header-media-group">
-                        <button class="header-user"><img src="static/images/user.png" alt="user"></button>
-                        <a href="index.html"><img src="static/images/logo_pagina.png" alt="logo"></a>
-                        <button class="header-src"><i class="fas fa-search"></i></button>
-                    </div>
-
-                    <a href="index.html" class="header-logo">
-                        <img src="static/images/logo_pagina.png" alt="logo">
-                    </a>
-
-                    {% if 'customer' in session %}
-                    <ul class="dropdown">
-                    <a class="navbar-link dropdown-arrow" href="#">My Account</a>
-                                    <ul class="dropdown-position-list">
-                                        <li><a href="{{url_for('profile')}}">Account Info</a></li>
-                                        <li><a href="{{url_for('orders')}}">My Orders</a></li>
-                                        <li><a href="{{url_for('clear')}}">Logout</a></li>
-                                    </ul>
-                    </ul>
-                    {% else %}
-                    <ul class="dropdown">
-                    <a class="navbar-link " href="{{url_for('login')}}">Login</a>
-                    </ul>
-                    {% endif %}
-
-                    <form class="header-form">
-                        <input type="text" placeholder="Search anything...">
-                        <button><i class="fas fa-search"></i></button>
-                    </form>
-
-                    <div class="header-widget-group">
-
-                        <button class="header-widget header-cart" title="Cartlist">
-                            <i class="fas fa-shopping-basket"></i>
-                            <sup>
-                            {{amount}}</sup>
-
-                            <span>total price<small>${{total}}</small></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
+        {% include 'header.html' %}
         <!--=====================================
                     HEADER PART END
         =======================================-->
@@ -476,72 +430,7 @@
          <!--=====================================
                      FOOTER PART START
         =======================================-->
-        <footer style="background-color: rgb(3, 41, 10)" class="footer-part">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="footer-widget">
-                            <a class="footer-logo" href="#">
-                                <img src="static/images/logo_pagina.png" alt="logo">
-                            </a>
-                            <h3 class="footer-title">Urban Gardens</h3>
-                            <p class="footer-desc">Plants Shop</p>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="footer-widget contact">
-                            <h3 class="footer-title">Team:</h3>
-                            <ul class="footer-contact">
-                                <li>
-                                    <!-- <i class="icofont-ui-email"></i> -->
-                                    <p>
-                                        <span>Eddy J. Figueroa Pic&oacute;n</span>
-                                        <span>Zulymar Garc&iacute;a Sonera</span>
-                                        <span>Aleph M. Gonz&aacute;lez Pag&aacute;n</span>
-                                        <span>Francisco J Marrero Miranda</span>
-                                        <span>Cesar A. Rivera Tosado</span>
-                                    </p>
-                                </li>
-                                <!-- <li>
-                                    <i class="icofont-ui-touch-phone"></i>
-                                    <p>
-                                        <span>+787 597 7369</span>
-                                        <span>N/A</span>
-                                    </p>
-                                </li> -->
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="footer-widget">
-                            <h3 class="footer-title">Resources</h3>
-                            <div class="footer-links">
-                                <ul>
-                                    <li><a href="https://github.com/marrero171/plants-ecommerce-site.git">Github</a></li>
-                                    <li><a href="http://upra.edu/">upra.edu</a></li>
-                                    <li><a href="https://cursos.upra.edu/course/search.php?areaids=core_course-course&q=ccom4115-ME5">cursos.upra.edu</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="https://www.youtube.com/watch?v=Z1RJmh_OqeA">Flask tutorial</a></li>
-                                    <li><a href="https://www.youtube.com/watch?v=qz0aGYrrlhU">HTML tutorial</a></li>
-                                    <li><a href="https://www.youtube.com/watch?v=kqtD5dpn9C8">Python tutorial</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="footer-widget">
-                            <h3 class="footer-title">Students of CCOM4115</h3>
-                            <p class="footer-desc">Phase-1 ecommerce Data Bases project</p>
-
-                        </div>
-                    </div>
-                </div>
-                <br>
-            </div>
-        </footer>
+        {% include 'footer.html' %}
         <!--=====================================
                       FOOTER PART END
         =======================================-->
