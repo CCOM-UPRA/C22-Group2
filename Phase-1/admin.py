@@ -62,6 +62,7 @@ def profile():
 
 
 @app.route("/password", methods=["POST"])
+@login_required
 def password():
     # make password changes
     # optional for students to implement or not
