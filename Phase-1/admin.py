@@ -264,9 +264,10 @@ def orders():
     return render_template("orders.html", orders=all_orders)
 
 
-@app.route('/editorder/<order>')
+@app.route('/editorder')
 @login_required
-def editorder(order):
+def editorder():
+    order = request.args.get('order')
     # Receive from orders page an order via its id -> order
     # Fetch the products in that order
     orderProducts = getorderproducts(order)
