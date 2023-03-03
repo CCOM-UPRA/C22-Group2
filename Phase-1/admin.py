@@ -1,3 +1,4 @@
+from functools import wraps
 from flask import Flask, render_template, redirect, request, session, url_for
 from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
@@ -14,14 +15,22 @@ app = Flask(__name__, template_folder='backend/')
 app.secret_key = 'akeythatissecret'
 
 
+# Checks if user is logged in before entering page
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get('admin'):
+            return f(*args, **kwargs)      
+        return redirect('/login')
+    return decorated_function
+
 @app.route("/", defaults={'message': None})
 @app.route("/<message>")
 def enterpage(message):
     # Defaults to product page if logged in
-    if session:
+    if session.get('admin'):
         return redirect("/products")
-    else:
-        return redirect("/login")
+    return redirect("/login")
     
 
 @app.route("/clear")
@@ -46,6 +55,7 @@ def attemptlogin():
     return logincontroller(email=email, password=password)
 
 @app.route("/profile")
+@login_required
 def profile():
     admin = getUser(session['admin'])
     return render_template("profile.html", user1=admin)
@@ -59,17 +69,20 @@ def password():
 
 
 @app.route("/products")
+@login_required
 def products():
     productsp = getProducts()
     return render_template("products.html", products=productsp)
 
 
 @app.route("/product/<prod>")
+@login_required
 def product(prod):
     return redirect(url_for('single_product', prodID=prod))
 
 
 @app.route("/single_product/<prodID>")
+@login_required
 def single_product(prodID):
     # Return product page for single product selected
     product = getsingleproduct(prodID)
@@ -78,6 +91,7 @@ def single_product(prodID):
 
 
 @app.route("/editproduct", methods=['POST'])
+@login_required
 def editproduct():
     # process the changes to a product's information
     print("Edit product called")
@@ -107,12 +121,14 @@ def editproduct():
 
 
 @app.route("/addproduct")
+@login_required
 def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
 
 @app.route("/accounts/<userType>")
 #@app.route("/accounts")
+@login_required
 def accounts(userType = 'user'):
     # Retrieve all accounts from 'database' and redirect us to accounts page
     if userType == 'admin':
@@ -123,12 +139,14 @@ def accounts(userType = 'user'):
     return render_template("accounts.html", accounts=acc, userType=userType)
 
 @app.route("/createaccount/<userType>")
+@login_required
 def createaccount(userType):
     # Redirect us to account creation page
     return render_template("create_account.html", userType=userType)
 
 
 @app.route("/accountinfo/<userType>", methods=['POST'])
+@login_required
 def accountinfo(userType):
     print("Account info called")
     fname = request.form.get('fname')
@@ -171,6 +189,7 @@ def accountinfo(userType):
 
 
 @app.route("/editaccount/<userType>/<acc>")
+@login_required
 def editaccount(userType, acc):
     print(userType)
     # Fetch account given via url and then enter the edit page for that account
@@ -180,6 +199,7 @@ def editaccount(userType, acc):
 
 @app.route("/editinfo", methods=['POST'])
 @app.route("/editinfo/<userType>/<acc>", methods=['POST'])
+@login_required
 def editinfo(userType = None, acc = None):
     
     fname = request.form.get('fname')
@@ -224,6 +244,7 @@ def editinfo(userType = None, acc = None):
         return redirect('/profile')
 
 @app.route("/orders")
+@login_required
 def orders():
     # Fetches all the orders found in the 'database' to bring to orders page
     all_orders = ordersController()  # ->connects to ordersModel
@@ -231,6 +252,7 @@ def orders():
 
 
 @app.route('/editorder/<order>')
+@login_required
 def editorder(order):
     # Receive from orders page an order via its id -> order
     # Fetch the products in that order
@@ -242,11 +264,13 @@ def editorder(order):
 
   
 @app.route("/reports")
+@login_required
 def reports():
     return render_template("reports.html")
 
 
 @app.route("/report", methods=['POST'])
+@login_required
 def report():
     # Initialize variables to use
     date_report = {}
