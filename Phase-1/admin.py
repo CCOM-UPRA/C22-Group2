@@ -132,18 +132,12 @@ def addproduct():
 @login_required
 def accounts():
     userType = request.args.get('userType')
-    # Retrieve all accounts from 'database' and redirect us to accounts page
-    if userType == 'admin':
-        isAdmin = True
-    elif userType == 'user':
-        isAdmin = False
-    else:
-        if userType == None:
-            userType = 'user'
-        isAdmin = False
-
+    # Retrieve all accounts from 'database' and redirect us to accounts pager'
+    # Check if admin
+    isAdmin = True if userType == "admin" else False    
     acc = getaccounts(isAdmin)
     return render_template("accounts.html", accounts=acc, userType=userType)
+
 
 @app.route("/createaccount/")
 @login_required
@@ -209,6 +203,7 @@ def editaccount():
     account = getaccount(acc, isAdmin)
     return render_template("single_account.html", userType=userType, acc=account, account=acc)
 
+
 @app.route("/editinfo", methods=['POST'])
 @login_required
 def editinfo():
@@ -255,6 +250,7 @@ def editinfo():
     else:
         editaccountcontroller(session['admin'], editAccount, True)
         return redirect('/profile')
+
 
 @app.route("/orders")
 @login_required

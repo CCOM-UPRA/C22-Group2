@@ -1,4 +1,4 @@
-# Phase-1-Template
+# Phase-1
 Template for phase 1 of the Databases course and document for installation of the tools utilized
 
 In here, you will find a template structure for the organization and view of your project. You will also find under folder "Greeny" the original HTML template utilized.

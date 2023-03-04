@@ -23,17 +23,20 @@ def enterpage(message):
     if (message == None or message == "index.html"):
         return shop()
 
+
 @app.route("/clear")
 def clear():
     # Whenever you wish to log out or clear the session info, you can type /clear at the end of the Flask address
     session.clear()
     return redirect("/")
 
+
 # Login page
 @app.route("/login")
 @app.route("/login/<message>")
 def login(message = None):
     return render_template('login (2).html', message=message)
+
 
 @app.route("/attemptlogin", methods=['POST'])
 def attemptlogin():
@@ -128,6 +131,7 @@ def profile():
 
     # Since I specified the variable as user1, that is how it will be called on the html page
     return render_template("profile.html", user1=user)
+
 
 # make changes to profile info
 @app.route("/editinfo", methods=["POST"])
@@ -233,13 +237,13 @@ def checkout():
         return redirect("/wrong")
 
 
-
 @app.route("/filter", methods=["POST", "GET"])
 def filter():
     # filter happens here
     # not in function currently
     
     return redirect("/shop")
+
 
 @app.route("/invoice")
 def invoice():
