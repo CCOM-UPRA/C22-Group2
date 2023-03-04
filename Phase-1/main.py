@@ -215,7 +215,7 @@ def editcart():
     return redirect(request.referrer)
 
 
-@app.route("/checkout")
+@app.route("/checkout", methods=["POST", "GET"])
 def checkout():
     # Check if customer is logged in
     if 'customer' in session:
