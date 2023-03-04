@@ -190,17 +190,16 @@ def accountinfo():
         }
     else:
         newAccount = {
-        "c_first_name": fname,
-        "c_last_name": lname,
-        "c_email": email,
-        "c_password": pass1,
-        "c_phone_number": pnumber,
-        "c_status": "Active"
+        "a_first_name": fname,
+        "a_last_name": lname,
+        "a_email": email,
+        "a_password": pass1,
+        "a_phone_number": pnumber,
+        "a_status": "Active"
         } 
     
     addaccount(newAccount, isAdmin)
-    acc = getaccounts(isAdmin)
-    return render_template("accounts.html", accounts=acc, userType="user")
+    return redirect("accounts?userType=" + userType)
 
 
 @app.route("/editaccount")
@@ -237,7 +236,9 @@ def editinfo():
     ctype = request.form.get('ctype')
     cdate = request.form.get('cdate')
 
-    editAccount = {
+    isAdmin = True if userType == 'admin' else False
+    if not isAdmin:
+        editAccount = {
         "c_first_name": fname,
         "c_last_name": lname,
         "c_email": email,
@@ -254,13 +255,29 @@ def editinfo():
         "c_exp_date": cdate,
         "c_card_num": cnumber
         }
+    else:
+        editAccount = {
+        "a_first_name": fname,
+        "a_last_name": lname,
+        "a_email": email,
+        "a_password": pass1,
+        "a_phone_number": pnumber,
+        "a_status": "Active"
+        } 
     
     if userType != None and acc != None:
-        isAdmin = True if userType == 'admin' else False
         editaccountcontroller(acc, editAccount, isAdmin)
         acc = getaccounts(isAdmin)
         return redirect('/accounts?userType=' + userType)
     else:
+        editAccount = {
+        "a_first_name": fname,
+        "a_last_name": lname,
+        "a_email": email,
+        "a_password": pass1,
+        "a_phone_number": pnumber,
+        "a_status": "Active"
+        } 
         editaccountcontroller(session['admin'], editAccount, True)
         return redirect('/profile')
 
