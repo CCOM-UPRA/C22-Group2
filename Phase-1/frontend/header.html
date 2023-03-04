@@ -37,9 +37,9 @@
                 <button class="header-widget header-cart" title="Cartlist">
                     <i class="fas fa-shopping-basket"></i>
                     <sup>
-                    {{amount}}</sup>
+                    {{session.get('amount')}}</sup>
 
-                    <span>total price<small>${{total}}</small></span>
+                    <span>total price<small>${{session.get('total')}}</small></span>
                 </button>
             </div>
         </div>
