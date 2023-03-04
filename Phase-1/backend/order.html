@@ -89,7 +89,7 @@
                 <div style='text-align: center'>
 
                         <br><br>
-                        <h2>Orders</h2>
+                        <h2>Order</h2>
 
                      <div style='padding: 0 40%' class="view-add-group">
                          <form action="{{url_for('orders')}}">
@@ -121,6 +121,7 @@
                                               <option value="processed">Processed</option>
                                               <option value="shipped">Shipped</option>
                                               <option value="delivered">Delivered</option>
+                                              <option value="received">Recieved</option>
                                         </select>
                                     </li>
                                 </ul>
@@ -136,11 +137,11 @@
                                 <ul class="invoice-details">
                                     <li>
                                         <h6>Total Items</h6>
-                                        <p># items</p>
+                                        <p>{{order['total_items']}} items</p>
                                     </li>
                                     <li>
                                         <h6>Total</h6>
-                                        <p>$10224.3231</p>
+                                        <p>${{order['total']}}</p>
                                     </li>
 
                                 </ul>
@@ -159,7 +160,8 @@
                                     <tr>
                                         <th scope="col">Product ID</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Brand</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Family</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Total Price</th>
@@ -170,7 +172,8 @@
                                 <tr>
                                         <td class="table-name"><h6>{{key}}</h6></td>
                                         <td class="table-name"><h6>{{prod['name']}}</h6></td>
-                                        <td class="table-name"><h6>{{prod['brand']}}</h6></td>
+                                        <td class="table-image"><h6><img src="static/images/product-images/{{prod['image']}}" alt="product"></h6></td>
+                                        <td class="table-name"><h6>{{prod['family type']}}</h6></td>
                                         <td class="table-price"><h6>${{prod['price']}}</h6></td>
                                         <td class="table-brand"><h6>{{prod['quantity']}}</h6></td>
                                          <td class="table-brand"><h6>${{prod['total_price']}}</h6></td>

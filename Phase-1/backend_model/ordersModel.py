@@ -9,23 +9,25 @@ orderDict1 = {"1": {
     "arrival_date": "01/20/23",
     "address_line_1": "Vista Azulin Calle 11 L13",
     "address_line_2": "Arecibor Puerto Ricor, 00614",
-    "total": 1197.00,
+    "total": 144.97,
+    'total_items': 3,
     "payment_method": "Mastercard",
-    'status': 'delivered'
+    'status': 'received'
 }}
 
 # ORDER 2
 # ------------------------------------------------------------
 #
 orderDict2 = {'2': {
-    "tracking_num": "71287249",
+    "tracking_num": "92391290",
     "order_date": "01/17/23",
     "arrival_date": "01/20/23",
     "address_line_1": "Vista Azulin Calle 11 L13",
     "address_line_2": "Arecibor Puerto Ricor, 00614",
-    "total": 1197.00,
+    "total": 109.97,
+    'total_items': 3,
     "payment_method": "Mastercard",
-    'status': 'shipped'
+    'status': 'delivered'
 
 }}
 
@@ -33,12 +35,13 @@ orderDict2 = {'2': {
 # ------------------------------------------------------------
 #
 orderDict3 = {'3': {
-    "tracking_num": "71287249",
+    "tracking_num": "85277469",
     "order_date": "01/17/23",
     "arrival_date": "01/20/23",
     "address_line_1": "Vista Azulin Calle 11 L13",
     "address_line_2": "Arecibor Puerto Ricor, 00614",
-    "total": 1197.00,
+    "total": 49.98,
+    'total_items': 2,
     "payment_method": "Mastercard",
     'status': 'processed'
 }}
@@ -47,12 +50,13 @@ orderDict3 = {'3': {
 # ------------------------------------------------------------
 #
 orderDict4 = {'4': {
-    "tracking_num": "71287249",
+    "tracking_num": "66788539",
     "order_date": "01/17/23",
     "arrival_date": "01/20/23",
     "address_line_1": "Vista Azulin Calle 11 L13",
     "address_line_2": "Arecibor Puerto Ricor, 00614",
-    "total": 1197.00,
+    "total": 24.99,
+    "total_items": 1,
     "payment_method": "Mastercard",
     'status': 'cancelled'
 }}
@@ -62,63 +66,63 @@ orderDict4 = {'4': {
 # PRODUCTS
 # ------------------------------------------------------------
 productDict1 = {"1": {
-    "image": 'ruko_f11_pro.jpg',
-    "name": 'F11 Pro',
-    "brand": 'Ruko',
-    "price": 399.00,
+    "image": 'goldenballcactus.jpg',
+    "name": 'Golden Ball Cactus',
+    "family type": 'Cactus',
+    "price": 64.99,
     "quantity": 1,
-    "total_price": 399.00,
+    "total_price": 64.99,
     "order_id": '1'
 }}
 
 productDict2 = {"2": {
-    "image": 'dji_tello.jpg',
-    "name": 'Tello Drone',
-    "brand": 'DJI',
-    "price": 89.00,
+    "image": 'rose.jpg',
+    "name": 'Rose',
+    "family type": 'Flowers',
+    "price": 39.99,
     "quantity": 2,
-    "total_price": 178.00,
+    "total_price": 79.98,
     "order_id": '1'
 }}
 
 productDict3 = {"3": {
-    "image": 'dji_tello.jpg',
-    "name": 'Tello Drone',
-    "brand": 'DJI',
-    "price": 89.00,
+    "image": 'MonsteraDeliciosa.jpg',
+    "name": 'Monstera Deliciosa',
+    "family type": 'Araceae',
+    "price": 34.99,
     "quantity": 2,
-    "total_price": 178.00,
-    "order_id": '3'
+    "total_price": 69.98,
+    "order_id": '2'
 }}
 
 productDict4 = {"4": {
-    "image": 'dji_tello.jpg',
-    "name": 'Tello Drone',
-    "brand": 'DJI',
-    "price": 89.00,
-    "quantity": 2,
-    "total_price": 178.00,
+    "image": 'anthurium.jpg',
+    "name": 'Anthurium',
+    "family type": 'Araceae',
+    "price": 39.99,
+    "quantity": 1,
+    "total_price": 39.99,
     "order_id": '2'
 }}
 
 productDict5 = {"5": {
-    "image": 'ruko_f11_pro.jpg',
-    "name": 'F11 Pro',
-    "brand": 'Ruko',
-    "price": 399.00,
-    "quantity": 1,
-    "total_price": 399.00,
-    "order_id": '4'
+    "image": 'mooncactus.jpg',
+    "name": 'Moon Cactus',
+    "family type": 'Cactus',
+    "price": 24.99,
+    "quantity": 2,
+    "total_price": 49.98,
+    "order_id": '3'
 }}
 
 productDict6 = {"6": {
-    "image": 'ruko_f11_pro.jpg',
-    "name": 'F11 Pro',
-    "brand": 'Ruko',
-    "price": 399.00,
+    "image": 'sunflower.jpg',
+    "name": 'Sunflower',
+    "family type": 'Flowers',
+    "price": 24.99,
     "quantity": 1,
-    "total_price": 399.00,
-    "order_id": '2'
+    "total_price": 24.99,
+    "order_id": '4'
 }}
 
 

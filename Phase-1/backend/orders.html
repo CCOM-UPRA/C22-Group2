@@ -123,7 +123,7 @@
                                         <td class="table-name"><h6>{{order['status']}}</h6></td>
                                         <td class="table-price"><h6>{{order['order_date']}}</h6></td>
                                         <td class="table-brand"><h6>{{order['arrival_date']}}</h6></td>
-                                         <td class="table-brand"><h6>{{order['total']}}</h6></td>
+                                         <td class="table-brand"><h6>${{order['total']}}</h6></td>
                                         <td class="table-action">
                                             <a class="view" href="{{url_for('editorder', order=key)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
                                         </td>
