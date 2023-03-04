@@ -91,16 +91,11 @@
                         <br><br>
                         <h2>Accounts</h2>
 
-                     <div style='padding: 0 40%' class="view-add-group">
-                       <form action="{{url_for('createaccount', userType='user')}}">
-                           <button style="" class="product-add">Add User</button>
-                       </form>
-                       
-                        <form action="{{url_for('createaccount', userType='admin')}}">
-                            <button style="" class="product-add">Add Administrator</button>
-                        </form>
-
-
+                    <div style='padding: 0 40%' class="view-add-group">
+                            <a style= "" href="{{url_for('createaccount', userType='user')}}" class="product-add">Add User</a>
+                            <a style= "" href="{{url_for('createaccount', userType='admin')}}" class="product-add">Add Administrator</a>
+                    
+                          
                        <ul class="dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">Account list</a>
                                         <ul class="dropdown-position-list">

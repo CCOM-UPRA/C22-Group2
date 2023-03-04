@@ -139,7 +139,7 @@ def accounts():
     return render_template("accounts.html", accounts=acc, userType=userType)
 
 
-@app.route("/createaccount/")
+@app.route("/createaccount")
 @login_required
 def createaccount():
     userType = request.args.get('userType')
@@ -147,7 +147,7 @@ def createaccount():
     return render_template("create_account.html", userType=userType)
 
 
-@app.route("/accountinfo/", methods=['POST'])
+@app.route("/accountinfo", methods=['POST'])
 @login_required
 def accountinfo():
     userType = request.args.get('userType')
@@ -168,7 +168,10 @@ def accountinfo():
     cdate = request.form.get('cdate')
         # Process register info here
     
-    newAccount = {
+    isAdmin = True if userType == "admin" else False
+
+    if not isAdmin:
+        newAccount = {
         "c_first_name": fname,
         "c_last_name": lname,
         "c_email": email,
@@ -185,10 +188,19 @@ def accountinfo():
         "c_exp_date": cdate,
         "c_card_num": cnumber
         }
+    else:
+        newAccount = {
+        "c_first_name": fname,
+        "c_last_name": lname,
+        "c_email": email,
+        "c_password": pass1,
+        "c_phone_number": pnumber,
+        "c_status": "Active"
+        } 
     
-    isAdmin = True if userType == "admin" else False
     addaccount(newAccount, isAdmin)
-    return redirect('/accounts')
+    acc = getaccounts(isAdmin)
+    return render_template("accounts.html", accounts=acc, userType="user")
 
 
 @app.route("/editaccount")
@@ -246,7 +258,8 @@ def editinfo():
     if userType != None and acc != None:
         isAdmin = True if userType == 'admin' else False
         editaccountcontroller(acc, editAccount, isAdmin)
-        return redirect('/accounts')
+        acc = getaccounts(isAdmin)
+        return redirect('/accounts?userType=' + userType)
     else:
         editaccountcontroller(session['admin'], editAccount, True)
         return redirect('/profile')

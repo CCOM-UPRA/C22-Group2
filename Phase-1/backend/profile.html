@@ -133,47 +133,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="account-card">
-                            <div class="account-title">
-                                <h4>delivery address</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address active">
-                                            <p>{{user1['c_address_line-1']}}</p><br>
-                                            <p>{{user1['c_address_line_2']}}</p><br>
-                                            <p>{{user1['c_city']}}, {{user1['c_state']}} &nbsp {{user1['c_zipcode']}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="account-card mb-0">
-                            <div class="account-title">
-                                <h4>payment option</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#payment-add">edit payment info</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment active">
-                                            <h2>{{user1['c_card_name']}}</h2>
-                                            <p>{{user1['c_card_num']}} </p>
-                                            <h5>{{user1['c_card_type']}}</h5>
-                                            <h6>{{user1['c_exp_date']}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
         <!--=====================================
                     PROFILE PART END
@@ -197,75 +156,6 @@
                             <input class="form-control" name="pnumber" type="number" value="{{user1['c_phone_number']}}">
                         </div>
                         <button class="form-btn" type="submit">save contact number</button>
-                        <input type="hidden" name="page" value="/profile">
-                    </form>
-                </div> 
-            </div> 
-        </div>
-
-        <!-- address edit form -->
-        <div class="modal fade" id="address-add">
-            <div class="modal-dialog modal-dialog-centered"> 
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
-                        <div class="form-title">
-                            <h3>edit address info</h3>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Address Line 1</label>
-                            <input type="text" name="aline1" class="form-control" value="{{user1['c_address_line_1']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Address Line 2</label>
-                            <input type="text" name="aline2" class="form-control" value="{{user1['c_address_line_2']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">City</label>
-                            <input type="text" name="city" class="form-control" value="{{user1['c_city']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">State</label>
-                            <input type="text" name="state" class="form-control" value="{{user1['c_state']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Zipcode</label>
-                            <input type="text" name="zipcode" class="form-control" value="{{user1['c_zipcode']}}"></input>
-                        </div>
-                        <button class="form-btn" type="submit">save address info</button>
-                        <input type="hidden" name="page" value="/profile">
-                    </form>
-                </div> 
-            </div> 
-        </div>
-
-        <!-- payment edit form -->
-        <div class="modal fade" id="payment-add">
-            <div class="modal-dialog modal-dialog-centered"> 
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
-                        <div class="form-title">
-                            <h3>edit payment info</h3>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card name</label>
-                            <input class="form-control" name="cname" type="text" value="{{user1['c_card_name']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card number</label>
-                            <input class="form-control" name="cnumber" type="number" value="{{user1['c_card_num']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card type</label>
-                            <input class="form-control" name="ctype" type="text" value="{{user1['c_card_type']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">expiration date (MM/DD/YYYY)</label>
-                            <input class="form-control" name="cdate" type="date" value="{{user1['c_exp_date']}}">
-                        </div>
-                        <button class="form-btn" type="submit">save payment info</button>
                         <input type="hidden" name="page" value="/profile">
                     </form>
                 </div> 

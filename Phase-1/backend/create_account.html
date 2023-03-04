@@ -141,6 +141,7 @@
                                     <input type="radio" id='inactive' value="Inactive" name="group1">
                                 </div>
 
+                                {% if userType == "user" %}
                                 <div class="form-title">
                                     <h3>address info</h3>
                                 </div>
@@ -193,6 +194,7 @@
                                     <label class="form-label">Expiration Date</label>
                                     <input type="date" name="cdate" class="form-control"></input>
                                 </div>
+                                {% endif %}
 
                                 <div class="details-add-group">
                                     <button type="submit" class="product-add" title="Save changes">
