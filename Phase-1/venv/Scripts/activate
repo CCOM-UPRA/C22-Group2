@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Cisco\OneDrive\Documents\Projects\plants-ecommerce-site\venv"
+VIRTUAL_ENV="C:\Users\marre\Documents\Projects\plants-ecommerce-site\Phase-1\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
