@@ -93,7 +93,7 @@
                         <br>
 
                     </div>
-
+                    {% set prefix = 'a_' if userType == 'admin' else 'c_' %}
                 <div style='display:flex; justify-content:center' class="row">
                     <div class="col-lg-6">
                         <div class="details-content">
@@ -106,23 +106,23 @@
 
                                     <div class="form-group">
                                         <label class="form-label">First Name</label>
-                                        <input type="text" name="fname" class="form-control" value="{{acc['c_first_name']}}">
+                                        <input type="text" name="fname" class="form-control" value="{{acc[prefix + 'first_name']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Last Name</label>
-                                        <input type="text" name="lname" class="form-control" value="{{acc['c_last_name']}}">
+                                        <input type="text" name="lname" class="form-control" value="{{acc[prefix + 'last_name']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Phone Number</label>
-                                        <input type="number" name="pnumber" class="form-control" value="{{acc['c_phone_number']}}">
+                                        <input type="number" name="pnumber" class="form-control" value="{{acc[prefix + 'phone_number']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">email</label>
-                                        <input type="text" name="email" class="form-control" value="{{acc['c_email']}}">
+                                        <input type="text" name="email" class="form-control" value="{{acc[prefix + 'email']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">password</label>
-                                        <input type="text" name="pass1" class="form-control" value="{{acc['c_password']}}">
+                                        <input type="text" name="pass1" class="form-control" value="{{acc[prefix + 'password']}}">
                                     </div>
                                      {% if acc['c_status'] == 'active' %}
                                          <div class="form-group">
