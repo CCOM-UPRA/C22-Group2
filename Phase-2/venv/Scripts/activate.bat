@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Cisco\OneDrive\Documents\Projects\plants-ecommerce-site\Phase-1\venv
+set VIRTUAL_ENV=C:\Users\Cisco\OneDrive\Documents\Projects\C22-Group2\Phase-2\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
