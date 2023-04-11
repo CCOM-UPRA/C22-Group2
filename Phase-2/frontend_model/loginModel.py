@@ -1,9 +1,12 @@
 from backend_model.accountsModel import *
+from classes.db_connect import DBConnect
 from flask import session
 
 
 def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
+
+    db = DBConnect()
     logins = getaccountsmodel(admin=False)
 
     for key, user in dict(logins).items():
