@@ -6735,7 +6735,7 @@ tbody tr td:last-child {
 
 .single-banner {
   background-size: cover !important;
-  padding: 100px 0px;
+  padding: 0px 0px;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -6762,7 +6762,7 @@ tbody tr td:last-child {
 
 @media (max-width: 767px) {
   .single-banner {
-    padding: 60px 0px;
+    padding: 0px 0px;
   }
   .single-banner h2 {
     font-size: 32px;
