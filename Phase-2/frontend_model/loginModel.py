@@ -8,12 +8,9 @@ def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
 
     db = DBConnect()
-    user = []
-    sql = "SELECT * from customer WHERE email = %s"
-    userFound = db.query(sql, (email))
-
+    sql = "SELECT * FROM customer WHERE email = %s"
     # Save user info in list
-
+    userFound = db.query(sql, (email))
     # sha256_crypt.encrypt("password") = this is what is used to encrypt a password
     # sha256_crypt.verify(password_unhashed, password_hashed) = this is what is used to compare an unhashed and hashed password
 
@@ -26,15 +23,6 @@ def loginmodel(email : str, password : str):
         else:
             # If it didn't find user
             return "false"
-    
-    # logins = getaccountsmodel(admin=False)
-
-    # for key, user in dict(logins).items():
-    #         if dict(user).get('c_email') == email:
-    #             if dict(user).get('c_password') == password:
-    #                 session['customer'] = key
-    #                 return "true"
-    # return "false"
              
 def addloginmodel(first_name, last_name, email, password):
     db = DBConnect()
@@ -42,10 +30,6 @@ def addloginmodel(first_name, last_name, email, password):
     db.execute(sql, (first_name, last_name, email, sha256_crypt.encrypt(password)))
 
 def getloginmodel(acc):
-    return getaccountmodel(acc, admin=False)
-
-# Get all accounts
-def getloginsmodel():
-    return getaccountsmodel(admin=False)
-
-#print(getloginsmodel())
+    db = DBConnect()
+    sql = "SELECT * FROM customer WHERE customer_id = %s"
+    return db.query(sql, (acc))
