@@ -7,5 +7,8 @@ def getUser(customer):
 def changeinfo(acc, infolist):
     changeinfomodel(acc, infolist)
 
-def editpayment(name, c_type, number, exp_date):
+def edit_profile(fname, lname, email):
+    editprofilemodel(fname, lname, email)
+
+def edit_payment(name, c_type, number, exp_date):
     editpaymentmodel(name, c_type, number, exp_date)

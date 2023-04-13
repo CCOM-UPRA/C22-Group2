@@ -121,45 +121,36 @@ def profile():
 @app.route("/editinfo", methods=["POST"])
 def editinfo():
     # Process register info here
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
     pnumber = request.form.get('pnumber')
-    email = request.form.get('email')
     pass1 = request.form.get('pass1')
     aline1 = request.form.get('aline1')
     aline2 = request.form.get('aline2')
     city = request.form.get('city')
     state = request.form.get('state')
     zipcode = request.form.get('zipcode')
+    
+    
+    # changeinfo(session['customer'], editAccount)
+    return redirect("/profile")
+
+@app.route("/editprofile", methods=["POST"])
+def editprofile():
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    edit_profile(fname=fname, lname=lname, email=email)
+    return redirect("/profile")
+
+@app.route("/editpayment", methods=["POST"] )
+def editpayment():
     cname = request.form.get('cname')
     cnumber = request.form.get('cnumber')
     ctype = request.form.get('ctype')
     cdate = request.form.get('cdate')
+    edit_payment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
     
-    editpayment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
-        
-    editAccount = {
-        "c_first_name": fname,
-        "c_last_name": lname,
-        "c_email": email,
-        "c_password": pass1,
-        "c_phone_number": pnumber,
-        "c_status": "Active",
-        "c_address_line_1": aline1,
-        "c_address_line_2": aline2,
-        "c_city": city,
-        "c_state": state,
-        "c_zipcode": zipcode,
-        "c_card_name": cname,
-        "c_card_type": ctype,
-        "c_exp_date": cdate,
-        "c_card_num": cnumber
-        }
-
-    # changeinfo(session['customer'], editAccount)
     return redirect("/profile")
-
-
+    
 @app.route("/password", methods=["POST"])
 def password():
     # make password changes
