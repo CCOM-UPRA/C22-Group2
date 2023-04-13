@@ -204,8 +204,8 @@
                                 <div class="row">
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="profile-card address active">
-                                            <p>{{user1['address_line_1']}}</p><br>
-                                            <p>{{user1['address_line_2']}}</p><br>
+                                            <p>{{user1['address_line1']}}</p><br>
+                                            <p>{{user1['address_line2']}}</p><br>
                                             <p>{{user1['city']}}, {{user1['state']}} &nbsp {{user1['zipcode']}}</p>
                                         </div>
                                     </div>
@@ -249,7 +249,7 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                    <form class="modal-form" action="{{url_for('editphonenumber')}}" method="post">
                         <div class="form-title">
                             <h3>Edit contact number</h3>
                         </div>
@@ -269,18 +269,18 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                    <form class="modal-form" action="{{url_for('editaddress')}}" method="post">
                         <div class="form-title">
                             <h3>edit address info</h3>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Address Line 1</label>
-                            <input type="text" name="aline1" class="form-control" value="{{user1['address_line_1']}}"></input>
+                            <input type="text" name="aline1" class="form-control" value="{{user1['address_line1']}}"></input>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Address Line 2</label>
-                            <input type="text" name="aline2" class="form-control" value="{{user1['address_line_2']}}"></input>
+                            <input type="text" name="aline2" class="form-control" value="{{user1['address_line2']}}"></input>
                         </div>
                         <div class="form-group">
                             <label class="form-label">City</label>

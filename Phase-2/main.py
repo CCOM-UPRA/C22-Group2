@@ -121,14 +121,7 @@ def profile():
 @app.route("/editinfo", methods=["POST"])
 def editinfo():
     # Process register info here
-    pnumber = request.form.get('pnumber')
     pass1 = request.form.get('pass1')
-    aline1 = request.form.get('aline1')
-    aline2 = request.form.get('aline2')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    zipcode = request.form.get('zipcode')
-    
     
     # changeinfo(session['customer'], editAccount)
     return redirect("/profile")
@@ -149,6 +142,22 @@ def editpayment():
     cdate = request.form.get('cdate')
     edit_payment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
     
+    return redirect("/profile")
+
+@app.route("/editaddress", methods=["POST"])
+def editaddress():
+    aline1 = request.form.get('aline1')
+    aline2 = request.form.get('aline2')
+    state = request.form.get('state')
+    city = request.form.get('city')
+    zipcode = request.form.get('zipcode')
+    edit_address(aline1, aline2, state, zipcode, city)
+    return redirect("/profile")
+
+@app.route("/editphonenumber", methods=["POST"])
+def editphonenumber():
+    pnumber = request.form.get('pnumber')
+    edit_number(pnumber=pnumber)
     return redirect("/profile")
     
 @app.route("/password", methods=["POST"])
