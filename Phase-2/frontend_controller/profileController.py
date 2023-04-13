@@ -6,3 +6,6 @@ def getUser(customer):
 
 def changeinfo(acc, infolist):
     changeinfomodel(acc, infolist)
+
+def editpayment(name, c_type, number, exp_date):
+    editpaymentmodel(name, c_type, number, exp_date)

@@ -5,7 +5,8 @@ from flask import session
 def getUserModel(customer):
     db = DBConnect()
     sql = "SELECT * FROM customer WHERE customer_id = %s"
-    return db.query(sql, (customer))
+    result = db.query(sql, (customer))
+    return result
 
 # def changeinfomodel(acc, infolist):
 #     editaccountmodel(acc, edits=infolist, admin=False)
@@ -24,31 +25,14 @@ def editaddressmodel(aline1, aline2, state, zipcode, city):
                    "address_line2 = %s , city = %s, state = %s, zipcode = %s WHERE customer_id = %s", (aline1, aline2, city, state, zipcode, session['customer']))
     else:
         # If the shipping_address doesn't exist, insert a new record and update the customer table with the new shipping_address_id
-        db.execute("INSERT INTO shipping_address (address_line1, address_line2, city, state, zipcode) VALUES (%s, %s, %s, %s, %s)",
-                   (aline1, aline2, city, state, zipcode))
+        db.execute("INSERT INTO shipping_address (address_line1, address_line2, city, state, zipcode) VALUES(% s, %s, %s, %s, %s)",
+                   (aline1, aline2, city, state, zipcode))   
     
-    
-    
-
-
 def editpaymentmodel(name, c_type, number, exp_date):
-    conn = pymysql.connect(host='sql9.freemysqlhosting.net', db='sql9602731',
-                           user='sql9602731', password='zChRVJs2Nf', port=3306)
-    cur = conn.cursor()
-    try:
-        cur.execute("UPDATE customer SET c_card_name = %s, c_card_number = %s, "
-                    "c_card_type = %s, c_exp_date = %s WHERE c_id = %s",
-                    (name, number, c_type, exp_date, session['customer']))
-        conn.commit()
-        return 0
-
-    except pymysql.Error as error:
-        print(error)
-        return 0
-
-    else:
-        cur.close()
-        return 1
+    db = DBConnect()
+    db.execute("UPDATE customer SET card_name = %s, card_number = %s, "
+                "card_type = %s, card_exp_date = %s WHERE customer_id = %s",
+                (name, number, c_type, exp_date, session['customer']))
 
 
 def editprofilemodel(fname, lname, email):

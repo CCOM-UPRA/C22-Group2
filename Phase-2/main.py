@@ -112,7 +112,7 @@ def profile():
     # To open the user's profile page
     # Get user info from getUser() in profileController
     user = getUser(session['customer'])
-
+    print(user)
     # Since I specified the variable as user1, that is how it will be called on the html page
     return render_template("profile.html", user1=user)
 
@@ -135,7 +135,8 @@ def editinfo():
     cnumber = request.form.get('cnumber')
     ctype = request.form.get('ctype')
     cdate = request.form.get('cdate')
-        
+    
+    editpayment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
         
     editAccount = {
         "c_first_name": fname,
@@ -155,7 +156,7 @@ def editinfo():
         "c_card_num": cnumber
         }
 
-    changeinfo(session['customer'], editAccount)
+    # changeinfo(session['customer'], editAccount)
     return redirect("/profile")
 
 

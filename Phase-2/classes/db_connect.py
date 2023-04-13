@@ -15,8 +15,13 @@ class DBConnect():
             self.cursor.execute(sql, params)
         else:
             self.cursor.execute(sql)
+            
         result = self.cursor.fetchall()
-        return result
+        
+        if len(result) == 1:
+            return result[0]
+        else:
+            return result
 
     def execute(self, sql, params=None):
         if params:
