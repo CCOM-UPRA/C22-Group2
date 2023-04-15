@@ -304,24 +304,24 @@
                             </div>
                                     
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
-                            {% for product in products.keys() %}
+                            {% for product in products %}
                             <div class="col">
                                 <div class="product-card">
                                     <div class="product-media">
 
-                                        <a class="product-image" href="static/images/product-images/{{products.get(product)['img']}}">
-                                            <img src="static/images/product-images/{{products.get(product)['img']}}" alt="product">
+                                        <a class="product-image" href="static/images/product-images/{{product['image']}}">
+                                            <img src="static/images/product-images/{{product['image']}}" alt="product">
                                         </a>
                                         <div class="product-widget">
-                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view-{{product}}"></a>
+                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view-{{product['product_id']}}"></a>
                                         </div>
                                     </div>
                                     <div class="product-content">
                                         <h6 class="product-name">
-                                            <a href="product-video.html">{{products.get(product)['name']}}</a>
+                                            <a href="product-video.html">{{product['name']}}</a>
                                         </h6>
                                         <h6 class="product-price">
-                                            <span>${{products.get(product)['price']}}</span>
+                                            <span>${{product['price']}}</span>
                                         </h6>
                                         <button class="product-add" title="Add to Cart">
                                             <i class="fas fa-shopping-basket"></i>
@@ -330,16 +330,16 @@
                                         <div class="product-action">
                                             <form action="{{url_for('addcart')}}" method="POST">
                                             <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
-                                               <input type="hidden" id="p_id" name="p_id" value="WIP">
-                                               <input type="hidden" id="name" name="name" value="{{products.get(product)['name']}}">
-                                                <input type="hidden" id="price" name="price" value="{{products.get(product)['price']}}">
+                                               <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
+                                               <input type="hidden" id="name" name="name" value="{{product['name']}}">
+                                                <input type="hidden" id="price" name="price" value="{{product['price']}}">
                                                 <input type="hidden" id="cost" name="cost" value="None for now">
-                                                <input type="hidden" id="stock" name="stock" value="{{products.get(product)['stock']}}">
+                                                <input type="hidden" id="stock" name="stock" value="{{product['stock']}}">
                                                 <input type="hidden" id="location" name="location" value="Does not apply">
                                                 <input type="hidden" id="watering" name="watering" value="does not apply">
                                                 <input type="hidden" id="sun" name="sun" value="does not apply">
-                                                <input type="hidden" id="desc" name="desc" value="{{products.get(product)['desc']}}">
-                                                <input type="hidden" id="image" name="image" value="{{products.get(product)['img']}}">
+                                                <input type="hidden" id="desc" name="desc" value="{{product['description']}}">
+                                                <input type="hidden" id="image" name="image" value="{{product['image']}}">
                                               <input style="width: 30%" type="submit" value="Add">
                                               </form>
                                         </div>
@@ -347,7 +347,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="product-view-{{product}}">
+                            <div class="modal fade" id="product-view-{{product['product_id']}}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
@@ -356,10 +356,10 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-gallery">
                                     <div class="view-label-group">
-                                        <label class="view-label new">{{products.get(product)['stock']}} in stock</label>
+                                        <label class="view-label new">{{product['stock']}} in stock</label>
                                     </div>
                                     <ul class="preview-slider">
-                                        <li><img src="static/images/product-images/{{products.get(product)['img']}}" alt="product"></li>
+                                        <li><img src="static/images/product-images/{{product['image']}}" alt="product"></li>
                                     </ul>
 
                                 </div>
@@ -367,18 +367,18 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-details">
                                     <h3 class="view-name">
-                                        <a href="product-video.html">{{products.get(product)['name']}}</a>
+                                        <a href="product-video.html">{{product['name']}}</a>
                                     </h3>
                                     <div class="view-meta">
-                                        <p>Location:<span>{{products.get(product)['location']}}</span></p><br>
-                                        <p>Family Type: {{products.get(product)['family type']}}</p><br>
-                                        <p>When to Water: {{products.get(product)['water']}}</p>
+                                        <p>Location:<span>{{product['location']}}</span></p><br>
+                                        <p>Family Type: {{product['plant_type']}}</p><br>
+                                        <p>When to Water: {{product['water']}}</p>
                                     </div>
                                     <h3 class="view-price">
                                         <!-- <del>{{product[11]}}</del> -->
-                                        <span>${{products.get(product)['price']}}</span>
+                                        <span>${{product['price']}}</span>
                                     </h3>
-                                    <p class="view-desc">{{products.get(product)['desc']}}</p>
+                                    <p class="view-desc">{{product['description']}}</p>
                                     <div class="view-add-group">
                                         <button class="product-add" title="Add to Cart">
                                             <span>Tap to add amount</span>

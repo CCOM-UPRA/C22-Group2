@@ -1,6 +1,4 @@
-import json
-
-productsPath = './JSONfiles/products.json'
+from classes.db_connect import DBConnect
 # This is our simulation of the database
 # We have two products here.
 # The students must create their own productList when working on their eCommerce site
@@ -10,21 +8,11 @@ productsPath = './JSONfiles/products.json'
 
 
 def getProductsModel():
-    
-    # Load JSON data into a dictionary
-    with open(productsPath) as f:
-        data = json.load(f)
-
-    # Access keys and sub-keys and put them into a Python list
-    # productList = []
-    # for key in data.keys():
-    #  item = [key]
-    # for sub_key in data[key].keys():
-    #     item.append(data[key][sub_key])
-    # productList.append(item)
-
-    return dict(data)
-
+    productList = []
+    db = DBConnect()
+    Query = "SELECT * FROM product"
+    result = db.query(Query)
+    return result
 
 def getLocationModel():
     # Simulating grabbing these filters via SQL from the database
