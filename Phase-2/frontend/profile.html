@@ -216,8 +216,8 @@
                     <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
-                                <h4>delivery address</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
+                                <h4>Billing address</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#billing-address-add">edit address</button>
                             </div>
                             <div class="account-content">
                                 <div class="row">
@@ -314,6 +314,44 @@
                         <div class="form-group">
                             <label class="form-label">Zipcode</label>
                             <input type="text" name="zipcode" class="form-control" value="{{user1['zipcode']}}"></input>
+                        </div>
+                        <button class="form-btn" type="submit">save address info</button>
+                        <input type="hidden" name="page" value="/profile">
+                    </form>
+                </div> 
+            </div> 
+        </div>
+
+        <!-- billing address edit form -->
+        <div class="modal fade" id="billing-address-add">
+            <div class="modal-dialog modal-dialog-centered"> 
+                <div class="modal-content">
+                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="bill_address">
+                        <div class="form-title">
+                            <h3>edit address info</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Address Line 1</label>
+                            <input type="text" name="billline1" class="form-control" value="{{user1['bill_address_line1']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address Line 2</label>
+                            <input type="text" name="billline2" class="form-control" value="{{user1['bill_address_line2']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" name="billcity" class="form-control" value="{{user1['bill_city']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <input type="text" name="billstate" class="form-control" value="{{user1['bill_state']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Zipcode</label>
+                            <input type="text" name="billzipcode" class="form-control" value="{{user1['bill_zipcode']}}"></input>
                         </div>
                         <button class="form-btn" type="submit">save address info</button>
                         <input type="hidden" name="page" value="/profile">

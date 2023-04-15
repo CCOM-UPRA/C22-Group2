@@ -20,7 +20,13 @@ def editaddressmodel(aline1, aline2, state, zipcode, city):
     db.execute("UPDATE shipping_address SET address_line1 = %s, address_line2 = %s, "
                 "city = %s, state = %s, zipcode = %s WHERE customer_id = %s",
                 (aline1, aline2, city, state, zipcode, session['customer']))
-    
+
+def edit_billaddressmodel(aline1, aline2, state, zipcode, city):
+    db = DBConnect()
+    db.execute("UPDATE payment_method SET bill_address_line1 = %s, bill_address_line2 = %s, "
+                "bill_city = %s, bill_state = %s, bill_zipcode = %s WHERE customer_id = %s",
+                (aline1, aline2, city, state, zipcode, session['customer']))
+
 def editpaymentmodel(name, c_type, number, exp_date):
     db = DBConnect()
     db.execute("UPDATE payment_method SET card_name = %s, card_number = %s, "

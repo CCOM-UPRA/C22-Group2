@@ -139,7 +139,15 @@ def editinfo():
         city = request.form.get('city')
         zipcode = request.form.get('zipcode')
         edit_address(aline1, aline2, state, zipcode, city)
-           
+    
+    elif request.form.get('edit') == 'bill_address':
+        aline1 = request.form.get('billline1')
+        aline2 = request.form.get('billline2')
+        state = request.form.get('billstate')
+        city = request.form.get('billcity')
+        zipcode = request.form.get('billzipcode')
+        edit_billaddress(aline1, aline2, state, zipcode, city)
+    
     elif request.form.get('edit') == 'phone_number':
         pnumber = request.form.get('pnumber')
         edit_number(pnumber=pnumber)
