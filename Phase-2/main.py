@@ -207,7 +207,7 @@ def checkout():
     # Check if customer is logged in
     if 'customer' in session:
         # > cartController
-        user = getUserCheckout()
+        user = getUserCheckout(session['customer'])
         total = 0
 
         # calculate total from the session cart

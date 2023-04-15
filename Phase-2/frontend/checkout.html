@@ -194,7 +194,7 @@
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="profile-card contact active">
                                             <h6>primary</h6>
-                                            <p>{{user1[10]}}</p>
+                                            <p>{{user1['phone_number']}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -211,9 +211,28 @@
                                 <div class="row">
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="profile-card address active">
-                                            <p>{{user1[3]}}</p><br>
-                                            <p>{{user1[4]}}</p><br>
-                                            <p>{{user1[5]}}, {{user1[6]}} &nbsp {{user1[7]}}</p>
+                                            <p>{{user1['address_line1']}}</p><br>
+                                            <p>{{user1['address_line2']}}</p><br>
+                                            <p>{{user1['city']}}, {{user1['state']}} &nbsp {{user1['zipcode']}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="account-card">
+                            <div class="account-title">
+                                <h4>Billing address</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
+                            </div>
+                            <div class="account-content">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-4 alert fade show">
+                                        <div class="profile-card address active">
+                                            <p>{{user1['bill_address_line1']}}</p><br>
+                                            <p>{{user1['bill_address_line2']}}</p><br>
+                                            <p>{{user1['bill_city']}}, {{user1['bill_state']}} &nbsp {{user1['bill_zipcode']}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -230,10 +249,10 @@
                                 <div class="row">
                                     <div class="col-md-6 col-lg-4 alert fade show">
                                         <div class="payment-card payment active">
-                                            <h2>{{user1[12]}}</h2>
-                                            <p>{{user1[13]}} </p>
-                                            <h5>{{user1[11]}}</h5>
-                                            <h6>{{user1[14]}}</h6>
+                                            <h2>{{user1['card_name']}}</h2>
+                                            <p>{{user1['card_number']}} </p>
+                                            <h5>{{user1['card_type']}}</h5>
+                                            <h6>{{user1['card_exp_date']}}</h6>
                                         </div>
                                     </div>
                                 </div>
