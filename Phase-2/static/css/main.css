@@ -6912,3 +6912,7 @@ tbody tr td:last-child {
     margin-bottom: 30px;
   }
 }
+
+.hidden-form {
+  visibility: hidden;
+}

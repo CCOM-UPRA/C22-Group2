@@ -249,7 +249,8 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editphonenumber')}}" method="post">
+                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="phone_number">
                         <div class="form-title">
                             <h3>Edit contact number</h3>
                         </div>
@@ -269,7 +270,8 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editaddress')}}" method="post">
+                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="address">
                         <div class="form-title">
                             <h3>edit address info</h3>
                         </div>
@@ -306,7 +308,8 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editpayment')}}" method="post">
+                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="payment">
                         <div class="form-title">
                             <h3>edit payment info</h3>
                         </div>
@@ -338,7 +341,8 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('editprofile')}}" method="post">
+                    <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="profile">
                         <div class="form-title">
                             <h3>edit profile info</h3>
                         </div>
@@ -355,7 +359,7 @@
                             <input class="form-control" name="email" type="text" value="{{user1['email']}}">
                         </div>
                         <input type="hidden" name="page" id="page" value="/profile">
-                        <button class="form-btn" type="submit">save profile info</button>
+                        <a><button class="form-btn" type="submit">save profile info</a>
                     </form>
                 </div>
             </div>
