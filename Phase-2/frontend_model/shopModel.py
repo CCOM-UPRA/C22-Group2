@@ -16,7 +16,7 @@ def getProductsModel():
 def searchProductsModel(search_query, filters = None):
     db = DBConnect()
     to_search = f"%{search_query}%"
-    query = "SELECT * FROM product WHERE CONCAT(name, ' ', description, ' ') LIKE %s"
+    query = "SELECT * FROM product WHERE name LIKE %s"
     result = db.query(query, (to_search))
     return result
 
