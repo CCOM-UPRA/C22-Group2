@@ -259,102 +259,168 @@
                             </div>
                         </div>
                     </div>
+        <!--=====================================
+                    MODAL ADD FORM START
+        =======================================-->
 
-                    <!-- contact add form -->
+        <!-- contact edit form -->
         <div class="modal fade" id="contact-add">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="phone_number">
                         <div class="form-title">
                             <h3>Edit contact number</h3>
                         </div>
                         <div class="form-group">
                             <label class="form-label">number</label>
-                            <input class="form-control" type="number" value="{{user1[10]}}">
+                            <input class="form-control" name="pnumber" type="number" value="{{user1['phone_number']}}">
                         </div>
                         <button class="form-btn" type="submit">save contact number</button>
+                        <input type="hidden" name="page" value="/profile">
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- address add form -->
+        <!-- address edit form -->
         <div class="modal fade" id="address-add">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="address">
                         <div class="form-title">
                             <h3>edit address info</h3>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Address Line 1</label>
-                            <input type="text" class="form-control" value="{{user1[3]}}"></input>
+                            <input type="text" name="aline1" class="form-control" value="{{user1['address_line1']}}"></input>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Address Line 2</label>
-                            <input type="text" class="form-control" value="{{user1[4]}}"></input>
+                            <input type="text" name="aline2" class="form-control" value="{{user1['address_line2']}}"></input>
                         </div>
                         <div class="form-group">
                             <label class="form-label">City</label>
-                            <input type="text" class="form-control" value="{{user1[5]}}"></input>
+                            <input type="text" name="city" class="form-control" value="{{user1['city']}}"></input>
                         </div>
                         <div class="form-group">
                             <label class="form-label">State</label>
-                            <input type="text" class="form-control" value="{{user1[6]}}"></input>
+                            <input type="text" name="state" class="form-control" value="{{user1['state']}}"></input>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Zipcode</label>
-                            <input type="text" class="form-control" value="{{user1[7]}}"></input>
+                            <input type="text" name="zipcode" class="form-control" value="{{user1['zipcode']}}"></input>
                         </div>
                         <button class="form-btn" type="submit">save address info</button>
+                        <input type="hidden" name="page" value="/profile">
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- payment add form -->
+        <!-- billing address edit form -->
+        <div class="modal fade" id="billing-address-add">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="bill_address">
+                        <div class="form-title">
+                            <h3>edit address info</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Address Line 1</label>
+                            <input type="text" name="billline1" class="form-control" value="{{user1['bill_address_line1']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address Line 2</label>
+                            <input type="text" name="billline2" class="form-control" value="{{user1['bill_address_line2']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" name="billcity" class="form-control" value="{{user1['bill_city']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <input type="text" name="billstate" class="form-control" value="{{user1['bill_state']}}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Zipcode</label>
+                            <input type="text" name="billzipcode" class="form-control" value="{{user1['bill_zipcode']}}"></input>
+                        </div>
+                        <button class="form-btn" type="submit">save address info</button>
+                        <input type="hidden" name="page" value="/profile">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- payment edit form -->
         <div class="modal fade" id="payment-add">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="payment">
                         <div class="form-title">
                             <h3>edit payment info</h3>
                         </div>
                         <div class="form-group">
                             <label class="form-label">card name</label>
-                            <input class="form-control" type="text" value="{{user1[11]}}">
+                            <input class="form-control" name="cname" type="text" value="{{user1['card_name']}}">
                         </div>
                         <div class="form-group">
                             <label class="form-label">card number</label>
-                            <input class="form-control" type="number" value="{{user1[13]}}">
+                            <input class="form-control" name="cnumber" type="number" value="{{user1['card_number']}}">
                         </div>
                         <div class="form-group">
                             <label class="form-label">card type</label>
-                            <input class="form-control" type="text" value="{{user1[12]}}">
+                            <input class="form-control" name="ctype" type="text" value="{{user1['card_type']}}">
                         </div>
                         <div class="form-group">
                             <label class="form-label">expiration date (MM/DD/YYYY)</label>
-                            <input class="form-control" type="date" value="{{user1[14]}}">
+                            <input class="form-control" name="cdate" type="date" value="{{user1['card_exp_date']}}">
                         </div>
                         <button class="form-btn" type="submit">save payment info</button>
+                        <input type="hidden" name="page" value="/profile">
                     </form>
                 </div>
             </div>
         </div>
 
-
-                            <div class="checkout-proced">
-                                <a href="{{url_for('invoice')}}" class="btn btn-inline">proceed to checkout</a>
-                            </div>
+         <!-- profile edit form -->
+        <div class="modal fade" id="profile-edit">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                        <input class="hidden-form" name= "edit" value="profile">
+                        <div class="form-title">
+                            <h3>edit profile info</h3>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input class="form-control" name="fname" type="text" value="{{user1['first_name']}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input class="form-control" name="lname" type="text" value="{{user1['last_name']}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">email</label>
+                            <input class="form-control" name="email" type="text" value="{{user1['email']}}">
+                        </div>
+                        <input type="hidden" name="page" id="page" value="/profile">
+                        <a><button class="form-btn" type="submit">save profile info</a>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
         <!--=====================================
                     CHECKOUT PART END
         =======================================-->

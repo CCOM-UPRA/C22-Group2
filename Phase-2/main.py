@@ -200,7 +200,36 @@ def editcart():
 
 @app.route("/checkout", methods=["POST", "GET"])
 def checkout():
-    if request.form.get('edit') == 'phone_number':
+    if request.form.get('edit') == 'profile':
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        email = request.form.get('email')
+        edit_profile(fname=fname, lname=lname, email=email)
+
+    elif request.form.get('edit') == 'payment':
+        cname = request.form.get('cname')
+        cnumber = request.form.get('cnumber')
+        ctype = request.form.get('ctype')
+        cdate = request.form.get('cdate')
+        edit_payment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
+
+    elif request.form.get('edit') == 'address':
+        aline1 = request.form.get('aline1')
+        aline2 = request.form.get('aline2')
+        state = request.form.get('state')
+        city = request.form.get('city')
+        zipcode = request.form.get('zipcode')
+        edit_address(aline1, aline2, state, zipcode, city)
+
+    elif request.form.get('edit') == 'bill_address':
+        aline1 = request.form.get('billline1')
+        aline2 = request.form.get('billline2')
+        state = request.form.get('billstate')
+        city = request.form.get('billcity')
+        zipcode = request.form.get('billzipcode')
+        edit_billaddress(aline1, aline2, state, zipcode, city)
+
+    elif request.form.get('edit') == 'phone_number':
         pnumber = request.form.get('pnumber')
         edit_number(pnumber=pnumber)
     # Check if customer is logged in

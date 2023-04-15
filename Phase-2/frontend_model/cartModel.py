@@ -1,3 +1,4 @@
+from classes.db_connect import DBConnect
 from flask import session
 
 # Dictionary uniter
@@ -20,6 +21,7 @@ dictitems2 = {'2': {'name': "Kalanchoe", 'price': 24.99, 'quantity': 1, 'total_p
 
 def getCartModel():
     # Checking if cart is in session or not and adding the dictionaries to it
+
     if 'cart' in session:
         session['cart'] = MagerDicts(session['cart'], dictitems1)
     else:
