@@ -80,7 +80,10 @@ def registerinfo():
 def shop():
     # This is the shop's Flask portion
     # First we receive the list of products by accessing getProducts() from shopController
-    products = getProducts()
+    if request.args.get('search_query'):
+        products = searchProducts(request.args.get('search_query'))
+    else:
+        products = getProducts()
 
     # Then we create the shopping cart by accessing getCart in shopController
     getCart()

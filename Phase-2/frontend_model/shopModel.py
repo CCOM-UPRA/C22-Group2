@@ -8,10 +8,16 @@ from classes.db_connect import DBConnect
 
 
 def getProductsModel():
-    productList = []
     db = DBConnect()
-    Query = "SELECT * FROM product"
-    result = db.query(Query)
+    query = "SELECT * FROM product"
+    result = db.query(query)
+    return result
+
+def searchProductsModel(search_query, filters = None):
+    db = DBConnect()
+    to_search = f"%{search_query}%"
+    query = "SELECT * FROM product WHERE CONCAT(name, ' ', description, ' ') LIKE %s"
+    result = db.query(query, (to_search))
     return result
 
 def getLocationModel():
