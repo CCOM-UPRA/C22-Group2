@@ -76,8 +76,7 @@ def registerinfo():
     else:
         return redirect('/register/<message>')
 
-
-@app.route("/shop")
+@app.route("/shop", methods=['GET'])
 def shop():
     # This is the shop's Flask portion
     # First we receive the list of products by accessing getProducts() from shopController
@@ -141,7 +140,7 @@ def editpayment():
     ctype = request.form.get('ctype')
     cdate = request.form.get('cdate')
     edit_payment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
-    
+    # edit_bill_address()
     return redirect("/profile")
 
 @app.route("/editaddress", methods=["POST"])
@@ -202,6 +201,9 @@ def editcart():
 
 @app.route("/checkout", methods=["POST", "GET"])
 def checkout():
+    if request.form.get('edit') == 'phone_number':
+        pnumber = request.form.get('pnumber')
+        edit_number(pnumber=pnumber)
     # Check if customer is logged in
     if 'customer' in session:
         # > cartController

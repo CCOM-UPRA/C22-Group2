@@ -1,4 +1,3 @@
-from backend_model.accountsModel import *
 from classes.db_connect import DBConnect
 from passlib.hash import sha256_crypt
 from flask import session

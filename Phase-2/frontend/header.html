@@ -27,8 +27,8 @@
             </ul>
             {% endif %}
 
-            <form class="header-form">
-                <input type="text" placeholder="Search anything...">
+            <form class="header-form" action="{{url_for('shop')}}" method="GET">
+                <input type="text" name="search_query" placeholder="Search anything...">
                 <button><i class="fas fa-search"></i></button>
             </form>
 
