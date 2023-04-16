@@ -10,40 +10,46 @@ def MagerDicts(dict1, dict2):
     return False
 
 
-# Cart items simulated
-dictitems1 = {'1': {'name': "Echeveria", 'price': 15.99, 'quantity': 2, 'total_price': 31.98,
-                  'stock': 7, 'family type': "Succulents", 'water': "Weekly", 'sun': "Part Sun", 'desc': "Echeverias prefer bright, indirect light and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily.",
-                  'image': "echeveria.jpg", 'location': "Indoors"}}
-dictitems2 = {'2': {'name': "Kalanchoe", 'price': 24.99, 'quantity': 1, 'total_price': 24.99,
-                  'stock': 7, 'family type': "Succulents", 'water': "Biweekly", 'sun': "Full Sun", 'desc': "Kalanchoes prefer bright, indirect light and well-draining soil to thrive, so make sure to place them in a sunny window or outdoors in a bright, sunny spot and use a cactus or succulent potting mix that allows water to drain easily.",
-                  'image': "kalanchoe.jpg", 'location': "Outdoor"}}
 
 
 def getCartModel():
     # Checking if cart is in session or not and adding the dictionaries to it
-
     if 'cart' in session:
-        session['cart'] = MagerDicts(session['cart'], dictitems1)
+        return session['cart']
     else:
-        session['cart'] = dictitems1
-
-    if 'cart' in session:
-        session['cart'] = MagerDicts(session['cart'], dictitems2)
-    else:
-        session['cart'] = dictitems2
-
-    return
+        session['cart'] = []
+        return session['cart']
 
 
-def addCartModel():
+def addCartModel(p_id, quantity):
     # make changes to cart here
     # not in use at the moment
-    return
+    db = DBConnect()
+    query = "SELECT product_id, name, price, stock, image FROM `product` WHERE product_id = %s"
+    result = list(db.query(query, (p_id))).pop()
+    result = MagerDicts(result, {"quantity" : int(quantity)})
+
+    print(result, "SOY EL RESULT")
+
+    if 'cart' in session:
+        found = False
+        for product in session['cart']:
+            if int(product['product_id']) == int(p_id):
+                product['quantity'] += result['quantity']
+                found = True
+                break
+        if found == False:
+            session['cart'] += [result]
+    else:
+        session['cart'] = [result]
+
 
 
 def deleteCartItemModel():
     # delete item from cart
     # not in use at the moment
+    
+
     return
 
 
