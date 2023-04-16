@@ -101,11 +101,13 @@ def shop():
     amount = 3
     # And set the amount for the entire site to access
     session['amount'] = amount
-
+    total = 0
     # Set the cart's total amount for the page
-    total = 56.97
+    session['total'] = 0
     # And set the total for the entire site to access
-    session['total'] = total
+    for item in session['cart']:
+            total = float(item['price']) * float(item['quantity'])
+            session['total'] += round(total,2)
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, family=family, locations=locations,
@@ -190,7 +192,6 @@ def addcart():
 
     product_id = request.form.get('p_id')
     quantity = request.form.get('quantity')
-    print(quantity, "sus")
     addCartController(product_id, quantity)
     
     return redirect(request.referrer)
@@ -248,13 +249,11 @@ def checkout():
     if 'customer' in session:
         # > cartController
         user = getUserCheckout(session['customer'])
-        total = 0
+        total = session['total']
 
         # calculate total from the session cart
         # Reminder: session['cart'] was created in app.route(/shop)
         # The cart itself is found in cartModel
-        for item in session['cart']:
-            item['total_price'] += float(item['price']) * float(item['quantity'])
         return render_template("checkout.html", user1=user, total=total)
 
     else:

@@ -116,7 +116,7 @@
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">${{total}}</span>
+                    <span class="checkout-price">${{session.get('total')}}</span>
                 </a>
             {% else %}
             <div class="cart-footer">
@@ -380,7 +380,7 @@
                                                <input type="hidden" id="name" name="name" value="sus">
                                                 <input type="hidden" id="price" name="price" value="sus">
                                                 <input type="hidden" id="cost" name="cost" value="None for now">
-                                                <input type="hidden" id="stock" name="stock" value="sus
+                                                <input type="hidden" id="stock" name="stock" value="sus">
                                                 <input type="hidden" id="location" name="location" value="Does not apply">
                                                 <input type="hidden" id="watering" name="watering" value="does not apply">
                                                 <input type="hidden" id="sun" name="sun" value="does not apply">
@@ -418,7 +418,7 @@
                                     <div class="view-meta">
                                         <p>Location:<span>{{product['location']}}</span></p><br>
                                         <p>Family Type: {{product['plant_type']}}</p><br>
-                                        <p>When to Water: {{product['water']}}</p>
+                                        <p>When to Water: {{product['watering']}}</p>
                                     </div>
                                     <h3 class="view-price">
                                         <!-- <del>{{product[11]}}</del> -->

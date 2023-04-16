@@ -79,10 +79,10 @@
             <ul class="cart-list">
 
                 {% if session['cart'] %}
-                    {% for key, item in session['cart'].items() %}
+                    {% for item in session['cart'] %}
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="static/images/product-images/{{item['name']}}.jpg" alt="product"></a>
+                        <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
                         <form action="{{url_for('delete', id=key)}}">
                         <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
                         </form>

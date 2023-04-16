@@ -151,7 +151,7 @@
                                     <form action="{{url_for('checkout')}}" method="post">
                                     <div class="view-add-group">
                                             <input style="width: 75%; text-align:center" class="action-input" title="Quantity Number" type="number" name="quantity" value="{{item['quantity']}}">
-                                            <input type="hidden" id="p_id" name="p_id" value="{{key}}">
+                                            <input type="hidden" id="p_id" name="p_id" value="{{item['product_id']}}">
                                             <input type="hidden" id="page" name="page" value="/checkout"><br>
                                          <input type="submit" name="submit" id="submit" value="Edit amount">
                                     </div>
@@ -175,7 +175,7 @@
                                     <ul>
                                         <li>
                                             <span>Total</span>
-                                            <span>${{total}}</span>
+                                            <span>${{session['total']}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -420,12 +420,21 @@
                     </form>
                 </div>
             </div>
+            </div>
+
+            <div class="checkout-proced">
+                <a href="{{url_for('invoice')}}" class="btn btn-inline">proceed to checkout</a>
+            </div>
         </div>
+    </div>
+</div>
+</div>
+</section>
         <!--=====================================
                     CHECKOUT PART END
         =======================================-->
 
-
+            
 
          <!--=====================================
                      FOOTER PART START

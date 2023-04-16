@@ -39,15 +39,14 @@ def addCartModel(p_id, quantity):
     db = DBConnect()
     query = "SELECT product_id, name, price, stock, image FROM `product` WHERE product_id = %s"
     result = list(db.query(query, (p_id))).pop()
-    result = MagerDicts(result, {"quantity" : int(quantity), "total_price" : 0})
-
-    print(result, "SOY EL RESULT")
+    result = MagerDicts(result, {"quantity" : int(quantity), "total_price" : int(quantity) * result['price']})
 
     if 'cart' in session:
         found = False
         for product in session['cart']:
             if int(product['product_id']) == int(p_id):
                 product['quantity'] += result['quantity']
+                product['total_price'] = result['total_price']
                 found = True
                 break
         if found == False:
