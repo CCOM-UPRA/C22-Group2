@@ -21,6 +21,18 @@ def getCartModel():
         return session['cart']
 
 
+
+def deleteCartItemModel(p_id):
+    # delete item from cart
+    
+    if 'cart' in session:
+        for i in range(len(session['cart'])):
+            if int(session['cart'][i]['product_id']) == int(p_id):
+                new_list = session['cart']
+                new_list.pop(i)
+                session['cart'] = new_list
+
+
 def addCartModel(p_id, quantity):
     # make changes to cart here
     # not in use at the moment
@@ -42,18 +54,6 @@ def addCartModel(p_id, quantity):
             session['cart'] += [result]
     else:
         session['cart'] = [result]
-
-
-
-def deleteCartItemModel(p_id):
-    # delete item from cart
-    # not in use at the moment
-    if 'cart' in session:
-        for product in session['cart']:
-            if int(product['product_id']) == int(p_id):
-                session['cart'].pop(product)
-
-    return
 
 
 
