@@ -183,8 +183,13 @@ def orders():
 @app.route("/addcart", methods=["POST"])
 def addcart():
     # > cartController. For purposes of this phase, the function doesn't work
-    addCartController()
-    # request.referrer means you will be redirected to the current page you were in
+    # if request.form.get('submit') == 'add':
+
+    product_id = request.form.get('p_id')
+    quantity = request.form.get('quantity')
+    print(quantity, "sus")
+    addCartController(product_id, quantity)
+    
     return redirect(request.referrer)
 
 

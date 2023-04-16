@@ -82,10 +82,10 @@
             </div>
             <ul class="cart-list">
                 {% if session['cart'] %}
-                    {% for key, item in session['cart'].items() %}
+                    {% for item in session['cart'] %}
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="static/images/product-images/{{item['name']}}.jpg" alt="product"></a>
+                        <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
                         <form action="{{url_for('delete', id=key)}}">
                         <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
                         </form>
@@ -104,7 +104,7 @@
                              <form action="{{url_for('editcart')}}" method="POST">
                                     <button class="action">Edit</button>
                              </form>
-                            <h6>${{item['total_price']}}</h6>
+                            <h6>${{item['price']}}</h6>
                         </div>
                     </div>
                 </li>
@@ -331,15 +331,15 @@
                                             <form action="{{url_for('addcart')}}" method="POST">
                                             <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
                                                <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
-                                               <input type="hidden" id="name" name="name" value="{{product['name']}}">
-                                                <input type="hidden" id="price" name="price" value="{{product['price']}}">
+                                               <input type="hidden" id="name" name="name" value="sus">
+                                                <input type="hidden" id="price" name="price" value="sus">
                                                 <input type="hidden" id="cost" name="cost" value="None for now">
-                                                <input type="hidden" id="stock" name="stock" value="{{product['stock']}}">
+                                                <input type="hidden" id="stock" name="stock" value="sus
                                                 <input type="hidden" id="location" name="location" value="Does not apply">
                                                 <input type="hidden" id="watering" name="watering" value="does not apply">
                                                 <input type="hidden" id="sun" name="sun" value="does not apply">
-                                                <input type="hidden" id="desc" name="desc" value="{{product['description']}}">
-                                                <input type="hidden" id="image" name="image" value="{{product['image']}}">
+                                                <input type="hidden" id="desc" name="desc" value="sus">
+                                                <input type="hidden" id="image" name="image" value="sus">
                                               <input style="width: 30%" type="submit" value="Add">
                                               </form>
                                         </div>
