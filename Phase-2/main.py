@@ -196,10 +196,11 @@ def addcart():
     return redirect(request.referrer)
 
 
-@app.route("/delete")
+@app.route("/delete", methods=["POST"])
 def delete():
     # > cartController. For purposes of this phase, the function doesn't work
-    deleteCartItem()
+    p_id = request.form.get("id")
+    deleteCartItem(p_id)
     return redirect(request.referrer)
 
 
@@ -252,8 +253,8 @@ def checkout():
         # calculate total from the session cart
         # Reminder: session['cart'] was created in app.route(/shop)
         # The cart itself is found in cartModel
-        for key, item in session['cart'].items():
-            total += item['total_price']
+        for item in session['cart']:
+            item['total_price'] += float(item['price']) * float(item['quantity'])
         return render_template("checkout.html", user1=user, total=total)
 
     else:

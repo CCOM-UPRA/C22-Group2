@@ -27,7 +27,7 @@ def addCartModel(p_id, quantity):
     db = DBConnect()
     query = "SELECT product_id, name, price, stock, image FROM `product` WHERE product_id = %s"
     result = list(db.query(query, (p_id))).pop()
-    result = MagerDicts(result, {"quantity" : int(quantity)})
+    result = MagerDicts(result, {"quantity" : int(quantity), "total_price" : 0})
 
     print(result, "SOY EL RESULT")
 
@@ -45,10 +45,13 @@ def addCartModel(p_id, quantity):
 
 
 
-def deleteCartItemModel():
+def deleteCartItemModel(p_id):
     # delete item from cart
     # not in use at the moment
-    
+    if 'cart' in session:
+        for product in session['cart']:
+            if int(product['product_id']) == int(p_id):
+                session['cart'].pop(product)
 
     return
 
