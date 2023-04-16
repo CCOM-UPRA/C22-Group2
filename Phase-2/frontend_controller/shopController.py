@@ -17,7 +17,7 @@ def getLocation():
     return getLocationModel()
 
 def getFamilyType():
-    return getFamilyModel()
+    return getPlantTypeModel()
 
 
 def getSunExpo():

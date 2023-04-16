@@ -227,7 +227,7 @@
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag1">
-                                    <label for="tag1">{{location}}</label>
+                                    <label for="tag1">{{location.get('location')}}</label>
                                 </div>
 
                             </li>
@@ -243,15 +243,15 @@
 
 
                         <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Family type</h6>
+                            <h6 class="shop-widget-title">Filter by Plant type</h6>
                             <form action="{{url_for('filter')}}" method="POST">
                                 <ul class="shop-widget-list">
 
-                        {% for f in family %}
+                        {% for plants in plantType %}
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag3">
-                                    <label for="tag1">{{f}}</label>
+                                    <label for="tag1">{{plants.get('plant_type')}}</label>
                                 </div>
 
                             </li>
@@ -260,7 +260,7 @@
                          </ul>
                                 <button class="shop-widget-btn">
                                     <i class="fas fa-search"></i>
-                                    <span>Search by Family type</span>
+                                    <span>Search by Plant type</span>
                                 </button>
                             </form>
                         </div>
@@ -275,7 +275,7 @@
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="{{res}}" name="videores" value="{{res}}">
-                                    <label for="tag1">{{s}}</label>
+                                    <label for="tag1">{{s.get('sun_exp')}}</label>
                                 </div>
 
                             </li>
@@ -299,7 +299,7 @@
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag4" name="check" onclick="onlyOne(this)">
-                                    <label for="tag1">{{w}}</label>
+                                    <label for="tag1">{{w.get('watering')}}</label>
                                 </div>
 
                             </li>
