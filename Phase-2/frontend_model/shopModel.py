@@ -36,9 +36,6 @@ def getSortingByOrderPreferenceModel():
 #These are retrieved from the dataBase (all the disticts values for each categories)
 
 def getLocationModel():
-    # Simulating grabbing these filters via SQL from the database
-    # locations = ["Indoors", "Outdoors"]
-    # return locations
     db = DBConnect()
     query = "SELECT DISTINCT location FROM product"
     result = db.query(query)

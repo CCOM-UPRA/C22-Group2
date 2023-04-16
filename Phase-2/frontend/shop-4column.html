@@ -116,7 +116,7 @@
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">${{session.get('total')}}</span>
+                    <span class="checkout-price">${{total}}</span>
                 </a>
             {% else %}
             <div class="cart-footer">
@@ -177,7 +177,7 @@
                             <form action="{{url_for('filter')}}" method="POST">
                                 <ul class="shop-widget-list">
 
-                        {% for s in sorting %}
+                        {% for s in sortings %}
                             <li>
                                 <div class="shop-widget-content">
                                     <input type="checkbox" id="tag1">
@@ -417,8 +417,8 @@
                                     </h3>
                                     <div class="view-meta">
                                         <p>Location:<span>{{product['location']}}</span></p><br>
-                                        <p>Family Type: {{product['plant_type']}}</p><br>
-                                        <p>When to Water: {{product['watering']}}</p>
+                                        <p>Plant Type: {{product['plant_type']}}</p><br>
+                                        <p>When to Water: {{product['water']}}</p>
                                     </div>
                                     <h3 class="view-price">
                                         <!-- <del>{{product[11]}}</del> -->

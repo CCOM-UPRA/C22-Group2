@@ -93,7 +93,7 @@ def shop():
     sortByOrder=getSortingByOrderPreference()
 
     locations = getLocation()
-    family = getFamilyType()
+    plantType = getPlantType()
     sun = getSunExpo()
     watering = getWatering()
 
@@ -110,7 +110,7 @@ def shop():
             session['total'] += round(total,2)
 
     # Redirect to shop page with the variables used
-    return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, family=family, locations=locations,
+    return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, plantType=plantType, locations=locations,
                            sun=sun, watering=watering, total=total)
 
 

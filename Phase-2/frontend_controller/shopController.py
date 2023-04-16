@@ -16,7 +16,7 @@ def getSortingByOrderPreference():
 def getLocation():
     return getLocationModel()
 
-def getFamilyType():
+def getPlantType():
     return getPlantTypeModel()
 
 
