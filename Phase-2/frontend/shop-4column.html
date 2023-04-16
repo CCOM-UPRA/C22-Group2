@@ -86,8 +86,9 @@
                 <li class="cart-item">
                     <div class="cart-media">
                         <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
-                        <form action="{{url_for('delete', id=key)}}">
-                        <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                        <form action="{{url_for('delete')}}" method="post">
+                            <input class="hidden-form" name="id" value="{{item['product_id']}}">
+                        <button class="cart-delete" type="submit"><i class="far fa-trash-alt"></i></button>
                         </form>
                     </div>
                     <div class="cart-info-group">

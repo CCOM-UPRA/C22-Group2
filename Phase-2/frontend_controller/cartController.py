@@ -9,6 +9,6 @@ def addCartController(p_id, quantity):
     return addCartModel(p_id, quantity)
 
 
-def deleteCartItem():
-    return deleteCartItemModel()
+def deleteCartItem(p_id):
+    return deleteCartItemModel(p_id)
 
