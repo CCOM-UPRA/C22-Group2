@@ -24,13 +24,13 @@ def getCartModel():
 
 def deleteCartItemModel(p_id):
     # delete item from cart
-    
     if 'cart' in session:
         for i in range(len(session['cart'])):
             if int(session['cart'][i]['product_id']) == int(p_id):
                 new_list = session['cart']
                 new_list.pop(i)
                 session['cart'] = new_list
+                break
 
 
 def addCartModel(p_id, quantity):
