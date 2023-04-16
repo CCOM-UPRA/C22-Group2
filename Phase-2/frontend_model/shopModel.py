@@ -20,6 +20,14 @@ def searchProductsModel(search_query, filters = None):
     result = db.query(query, (to_search))
     return result
 
+def getSortingPreferenceModel():
+    sortings=["Name","Price"]
+    return sortings
+
+def getSortingByOrderPreferenceModel():
+    orderBy=["Ascending","Descending"]
+    return orderBy
+
 def getLocationModel():
     # Simulating grabbing these filters via SQL from the database
     locations = ["Indoors", "Outdoors"]

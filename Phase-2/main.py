@@ -89,6 +89,9 @@ def shop():
     getCart()
 
     # Find the different filter options for the products by accessing the functions from shopController
+    sortings=getSortingPreference() 
+    sortByOrder=getSortingByOrderPreference()
+
     locations = getLocation()
     family = getFamilyType()
     sun = getSunExpo()
@@ -105,7 +108,7 @@ def shop():
     session['total'] = total
 
     # Redirect to shop page with the variables used
-    return render_template("shop-4column.html", products=products, amount=amount, family=family, locations=locations,
+    return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, family=family, locations=locations,
                            sun=sun, watering=watering, total=total)
 
 
