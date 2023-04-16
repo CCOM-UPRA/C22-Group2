@@ -7,9 +7,14 @@ def getProducts():
 def searchProducts(search_query, filters = None):
     return searchProductsModel(search_query, filters)
 
+def getSortingPreference():
+    return getSortingPreferenceModel()
+
+def getSortingByOrderPreference():
+    return getSortingByOrderPreferenceModel()
+
 def getLocation():
     return getLocationModel()
-
 
 def getFamilyType():
     return getFamilyModel()
