@@ -98,7 +98,7 @@ def shop():
     watering = getWatering()
 
     # Set the amount of items user currently has in cart
-    amount = 3
+    amount = 0
     # And set the amount for the entire site to access
     session['amount'] = amount
     total = 0
@@ -108,6 +108,8 @@ def shop():
     for item in session['cart']:
             total = float(item['price']) * float(item['quantity'])
             session['total'] += round(total,2)
+            amount += 1 * int(item['quantity'])
+            session['amount'] = amount
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, plantType=plantType, locations=locations,

@@ -108,7 +108,7 @@
                                                 <td class="table-name"><h6>{{item['name']}}</h6></td>
                                                 <td class="table-price"><h6>${{item['price']}}</h6></td>
                                                 <td class="table-brand"><h6>{{item['quantity']}}</h6></td>
-                                                 <td class="table-brand"><h6>${{item['price']}}</h6></td>
+                                                 <td class="table-brand"><h6>${{item['total_price']}}</h6></td>
                                                 <td class="table-action">
                                                     <a class="view" href="#" title="Edit Amount" data-bs-toggle="modal" data-bs-target="#product-view-{{key}}"><i class="fas fa-edit"></i></a>
                                                     <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>
@@ -139,7 +139,7 @@
                                         <a href="product-video.html">{{item['name']}}</a>
                                     </h3>
                                     <div class="view-meta">
-                                        <p>Location:<span>{{item['location']}}</span></p><br>
+                                        <p>Location: {{item['location']}}</p><br>
                                         <p>Family Type: {{item['plant_type']}}</p><br>
                                         <p>When to Water: {{item['watering']}}</p>
                                     </div>
