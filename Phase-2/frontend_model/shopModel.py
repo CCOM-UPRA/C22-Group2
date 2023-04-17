@@ -85,32 +85,47 @@ def getWateringModel():
     # Execute the query with the built parameters
     result = db.query(query, params)
     return result
-def get_filtered_products_model(min_price=None, max_price=None, locations=None, plantType=None):
+def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None, plantType=None,sun=None,watering=None):
     db = DBConnect()
 
     # Start building the query and parameters
     query = "SELECT * FROM product WHERE 1=1"
     params = []
 
-    # Apply the price filter
-    if min_price:
-        query += " AND price >= %s"
-        params.append(min_price)
-
-    if max_price:
-        query += " AND price <= %s"
-        params.append(max_price)
-
     # Apply the location filter
     if locations:
         query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
         params.extend(locations)
 
-    # Apply the family type (plant type) filter
+    # Apply the plant type filter
     if plantType:
         query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
         params.extend(plantType)
 
+
+    #Apply the sun exposure filter
+    if sun:
+        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+    #Apply the watering filter
+    if watering:
+        query += " AND watering IN ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+    #Apply the sorting by name or price filter
+    if sortings:
+        query += " AND ORDER BY ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+    #Apply the sorting by asc or desc
+    if sortByOrder:
+        query += "  ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+
     # Execute the query with the built parameters
     result = db.query(query, params)
     return result
+
+ 

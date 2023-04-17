@@ -26,18 +26,8 @@ def getSunExpo():
 def getWatering():
     return getWateringModel()
 
-#def getFilteredProducts(sortings, orderBy, locations, plantType,sun,watering):
-# def getFilteredProducts(request):
-#     locations = request.GET.get('location')
-#     plantType = request.GET.get('plant_type')
-#     sun = request.GET.get('sun_exp')
-#     watering = request.GET.get('watering')
-#     return getFilteredProductsModel(locations, plantType,sun,watering)
-   # return getFilteredProductsModel(sortings, orderBy, locations, plantType,sun,watering)
+def get_filtered_products(min_price=None, max_price=None, locations=None, plantType=None):
+    return get_filtered_products_model(min_price, max_price, locations, plantType)
 
-
-def get_filtered_products(min_price=None, max_price=None, locations=None, family_types=None):
-    return get_filtered_products_model(min_price, max_price, locations, family_types)
-
-def getProductsByWatering(filter_query):
-    return getProductsByWateringModel(filter_query)
+# def getFilteredProducts(sortings=None, orderBy=None, locations=None, plantType=None,sun=None,watering=None):
+#     return getFilteredProductsModel(sortings, orderBy, locations, plantType,sun,watering)
