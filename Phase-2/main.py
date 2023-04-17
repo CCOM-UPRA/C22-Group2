@@ -269,9 +269,46 @@ def checkout():
 def filter():
     # filter happens here
     # not in function currently
-    
-    return redirect("/shop")
+    # return redirect("/shop")
 
+    if request.args.get('filter_query'):
+        products = getProductsByWatering(request.args.get('filter_query'))
+
+    else:
+        products = getProducts()
+
+    # # Then we create the shopping cart by accessing getCart in shopController
+    # getCart()
+
+    # # Find the different filter options for the products by accessing the functions from shopController
+    # sortings=getSortingPreference() 
+    # sortByOrder=getSortingByOrderPreference()
+
+    # locations = getLocation()
+    # plantType = getPlantType()
+    # sun = getSunExpo()
+    # watering = getWatering()
+
+    # # Set the amount of items user currently has in cart
+    # amount = 0
+    # # And set the amount for the entire site to access
+    # session['amount'] = amount
+    # total = 0
+    # # Set the cart's total amount for the page
+    # session['total'] = 0
+    # # And set the total for the entire site to access
+    # for item in session['cart']:
+    #         total = float(item['price']) * float(item['quantity'])
+    #         session['total'] += round(total,2)
+    #         amount += 1 * int(item['quantity'])
+    #         session['amount'] = amount
+
+    # Redirect to shop page with the variables used
+    return render_template("shop-4column.html", products=products)
+
+    
+        
+    
 
 @app.route("/invoice")
 def invoice():
