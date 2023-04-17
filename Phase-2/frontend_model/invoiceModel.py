@@ -7,12 +7,32 @@ import string
 def gen_tracking_number():
     numbers = string.digits
     tracking_number = ''.join(random.choice(numbers)for i in range (10))
-    return str(tracking_number)
+    db = DBConnect()
+
+    # validating that the tracking number is unique 
+    sql = "SELECT * FROM orders WHERE tracking_number = %s" 
+    result = db.query(sql, (tracking_number))
+    print(result) 
+    if result == ():
+        return str(tracking_number)
+    else:
+        return gen_tracking_number()
+            
 
 def gen_order_list():
     numbers = string.digits
     order_list = ''.join(random.choice(numbers)for i in range (10))
     return str(order_list)
+
+    # validating that order list is unique 
+    sql = "SELECT * FROM orders WHERE order_list = %s"
+    result = db.query(sql, (order_list))
+    print(result) 
+    if result == ():
+        return str(order_list)
+    else:
+        return gen_order_list()
+
 
 def get_cart_model():
     if 'cart' in session:
