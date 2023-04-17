@@ -63,16 +63,29 @@ def getWateringModel():
 
 
 
-#-----------Define the filters
+#-----------Implementing the filters
 
-def getProductsByWateringModel(filter_query):
+#def getFilteredProductsModel(sortings=None, orderBy=None, locations=None, plantType=None,sun=None,watering=None):
     db = DBConnect()
-    to_filter = f"%{filter_query}%"
-    query = "SELECT * FROM products WHERE watering = '%s'"
-    result = db.query(query,(to_filter))
-    return result
 
-def get_filtered_products_model(min_price=None, max_price=None, locations=None, family_types=None):
+    # Start building the query and parameters
+    query = "SELECT * FROM product WHERE 1=1"
+    params = []
+
+    # Apply the location filter
+    if locations:
+        query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
+        params.extend(locations)
+
+    # Apply the family type (plant type) filter
+    if plantType:
+        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+    # Execute the query with the built parameters
+    result = db.query(query, params)
+    return result
+def get_filtered_products_model(min_price=None, max_price=None, locations=None, plantType=None):
     db = DBConnect()
 
     # Start building the query and parameters
@@ -94,72 +107,10 @@ def get_filtered_products_model(min_price=None, max_price=None, locations=None, 
         params.extend(locations)
 
     # Apply the family type (plant type) filter
-    if family_types:
-        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(family_types)))
-        params.extend(family_types)
+    if plantType:
+        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
 
     # Execute the query with the built parameters
     result = db.query(query, params)
     return result
-
-
-
-
-
-
-
-
-
-
-def getFilteredProductsModel(sortings=None, orderBy=None, locations=None, plantType=None,sun=None,watering=None):
-    db = DBConnect()
-    query = "SELECT * FROM product"
-    filters = []
-    if locations:
-        filters.append(f"location='{locations}'")
-    if plantType:
-        filters.append(f"plant_type='{plantType}'")
-    if sun:
-        filters.append(f"sun_exp='{sun}'")
-    if watering:
-        filters.append(f"watering='{watering}'")
-    if filters:
-        query += " WHERE " + " AND ".join(filters)
-    result = db.query(query)
-    return result
-    # db = DBConnect()
-    # query = "SELECT * FROM product "
-    # params = []
-    
-    # if locations:
-    #     query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
-    #     params.extend(locations)
-    #    # query+=" WHERE location = %s"
-
-
-
-    # # Apply the sortings filter
-    # # if sortings:
-    # #     query += " ORDER BY %s"
-    # #     params.append(sortings)
-
-    
-
-    # # if max_price:
-    # #     query += " AND price <= %s"
-    # #     params.append(max_price)
-
-    # # # Apply the location filter
-    # # if locations:
-    # #     query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
-    # #     params.extend(locations)
-
-    # # # Apply the family type (plant type) filter
-    # # if family_types:
-    # #     query += " AND plant_type IN ({})".format(','.join(['%s'] * len(family_types)))
-    # #     params.extend(family_types)
-
-    # # Execute the query with the built parameters
-    # result = db.query(query, params)
-    # return result
-    
