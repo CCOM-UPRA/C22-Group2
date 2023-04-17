@@ -80,10 +80,15 @@ def registerinfo():
 def shop():
     # This is the shop's Flask portion
     # First we receive the list of products by accessing getProducts() from shopController
+    
     if request.args.get('search_query'):
         products = searchProducts(request.args.get('search_query'))
+    elif request.args.get('locations'):
+        flocations = request.args.getlist('locations')
+        products = get_filtered_products(locations=flocations)
     else:
         products = getProducts()
+
 
     # Then we create the shopping cart by accessing getCart in shopController
     getCart()
@@ -91,14 +96,13 @@ def shop():
     # Find the different filter options for the products by accessing the functions from shopController
     sortings=getSortingPreference() 
     sortByOrder=getSortingByOrderPreference()
-
     locations = getLocation()
     plantType = getPlantType()
     sun = getSunExpo()
     watering = getWatering()
 
     # Set the amount of items user currently has in cart
-    amount = sum([x['quantity'] for x in session['cart']])
+    amount = 0
     # And set the amount for the entire site to access
     session['amount'] = amount
     total = 0
@@ -106,10 +110,11 @@ def shop():
     session['total'] = 0
     # And set the total for the entire site to access
     for item in session['cart']:
-            total = float(item['price']) * float(item['quantity'])
-            session['total'] += round(total,2)
+            total += float(item['price']) * float(item['quantity'])
             amount += 1 * int(item['quantity'])
-            session['amount'] = amount
+
+    session['total'] = round(total,2)
+    session['amount'] = amount
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, plantType=plantType, locations=locations,
@@ -193,7 +198,7 @@ def addcart():
     # if request.form.get('submit') == 'add':
 
     product_id = request.form.get('p_id')
-    quantity = request.form.get('quantity')
+    quantity = int(request.form.get('quantity'))
     addCartController(product_id, quantity)
     
     return redirect(request.referrer)
@@ -204,12 +209,31 @@ def delete():
     # > cartController. For purposes of this phase, the function doesn't work
     p_id = request.form.get("id")
     deleteCartItem(p_id)
+
+    amount = 0
+    total = 0
+    session['amount'] = 0
+    session['total'] = 0
+    for item in session['cart']:
+            total = float(item['price']) * float(item['quantity'])
+            session['total'] += round(total,2)
+            amount += 1 * int(item['quantity'])
+            session['amount'] = amount
+
     return redirect(request.referrer)
 
 
 @app.route("/editcart", methods=["POST"])
 def editcart():
     # edit cart here. not in function
+    p_id = request.form.get('p_id')
+    quantity = int(request.form.get('quantity'))
+    
+    if 'cart' in session:
+        for product in session['cart']:
+            if int(product['product_id']) == int(p_id):
+                product['quantity'] = int(quantity)          
+
     return redirect(request.referrer)
 
 
@@ -269,9 +293,46 @@ def checkout():
 def filter():
     # filter happens here
     # not in function currently
-    
-    return redirect("/shop")
+    # return redirect("/shop")
 
+    if request.args.get('filter_query'):
+        products = getProductsByWatering(request.args.get('filter_query'))
+
+    else:
+        products = getProducts()
+
+    # # Then we create the shopping cart by accessing getCart in shopController
+    # getCart()
+
+    # # Find the different filter options for the products by accessing the functions from shopController
+    # sortings=getSortingPreference() 
+    # sortByOrder=getSortingByOrderPreference()
+
+    # locations = getLocation()
+    # plantType = getPlantType()
+    # sun = getSunExpo()
+    # watering = getWatering()
+
+    # # Set the amount of items user currently has in cart
+    # amount = 0
+    # # And set the amount for the entire site to access
+    # session['amount'] = amount
+    # total = 0
+    # # Set the cart's total amount for the page
+    # session['total'] = 0
+    # # And set the total for the entire site to access
+    # for item in session['cart']:
+    #         total = float(item['price']) * float(item['quantity'])
+    #         session['total'] += round(total,2)
+    #         amount += 1 * int(item['quantity'])
+    #         session['amount'] = amount
+
+    # Redirect to shop page with the variables used
+    return render_template("shop-4column.html", products=products)
+
+    
+        
+    
 
 @app.route("/invoice")
 def invoice():

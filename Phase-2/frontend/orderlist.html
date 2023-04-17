@@ -72,19 +72,18 @@
             <div class="cart-header">
                 <div class="cart-total">
                     <i class="fas fa-shopping-basket"></i>
-                    <span>total item (2)</span>
+                    <span>total item ({{session.get('amount')}})</span>
                 </div>
                 <button class="cart-close"><i class="icofont-close"></i></button>
             </div>
             <ul class="cart-list">
-
                 {% if session['cart'] %}
-                    {% for item in session['cart'] %}
+                {% for item in session['cart'] %}
                 <li class="cart-item">
                     <div class="cart-media">
                         <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
-                        <form action="{{url_for('delete', id=key)}}">
-                        <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                        <form action="{{url_for('delete')}}" method="post">
+                            <button class="cart-delete" type="submit"><i class="far fa-trash-alt"></i><input class="hidden-form" name="id" value="{{item['product_id']}}"></button>
                         </form>
                     </div>
                     <div class="cart-info-group">
@@ -92,28 +91,38 @@
                             <h6><a href="product-single.html">{{item['name']}}</a></h6>
                             <p>Unit Price - {{item['price']}}</p>
                         </div>
+                        <form action="{{url_for('editcart')}}" method="post">
                         <div class="cart-action-group">
                             <div class="product-action">
-                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{item['quantity']}}">
-                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                <input type="hidden" name="p_id" id="p_id" value="{{item['product_id']}}">
+                                <button type="submit" name="quantity" value="{{item['quantity'] - 1}}" class="action-minus"  title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                <input class="action-input" title="Quantity Number" type="text" name="quantity" id="quantity"
+                                    value="{{item['quantity']}}">
+                                <button type="" name="quantity" value="{{item['quantity'] + 1}}" class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
                             </div>
-                             <form action="{{url_for('editcart')}}" method="post">
-                                    <button class="action">Edit</button>
-                             </form>
-                            <h6>${{item['total_price']}}</h6>
+                                <button type="submit" class="action">Edit</button>
+                            </form>
+                            <h6>${{item['price']}}</h6>
                         </div>
                     </div>
                 </li>
-                    {% endfor %}
+                {% endfor %}
                 {% endif %}
             </ul>
+            {% if 'customer' in session %}
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">${{session['total']}}</span>
+                    <span class="checkout-price">${{session.get('total')}}</span>
                 </a>
-            </div>
+                {% else %}
+                <div class="cart-footer">
+                    <a class="cart-checkout-btn" href="{{url_for('login', message='wrong')}}">
+                        <span class="checkout-label">Login To Checkout</span>
+                        <!-- <span class="checkout-price">${{total}}</span> -->
+                    </a>
+                </div>
+                {% endif %}
         </aside>
 
         <!--=====================================

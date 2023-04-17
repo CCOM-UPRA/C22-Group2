@@ -79,7 +79,7 @@
         <div class="cart-header">
             <div class="cart-total">
                 <i class="fas fa-shopping-basket"></i>
-                <span>total item (2)</span>
+                <span>total item ({{session.get('amount')}})</span>
             </div>
             <button class="cart-close"><i class="icofont-close"></i></button>
         </div>
@@ -90,8 +90,7 @@
                 <div class="cart-media">
                     <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
                     <form action="{{url_for('delete')}}" method="post">
-                        <input class="hidden-form" name="id" value="{{item['product_id']}}">
-                        <button class="cart-delete" type="submit"><i class="far fa-trash-alt"></i></button>
+                        <button class="cart-delete" type="submit"><i class="far fa-trash-alt"></i><input class="hidden-form" name="id" value="{{item['product_id']}}"></button>
                     </form>
                 </div>
                 <div class="cart-info-group">
@@ -101,7 +100,8 @@
                     </div>
                     <div class="cart-action-group">
                         <div class="product-action">
-                            <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                            <input type="hidden" name="p_id" value="item['product_id']">
+                            <button class="action-minus"  title="Quantity Minus"><i class="icofont-minus"></i></button>
                             <input class="action-input" title="Quantity Number" type="text" name="quantity"
                                 value="{{item['quantity']}}">
                             <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
@@ -120,7 +120,7 @@
         <div class="cart-footer">
             <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                 <span class="checkout-label">Proceed to Checkout</span>
-                <span class="checkout-price">${{total}}</span>
+                <span class="checkout-price">${{session.get('total')}}</span>
             </a>
             {% else %}
             <div class="cart-footer">
