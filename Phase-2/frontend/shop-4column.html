@@ -403,18 +403,14 @@
                                         </button>
                                         <div class="product-action">
                                             <form action="{{url_for('addcart')}}" method="POST">
-                                                <input style="width: 50%" class="action-input" title="Quantity Number"
-                                                    type="number" id="quantity" name="quantity" value="1">
-                                                <input type="hidden" id="p_id" name="p_id"
-                                                    value="{{product['product_id']}}">
+                                                <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
+                                                <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
                                                 <input type="hidden" id="name" name="name" value="sus">
                                                 <input type="hidden" id="price" name="price" value="sus">
                                                 <input type="hidden" id="cost" name="cost" value="None for now">
                                                 <input type="hidden" id="stock" name="stock" value="sus">
-                                                <input type="hidden" id="location" name="location"
-                                                    value="Does not apply">
-                                                <input type="hidden" id="watering" name="watering"
-                                                    value="does not apply">
+                                                <input type="hidden" id="location" name="location" value="Does not apply">
+                                                <input type="hidden" id="watering" name="watering" value="does not apply">
                                                 <input type="hidden" id="sun" name="sun" value="does not apply">
                                                 <input type="hidden" id="desc" name="desc" value="sus">
                                                 <input type="hidden" id="image" name="image" value="sus">
@@ -459,6 +455,10 @@
                                                             <span>${{product['price']}}</span>
                                                         </h3>
                                                         <p class="view-desc">{{product['description']}}</p>
+
+
+
+                                                        <form action="{{url_for('addcart')}}" method="POST">
                                                         <div class="view-add-group">
                                                             <button class="product-add" title="Add to Cart">
                                                                 <span>Tap to add amount</span>
@@ -467,17 +467,22 @@
                                                                 <button class="action-minus" title="Quantity Minus"><i
                                                                         class="icofont-minus"></i></button>
                                                                 <input class="action-input" title="Quantity Number"
-                                                                    type="text" name="quantity" value="1">
+                                                                    type="number" name="quantity" id="quantity" value= "1">
                                                                 <button class="action-plus" title="Quantity Plus"><i
                                                                         class="icofont-plus"></i></button>
                                                             </div>
                                                         </div>
                                                         <div class="view-action-group">
-                                                            <a class="view-wish wish" href="/shop" title="Add to Cart">
+                                                            <button type="submit" class="view_wish wish" title="Add to Cart">
+                                                                <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                                 <span>add to cart</span>
-                                                            </a>
+                                                            </button>
                                                         </div>
+                                                        </form>
+
+
+
                                                     </div>
                                                 </div>
                                             </div>
