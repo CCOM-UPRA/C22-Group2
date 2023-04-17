@@ -1,0 +1,98 @@
+<!--=====================================
+                  CART SIDEBAR PART START
+        =======================================-->
+        <aside class="cart-sidebar">
+            <div class="cart-header">
+                <div class="cart-total">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>total item ({{session.get('amount')}})</span>
+                </div>
+                <button class="cart-close"><i class="icofont-close"></i></button>
+            </div>
+            <ul class="cart-list">
+                {% if session['cart'] %}
+                {% for item in session['cart'] %}
+                <li class="cart-item">
+                    <div class="cart-media">
+                        <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
+                        <form action="{{url_for('delete')}}" method="POST">
+                            <button class="cart-delete" type="submit"><i class="far fa-trash-alt"></i><input class="hidden-form" name="id" value="{{item['product_id']}}"></button>
+                        </form>
+                    </div>
+                    <div class="cart-info-group">
+                        <div class="cart-info">
+                            <h6><a href="product-single.html">{{item['name']}}</a></h6>
+                            <p>Unit Price - ${{item['price']}}</p>
+                        </div>
+                        <div class="cart-action-group">
+                            <div class="product-action">
+                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                <input class="action-input" title="Quantity Number" type="text" name="quantity" data-pid="{{ item['product_id'] }}" value="{{item['quantity']}}">
+                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                            </div>
+                            <form action="{{url_for('editcart')}}" method="POST" class="update-cart-form" data-pid="{{ item['product_id'] }}">
+                                <button class="action">Edit</button>
+                            </form>
+                            <h6>${{item['price']}}</h6>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+            {% if 'customer' in session %}
+            <div class="cart-footer">
+                <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
+                    <span class="checkout-label">Proceed to Checkout</span>
+                    <span class="checkout-price">${{session.get('total')}}</span>
+                </a>
+                {% else %}
+                <div class="cart-footer">
+                    <a class="cart-checkout-btn" href="{{url_for('login', message='wrong')}}">
+                        <span class="checkout-label">Login To Checkout</span>
+                        <!-- <span class="checkout-price">${{total}}</span> -->
+                    </a>
+                </div>
+                {% endif %}
+        </aside>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                // Update quantity value on plus and minus button clicks
+                $(".action-plus, .action-minus").unbind("click").bind("click", function (e) {
+                    e.preventDefault();
+            
+                    const input = $(this).siblings(".action-input");
+                    let quantity = parseInt(input.val());
+            
+                    if ($(this).hasClass("action-plus")) {
+                        quantity++;
+                    } else if (quantity > 1) {
+                        quantity--;
+                    }
+            
+                    input.val(quantity);
+                });
+            
+                // Submit the form with updated values when Edit button is clicked
+                $(".action").on("click", function (e) {
+                    e.preventDefault();
+            
+                    const form = $(this).closest('.update-cart-form');
+                    const pid = form.data("pid");
+                    const input = $(`.action-input[data-pid="${pid}"]`);
+                    const quantity = parseInt(input.val());
+            
+                    form.append(`<input type="hidden" name="id" value="${pid}">`);
+                    form.append(`<input type="hidden" name="quantity" value="${quantity}">`);
+            
+                    form.submit();
+                });
+            });
+            </script>
+    
+        <!--=====================================
+                        CART SIDEBAR PART END
+            =======================================-->

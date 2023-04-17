@@ -226,13 +226,23 @@ def delete():
 @app.route("/editcart", methods=["POST"])
 def editcart():
     # edit cart here. not in function
-    p_id = request.form.get('p_id')
+    p_id = request.form.get('id')
     quantity = int(request.form.get('quantity'))
     
     if 'cart' in session:
         for product in session['cart']:
             if int(product['product_id']) == int(p_id):
-                product['quantity'] = int(quantity)          
+                product['quantity'] = int(quantity)
+
+
+    total = 0
+    amount = 0
+    for item in session['cart']:
+            total += float(item['price']) * float(item['quantity'])
+            amount += 1 * int(item['quantity'])
+
+    session['total'] = round(total,2)
+    session['amount'] = amount
 
     return redirect(request.referrer)
 
