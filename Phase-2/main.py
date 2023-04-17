@@ -80,10 +80,15 @@ def registerinfo():
 def shop():
     # This is the shop's Flask portion
     # First we receive the list of products by accessing getProducts() from shopController
+    
     if request.args.get('search_query'):
         products = searchProducts(request.args.get('search_query'))
+    elif request.args.get('locations'):
+        flocations = request.args.getlist('locations')
+        products = get_filtered_products(locations=flocations)
     else:
         products = getProducts()
+
 
     # Then we create the shopping cart by accessing getCart in shopController
     getCart()
@@ -91,7 +96,6 @@ def shop():
     # Find the different filter options for the products by accessing the functions from shopController
     sortings=getSortingPreference() 
     sortByOrder=getSortingByOrderPreference()
-
     locations = getLocation()
     plantType = getPlantType()
     sun = getSunExpo()

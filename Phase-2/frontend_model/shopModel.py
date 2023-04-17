@@ -72,8 +72,35 @@ def getProductsByWateringModel(filter_query):
     result = db.query(query,(to_filter))
     return result
 
+def get_filtered_products_model(min_price=None, max_price=None, locations=None, family_types=None):
+    db = DBConnect()
 
+    # Start building the query and parameters
+    query = "SELECT * FROM product WHERE 1=1"
+    params = []
 
+    # Apply the price filter
+    if min_price:
+        query += " AND price >= %s"
+        params.append(min_price)
+
+    if max_price:
+        query += " AND price <= %s"
+        params.append(max_price)
+
+    # Apply the location filter
+    if locations:
+        query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
+        params.extend(locations)
+
+    # Apply the family type (plant type) filter
+    if family_types:
+        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(family_types)))
+        params.extend(family_types)
+
+    # Execute the query with the built parameters
+    result = db.query(query, params)
+    return result
 
 
 
