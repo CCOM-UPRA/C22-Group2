@@ -141,15 +141,7 @@
                     BANNER PART START
         =======================================-->
     {% include 'banner.html' %}
-    <!-- <section class="inner-section single-banner" style="urban-gardens">
-            <img src="images/banner_pagina.jpg" >
-            <div class="container">
-                <h2>Shop</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop/</a></li>
-                </ol>
-            </div>
-        </section> -->
+ 
     <!--=====================================
                     BANNER PART END
         =======================================-->
@@ -162,89 +154,8 @@
         <div class="container">
             <div class="row content-reverse">
                 <div class="col-lg-3">
-
-                    <!-- <div class="shop-widget">
-                            <h6 class="shop-widget-title">Sorting:</h6>
-                            <form action="{{url_for('filter')}}" method="POST">
-                                <div class="shop-widget-group">
-                                    <input type="text" placeholder="Min - 00">
-                                    <input type="text" placeholder="Max - 5k">
-                                </div>
-                                <button class="shop-widget-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>search</span>
-                                </button>
-                            </form>
-                        </div> -->
-                    <div class="shop-widget">
-                        <h6 class="shop-widget-title">Sorting By</h6>
-                        <form action="{{url_for('filter')}}" method="POST">
-                            <ul class="shop-widget-list">
-
-                                {% for s in sortings %}
-                                <li>
-                                    <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag1">
-                                        <label for="tag1">{{s}}</label>
-                                    </div>
-
-                                </li>
-                                {% endfor %}
-                            </ul>
-                            <!-- <button class="shop-widget-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>Sort</span>
-                                </button> -->
-                        </form>
-
-                        <form action="{{url_for('filter')}}" method="POST">
-                            <ul class="shop-widget-list">
-                                <h6 class="shop-widget-title">Order By</h6>
-
-                                {% for o in sortByOrder %}
-
-                                <ul>
-                                    <li>
-                                        <div class="shop-widget-content">
-                                            <input type="radio" id="tag1" name="sortByOrder">
-                                            <label for="tag1">{{o}}</label>
-                                        </div>
-
-                                    </li>
-                                    {% endfor %}
-
-                                </ul>
-                                <button class="shop-widget-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>Sort</span>
-                                </button>
-                        </form>
-                    </div>
-                    <!-- 
-                        <div class="shop-widget">
-                            <h6 class="shop-widget-title">Order By</h6>
-                            <form action="{{url_for('filter')}}" method="POST">
-                                <ul class="shop-widget-list">
-
-                        {% for o in sortByOrder %}
-                            <li>
-                                <div class="shop-widget-content">
-                                    <input type="checkbox" id="tag1">
-                                    <label for="tag1">{{o}}</label>
-                                </div>
-
-                            </li>
-                        {% endfor %}
-
-                         </ul>
-                                <button class="shop-widget-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>Sort</span>
-                                </button>
-                            </form>
-                        </div> -->
-
-
+                    
+                
                     <div class="shop-widget">
                         <h6 class="shop-widget-title">Filter by Recommended Location</h6>
                         <form action="{{url_for('filter')}}" method="POST">
@@ -341,6 +252,52 @@
                     </div>
 
                     <div class="shop-widget">
+                        <h6 class="shop-widget-title">Sorting By</h6>
+                        <form action="{{url_for('filter')}}" method="POST">
+                            <ul class="shop-widget-list">
+
+                                {% for s in sortings %}
+                                <li>
+                                    <div class="shop-widget-content">
+                                        <input type="checkbox" id="tag1" name="sortings">
+                                        <label for="tag1">{{s}}</label>
+                                       
+                                    </div>
+
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <!-- <button class="shop-widget-btn">
+                                    <i class="fas fa-search"></i>
+                                    <span>Sort</span>
+                                </button> -->
+                        </form>
+
+                        <form action="{{url_for('filter')}}" method="POST">
+                            <ul class="shop-widget-list">
+                                <h6 class="shop-widget-title">Order By</h6>
+
+                                {% for o in sortByOrder %}
+
+                                <ul>
+                                    <li>
+                                        <div class="shop-widget-content">
+                                            <input type="radio" id="tag1" name="sortByOrder">
+                                            <label for="tag1">{{o}}</label>
+                                        </div>
+
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+                                <button class="shop-widget-btn">
+                                    <i class="fas fa-search"></i>
+                                    <span>Sort</span>
+                                </button>
+                        </form>
+                    </div>
+
+                    <div class="shop-widget">
                         <button class="shop-widget-btn">
                             <i class="fas fa-search"></i>
                             <span>Search by All Filters</span>
@@ -403,14 +360,18 @@
                                         </button>
                                         <div class="product-action">
                                             <form action="{{url_for('addcart')}}" method="POST">
-                                                <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
-                                                <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
+                                                <input style="width: 50%" class="action-input" title="Quantity Number"
+                                                    type="number" id="quantity" name="quantity" value="1">
+                                                <input type="hidden" id="p_id" name="p_id"
+                                                    value="{{product['product_id']}}">
                                                 <input type="hidden" id="name" name="name" value="sus">
                                                 <input type="hidden" id="price" name="price" value="sus">
                                                 <input type="hidden" id="cost" name="cost" value="None for now">
                                                 <input type="hidden" id="stock" name="stock" value="sus">
-                                                <input type="hidden" id="location" name="location" value="Does not apply">
-                                                <input type="hidden" id="watering" name="watering" value="does not apply">
+                                                <input type="hidden" id="location" name="location"
+                                                    value="Does not apply">
+                                                <input type="hidden" id="watering" name="watering"
+                                                    value="does not apply">
                                                 <input type="hidden" id="sun" name="sun" value="does not apply">
                                                 <input type="hidden" id="desc" name="desc" value="sus">
                                                 <input type="hidden" id="image" name="image" value="sus">
@@ -455,10 +416,6 @@
                                                             <span>${{product['price']}}</span>
                                                         </h3>
                                                         <p class="view-desc">{{product['description']}}</p>
-
-
-
-                                                        <form action="{{url_for('addcart')}}" method="POST">
                                                         <div class="view-add-group">
                                                             <button class="product-add" title="Add to Cart">
                                                                 <span>Tap to add amount</span>
@@ -467,22 +424,17 @@
                                                                 <button class="action-minus" title="Quantity Minus"><i
                                                                         class="icofont-minus"></i></button>
                                                                 <input class="action-input" title="Quantity Number"
-                                                                    type="number" name="quantity" id="quantity" value= "1">
+                                                                    type="text" name="quantity" value="1">
                                                                 <button class="action-plus" title="Quantity Plus"><i
                                                                         class="icofont-plus"></i></button>
                                                             </div>
                                                         </div>
                                                         <div class="view-action-group">
-                                                            <button type="submit" class="view_wish wish" title="Add to Cart">
-                                                                <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
+                                                            <a class="view-wish wish" href="/shop" title="Add to Cart">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                                 <span>add to cart</span>
-                                                            </button>
+                                                            </a>
                                                         </div>
-                                                        </form>
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
