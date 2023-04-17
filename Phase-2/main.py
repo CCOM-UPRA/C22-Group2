@@ -98,7 +98,7 @@ def shop():
     watering = getWatering()
 
     # Set the amount of items user currently has in cart
-    amount = 3
+    amount = sum([x['quantity'] for x in session['cart']])
     # And set the amount for the entire site to access
     session['amount'] = amount
     total = 0
@@ -274,11 +274,11 @@ def filter():
 @app.route("/invoice")
 def invoice():
     # > invoiceController
-    order = getOrder()
     products = getOrderProducts()
+    orders = getOrder()
     # Total amount of items in this simulated order:
     amount = 3
-    return render_template("invoice.html", order=order, products=products, amount=amount)
+    return render_template("invoice.html", orders=orders, products=products, amount=amount)
 
 
 # Press the green button in the gutter to run the script.

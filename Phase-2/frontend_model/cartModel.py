@@ -37,7 +37,7 @@ def addCartModel(p_id, quantity):
     # make changes to cart here
     # not in use at the moment
     db = DBConnect()
-    query = "SELECT product_id, name, price, stock, image FROM `product` WHERE product_id = %s"
+    query = "SELECT product_id, name, price, stock, image, location FROM `product` WHERE product_id = %s"
     result = list(db.query(query, (p_id))).pop()
     result = MagerDicts(result, {"quantity" : int(quantity), "total_price" : int(quantity) * result['price']})
 
