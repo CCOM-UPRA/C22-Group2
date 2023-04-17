@@ -13,7 +13,7 @@ def getProductsModel():
     result = db.query(query)
     return result
 
-#Searching a prudct by name
+#Searching a product by name
 def searchProductsModel(search_query, filters = None):
     db = DBConnect()
     to_search = f"%{search_query}%"
@@ -60,3 +60,72 @@ def getWateringModel():
     query = "SELECT DISTINCT watering FROM product"
     result = db.query(query)
     return result
+
+
+
+#-----------Implementing the filters
+
+#def getFilteredProductsModel(sortings=None, orderBy=None, locations=None, plantType=None,sun=None,watering=None):
+    db = DBConnect()
+
+    # Start building the query and parameters
+    query = "SELECT * FROM product WHERE 1=1"
+    params = []
+
+    # Apply the location filter
+    if locations:
+        query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
+        params.extend(locations)
+
+    # Apply the family type (plant type) filter
+    if plantType:
+        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+    # Execute the query with the built parameters
+    result = db.query(query, params)
+    return result
+def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None, plantType=None,sun=None,watering=None):
+    db = DBConnect()
+
+    # Start building the query and parameters
+    query = "SELECT * FROM product WHERE 1=1"
+    params = []
+
+    # Apply the location filter
+    if locations:
+        query += " AND location IN ({})".format(','.join(['%s'] * len(locations)))
+        params.extend(locations)
+
+    # Apply the plant type filter
+    if plantType:
+        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+
+    #Apply the sun exposure filter
+    if sun:
+        query += " AND sun_exp IN ({})".format(','.join(['%s'] * len(sun)))
+        params.extend(sun)
+
+    #Apply the watering filter
+    if watering:
+        query += " AND watering IN ({})".format(','.join(['%s'] * len(watering)))
+        params.extend(watering)
+
+    #Apply the sorting by name or price filter
+    if sortings:
+        query += " AND ORDER BY ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+    #Apply the sorting by asc or desc
+    if sortByOrder:
+        query += "  ({})".format(','.join(['%s'] * len(plantType)))
+        params.extend(plantType)
+
+
+    # Execute the query with the built parameters
+    result = db.query(query, params)
+    return result
+
+ 
