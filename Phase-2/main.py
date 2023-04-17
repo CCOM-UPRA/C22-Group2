@@ -83,9 +83,31 @@ def shop():
     
     if request.args.get('search_query'):
         products = searchProducts(request.args.get('search_query'))
+
     elif request.args.get('locations'):
         flocations = request.args.getlist('locations')
         products = get_filtered_products(locations=flocations)
+
+    elif request.args.get('plantType'):
+        fplantType = request.args.getlist('plantType')
+        products = get_filtered_products(plantType=fplantType)
+
+    elif request.args.get('sunExp'):
+        fsunExp = request.args.getlist('sunExp')
+        products = get_filtered_products(sunExp=fsunExp)    
+
+    elif request.args.get('watering'):
+        fwatering = request.args.getlist('watering')
+        products = get_filtered_products(plantType=fwatering)
+
+    elif request.args.get('sortings'):
+        fsorting=request.args.getlist('sortings')
+        products=get_filtered_products(sortings=fsorting)
+    
+    elif request.args.get('sortByOrder'):
+        forderBy=request.args.getlist('sortByOrder')
+        products=get_filtered_products(sortByOrder=forderBy)
+
     else:
         products = getProducts()
 
