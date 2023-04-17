@@ -92,14 +92,15 @@ def shop():
         fplantType = request.args.getlist('plantType')
         products = get_filtered_products(plantType=fplantType)
 
-    elif request.args.get('sunExp'):
-        fsunExp = request.args.getlist('sunExp')
-        products = get_filtered_products(sunExp=fsunExp)    
+    elif request.args.get('sun'):
+        fsunExp = request.args.getlist('sun')
+        products = get_filtered_products(sun=fsunExp)    
 
     elif request.args.get('watering'):
         fwatering = request.args.getlist('watering')
-        products = get_filtered_products(plantType=fwatering)
+        products = get_filtered_products(watering=fwatering)
 
+#ARREGLAR
     elif request.args.get('sortings'):
         fsorting=request.args.getlist('sortings')
         products=get_filtered_products(sortings=fsorting)
