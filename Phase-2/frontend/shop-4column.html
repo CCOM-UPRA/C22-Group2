@@ -30,7 +30,7 @@
                     CSS LINK PART START
         =======================================-->
     <!-- FAVICON -->
-    <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}">
+    <link rel="icon" href="{{url_for('static', filename='images/logo_pagina.png')}}">
 
     <!-- FONTS -->
     <link rel="stylesheet" href="{{url_for('static', filename='fonts/flaticon/flaticon.css')}}">
@@ -154,6 +154,49 @@
         <div class="container">
             <div class="row content-reverse">
                 <div class="col-lg-3">
+
+                    <div class="shop-widget">
+                        <h6 class="shop-widget-title">Sorting By</h6>
+                        <form action="{{url_for('shop')}}" method="GET">
+                            <ul class="shop-widget-list">
+
+                                {% for s in sortings %}
+                                <li>
+                                    <div class="shop-widget-content">
+                                        <input type="checkbox" id="tag5" name="sortings">
+                                        <label for="tag5">{{s}}</label>
+                                       
+                                    </div>
+
+                                </li>
+                                {% endfor %}
+                            </ul>
+                           
+                        </form>
+
+                        <form action="{{url_for('shop')}}" method="GET">
+                            <ul class="shop-widget-list">
+                                <h6 class="shop-widget-title">Order By</h6>
+
+                                {% for o in sortByOrder %}
+
+                                <ul>
+                                    <li>
+                                        <div class="shop-widget-content">
+                                            <input type="radio" id="tag6" name="sortByOrder">
+                                            <label for="tag6">{{o}}</label>
+                                        </div>
+
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+                                <button class="shop-widget-btn" type="submit">
+                                    <i class="fas fa-search"></i>
+                                    <span>Sort</span>
+                                </button>
+                        </form>
+                    </div>
                     
                 
                     <div class="shop-widget">
@@ -205,21 +248,21 @@
 
                     <div class="shop-widget">
                         <h6 class="shop-widget-title">Filter by Recommended sun exposure</h6>
-                        <form action="{{url_for('shop')}}" method="POST">
+                        <form action="{{url_for('shop')}}" method="GET">
                             <ul class="shop-widget-list">
 
                                 {% for s in sun %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="{{res}}" name="videores" value="{{res}}">
-                                        <label for="tag1">{{s.get('sun_exp')}}</label>
+                                        <input type="checkbox" id="tag3" name="sun" value="{{s.get('sun_exp')}}">
+                                        <label for="tag3">{{s.get('sun_exp')}}</label>
                                     </div>
 
                                 </li>
                                 {% endfor %}
 
                             </ul>
-                            <button class="shop-widget-btn">
+                            <button class="shop-widget-btn" type="submit">
                                 <i class="fas fa-search"></i>
                                 <span>Search by Sun exposure</span>
                             </button>
@@ -229,74 +272,31 @@
 
                     <div class="shop-widget">
                         <h6 class="shop-widget-title">Filter by Recommended watering</h6>
-                        <form action="{{url_for('filter')}}" method="POST">
+                        <form action="{{url_for('shop')}}" method="GET">
                             <ul class="shop-widget-list">
 
                                 {% for w in watering %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag4" title="filter_query">
-                                        <label for="tag1">{{w.get('watering')}}</label>
+                                        <input type="checkbox" id="tag4" name="watering" value="{{w.get('watering')}}">
+                                        <label for="tag4">{{w.get('watering')}}</label>
                                     </div>
 
                                 </li>
                                 {% endfor %}
 
                             </ul>
-                            <button class="shop-widget-btn">
+                            <button class="shop-widget-btn" type="submit">
                                 <i class="fas fa-search"></i>
                                 <span>Search by Watering</span>
                             </button>
                         </form>
                     </div>
 
-                    <div class="shop-widget">
-                        <h6 class="shop-widget-title">Sorting By</h6>
-                        <form action="{{url_for('filter')}}" method="POST">
-                            <ul class="shop-widget-list">
-
-                                {% for s in sortings %}
-                                <li>
-                                    <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag1" name="sortings">
-                                        <label for="tag1">{{s}}</label>
-                                       
-                                    </div>
-
-                                </li>
-                                {% endfor %}
-                            </ul>
-                            <!-- <button class="shop-widget-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>Sort</span>
-                                </button> -->
-                        </form>
-
-                        <form action="{{url_for('filter')}}" method="POST">
-                            <ul class="shop-widget-list">
-                                <h6 class="shop-widget-title">Order By</h6>
-
-                                {% for o in sortByOrder %}
-
-                                <ul>
-                                    <li>
-                                        <div class="shop-widget-content">
-                                            <input type="radio" id="tag1" name="sortByOrder">
-                                            <label for="tag1">{{o}}</label>
-                                        </div>
-
-                                    </li>
-                                    {% endfor %}
-
-                                </ul>
-                                <button class="shop-widget-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>Sort</span>
-                                </button>
-                        </form>
-                    </div>
+                   
 
                     <div class="shop-widget">
+            
                         <button class="shop-widget-btn">
                             <i class="fas fa-search"></i>
                             <span>Search by All Filters</span>

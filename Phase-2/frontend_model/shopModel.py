@@ -105,13 +105,13 @@ def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None,
 
     #Apply the sun exposure filter
     if sun:
-        query += " AND plant_type IN ({})".format(','.join(['%s'] * len(plantType)))
-        params.extend(plantType)
+        query += " AND sun_exp IN ({})".format(','.join(['%s'] * len(sun)))
+        params.extend(sun)
 
     #Apply the watering filter
     if watering:
-        query += " AND watering IN ({})".format(','.join(['%s'] * len(plantType)))
-        params.extend(plantType)
+        query += " AND watering IN ({})".format(','.join(['%s'] * len(watering)))
+        params.extend(watering)
 
     #Apply the sorting by name or price filter
     if sortings:
