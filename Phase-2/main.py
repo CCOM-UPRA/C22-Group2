@@ -82,21 +82,17 @@ def shop():
     # First we receive the list of products by accessing getProducts() from shopController
     
     
-    
-    
-    
-    
     if request.args.get('search_query'):
         products = searchProducts(request.args.get('search_query'))
-        
-    flocations = request.args.getlist('locations')
-    fplantType = request.args.getlist('plantType')
-    fsunExp = request.args.getlist('sun')
-    fwatering = request.args.getlist('watering')
-    fsorting=request.args.getlist('sortings')
-    forderBy=request.args.getlist('sortByOrder')
-    products = get_filtered_products(locations=flocations, plantType=fplantType,sun=fsunExp,
-                                     watering=fwatering, sortByOrder=forderBy, sortings=fsorting)
+    else:
+        flocations = request.args.getlist('locations')
+        fplantType = request.args.getlist('plantType')
+        fsunExp = request.args.getlist('sun')
+        fwatering = request.args.getlist('watering')
+        fsorting=request.args.getlist('sortings')
+        forderBy=request.args.getlist('sortByOrder')
+        products = get_filtered_products(locations=flocations, plantType=fplantType,sun=fsunExp,
+                                        watering=fwatering, sortByOrder=forderBy, sortings=fsorting)
 
     # Then we create the shopping cart by accessing getCart in shopController
     getCart()

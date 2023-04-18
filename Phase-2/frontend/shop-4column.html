@@ -421,12 +421,24 @@
                                                                 <span>Tap to add amount</span>
                                                             </button>
                                                             <div class="product-action">
-                                                                <button class="action-minus" title="Quantity Minus"><i
-                                                                        class="icofont-minus"></i></button>
-                                                                <input class="action-input" title="Quantity Number"
-                                                                    type="text" name="quantity" value="1">
-                                                                <button class="action-plus" title="Quantity Plus"><i
-                                                                        class="icofont-plus"></i></button>
+                             <form action="{{url_for('addcart')}}" method="POST">
+                                                <input style="width: 50%" class="action-input" title="Quantity Number"
+                                                    type="number" id="quantity" name="quantity" value="1">
+                                                <input type="hidden" id="p_id" name="p_id"
+                                                    value="{{product['product_id']}}">
+                                                <input type="hidden" id="name" name="name" value="sus">
+                                                <input type="hidden" id="price" name="price" value="sus">
+                                                <input type="hidden" id="cost" name="cost" value="None for now">
+                                                <input type="hidden" id="stock" name="stock" value="sus">
+                                                <input type="hidden" id="location" name="location"
+                                                    value="Does not apply">
+                                                <input type="hidden" id="watering" name="watering"
+                                                    value="does not apply">
+                                                <input type="hidden" id="sun" name="sun" value="does not apply">
+                                                <input type="hidden" id="desc" name="desc" value="sus">
+                                                <input type="hidden" id="image" name="image" value="sus">
+                                                <input style="width: 30%" type="submit" value="Add">
+                                            </form>
                                                             </div>
                                                         </div>
                                                         <div class="view-action-group">
