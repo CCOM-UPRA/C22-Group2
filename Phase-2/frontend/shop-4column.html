@@ -154,7 +154,7 @@
         <div class="container">
             <div class="row content-reverse">
                 <div class="col-lg-3">
-
+ 
                     <div class="shop-widget">
                         <h6 class="shop-widget-title">Sorting By</h6>
                         <form action="{{url_for('shop')}}" method="GET">
@@ -296,11 +296,12 @@
                    
 
                     <div class="shop-widget">
-            
-                        <button class="shop-widget-btn">
+                        <form action="{{url_for('shop')}}" method="GET">
+                        <button class="shop-widget-btn" type="filterAll" >
                             <i class="fas fa-search"></i>
                             <span>Search by All Filters</span>
                         </button>
+                        </form>
                     </div>
                 </div>
 
