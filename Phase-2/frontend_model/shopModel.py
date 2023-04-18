@@ -116,15 +116,16 @@ def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None,
 
     #Apply the sorting by name or price filter
     if sortings:
-        query += " AND ORDER BY ({})".format(','.join(['%s'] * len(sortings)))
-        params.extend(sortings)
+        order = " ASC"
+        #Apply the sorting by asc or desc
+        if sortByOrder:
+            if "Ascending" in sortByOrder:
+                order = " ASC"
+            else:
+                order = " DESC"
+        query += " ORDER BY {}".format(', '.join([str(x).lower() + order for x in sortings]))
 
-    #Apply the sorting by asc or desc
-    if sortByOrder:
-        query += "  ({})".format(','.join(['%s'] * len(sortByOrder)))
-        params.extend(sortByOrder) 
-
-
+    print("Da query: ", query, params)
     # Execute the query with the built parameters
     result = db.query(query, params)
     return result

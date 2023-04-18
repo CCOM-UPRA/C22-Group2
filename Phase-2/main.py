@@ -81,37 +81,22 @@ def shop():
     # This is the shop's Flask portion
     # First we receive the list of products by accessing getProducts() from shopController
     
+    
+    
+    
+    
+    
     if request.args.get('search_query'):
         products = searchProducts(request.args.get('search_query'))
-
-    elif request.args.get('locations'):
-        flocations = request.args.getlist('locations')
-        products = get_filtered_products(locations=flocations)
-
-    elif request.args.get('plantType'):
-        fplantType = request.args.getlist('plantType')
-        products = get_filtered_products(plantType=fplantType)
-
-    elif request.args.get('sun'):
-        fsunExp = request.args.getlist('sun')
-        products = get_filtered_products(sun=fsunExp)    
-
-    elif request.args.get('watering'):
-        fwatering = request.args.getlist('watering')
-        products = get_filtered_products(watering=fwatering)
-
-#ARREGLAR
-    elif request.args.get('sortings'):
-        fsorting=request.args.getlist('sortings')
-        products=get_filtered_products(sortings=fsorting)
-    
-    elif request.args.get('sortByOrder'):
-        forderBy=request.args.getlist('sortByOrder')
-        products=get_filtered_products(sortByOrder=forderBy)
-
-    else:
-        products = getProducts()
-
+        
+    flocations = request.args.getlist('locations')
+    fplantType = request.args.getlist('plantType')
+    fsunExp = request.args.getlist('sun')
+    fwatering = request.args.getlist('watering')
+    fsorting=request.args.getlist('sortings')
+    forderBy=request.args.getlist('sortByOrder')
+    products = get_filtered_products(locations=flocations, plantType=fplantType,sun=fsunExp,
+                                     watering=fwatering, sortByOrder=forderBy, sortings=fsorting)
 
     # Then we create the shopping cart by accessing getCart in shopController
     getCart()
