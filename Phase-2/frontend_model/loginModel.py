@@ -7,7 +7,7 @@ def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
 
     db = DBConnect()
-    sql = "SELECT * FROM customer WHERE email = %s"
+    sql = "SELECT email, customer_id, password FROM customer WHERE email = %s"
     # Save user info in list
     userFound = db.query(sql, (email))
     # sha256_crypt.encrypt("password") = this is what is used to encrypt a password
@@ -31,7 +31,6 @@ def addloginmodel(first_name, last_name, email, password):
     sql = "INSERT INTO shipping_address (customer_id) VALUES (last_insert_id())"
     db.execute(sql)
     
-
 def getloginmodel(acc):
     db = DBConnect()
     sql = "SELECT * FROM customer WHERE customer_id = %s"
