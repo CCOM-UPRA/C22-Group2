@@ -28,6 +28,7 @@ def searchProductsModel(search_query, filters = None):
 def getSortingPreferenceModel():
     sortings=["Name","Price"]
     return sortings
+   
 
 def getSortingByOrderPreferenceModel():
     orderBy=["Ascending","Descending"]
@@ -115,13 +116,13 @@ def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None,
 
     #Apply the sorting by name or price filter
     if sortings:
-        query += " AND ORDER BY ({})".format(','.join(['%s'] * len(plantType)))
-        params.extend(plantType)
+        query += " AND ORDER BY ({})".format(','.join(['%s'] * len(sortings)))
+        params.extend(sortings)
 
     #Apply the sorting by asc or desc
     if sortByOrder:
-        query += "  ({})".format(','.join(['%s'] * len(plantType)))
-        params.extend(plantType)
+        query += "  ({})".format(','.join(['%s'] * len(sortByOrder)))
+        params.extend(sortByOrder) 
 
 
     # Execute the query with the built parameters
