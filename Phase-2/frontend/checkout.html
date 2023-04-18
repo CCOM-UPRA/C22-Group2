@@ -111,7 +111,10 @@
                                                  <td class="table-brand"><h6>${{item['total_price']}}</h6></td>
                                                 <td class="table-action">
                                                     <a class="view" href="#" title="Edit Amount" data-bs-toggle="modal" data-bs-target="#product-view-{{key}}"><i class="fas fa-edit"></i></a>
-                                                    <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>
+<!--                                                    <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>-->
+                                                    <a><form action="{{url_for('delete')}}" method="POST">
+                                                        <button class="trash" href="#" title="Remove Wishlist" type="submit"><i class="icofont-trash"></i><input class="hidden-form" name="id" value="{{item['product_id']}}"></button>
+                                                    </form></a>
                                                 </td>
                                             </tr>
 
