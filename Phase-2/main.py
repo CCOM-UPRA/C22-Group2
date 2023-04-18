@@ -3,7 +3,7 @@ from frontend_controller.cartController import getCart, addCartController, delet
 from frontend_controller.checkoutController import getUserCheckout
 from frontend_controller.invoiceController import getOrder, getOrderProducts
 from frontend_controller.loginController import *
-from frontend_controller.ordersController import getorder1, getorder2, getorder1products, getorder2products
+from frontend_controller.ordersController import getorder
 from frontend_controller.profileController import *
 from frontend_controller.shopController import *
 
@@ -110,7 +110,7 @@ def shop():
     watering = getWatering()
 
     # Set the amount of items user currently has in cart
-    amount = sum([x['quantity'] for x in session['cart']])
+    amount = 0
     # And set the amount for the entire site to access
     session['amount'] = amount
     total = 0
@@ -118,10 +118,11 @@ def shop():
     session['total'] = 0
     # And set the total for the entire site to access
     for item in session['cart']:
-            total = float(item['price']) * float(item['quantity'])
-            session['total'] += round(total,2)
+            total += float(item['price']) * float(item['quantity'])
             amount += 1 * int(item['quantity'])
-            session['amount'] = amount
+
+    session['total'] = round(total,2)
+    session['amount'] = amount
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, plantType=plantType, locations=locations,
@@ -191,12 +192,9 @@ def password():
 def orders():
     # Redirects us to the orders list page of the user
     # Fetches each order and its products from ordersController
-    order1 = getorder1()
-    products1 = getorder1products()
-    order2 = getorder2()
-    products2 = getorder2products()
+    orders = getorder()
 
-    return render_template("orderlist.html", order1=order1, products1=products1, order2=order2, products2=products2)
+    return render_template("orderlist.html", orders=orders)
 
 
 @app.route("/addcart", methods=["POST"])
@@ -205,7 +203,7 @@ def addcart():
     # if request.form.get('submit') == 'add':
 
     product_id = request.form.get('p_id')
-    quantity = request.form.get('quantity')
+    quantity = int(request.form.get('quantity'))
     addCartController(product_id, quantity)
     
     return redirect(request.referrer)
@@ -216,12 +214,41 @@ def delete():
     # > cartController. For purposes of this phase, the function doesn't work
     p_id = request.form.get("id")
     deleteCartItem(p_id)
+
+    amount = 0
+    total = 0
+    session['amount'] = 0
+    session['total'] = 0
+    for item in session['cart']:
+            total = float(item['price']) * float(item['quantity'])
+            session['total'] += round(total,2)
+            amount += 1 * int(item['quantity'])
+            session['amount'] = amount
+
     return redirect(request.referrer)
 
 
 @app.route("/editcart", methods=["POST"])
 def editcart():
     # edit cart here. not in function
+    p_id = request.form.get('id')
+    quantity = int(request.form.get('quantity'))
+    
+    if 'cart' in session:
+        for product in session['cart']:
+            if int(product['product_id']) == int(p_id):
+                product['quantity'] = int(quantity)
+
+
+    total = 0
+    amount = 0
+    for item in session['cart']:
+            total += float(item['price']) * float(item['quantity'])
+            amount += 1 * int(item['quantity'])
+
+    session['total'] = round(total,2)
+    session['amount'] = amount
+
     return redirect(request.referrer)
 
 
