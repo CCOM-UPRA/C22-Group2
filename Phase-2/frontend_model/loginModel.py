@@ -24,12 +24,26 @@ def loginmodel(email : str, password : str):
              
 def addloginmodel(first_name, last_name, email, password):
     db = DBConnect()
+    
+    sql = "SELECT 1 FROM customer WHERE email =  %s"
+    exists = db.query(sql, (email))
+    if exists:
+        return "EXISTS"
+    
+    encrypted_password = sha256_crypt.encrypt(password)
     sql = "INSERT INTO customer (first_name, last_name, email, password) VALUES (%s, %s, %s, %s)"
-    db.execute(sql, (first_name, last_name, email, sha256_crypt.encrypt(password)))
-    sql = "INSERT INTO payment_method (customer_id) VALUES (last_insert_id())"
-    db.execute(sql)
-    sql = "INSERT INTO shipping_address (customer_id) VALUES (last_insert_id())"
-    db.execute(sql)
+    db.execute(sql, (first_name, last_name, email, encrypted_password))
+    
+    # Get the new customer_id from the database. This also confirms that the record was made, otherwise customer_id will be NULL
+    sql = "SELECT customer_id FROM customer WHERE email = %s"
+    customer_id = db.query(sql, (email)).pop()['customer_id']
+    
+    sql = "INSERT INTO payment_method (customer_id) VALUES (%s)"
+    db.execute(sql, (customer_id))
+
+    sql = "INSERT INTO shipping_address (customer_id) VALUES (%s)"
+    db.execute(sql, (customer_id))
+    return "DONE"
     
 def getloginmodel(acc):
     db = DBConnect()

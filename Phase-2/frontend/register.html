@@ -63,8 +63,11 @@
                             <div class="user-form-title">
                                 <h2>welcome!</h2>
                                 <p>Use your credentials to access</p>
-                                {% if message != None %}
+                                {% if message == 'passwordnotmatched' %}
                                     <h2 style="color: red">Passwords do not match. Please try again.</h2>
+                                {% endif %}
+                                {% if message == 'emailused' %}
+                                    <h2 style="color: red">Email already in use.</h2>
                                 {% endif %}
                             </div>
 

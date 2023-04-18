@@ -70,11 +70,15 @@ def registerinfo():
         # Process register info here
         session['amount'] = 0
         
-        addloginmodel(fname, lname, email, pass1)
+        result = addloginmodel(fname, lname, email, pass1)
+        
+        if result == "EXISTS":
+            return redirect("/register/emailused")
+            
         logincontroller(email, pass1)
         return redirect('/shop')
     else:
-        return redirect('/register/<message>')
+        return redirect('/register/passwordnotmatched')
 
 @app.route("/shop", methods=['GET'])
 def shop():
