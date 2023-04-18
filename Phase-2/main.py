@@ -3,7 +3,7 @@ from frontend_controller.cartController import getCart, addCartController, delet
 from frontend_controller.checkoutController import getUserCheckout
 from frontend_controller.invoiceController import getOrder, getOrderProducts
 from frontend_controller.loginController import *
-from frontend_controller.ordersController import getorder1, getorder2, getorder1products, getorder2products
+from frontend_controller.ordersController import getorder
 from frontend_controller.profileController import *
 from frontend_controller.shopController import *
 
@@ -207,12 +207,9 @@ def password():
 def orders():
     # Redirects us to the orders list page of the user
     # Fetches each order and its products from ordersController
-    order1 = getorder1()
-    products1 = getorder1products()
-    order2 = getorder2()
-    products2 = getorder2products()
+    orders = getorder()
 
-    return render_template("orderlist.html", order1=order1, products1=products1, order2=order2, products2=products2)
+    return render_template("orderlist.html", orders=orders)
 
 
 @app.route("/addcart", methods=["POST"])
