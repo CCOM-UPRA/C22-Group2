@@ -21,6 +21,7 @@ class DBConnect():
 
     def execute(self, sql, params=None):
         if params:
+            print("Query parameters: ", params)
             self.cursor.execute(sql, params)
         else:
             self.cursor.execute(sql)
