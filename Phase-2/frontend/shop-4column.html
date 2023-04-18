@@ -163,7 +163,7 @@
                                 {% for s in sortings %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag5" name="sortings">
+                                        <input type="checkbox" id="tag5" name="sortings" value="{{s}}">
                                         <label for="tag5">{{s}}</label>
                                        
                                     </div>
@@ -172,9 +172,9 @@
                                 {% endfor %}
                             </ul>
                            
-                        </form>
+                        <!-- </form>
 
-                        <form action="{{url_for('shop')}}" method="GET">
+                        <form action="{{url_for('shop')}}" method="GET"> -->
                             <ul class="shop-widget-list">
                                 <h6 class="shop-widget-title">Order By</h6>
 
@@ -183,7 +183,7 @@
                                 <ul>
                                     <li>
                                         <div class="shop-widget-content">
-                                            <input type="radio" id="tag6" name="sortByOrder">
+                                            <input type="radio" id="tag6" name="sortByOrder" value="{{o}}">
                                             <label for="tag6">{{o}}</label>
                                         </div>
 
