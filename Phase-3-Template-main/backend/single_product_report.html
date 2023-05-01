@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!--=====================================
+                    META TAG PART START
+        =======================================-->
+        <!-- REQUIRE META -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- AUTHOR META -->
+        <meta name="author" content="mironcoder">
+        <meta name="email" content="mironcoder@gmail.com">
+        <meta name="profile" content="https://themeforest.net/user/mironcoder">
+
+        <!-- TEMPLATE META -->
+        <meta name="name" content="Greeny">
+        <meta name="title" content="Greeny - eCommerce HTML Template">
+        <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
+        <!--=====================================
+                    META-TAG PART END
+        =======================================-->
+
+        <!-- WEBPAGE TITLE -->
+        <title>Product Tab - Greeny</title>
+
+        <!--=====================================
+                    CSS LINK PART START
+        =======================================-->
+         <!-- FAVICON -->
+        <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}">
+
+        <!-- FONTS -->
+         <link rel="stylesheet" href="{{url_for('static', filename='fonts/flaticon/flaticon.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='fonts/icofont/icofont.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='fonts/fontawesome/fontawesome.min.css')}}">
+
+        <!-- VENDOR -->
+        <link rel="stylesheet" href="{{url_for('static', filename='vendor/venobox/venobox.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='vendor/slickslider/slick.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
+
+        <!-- CUSTOM -->
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+         <link rel="stylesheet" href="{{url_for('static', filename='css/product-details.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/checkout.css')}}">
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <!--=====================================
+                    CSS LINK PART END
+        =======================================-->
+        <style>
+            input {
+                border: 1px solid #000;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="backdrop"></div>
+        <a class="backtop fas fa-arrow-up" href="#"></a>
+
+
+         <!--=====================================
+                    HEADER PART START
+        =======================================-->
+
+        <header class="header-part">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-media-group">
+                        <button class="header-user"><img src="static/images/user.png" alt="user"></button>
+                        <a href="index.html"><img src="static/images/logo.png" alt="logo"></a>
+                        <button class="header-src"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <a href="index.html" class="header-logo">
+                        <img src="static/images/logo.png" alt="logo">
+                    </a>
+                    <ul class="dropdown">
+                    <a class="navbar-link dropdown-arrow" href="#">My Account</a>
+                                    <ul class="dropdown-position-list">
+                                        <li><a href="{{url_for('profile')}}">Account Info</a></li>
+                                        <li><a href="{{url_for('clear')}}">Logout</a></li>
+                                    </ul>
+                    </ul>
+
+                    <form class="header-form">
+                        <input type="text" placeholder="Search anything...">
+                        <button><i class="fas fa-search"></i></button>
+                    </form>
+
+                    <div class="header-widget-group">
+
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--=====================================
+                    HEADER PART END
+        =======================================-->
+
+        <!--=====================================
+                    NAVBAR PART START
+        =======================================-->
+        <nav class="navbar-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="navbar-content">
+                            <ul class="navbar-list">
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link" href="{{url_for('products')}}">Products</a>
+                                </li>
+
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link active" href="{{url_for('orders')}}">Orders</a>
+                                </li>
+
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link active" href="{{url_for('reports')}}">Reports</a>
+                                </li>
+
+                                <li class="navbar-item dropdown">
+                                    <a class="navbar-link" href="{{url_for('accounts')}}">Accounts</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--=====================================
+                    NAVBAR PART END
+        =======================================-->
+
+
+
+
+        <!--=====================================
+                PRODUCT DETAILS PART START
+        =======================================-->
+        <section class="inner-section checkout-part">
+            <div class="container">
+
+                <div style='text-align: center'>
+
+                        <br><br>
+                        <h2>{{product}} Sales Report</h2>
+                        <h3>{{timeframe}} ({{date}})</h3>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="account-card">
+                            <div class="account-title">
+
+                            </div>
+                            <div class="account-content">
+                            <div class="table-scroll">
+                            <table class="table-list">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Order ID</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Brand</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total Price</th>
+                                        <th scope="col">Cost</th>
+                                        <th scope="col">Earnings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for order in orders %}
+                                <tr>
+                                        <td class="table-name"><h6>{{order['order_id']}}</h6></td>
+                                        <td class="table-name"><h6>{{order['p_name']}}</h6></td>
+                                        <td class="table-price"><h6>{{order['p_brand']}}</h6></td>
+                                        <td class="table-brand"><h6>{{order['order_date']}}</h6></td>
+                                         <td class="table-brand"><h6>${{order['p_price']}}0</h6></td>
+                                         <td class="table-brand"><h6>{{order['product_quantity']}}</h6></td>
+                                         <td class="table-brand"><h6>${{order['p_total_price']}}0</h6></td>
+                                         <td class="table-brand"><h6>${{order['p_cost']}}0</h6></td>
+                                        <td class="table-brand"><h6>${{order['earnings']}}0</h6></td>
+                                    </tr>
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                                <br>
+                                <div class="checkout-charge">
+                                    <ul>
+                                        <li>
+                                            <span>Total</span>
+                                            <span>${{total}}0</span>
+                                        </li>
+                                        <li>
+                                            <span>Earnings</span>
+                                            <span>${{earnings}}0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                </tbody>
+                            </table>
+
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div style='padding: 0 40%' class="view-add-group">
+                       <form action="{{url_for('reports')}}">
+                           <button style="" class="product-add">Return</button>
+                       </form>
+                </div>
+
+            </div>
+            </div>
+        </section>
+        <!--=====================================
+                PRODUCT DETAILS PART END
+        =======================================-->
+
+
+
+
+         <!--=====================================
+                     FOOTER PART START
+        =======================================-->
+        <footer style="background-color: gray" class="footer-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget">
+                            <a class="footer-logo" href="#">
+                                <img src="images/logo.png" alt="logo">
+                            </a>
+                            <p class="footer-desc">This e-commerce template has been created for the sole purpose of aiding the students for the Databases course</p>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget contact">
+                            <h3 class="footer-title">contact us</h3>
+                            <ul class="footer-contact">
+                                <li>
+                                    <i class="icofont-ui-email"></i>
+                                    <p>
+                                        <span>javier.quinones3@upr.edu</span>
+                                        <span>eliana.valenzuela@upr.edu</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <i class="icofont-ui-touch-phone"></i>
+                                    <p>
+                                        <span>+787 597 7369</span>
+                                        <span>N/A</span>
+                                    </p>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Quick Links</h3>
+                            <div class="footer-links">
+                                <ul>
+                                    <li><a href="https://github.com/CCOM-UPRA">Github</a></li>
+                                    <li><a href="http://upra.edu/">upra.edu</a></li>
+                                    <li><a href="https://cursos.upra.edu/course/search.php?areaids=core_course-course&q=ccom4115-ME5">cursos.upra.edu</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="https://www.youtube.com/watch?v=Z1RJmh_OqeA">Flask tutorial</a></li>
+                                    <li><a href="https://www.youtube.com/watch?v=qz0aGYrrlhU">HTML tutorial</a></li>
+                                    <li><a href="https://www.youtube.com/watch?v=kqtD5dpn9C8">Python tutorial</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Students of CCOM4115</h3>
+                            <p class="footer-desc">Do not hesitate to reach out to the professor or TA with any questions.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </footer>
+        <!--=====================================
+                      FOOTER PART END
+        =======================================-->
+
+
+        <!--=====================================
+                    JS LINK PART START
+        =======================================-->
+         <!-- VENDOR -->
+        <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
+
+        <!-- CUSTOM -->
+        <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
+        <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
+        <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
+        <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
+        <script src="{{url_for('static', filename='js/slick.js')}}"></script>
+        <script src="{{url_for('static', filename='js/main.js')}}"></script>
+        <!--=====================================
+                    JS LINK PART END
+        =======================================-->
+    </body>
+</html>
+
+
+
+
+
+
