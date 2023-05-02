@@ -73,8 +73,8 @@ def getOrderModel():
             }
         orderDict2.append(orderDict)
         order = tuple(orderDict.values())
-        sql = "INSERT INTO orders (customer_id, product_id, tracking_number, order_date, arrival_date, shipping_address1, shipping_address2,"
-        "city, state, zipcode, total, payment_method, status, product_quantity) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        sql = ("INSERT INTO orders (customer_id, product_id, tracking_number, order_date, arrival_date, shipping_address1, shipping_address2,"
+        "city, state, zipcode, total, payment_method, status, product_quantity) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         db.execute(sql, order)
         sql = "INSERT INTO order_list (order_id, customer_id, order_list) VALUES (last_insert_id(),%s,%s)"
         print("Executing query with order_list: ", order_list)

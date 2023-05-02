@@ -86,7 +86,7 @@ def getWateringModel():
     # Execute the query with the built parameters
     result = db.query(query, params)
     return result
-def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None, plantType=None,sun=None,watering=None):
+def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None, plantType=None, sun=None, watering=None, search_query=None):
     db = DBConnect()
 
     # Start building the query and parameters
@@ -113,6 +113,11 @@ def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None,
     if watering:
         query += " AND watering IN ({})".format(','.join(['%s'] * len(watering)))
         params.extend(watering)
+
+    if search_query:
+        to_search = f"%{search_query}%"
+        query += " AND name LIKE %s"
+        params.append(to_search)
 
     #Apply the sorting by name or price filter
     if sortings:
