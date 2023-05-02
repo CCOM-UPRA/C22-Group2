@@ -85,7 +85,7 @@
                     BANNER PART START
         =======================================-->
     {% include 'banner.html' %}
-
+ 
     <!--=====================================
                     BANNER PART END
         =======================================-->
@@ -98,56 +98,59 @@
         <div class="container">
             <div class="row content-reverse">
                 <div class="col-lg-3">
-                    <form action="{{url_for('shop')}}" method="GET">
+ 
+                    <div class="shop-widget">
+                        <h6 class="shop-widget-title">Sorting By</h6>
+                        <form action="{{url_for('shop')}}" method="GET">
+                            <ul class="shop-widget-list">
 
-                        <div class="shop-widget">
-                            <h6 class="shop-widget-title">Sorting By</h6>
-                            <form action="{{url_for('shop')}}" method="GET">
-                                <ul class="shop-widget-list">
+                                {% for s in sortings %}
+                                <li>
+                                    <div class="shop-widget-content">
+                                        <input type="checkbox" id="tag5" name="sortings" value="{{s}}">
+                                        <label for="tag5">{{s}}</label>
+                                       
+                                    </div>
 
-                                    {% for s in sortings %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                           
+                        <!-- </form>
+                        <form action="{{url_for('shop')}}" method="GET"> -->
+                            <ul class="shop-widget-list">
+                                <h6 class="shop-widget-title">Order By</h6>
+
+                                {% for o in sortByOrder %}
+
+                                <ul>
                                     <li>
                                         <div class="shop-widget-content">
-                                            <input type="checkbox" id="tag5" name="sortings" value="{{s}}">
-                                            <label for="tag5">{{s}}</label>
-
+                                            <input type="radio" id="tag6" name="sortByOrder" value="{{o}}">
+                                            <label for="tag6">{{o}}</label>
                                         </div>
 
                                     </li>
                                     {% endfor %}
+
                                 </ul>
-                                <ul class="shop-widget-list">
-                                    <h6 class="shop-widget-title">Order By</h6>
-
-                                    {% for o in sortByOrder %}
-
-                                    <ul>
-                                        <li>
-                                            <div class="shop-widget-content">
-                                                <input type="radio" id="tag6" name="sortByOrder" value="{{o}}">
-                                                <label for="tag6">{{o}}</label>
-                                            </div>
-
-                                        </li>
-                                        {% endfor %}
-
-                                    </ul>
-                                    <button class="shop-widget-btn" type="submit">
-                                        <i class="fas fa-search"></i>
-                                        <span>Sort</span>
-                                    </button>
-                        </div>
-
-
-                        <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Recommended Location</h6>
+                                <button class="shop-widget-btn" type="submit">
+                                    <i class="fas fa-search"></i>
+                                    <span>Sort</span>
+                                </button>
+                        </form>
+                    </div>
+                    
+                
+                    <div class="shop-widget">
+                        <h6 class="shop-widget-title">Filter by Recommended Location</h6>
+                        <form action="{{url_for('shop')}}" method="GET">
                             <ul class="shop-widget-list">
 
                                 {% for location in locations %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag1" name="locations"
-                                            value="{{location.get('location')}}">
+                                        <input type="checkbox" id="tag1" name="locations" value="{{location.get('location')}}">
                                         <label for="tag1">{{location.get('location')}}</label>
                                     </div>
 
@@ -158,18 +161,19 @@
                                 <i class="fas fa-search"></i>
                                 <span>Search by Recommended location</span>
                             </button>
-                        </div>
+                        </form>
+                    </div>
 
 
-                        <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Plant type</h6>
+                    <div class="shop-widget">
+                        <h6 class="shop-widget-title">Filter by Plant type</h6>
+                        <form action="{{url_for('shop')}}" method="GET">
                             <ul class="shop-widget-list">
 
                                 {% for plants in plantType %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag2" name="plantType"
-                                            value="{{plants.get('plant_type')}}">
+                                        <input type="checkbox" id="tag2" name="plantType" value="{{plants.get('plant_type')}}">
                                         <label for="tag2">{{plants.get('plant_type')}}</label>
                                     </div>
 
@@ -181,11 +185,13 @@
                                 <i class="fas fa-search"></i>
                                 <span>Search by Plant type</span>
                             </button>
-                        </div>
+                        </form>
+                    </div>
 
 
-                        <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Recommended sun exposure</h6>
+                    <div class="shop-widget">
+                        <h6 class="shop-widget-title">Filter by Recommended sun exposure</h6>
+                        <form action="{{url_for('shop')}}" method="GET">
                             <ul class="shop-widget-list">
 
                                 {% for s in sun %}
@@ -203,11 +209,13 @@
                                 <i class="fas fa-search"></i>
                                 <span>Search by Sun exposure</span>
                             </button>
-                        </div>
+                        </form>
+                    </div>
 
 
-                        <div class="shop-widget">
-                            <h6 class="shop-widget-title">Filter by Recommended watering</h6>
+                    <div class="shop-widget">
+                        <h6 class="shop-widget-title">Filter by Recommended watering</h6>
+                        <form action="{{url_for('shop')}}" method="GET">
                             <ul class="shop-widget-list">
 
                                 {% for w in watering %}
@@ -225,23 +233,25 @@
                                 <i class="fas fa-search"></i>
                                 <span>Search by Watering</span>
                             </button>
-                        </div>
+                        </form>
+                    </div>
 
+                   
 
-
-                        <div class="shop-widget">
-                            <button class="shop-widget-btn" type="filterAll">
-                                <i class="fas fa-search"></i>
-                                <span>Search by All Filters</span>
-                            </button>
-                        </div>
-
-                    </form>
+                    <div class="shop-widget">
+                        <form action="{{url_for('shop')}}" method="GET">
+                        <button class="shop-widget-btn" type="filterAll" >
+                            <i class="fas fa-search"></i>
+                            <span>Search by All Filters</span>
+                        </button>
+                        </form>
+                    </div>
                 </div>
 
-                <!-- <div class="col-lg-9">
+
+                <div class="col-lg-9">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <!-- <div class="col-lg-12">
                                 <div class="top-filter">
                                     <div>
     
@@ -264,8 +274,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                <div class="col-lg-9">
-                    <div class="row">
+
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
                             {% for product in products %}
                             <div class="col">
@@ -283,7 +292,7 @@
                                     </div>
                                     <div class="product-content">
                                         <h6 class="product-name">
-                                            {{product['name']}}
+                                            <a href="product-video.html">{{product['name']}}</a>
                                         </h6>
                                         <h6 class="product-price">
                                             <span>${{product['price']}}</span>
@@ -296,10 +305,19 @@
                                             <form action="{{url_for('addcart')}}" method="POST">
                                                 <input style="width: 50%" class="action-input" title="Quantity Number"
                                                     type="number" id="quantity" name="quantity" value="1">
-
                                                 <input type="hidden" id="p_id" name="p_id"
                                                     value="{{product['product_id']}}">
-
+                                                <input type="hidden" id="name" name="name" value="sus">
+                                                <input type="hidden" id="price" name="price" value="sus">
+                                                <input type="hidden" id="cost" name="cost" value="None for now">
+                                                <input type="hidden" id="stock" name="stock" value="sus">
+                                                <input type="hidden" id="location" name="location"
+                                                    value="Does not apply">
+                                                <input type="hidden" id="watering" name="watering"
+                                                    value="does not apply">
+                                                <input type="hidden" id="sun" name="sun" value="does not apply">
+                                                <input type="hidden" id="desc" name="desc" value="sus">
+                                                <input type="hidden" id="image" name="image" value="sus">
                                                 <input style="width: 30%" type="submit" value="Add">
                                             </form>
                                         </div>
@@ -329,12 +347,12 @@
                                                 <div class="col-md-6 col-lg-6">
                                                     <div class="view-details">
                                                         <h3 class="view-name">
-                                                            <a href="">{{product['name']}}</a>
+                                                            <a href="product-video.html">{{product['name']}}</a>
                                                         </h3>
                                                         <div class="view-meta">
                                                             <p>Location:<span>{{product['location']}}</span></p><br>
                                                             <p>Plant Type: {{product['plant_type']}}</p><br>
-                                                            <p>When to Water: {{product['watering']}}</p>
+                                                            <p>When to Water: {{product['water']}}</p>
                                                         </div>
                                                         <h3 class="view-price">
                                                             <!-- <del>{{product[11]}}</del> -->
@@ -368,6 +386,8 @@
                                 </div>
                             </div>
                             {% endfor %}
+
+
                         </div>
                     </div>
                 </div>
