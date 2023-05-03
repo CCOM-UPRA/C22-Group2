@@ -97,45 +97,48 @@
     <section class="inner-section shop-part">
         <div class="container">
             <div class="row content-reverse">
+
                 <div class="col-lg-3">
-                    <form action="{{url_for('shop')}}" method="GET">
+                    <form id="filters-form" action="{{url_for('shop')}}" method="GET">
+
 
                         <div class="shop-widget">
                             <h6 class="shop-widget-title">Sorting By</h6>
-                            <form action="{{url_for('shop')}}" method="GET">
-                                <ul class="shop-widget-list">
+                            <ul class="shop-widget-list">
 
-                                    {% for s in sortings %}
+                                {% for s in sortings %}
+                                <li>
+                                    <div class="shop-widget-content">
+                                        <input type="checkbox" id="sorting-{{ loop.index }}" name="sortings"
+                                            value="{{s}}">
+                                        <label for="sorting-{{ loop.index }}">{{s}}</label>
+
+                                    </div>
+
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="shop-widget-list">
+                                <h6 class="shop-widget-title">Order By</h6>
+
+                                {% for o in sortByOrder %}
+
+                                <ul>
                                     <li>
                                         <div class="shop-widget-content">
-                                            <input type="checkbox" id="tag5" name="sortings" value="{{s}}">
-                                            <label for="tag5">{{s}}</label>
-
+                                            <input type="radio" id="order-{{ loop.index }}" name="sorting-order"
+                                                value="{{o}}">
+                                            <label for="order-{{ loop.index }}">{{o}}</label>
                                         </div>
 
                                     </li>
                                     {% endfor %}
+
                                 </ul>
-                                <ul class="shop-widget-list">
-                                    <h6 class="shop-widget-title">Order By</h6>
-
-                                    {% for o in sortByOrder %}
-
-                                    <ul>
-                                        <li>
-                                            <div class="shop-widget-content">
-                                                <input type="radio" id="tag6" name="sortByOrder" value="{{o}}">
-                                                <label for="tag6">{{o}}</label>
-                                            </div>
-
-                                        </li>
-                                        {% endfor %}
-
-                                    </ul>
-                                    <button class="shop-widget-btn" type="submit">
-                                        <i class="fas fa-search"></i>
-                                        <span>Sort</span>
-                                    </button>
+                                <button class="shop-widget-btn" type="submit" value="sortings">
+                                    <i class="fas fa-search"></i>
+                                    <span>Sort</span>
+                                </button>
                         </div>
 
 
@@ -146,15 +149,15 @@
                                 {% for location in locations %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag1" name="locations"
+                                        <input type="checkbox" id="location-{{ loop.index }}" name="locations"
                                             value="{{location.get('location')}}">
-                                        <label for="tag1">{{location.get('location')}}</label>
+                                        <label for="location-{{ loop.index }}">{{location.get('location')}}</label>
                                     </div>
 
                                 </li>
                                 {% endfor %}
                             </ul>
-                            <button class="shop-widget-btn" type="submit">
+                            <button class="shop-widget-btn" type="submit" value="locations">
                                 <i class="fas fa-search"></i>
                                 <span>Search by Recommended location</span>
                             </button>
@@ -168,16 +171,16 @@
                                 {% for plants in plantType %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag2" name="plantType"
+                                        <input type="checkbox" id="plant-{{ loop.index }}" name="plant-types"
                                             value="{{plants.get('plant_type')}}">
-                                        <label for="tag2">{{plants.get('plant_type')}}</label>
+                                        <label for="plant-{{ loop.index }}">{{plants.get('plant_type')}}</label>
                                     </div>
 
                                 </li>
                                 {% endfor %}
 
                             </ul>
-                            <button class="shop-widget-btn" type="submit">
+                            <button class="shop-widget-btn" type="submit" value="plant-types">
                                 <i class="fas fa-search"></i>
                                 <span>Search by Plant type</span>
                             </button>
@@ -191,15 +194,16 @@
                                 {% for s in sun %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag3" name="sun" value="{{s.get('sun_exp')}}">
-                                        <label for="tag3">{{s.get('sun_exp')}}</label>
+                                        <input type="checkbox" id="sun-{{ loop.index }}" name="sun-exps"
+                                            value="{{s.get('sun_exp')}}">
+                                        <label for="sun-{{ loop.index }}">{{s.get('sun_exp')}}</label>
                                     </div>
 
                                 </li>
                                 {% endfor %}
 
                             </ul>
-                            <button class="shop-widget-btn" type="submit">
+                            <button class="shop-widget-btn" type="submit" value="sun-exps">
                                 <i class="fas fa-search"></i>
                                 <span>Search by Sun exposure</span>
                             </button>
@@ -213,24 +217,24 @@
                                 {% for w in watering %}
                                 <li>
                                     <div class="shop-widget-content">
-                                        <input type="checkbox" id="tag4" name="watering" value="{{w.get('watering')}}">
-                                        <label for="tag4">{{w.get('watering')}}</label>
+                                        <input type="checkbox" id="water-{{ loop.index }}" name="waterings"
+                                            value="{{w.get('watering')}}">
+                                        <label for="water-{{ loop.index }}">{{w.get('watering')}}</label>
                                     </div>
 
                                 </li>
                                 {% endfor %}
 
                             </ul>
-                            <button class="shop-widget-btn" type="submit">
+                            <button class="shop-widget-btn" type="submit" value="waterings">
                                 <i class="fas fa-search"></i>
                                 <span>Search by Watering</span>
                             </button>
                         </div>
 
 
-
                         <div class="shop-widget">
-                            <button class="shop-widget-btn" type="filterAll">
+                            <button class="shop-widget-btn" type="submit" value="all">
                                 <i class="fas fa-search"></i>
                                 <span>Search by All Filters</span>
                             </button>
@@ -410,18 +414,88 @@
     <script src="{{url_for('static', filename='js/main.js')}}"></script>
 
     <script>
+        // This script handles the filters
+
+        // Checkmarks all who are in the parameters
+        function setCheckedState(inputElements, values) {
+            inputElements.forEach((input) => {
+                if (values.includes(input.value)) {
+                    input.checked = true;
+                }
+            });
+        }
+
+        const form = document.getElementById("filters-form");
+        const filterButtons = form.querySelectorAll('button[type="submit"]');
+
+        const urlSearchParams = new URLSearchParams(window.location.search);
+
+        // Extract all parameters from URL
+        const locations = urlSearchParams.getAll("locations");
+        const plantTypes = urlSearchParams.getAll("plant-types");
+        const sunExposures = urlSearchParams.getAll("sun-exps");
+        const waterings = urlSearchParams.getAll("waterings");
+        const sortings = urlSearchParams.getAll("sortings");
+        const orderBy = urlSearchParams.getAll("sorting-orders");
+
+        // Fill checkmarks
+        setCheckedState(form.querySelectorAll('input[name="locations"]'), locations);
+        setCheckedState(form.querySelectorAll('input[name="plant-types"]'), plantTypes);
+        setCheckedState(form.querySelectorAll('input[name="sun-exps"]'), sunExposures);
+        setCheckedState(form.querySelectorAll('input[name="waterings"]'), waterings);
+        setCheckedState(form.querySelectorAll('input[name="sortings"]'), sortings);
+        setCheckedState(form.querySelectorAll('input[name="sorting-orders"]'), orderBy);
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const clickedButtonValue = event.submitter.value;
+            const searchParams = new URLSearchParams(window.location.search);
+
+            if (clickedButtonValue === "all") {
+                // Add values of all checkboxes and radio buttons to the searchParams
+                form
+                    .querySelectorAll("input[type='checkbox'], input[type='radio']")
+                    .forEach((input) => {
+                        if (input.checked && !searchParams.has(input.name, input.value)) {
+                            searchParams.append(input.name, input.value);
+                        }
+                    });
+            } else {
+                // Add values of checkboxes and radio buttons within the same category to the searchParams
+                const categoryDiv = event.submitter.closest(".shop-widget");
+                categoryDiv
+                    .querySelectorAll("input[type='checkbox'], input[type='radio']")
+                    .forEach((input) => {
+                        
+                        if (input.checked && !searchParams.has(input.name, input.value)) {
+                            if (input.name === "sorting-orders") {
+                                searchParams.set(input.name, input.value)
+                            }
+                            searchParams.append(input.name, input.value);
+                        }
+                    });
+            }
+            window.location.href = `/shop?${searchParams.toString()}`;
+        });
+    </script>
+
+
+
+
+    <script>
         function myFunc(e) {
             e.preventDefault();
         }
     </script>
 
-    <script>
+    <!-- <script>
         window.onload = function () {
             document.getElementById('submit').onclick = function () {
                 document.getElementById('quantity').value = document.getElementById('quantity1').value;
             };
         }
-    </script>
+    </script> -->
 
     <script>
         function onlyOne(checkbox) {

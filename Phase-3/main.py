@@ -1,5 +1,6 @@
-from flask import Flask, render_template, redirect, request, session
-from frontend_controller.cartController import getCart, addCartController, deleteCartItem
+from flask import Flask, redirect, render_template, request, session
+from frontend_controller.cartController import (addCartController,
+                                                deleteCartItem, getCart)
 from frontend_controller.checkoutController import getUserCheckout
 from frontend_controller.invoiceController import getOrder, getOrderProducts
 from frontend_controller.loginController import *
@@ -87,11 +88,11 @@ def shop():
         
     search_query = request.args.get('search_query')
     flocations = request.args.getlist('locations')
-    fplantType = request.args.getlist('plantType')
-    fsunExp = request.args.getlist('sun')
-    fwatering = request.args.getlist('watering')
+    fplantType = request.args.getlist('plant-types')
+    fsunExp = request.args.getlist('sun-exps')
+    fwatering = request.args.getlist('waterings')
     fsorting=request.args.getlist('sortings')
-    forderBy=request.args.getlist('sortByOrder')
+    forderBy=request.args.getlist('sorting-order')
     products = get_filtered_products(locations=flocations, plantType=fplantType,sun=fsunExp,
                                      watering=fwatering, sortByOrder=forderBy, sortings=fsorting, search_query=search_query)
 
@@ -123,7 +124,7 @@ def shop():
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, plantType=plantType, locations=locations,
-                           sun=sun, watering=watering, total=total)
+                           sun=sun, watering=watering, total=total, search_query=search_query)
 
 
 @app.route("/profile")
@@ -308,6 +309,7 @@ def filter():
     # return redirect("/shop")
 
     if request.args.get('filter_query'):
+        products = getProductsByWatering(request.args.get('filter_query'))
         products = getProductsByWatering(request.args.get('filter_query'))
 
     else:
