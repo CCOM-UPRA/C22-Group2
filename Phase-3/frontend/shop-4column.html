@@ -243,31 +243,6 @@
                     </form>
                 </div>
 
-                <!-- <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col-lg-12">
-                                <div class="top-filter">
-                                    <div>
-    
-                                        <ul class="dropdown">
-                                            <a class="navbar-link dropdown-arrow" href="#">Sort by <i class="fa fa-filter"></i></a>
-                                            <ul class="dropdown-position-list">
-                                                <li><a href="{{url_for('filter')}}">Name</a></li>
-                                                <li><a href="{{url_for('filter')}}">Price</a></li>
-                                            </ul>
-                                        </ul>
-                                        <ul class="dropdown">
-                                            <a class="navbar-link dropdown-arrow" href="#"><i class="fa fa-sort"></i></a>
-                                            <ul class="dropdown-position-list">
-                                                <li><a href="{{url_for('filter')}}">Ascendent</a></li>
-                                                <li><a href="{{url_for('filter')}}">Descendent</a></li>
-                                            </ul>
-                                        </ul>
-                                        <a><i class="fa fa-sort"></i></a>
-    
-                                    </div>
-                                </div>
-                            </div> -->
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
@@ -425,6 +400,10 @@
             });
         }
     
+        // Order By defaults to ascending
+        let defaultRadio = document.getElementById("order-1");
+        defaultRadio.checked = true;
+
         const form = document.getElementById("filters-form");
         const filterButtons = form.querySelectorAll('button[type="submit"]');
     
@@ -437,7 +416,8 @@
         const waterings = urlSearchParams.getAll("waterings");
         const sortings = urlSearchParams.getAll("sortings");
         const orderBy = urlSearchParams.getAll("sorting-order");
-    
+
+        
         // Fill checkmarks
         setCheckedState(form.querySelectorAll('input[name="locations"]'), locations);
         setCheckedState(form.querySelectorAll('input[name="plant-types"]'), plantTypes);
@@ -463,6 +443,9 @@
                         if (input.checked && !searchParams.getAll(input.name).includes(input.value)) {
                             searchParams.append(input.name, input.value);
                         }
+                        if (!input.checked && searchParams.getAll(input.name).includes(input.value)) {
+                            searchParams.delete(input.name, input.value);
+                        }
                     });
             } else {
                 // Add values of checkboxes and radio buttons within the same category to the searchParams
@@ -476,6 +459,9 @@
     
                         if (input.checked && !searchParams.getAll(input.name).includes(input.value)) {   
                             searchParams.append(input.name, input.value);
+                        }
+                        if (!input.checked && searchParams.getAll(input.name).includes(input.value)) {
+                            searchParams.delete(input.name, input.value);
                         }
                     });
             }
