@@ -1,480 +1,525 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <!--=====================================
+
+<head>
+    <!--=====================================
                     META TAG PART START
         =======================================-->
-        <!-- REQUIRE META -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- REQUIRE META -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- AUTHOR META -->
-        <meta name="author" content="mironcoder">
-        <meta name="email" content="mironcoder@gmail.com">
-        <meta name="profile" content="https://themeforest.net/user/mironcoder">
+    <!-- AUTHOR META -->
+    <meta name="author" content="mironcoder">
+    <meta name="email" content="mironcoder@gmail.com">
+    <meta name="profile" content="https://themeforest.net/user/mironcoder">
 
-        <!-- TEMPLATE META -->
-        <meta name="name" content="Greeny">
-        <meta name="title" content="Greeny - eCommerce HTML Template">
-        <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
-        <!--=====================================
+    <!-- TEMPLATE META -->
+    <meta name="name" content="Greeny">
+    <meta name="title" content="Greeny - eCommerce HTML Template">
+    <meta name="keywords"
+        content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
+    <!--=====================================
                     META-TAG PART END
         =======================================-->
 
-        <!-- WEBPAGE TITLE -->
-        <title>Checkout</title>
+    <!-- WEBPAGE TITLE -->
+    <title>Checkout</title>
 
-        <!--=====================================
+    <!--=====================================
                     CSS LINK PART START
         =======================================-->
-       <!-- FAVICON -->
-       <link rel="icon" href="{{url_for('static', filename='images/logo_pagina.png')}}">
+    <!-- FAVICON -->
+    <link rel="icon" href="{{url_for('static', filename='images/logo_pagina.png')}}">
 
-        <!-- FONTS -->
-         <link rel="stylesheet" href="{{url_for('static', filename='fonts/flaticon/flaticon.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='fonts/icofont/icofont.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='fonts/fontawesome/fontawesome.min.css')}}">
+    <!-- FONTS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/flaticon/flaticon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/icofont/icofont.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/fontawesome/fontawesome.min.css')}}">
 
-        <!-- VENDOR -->
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/venobox/venobox.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/slickslider/slick.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
+    <!-- VENDOR -->
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/venobox/venobox.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/slickslider/slick.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
 
-        <!-- CUSTOM -->
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='css/checkout.css')}}">
+    <!-- CUSTOM -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/checkout.css')}}">
 
-        <!--=====================================
+    <!--=====================================
                     CSS LINK PART END
         =======================================-->
-    </head>
-    <body>
-        <div class="backdrop"></div>
-        <a class="backtop fas fa-arrow-up" href="#"></a>
-        
+</head>
+
+<body>
+    <div class="backdrop"></div>
+    <a class="backtop fas fa-arrow-up" href="#"></a>
 
 
 
-    
-        <!--=====================================
+
+
+    <!--=====================================
                     HEADER PART START
         =======================================-->
-        {% include 'header.html' %}
-        <!--=====================================
+    {% include 'header.html' %}
+    <!--=====================================
                     HEADER PART END
         =======================================-->
 
 
-        <!--=====================================
+    <!--=====================================
                     BANNER PART START
         =======================================-->
-        {% include 'banner.html' %}
-        <!--=====================================
+    {% include 'banner.html' %}
+    <!--=====================================
                     BANNER PART END
         =======================================-->
 
 
-        <!--=====================================
+    <!--=====================================
                     CHECKOUT PART START
         =======================================-->
-        <section class="inner-section checkout-part">
-            <div class="container">
-                <div class="row">
+    <section class="inner-section checkout-part">
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-lg-12">
-                        <div class="account-card">
-                            <div class="account-title">
-                                <h4>Your order</h4>
-                            </div>
-                            <div class="account-content">
-                                <div class="table-scroll">
-                                    <table class="table-list">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Total Price</th>
-                                                <th scope="col">action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% if session['cart'] %}
-                                         {% for item in session['cart'] %}
+                <div class="col-lg-12">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>Your order</h4>
+                        </div>
+                        <div class="account-content">
+                            <div class="table-scroll">
+                                <table class="table-list">
+                                    <thead>
                                         <tr>
-                                                <td class="table-image"><img src="static/images/product-images/{{item['image']}}" alt="product"></td>
-                                                <td class="table-name"><h6>{{item['name']}}</h6></td>
-                                                <td class="table-price"><h6>${{item['price']}}</h6></td>
-                                                <td class="table-brand"><h6>{{item['quantity']}}</h6></td>
-                                                 <td class="table-brand"><h6>${{item['total_price']}}</h6></td>
-                                                <td class="table-action">
-                                                    <a class="view" href="#" title="Edit Amount" data-bs-toggle="modal" data-bs-target="#product-view-{{key}}"><i class="fas fa-edit"></i></a>
-<!--                                                    <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>-->
-                                                    <a><form action="{{url_for('delete')}}" method="POST">
-                                                        <button class="trash" type="submit"><i class="icofont-trash"></i><input class="hidden-form" name="id" value="{{item['product_id']}}"></button>
-                                                    </form></a>
-                                                </td>
-                                            </tr>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Total Price</th>
+                                            <th scope="col">action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if session['cart'] %}
+                                        {% for item in session['cart'] %}
+                                        <tr>
+                                            <td class="table-image"><img
+                                                    src="static/images/product-images/{{item['image']}}" alt="product">
+                                            </td>
+                                            <td class="table-name">
+                                                <h6>{{item['name']}}</h6>
+                                            </td>
+                                            <td class="table-price">
+                                                <h6>${{item['price']}}</h6>
+                                            </td>
+                                            <td class="table-brand">
+                                                <h6>{{item['quantity']}}</h6>
+                                            </td>
+                                            <td class="table-brand">
+                                                <h6>${{item['total_price']}}</h6>
+                                            </td>
+                                            <td class="table-action">
+                                                <a class="view" href="#" title="Edit Amount" data-bs-toggle="modal"
+                                                    data-bs-target="#product-view-{{key}}"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <!--                                                    <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>-->
+                                                <a>
+                                                    <form action="{{url_for('delete')}}" method="POST">
+                                                        <button class="trash" type="submit"><i
+                                                                class="icofont-trash"></i><input class="hidden-form"
+                                                                name="id" value="{{item['product_id']}}"></button>
+                                                    </form>
+                                                </a>
+                                            </td>
+                                        </tr>
 
 
                                         <div class="modal fade" id="product-view-{{key}}">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
-                    <div class="product-view">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6">
-                                <div class="view-gallery">
-                                    <div class="view-label-group">
-                                        <label class="view-label new">{{item['stock']}} in stock</label>
-                                    </div>
-                                    <ul class="preview-slider">
-                                        <li><img src="static/images/product-images/{{item['image']}}" alt="product"></li>
-                                    </ul>
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <button class="modal-close icofont-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                    <div class="product-view">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="view-gallery">
+                                                                    <div class="view-label-group">
+                                                                        <label class="view-label new">{{item['stock']}}
+                                                                            in stock</label>
+                                                                    </div>
+                                                                    <ul class="preview-slider">
+                                                                        <li><img src="static/images/product-images/{{item['image']}}"
+                                                                                alt="product"></li>
+                                                                    </ul>
 
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="view-details">
-                                    <h3 class="view-name">
-                                        <a href="product-video.html">{{item['name']}}</a>
-                                    </h3>
-                                    <div class="view-meta">
-                                        <p>Location: {{item['location']}}</p><br>
-                                        <p>Family Type: {{item['plant_type']}}</p><br>
-                                        <p>When to Water: {{item['watering']}}</p>
-                                    </div>
-                                    <h3 class="view-price">
-                                        <!-- <del>${{item['cost']}}0</del> -->
-                                        <span>${{item['price']}}</span>
-                                    </h3>
-                                    <p class="view-desc">{{item['description']}}</p>
-                                    <form action="{{url_for('checkout')}}" method="post">
-                                    <div class="view-add-group">
-                                            <input style="width: 75%; text-align:center" class="action-input" title="Quantity Number" type="number" name="quantity" value="{{item['quantity']}}">
-                                            <input type="hidden" id="p_id" name="p_id" value="{{item['product_id']}}">
-                                            <input type="hidden" id="page" name="page" value="/checkout"><br>
-                                         <input type="submit" name="submit" id="submit" value="Edit amount">
-                                    </div>
-                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-lg-6">
+                                                                <div class="view-details">
+                                                                    <h3 class="view-name">
+                                                                        <a
+                                                                            href="product-video.html">{{item['name']}}</a>
+                                                                    </h3>
+                                                                    <div class="view-meta">
+                                                                        <p>Location: {{item['location']}}</p><br>
+                                                                        <p>Family Type: {{item['plant_type']}}</p><br>
+                                                                        <p>When to Water: {{item['watering']}}</p>
+                                                                    </div>
+                                                                    <h3 class="view-price">
+                                                                        <!-- <del>${{item['cost']}}0</del> -->
+                                                                        <span>${{item['price']}}</span>
+                                                                    </h3>
+                                                                    <p class="view-desc">{{item['description']}}</p>
+                                                                    <form action="{{url_for('checkout')}}"
+                                                                        method="post">
+                                                                        <div class="view-add-group">
+                                                                            <input style="width: 75%; text-align:center"
+                                                                                class="action-input"
+                                                                                title="Quantity Number" type="number"
+                                                                                name="quantity"
+                                                                                value="{{item['quantity']}}">
+                                                                            <input type="hidden" id="p_id" name="p_id"
+                                                                                value="{{item['product_id']}}">
+                                                                            <input type="hidden" id="page" name="page"
+                                                                                value="/checkout"><br>
+                                                                            <input type="submit" name="submit"
+                                                                                id="submit" value="Edit amount">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                                         {% endfor %}
                                         {% endif %}
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br><br>
-                                <div class="checkout-charge">
-                                    <ul>
-                                        <li>
-                                            <span>Total</span>
-                                            <span>${{session['total']}}</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br><br>
+                            <div class="checkout-charge">
+                                <ul>
+                                    <li>
+                                        <span>Total</span>
+                                        <span>${{session['total']}}</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-12">
-                        <div class="account-card">
-                            <div class="account-title">
-                                <h4>contact number</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#contact-add">edit number</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card contact active">
-                                            <h6>primary</h6>
-                                            <p>{{user1['phone_number']}}</p>
-                                        </div>
+                <div class="col-lg-12">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>contact number</h4>
+                            <button data-bs-toggle="modal" data-bs-target="#contact-add">edit number</button>
+                        </div>
+                        <div class="account-content">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 alert fade show">
+                                    <div class="profile-card contact active">
+                                        <h6>primary</h6>
+                                        <p>{{user1['phone_number']}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="account-card">
-                            <div class="account-title">
-                                <h4>delivery address</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address active">
-                                            <p>{{user1['address_line1']}}</p><br>
-                                            <p>{{user1['address_line2']}}</p><br>
-                                            <p>{{user1['city']}}, {{user1['state']}} &nbsp {{user1['zipcode']}}</p>
-                                        </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>delivery address</h4>
+                            <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
+                        </div>
+                        <div class="account-content">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 alert fade show">
+                                    <div class="profile-card address active">
+                                        <p>{{user1['address_line1']}}</p><br>
+                                        <p>{{user1['address_line2']}}</p><br>
+                                        <p>{{user1['city']}}, {{user1['state']}} &nbsp {{user1['zipcode']}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="account-card">
-                            <div class="account-title">
-                                <h4>Billing address</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address active">
-                                            <p>{{user1['bill_address_line1']}}</p><br>
-                                            <p>{{user1['bill_address_line2']}}</p><br>
-                                            <p>{{user1['bill_city']}}, {{user1['bill_state']}} &nbsp {{user1['bill_zipcode']}}</p>
-                                        </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>Billing address</h4>
+                            <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
+                        </div>
+                        <div class="account-content">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 alert fade show">
+                                    <div class="profile-card address active">
+                                        <p>{{user1['bill_address_line1']}}</p><br>
+                                        <p>{{user1['bill_address_line2']}}</p><br>
+                                        <p>{{user1['bill_city']}}, {{user1['bill_state']}} &nbsp
+                                            {{user1['bill_zipcode']}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="account-card mb-0">
-                            <div class="account-title">
-                                <h4>payment option</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#payment-add">add payment info</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment active">
-                                            <h2>{{user1['card_name']}}</h2>
-                                            <p>{{user1['card_number']}} </p>
-                                            <h5>{{user1['card_type']}}</h5>
-                                            <h6>{{user1['card_exp_date']}}</h6>
-                                        </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="account-card mb-0">
+                        <div class="account-title">
+                            <h4>payment option</h4>
+                            <button data-bs-toggle="modal" data-bs-target="#payment-add">add payment info</button>
+                        </div>
+                        <div class="account-content">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 alert fade show">
+                                    <div class="payment-card payment active">
+                                        <h2>{{user1['card_name']}}</h2>
+                                        <p>{{user1['card_number']}} </p>
+                                        <h5>{{user1['card_type']}}</h5>
+                                        <h6>{{user1['card_exp_date']}}</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-        <!--=====================================
+                </div>
+                <!--=====================================
                     MODAL ADD FORM START
         =======================================-->
 
-        <!-- contact edit form -->
-        <div class="modal fade" id="contact-add">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
-                        <input class="hidden-form" name= "edit" value="phone_number">
-                        <div class="form-title">
-                            <h3>Edit contact number</h3>
+                <!-- contact edit form -->
+                <div class="modal fade" id="contact-add">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                            <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                                <input class="hidden-form" name="edit" value="phone_number">
+                                <div class="form-title">
+                                    <h3>Edit contact number</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">number</label>
+                                    <input class="form-control" name="pnumber" type="number"
+                                        value="{{user1['phone_number']}}">
+                                </div>
+                                <button class="form-btn" type="submit">save contact number</button>
+                                <input type="hidden" name="page" value="/profile">
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">number</label>
-                            <input class="form-control" name="pnumber" type="number" value="{{user1['phone_number']}}">
+                    </div>
+                </div>
+
+                <!-- address edit form -->
+                <div class="modal fade" id="address-add">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                            <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                                <input class="hidden-form" name="edit" value="address">
+                                <div class="form-title">
+                                    <h3>edit address info</h3>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Address Line 1</label>
+                                    <input type="text" name="aline1" class="form-control"
+                                        value="{{user1['address_line1']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Address Line 2</label>
+                                    <input type="text" name="aline2" class="form-control"
+                                        value="{{user1['address_line2']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">City</label>
+                                    <input type="text" name="city" class="form-control"
+                                        value="{{user1['city']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <input type="text" name="state" class="form-control"
+                                        value="{{user1['state']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Zipcode</label>
+                                    <input type="text" name="zipcode" class="form-control"
+                                        value="{{user1['zipcode']}}"></input>
+                                </div>
+                                <button class="form-btn" type="submit">save address info</button>
+                                <input type="hidden" name="page" value="/profile">
+                            </form>
                         </div>
-                        <button class="form-btn" type="submit">save contact number</button>
-                        <input type="hidden" name="page" value="/profile">
-                    </form>
+                    </div>
+                </div>
+
+                <!-- billing address edit form -->
+                <div class="modal fade" id="billing-address-add">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                            <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                                <input class="hidden-form" name="edit" value="bill_address">
+                                <div class="form-title">
+                                    <h3>edit address info</h3>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Address Line 1</label>
+                                    <input type="text" name="billline1" class="form-control"
+                                        value="{{user1['bill_address_line1']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Address Line 2</label>
+                                    <input type="text" name="billline2" class="form-control"
+                                        value="{{user1['bill_address_line2']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">City</label>
+                                    <input type="text" name="billcity" class="form-control"
+                                        value="{{user1['bill_city']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <input type="text" name="billstate" class="form-control"
+                                        value="{{user1['bill_state']}}"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Zipcode</label>
+                                    <input type="text" name="billzipcode" class="form-control"
+                                        value="{{user1['bill_zipcode']}}"></input>
+                                </div>
+                                <button class="form-btn" type="submit">save address info</button>
+                                <input type="hidden" name="page" value="/profile">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- payment edit form -->
+                <div class="modal fade" id="payment-add">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                            <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                                <input class="hidden-form" name="edit" value="payment">
+                                <div class="form-title">
+                                    <h3>edit payment info</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">card name</label>
+                                    <input class="form-control" name="cname" type="text" value="{{user1['card_name']}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">card number</label>
+                                    <input class="form-control" name="cnumber" type="number"
+                                        value="{{user1['card_number']}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">card type</label>
+                                    <input class="form-control" name="ctype" type="text" value="{{user1['card_type']}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">expiration date (MM/DD/YYYY)</label>
+                                    <input class="form-control" name="cdate" type="date"
+                                        value="{{user1['card_exp_date']}}">
+                                </div>
+                                <button class="form-btn" type="submit">save payment info</button>
+                                <input type="hidden" name="page" value="/profile">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- profile edit form -->
+                <div class="modal fade" id="profile-edit">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                            <form class="modal-form" action="{{url_for('checkout')}}" method="post">
+                                <input class="hidden-form" name="edit" value="profile">
+                                <div class="form-title">
+                                    <h3>edit profile info</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input class="form-control" name="fname" type="text"
+                                        value="{{user1['first_name']}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input class="form-control" name="lname" type="text" value="{{user1['last_name']}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">email</label>
+                                    <input class="form-control" name="email" type="text" value="{{user1['email']}}">
+                                </div>
+                                <input type="hidden" name="page" id="page" value="/profile">
+                                <a><button class="form-btn" type="submit">save profile info</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-proced">
+                    <a href="{{url_for('invoice')}}" class="btn btn-inline">proceed to checkout</a>
                 </div>
             </div>
         </div>
-
-        <!-- address edit form -->
-        <div class="modal fade" id="address-add">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
-                        <input class="hidden-form" name= "edit" value="address">
-                        <div class="form-title">
-                            <h3>edit address info</h3>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Address Line 1</label>
-                            <input type="text" name="aline1" class="form-control" value="{{user1['address_line1']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Address Line 2</label>
-                            <input type="text" name="aline2" class="form-control" value="{{user1['address_line2']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">City</label>
-                            <input type="text" name="city" class="form-control" value="{{user1['city']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">State</label>
-                            <input type="text" name="state" class="form-control" value="{{user1['state']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Zipcode</label>
-                            <input type="text" name="zipcode" class="form-control" value="{{user1['zipcode']}}"></input>
-                        </div>
-                        <button class="form-btn" type="submit">save address info</button>
-                        <input type="hidden" name="page" value="/profile">
-                    </form>
-                </div>
-            </div>
         </div>
-
-        <!-- billing address edit form -->
-        <div class="modal fade" id="billing-address-add">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
-                        <input class="hidden-form" name= "edit" value="bill_address">
-                        <div class="form-title">
-                            <h3>edit address info</h3>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Address Line 1</label>
-                            <input type="text" name="billline1" class="form-control" value="{{user1['bill_address_line1']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Address Line 2</label>
-                            <input type="text" name="billline2" class="form-control" value="{{user1['bill_address_line2']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">City</label>
-                            <input type="text" name="billcity" class="form-control" value="{{user1['bill_city']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">State</label>
-                            <input type="text" name="billstate" class="form-control" value="{{user1['bill_state']}}"></input>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Zipcode</label>
-                            <input type="text" name="billzipcode" class="form-control" value="{{user1['bill_zipcode']}}"></input>
-                        </div>
-                        <button class="form-btn" type="submit">save address info</button>
-                        <input type="hidden" name="page" value="/profile">
-                    </form>
-                </div>
-            </div>
         </div>
-
-        <!-- payment edit form -->
-        <div class="modal fade" id="payment-add">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
-                        <input class="hidden-form" name= "edit" value="payment">
-                        <div class="form-title">
-                            <h3>edit payment info</h3>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card name</label>
-                            <input class="form-control" name="cname" type="text" value="{{user1['card_name']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card number</label>
-                            <input class="form-control" name="cnumber" type="number" value="{{user1['card_number']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card type</label>
-                            <input class="form-control" name="ctype" type="text" value="{{user1['card_type']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">expiration date (MM/DD/YYYY)</label>
-                            <input class="form-control" name="cdate" type="date" value="{{user1['card_exp_date']}}">
-                        </div>
-                        <button class="form-btn" type="submit">save payment info</button>
-                        <input type="hidden" name="page" value="/profile">
-                    </form>
-                </div>
-            </div>
-        </div>
-
-         <!-- profile edit form -->
-        <div class="modal fade" id="profile-edit">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form" action="{{url_for('checkout')}}" method="post">
-                        <input class="hidden-form" name= "edit" value="profile">
-                        <div class="form-title">
-                            <h3>edit profile info</h3>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">First Name</label>
-                            <input class="form-control" name="fname" type="text" value="{{user1['first_name']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Last Name</label>
-                            <input class="form-control" name="lname" type="text" value="{{user1['last_name']}}">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">email</label>
-                            <input class="form-control" name="email" type="text" value="{{user1['email']}}">
-                        </div>
-                        <input type="hidden" name="page" id="page" value="/profile">
-                        <a><button class="form-btn" type="submit">save profile info</a>
-                    </form>
-                </div>
-            </div>
-            </div>
-
-            <div class="checkout-proced">
-                <a href="{{url_for('invoice')}}" class="btn btn-inline">proceed to checkout</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</section>
-        <!--=====================================
+    </section>
+    <!--=====================================
                     CHECKOUT PART END
         =======================================-->
 
-            
 
-         <!--=====================================
+
+    <!--=====================================
                      FOOTER PART START
         =======================================-->
-        {% include 'footer.html' %}
-        <!--=====================================
+    {% include 'footer.html' %}
+    <!--=====================================
                       FOOTER PART END
         =======================================-->
-        
 
-        <!--=====================================
+
+    <!--=====================================
                     JS LINK PART START
         =======================================-->
-        <!-- VENDOR -->
-        <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
 
-        <!-- CUSTOM -->
-        <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
-        <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
-        <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
-        <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
-        <script src="{{url_for('static', filename='js/slick.js')}}"></script>
-        <script src="{{url_for('static', filename='js/main.js')}}"></script>
-        <!--=====================================
+    <!-- To check quantity and clamp it -->
+    <script src="/static/js/quantity-checker.js"></script>
+
+    <!-- VENDOR -->
+    <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
+
+    <!-- CUSTOM -->
+    <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
+    <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
+    <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
+    <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
+    <script src="{{url_for('static', filename='js/slick.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <!--=====================================
                     JS LINK PART END
         =======================================-->
-    </body>
+</body>
+
 </html>
-
-
-
-
-
-
