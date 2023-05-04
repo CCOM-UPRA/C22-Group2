@@ -61,21 +61,6 @@
 
         <script>
             $(document).ready(function () {
-                // Update quantity value on plus and minus button clicks
-                $(".action-plus, .action-minus").unbind("click").bind("click", function (e) {
-                    e.preventDefault();
-            
-                    const input = $(this).siblings(".action-input");
-                    let quantity = parseInt(input.val());
-            
-                    if ($(this).hasClass("action-plus")) {
-                        quantity++;
-                    } else if (quantity > 1) {
-                        quantity--;
-                    }
-            
-                    input.val(quantity);
-                });
             
                 // Submit the form with updated values when Edit button is clicked
                 $(".action").on("click", function (e) {
