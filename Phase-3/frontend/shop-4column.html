@@ -247,97 +247,111 @@
                     <div class="row">
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
                             {% for product in products %}
-                            <div class="col">
-                                <div class="product-card">
-                                    <div class="product-media">
+                            <div class="one-product">
+                                <div class="col">
+                                    <div class="product-card">
+                                        <div class="product-media">
 
-                                        <a class="product-image"
-                                            href="static/images/product-images/{{product['image']}}">
-                                            <img src="static/images/product-images/{{product['image']}}" alt="product">
-                                        </a>
-                                        <div class="product-widget">
-                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal"
-                                                data-bs-target="#product-view-{{product['product_id']}}"></a>
+                                            <a class="product-image"
+                                                href="static/images/product-images/{{product['image']}}">
+                                                <img src="static/images/product-images/{{product['image']}}"
+                                                    alt="product">
+                                            </a>
+                                            <div class="product-widget">
+                                                <a title="Product View" href="#" class="fas fa-eye"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#product-view-{{product['product_id']}}"></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h6 class="product-name">
-                                            {{product['name']}}
-                                        </h6>
-                                        <h6 class="product-price">
-                                            <span>${{product['price']}}</span>
-                                        </h6>
-                                        <button class="product-add" title="Add to Cart">
-                                            <i class="fas fa-shopping-basket"></i>
-                                            <span>add</span>
-                                        </button>
-                                        <div class="product-action">
-                                            <form action="{{url_for('addcart')}}" method="POST">
-                                                <input style="width: 50%" class="action-input" title="Quantity Number"
-                                                    type="number" id="quantity" name="quantity" value="1">
+                                        <div class="product-content">
+                                            <h6 class="product-name">
+                                                {{product['name']}}
+                                            </h6>
+                                            <h6 class="product-price">
+                                                <span>${{product['price']}}</span>
+                                            </h6>
+                                            <button class="product-add" title="Add to Cart">
+                                                <i class="fas fa-shopping-basket"></i>
+                                                <span>add</span>
+                                            </button>
+                                            <div class="product-action">
+                                                <form action="{{url_for('addcart')}}" method="POST">
+                                                    <input style="width: 50%" class="action-input"
+                                                        title="Quantity Number" type="number" id="quantity"
+                                                        name="quantity" value="1" min="1" max="{{product['stock']}}" onkeyup=enforceMinMax(this)>
 
-                                                <input type="hidden" id="p_id" name="p_id"
-                                                    value="{{product['product_id']}}">
+                                                    <input type="hidden" id="p_id" name="p_id"
+                                                        value="{{product['product_id']}}">
 
-                                                <input style="width: 30%" type="submit" value="Add">
-                                            </form>
+                                                    <input style="width: 30%" type="submit" value="Add">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="modal fade" id="product-view-{{product['product_id']}}">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
-                                        <div class="product-view">
-                                            <div class="row">
-                                                <div class="col-md-6 col-lg-6">
-                                                    <div class="view-gallery">
-                                                        <div class="view-label-group">
-                                                            <label class="view-label new">{{product['stock']}} in
-                                                                stock</label>
-                                                        </div>
-                                                        <ul class="preview-slider">
-                                                            <li><img src="static/images/product-images/{{product['image']}}"
-                                                                    alt="product"></li>
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-lg-6">
-                                                    <div class="view-details">
-                                                        <h3 class="view-name">
-                                                            <a href="">{{product['name']}}</a>
-                                                        </h3>
-                                                        <div class="view-meta">
-                                                            <p>Location:<span>{{product['location']}}</span></p><br>
-                                                            <p>Plant Type: {{product['plant_type']}}</p><br>
-                                                            <p>When to Water: {{product['watering']}}</p>
-                                                        </div>
-                                                        <h3 class="view-price">
-                                                            <!-- <del>{{product[11]}}</del> -->
-                                                            <span>${{product['price']}}</span>
-                                                        </h3>
-                                                        <p class="view-desc">{{product['description']}}</p>
-                                                        <div class="view-add-group">
-                                                            <button class="product-add" title="Add to Cart">
-                                                                <span>Tap to add amount</span>
-                                                            </button>
-                                                            <div class="product-action">
-                                                                <button class="action-minus" title="Quantity Minus"><i
-                                                                        class="icofont-minus"></i></button>
-                                                                <input class="action-input" title="Quantity Number"
-                                                                    type="text" name="quantity" value="1">
-                                                                <button class="action-plus" title="Quantity Plus"><i
-                                                                        class="icofont-plus"></i></button>
+                                <div class="modal fade" id="product-view-{{product['product_id']}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
+                                            <div class="product-view">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="view-gallery">
+                                                            <div class="view-label-group">
+                                                                <label class="view-label new"
+                                                                    id="stock-label-{{product['product_id']}}">{{product['stock']}}
+                                                                    in
+                                                                    stock</label>
                                                             </div>
+                                                            <ul class="preview-slider">
+                                                                <li><img src="static/images/product-images/{{product['image']}}"
+                                                                        alt="product"></li>
+                                                            </ul>
+
                                                         </div>
-                                                        <div class="view-action-group">
-                                                            <a class="view-wish wish" href="/shop" title="Add to Cart">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                                <span>add to cart</span>
-                                                            </a>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="view-details">
+                                                            <h3 class="view-name">
+                                                                <a href="">{{product['name']}}</a>
+                                                            </h3>
+                                                            <div class="view-meta">
+                                                                <p>Location:<span>{{product['location']}}</span></p><br>
+                                                                <p>Plant Type: {{product['plant_type']}}</p><br>
+                                                                <p>When to Water: {{product['watering']}}</p>
+                                                            </div>
+                                                            <h3 class="view-price">
+                                                                <!-- <del>{{product[11]}}</del> -->
+                                                                <span>${{product['price']}}</span>
+                                                            </h3>
+                                                            <p class="view-desc">{{product['description']}}</p>
+                                                            <div class="view-add-group">
+                                                                <button class="product-add" title="Add to Cart">
+                                                                    <span>Tap to add amount</span>
+                                                                </button>
+                                                                <div class="product-action">
+                                                                    <button class="custom-quantity-minus" title="Quantity Minus">
+                                                                        <i class="icofont-minus"></i>
+                                                                    </button>
+                                                                        
+                                                                    <input class="custom-quantity-input action-input" title="Quantity Number" type="text" name="quantity" value="1" min="1" max="{{product['stock']}}">
+                                                                        
+                                                                    <button class="custom-quantity-plus" title="Quantity Plus">
+                                                                        <i class="icofont-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                            <div class="view-action-group">
+                                                                <a class="view-wish wish" href="/shop"
+                                                                    title="Add to Cart">
+                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                    <span>add to cart</span>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -389,8 +403,59 @@
     <script src="{{url_for('static', filename='js/main.js')}}"></script>
 
     <script>
+        //This script caps the amount of items you can buy
+        document.addEventListener("DOMContentLoaded", function() {
+            function enforceMinMax(element) {
+                if (element.value !== "") {
+                    if (parseInt(element.value) < parseInt(element.min)) {
+                        element.value = element.min;
+                    }
+                    if (parseInt(element.value) > parseInt(element.max)) {
+                        element.value = element.max;
+                    }
+                }
+            }
+        
+            function decreaseQuantity(event) {
+                let inputElement = event.target.closest('.product-action').querySelector(".custom-quantity-input");
+                let currentValue = parseInt(inputElement.value);
+                if (currentValue > parseInt(inputElement.min)) {
+                    inputElement.value = currentValue - 1;
+                }
+            }
+        
+            function increaseQuantity(event) {
+                let inputElement = event.target.closest('.product-action').querySelector(".custom-quantity-input");
+                let currentValue = parseInt(inputElement.value);
+                if (currentValue < parseInt(inputElement.max)) {
+                    inputElement.value = currentValue + 1;
+                }
+            }
+        
+            let minusButtons = document.querySelectorAll(".custom-quantity-minus");
+            let plusButtons = document.querySelectorAll(".custom-quantity-plus");
+            let inputElements = document.querySelectorAll(".custom-quantity-input");
+        
+            minusButtons.forEach(function(minusButton) {
+                minusButton.addEventListener("click", decreaseQuantity);
+            });
+        
+            plusButtons.forEach(function(plusButton) {
+                plusButton.addEventListener("click", increaseQuantity);
+            });
+        
+            inputElements.forEach(function(inputElement) {
+                inputElement.addEventListener("keyup", function() {
+                    enforceMinMax(this);
+                });
+            });
+        });
+        
+    </script>
+
+    <script>
         // This script handles the filters
-    
+
         // Checkmarks all who are in the parameters
         function setCheckedState(inputElements, values) {
             inputElements.forEach((input) => {
@@ -399,16 +464,16 @@
                 }
             });
         }
-    
+
         // Order By defaults to ascending
         let defaultRadio = document.getElementById("order-1");
         defaultRadio.checked = true;
 
         const form = document.getElementById("filters-form");
         const filterButtons = form.querySelectorAll('button[type="submit"]');
-    
+
         const urlSearchParams = new URLSearchParams(window.location.search);
-    
+
         // Extract all parameters from URL
         const locations = urlSearchParams.getAll("locations");
         const plantTypes = urlSearchParams.getAll("plant-types");
@@ -417,7 +482,7 @@
         const sortings = urlSearchParams.getAll("sortings");
         const orderBy = urlSearchParams.getAll("sorting-order");
 
-        
+
         // Fill checkmarks
         setCheckedState(form.querySelectorAll('input[name="locations"]'), locations);
         setCheckedState(form.querySelectorAll('input[name="plant-types"]'), plantTypes);
@@ -425,13 +490,13 @@
         setCheckedState(form.querySelectorAll('input[name="waterings"]'), waterings);
         setCheckedState(form.querySelectorAll('input[name="sortings"]'), sortings);
         setCheckedState(form.querySelectorAll('input[name="sorting-order"]'), orderBy);
-    
+
         form.addEventListener("submit", function (event) {
             event.preventDefault();
-    
+
             const clickedButtonValue = event.submitter.value;
             const searchParams = new URLSearchParams(window.location.search);
-    
+
             if (clickedButtonValue === "all") {
                 // Add values of all checkboxes and radio buttons to the searchParams
                 form
@@ -456,8 +521,8 @@
                         if (input.checked && input.name === "sorting-order") {
                             searchParams.delete(input.name);
                         }
-    
-                        if (input.checked && !searchParams.getAll(input.name).includes(input.value)) {   
+
+                        if (input.checked && !searchParams.getAll(input.name).includes(input.value)) {
                             searchParams.append(input.name, input.value);
                         }
                         if (!input.checked && searchParams.getAll(input.name).includes(input.value)) {
@@ -475,22 +540,6 @@
         }
     </script>
 
-    <script>
-        window.onload = function () {
-            document.getElementById('submit').onclick = function () {
-                document.getElementById('quantity').value = document.getElementById('quantity1').value;
-            };
-        }
-    </script>
-
-    <script>
-        function onlyOne(checkbox) {
-            var checkboxes = document.getElementsByName('check')
-            checkboxes.forEach((item) => {
-                if (item !== checkbox) item.checked = false
-            })
-        }
-    </script>
     <!--=====================================
                     JS LINK PART END
         =======================================-->
