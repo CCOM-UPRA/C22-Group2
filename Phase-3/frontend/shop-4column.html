@@ -270,15 +270,20 @@
                                             <h6 class="product-price">
                                                 <span>${{product['price']}}</span>
                                             </h6>
+                                            {% if product['stock'] > 0 %}
                                             <button class="product-add" title="Add to Cart">
                                                 <i class="fas fa-shopping-basket"></i>
                                                 <span>add</span>
                                             </button>
+                                            {% else %}
+                                            <p style="color:red">Out of Stock</p>
+                                            {% endif %}
                                             <div class="product-action">
                                                 <form action="{{url_for('addcart')}}" method="POST">
                                                     <input style="width: 50%" class="action-input"
                                                         title="Quantity Number" type="number" id="quantity"
-                                                        name="quantity" value="1" min="1" max="{{product['stock']}}" onkeyup=enforceMinMax(this)>
+                                                        name="quantity" value="1" min="1" max="{{product['stock']}}"
+                                                        onkeyup=enforceMinMax(this)>
 
                                                     <input type="hidden" id="p_id" name="p_id"
                                                         value="{{product['product_id']}}">
@@ -326,31 +331,44 @@
                                                                 <span>${{product['price']}}</span>
                                                             </h3>
                                                             <p class="view-desc">{{product['description']}}</p>
-                                                            <div class="view-add-group">
-                                                                <button class="product-add" title="Add to Cart">
-                                                                    <span>Tap to add amount</span>
-                                                                </button>
-                                                                <div class="product-action">
-                                                                    <button class="custom-quantity-minus" title="Quantity Minus">
-                                                                        <i class="icofont-minus"></i>
+
+                                                            <div>
+                                                                {% if product['stock'] > 0 %}
+                                                                <div class="view-add-group">
+                                                                    <button class="product-add" title="Add to Cart">
+                                                                        <span>Tap to add amount</span>
                                                                     </button>
-                                                                        
-                                                                    <input class="custom-quantity-input action-input" title="Quantity Number" type="text" name="quantity" value="1" min="1" max="{{product['stock']}}">
-                                                                        
-                                                                    <button class="custom-quantity-plus" title="Quantity Plus">
-                                                                        <i class="icofont-plus"></i>
-                                                                    </button>
+                                                                    <div class="product-action">
+                                                                        <button class="custom-quantity-minus"
+                                                                            title="Quantity Minus">
+                                                                            <i class="icofont-minus"></i>
+                                                                        </button>
+
+                                                                        <input
+                                                                            class="custom-quantity-input action-input"
+                                                                            title="Quantity Number" type="text"
+                                                                            name="quantity" value="1" min="1"
+                                                                            max="{{product['stock']}}">
+
+                                                                        <button class="custom-quantity-plus"
+                                                                            title="Quantity Plus">
+                                                                            <i class="icofont-plus"></i>
+                                                                        </button>
+                                                                    </div>
+
+
+
                                                                 </div>
-                                                                
-                                                                
-                                                                
-                                                            </div>
-                                                            <div class="view-action-group">
-                                                                <a class="view-wish wish" href="/shop"
-                                                                    title="Add to Cart">
-                                                                    <i class="fas fa-shopping-cart"></i>
-                                                                    <span>add to cart</span>
-                                                                </a>
+                                                                <div class="view-action-group">
+                                                                    <a class="view-wish wish" href="/shop"
+                                                                        title="Add to Cart">
+                                                                        <i class="fas fa-shopping-cart"></i>
+                                                                        <span>add to cart</span>
+                                                                    </a>
+                                                                </div>
+                                                                {% else %}
+                                                                <p style="color:red">Out of Stock</p>
+                                                                {% endif %}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -404,7 +422,7 @@
 
     <script>
         //This script caps the amount of items you can buy
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             function enforceMinMax(element) {
                 if (element.value !== "") {
                     if (parseInt(element.value) < parseInt(element.min)) {
@@ -415,7 +433,7 @@
                     }
                 }
             }
-        
+
             function decreaseQuantity(event) {
                 let inputElement = event.target.closest('.product-action').querySelector(".custom-quantity-input");
                 let currentValue = parseInt(inputElement.value);
@@ -423,7 +441,7 @@
                     inputElement.value = currentValue - 1;
                 }
             }
-        
+
             function increaseQuantity(event) {
                 let inputElement = event.target.closest('.product-action').querySelector(".custom-quantity-input");
                 let currentValue = parseInt(inputElement.value);
@@ -431,26 +449,26 @@
                     inputElement.value = currentValue + 1;
                 }
             }
-        
+
             let minusButtons = document.querySelectorAll(".custom-quantity-minus");
             let plusButtons = document.querySelectorAll(".custom-quantity-plus");
             let inputElements = document.querySelectorAll(".custom-quantity-input");
-        
-            minusButtons.forEach(function(minusButton) {
+
+            minusButtons.forEach(function (minusButton) {
                 minusButton.addEventListener("click", decreaseQuantity);
             });
-        
-            plusButtons.forEach(function(plusButton) {
+
+            plusButtons.forEach(function (plusButton) {
                 plusButton.addEventListener("click", increaseQuantity);
             });
-        
-            inputElements.forEach(function(inputElement) {
-                inputElement.addEventListener("keyup", function() {
+
+            inputElements.forEach(function (inputElement) {
+                inputElement.addEventListener("keyup", function () {
                     enforceMinMax(this);
                 });
             });
         });
-        
+
     </script>
 
     <script>
