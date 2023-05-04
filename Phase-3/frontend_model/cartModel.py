@@ -10,8 +10,6 @@ def MagerDicts(dict1, dict2):
     return False
 
 
-
-
 def getCartModel():
     # Checking if cart is in session or not and adding the dictionaries to it
     if 'cart' in session:
@@ -19,7 +17,6 @@ def getCartModel():
     else:
         session['cart'] = []
         return session['cart']
-
 
 
 def deleteCartItemModel(p_id):
