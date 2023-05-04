@@ -50,8 +50,6 @@
     <!-- URBAN GARDENS css-->
     <link rel="stylesheet" href="{{url_for('static',filename='css/urban-gardens.css')}}">
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!--=====================================
                     CSS LINK PART END
         =======================================-->
@@ -334,38 +332,45 @@
 
                                                             <div>
                                                                 {% if product['stock'] > 0 %}
-                                                                <div class="view-add-group">
-                                                                    <button class="product-add" title="Add to Cart">
-                                                                        <span>Tap to add amount</span>
-                                                                    </button>
-                                                                    <div class="product-action">
-                                                                        <button class="custom-quantity-minus"
-                                                                            title="Quantity Minus">
-                                                                            <i class="icofont-minus"></i>
+                                                                <form id="add-product" action="{{url_for('addcart')}}"
+                                                                    method="POST">
+                                                                    <div class="view-add-group">
+                                                                        <button type="button" class="product-add"
+                                                                            title="Add to Cart">
+                                                                            <span>Tap to add amount</span>
                                                                         </button>
+                                                                        <div class="product-action">
+                                                                            <button type="button"
+                                                                                class="custom-quantity-minus"
+                                                                                title="Quantity Minus">
+                                                                                <i class="icofont-minus"></i>
+                                                                            </button>
 
-                                                                        <input
-                                                                            class="custom-quantity-input action-input"
-                                                                            title="Quantity Number" type="text"
-                                                                            name="quantity" value="1" min="1"
-                                                                            max="{{product['stock']}}">
+                                                                            <input
+                                                                                class="custom-quantity-input action-input"
+                                                                                title="Quantity Number" type="text"
+                                                                                id="quantity" name="quantity" value="1"
+                                                                                min="1" max="{{product['stock']}}">
+                                                                            <input type="hidden" id="p_id" name="p_id"
+                                                                                value="{{product['product_id']}}">
 
-                                                                        <button class="custom-quantity-plus"
-                                                                            title="Quantity Plus">
-                                                                            <i class="icofont-plus"></i>
+                                                                            <button type="button"
+                                                                                class="custom-quantity-plus"
+                                                                                title="Quantity Plus">
+                                                                                <i class="icofont-plus"></i>
+                                                                            </button>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="view-action-group">
+                                                                        <button type="submit" class="btn btn-inline">
+                                                                            <i class="fas fa-shopping-cart"></i>
+                                                                            <span>add to cart</span>
                                                                         </button>
                                                                     </div>
 
-
-
-                                                                </div>
-                                                                <div class="view-action-group">
-                                                                    <a class="view-wish wish" href="/shop"
-                                                                        title="Add to Cart">
-                                                                        <i class="fas fa-shopping-cart"></i>
-                                                                        <span>add to cart</span>
-                                                                    </a>
-                                                                </div>
+                                                                </form>
                                                                 {% else %}
                                                                 <p style="color:red">Out of Stock</p>
                                                                 {% endif %}
@@ -403,6 +408,8 @@
     <!--=====================================
                     JS LINK PART START
         =======================================-->
+
+
     <!-- VENDOR -->
     <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
@@ -425,12 +432,7 @@
     <!-- For filter functionality -->
     <script src="/static/js/filters.js"></script>
 
-    <script>
-        function myFunc(e) {
-            e.preventDefault();
-        }
-    </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!--=====================================
                     JS LINK PART END
         =======================================-->
