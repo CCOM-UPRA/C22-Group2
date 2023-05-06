@@ -93,6 +93,7 @@ def shop():
     fwatering = request.args.getlist('waterings')
     fsorting=request.args.getlist('sortings')
     forderBy=request.args.getlist('sorting-order')
+    print("The search query is: ", search_query)
     products = get_filtered_products(locations=flocations, plantType=fplantType,sun=fsunExp,
                                      watering=fwatering, sortByOrder=forderBy, sortings=fsorting, search_query=search_query)
 
@@ -270,6 +271,7 @@ def checkout():
         session['checkout'] = True
         return redirect("/wrong")
 
+
 @app.route("/editcheckout", methods=["POST"])
 def editcheckout():
     if request.form.get('edit') == 'profile':
@@ -306,6 +308,8 @@ def editcheckout():
         edit_number(pnumber=pnumber)
         
     return redirect("/checkout")
+
+
 @app.route("/filter", methods=["POST", "GET"])
 def filter():
     # filter happens here
