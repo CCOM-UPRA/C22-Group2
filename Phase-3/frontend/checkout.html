@@ -471,9 +471,15 @@
                     </div>
                 </div>
 
+                {% if session['cart'] | length > 0 %}
                 <div class="checkout-proced">
                     <a href="{{url_for('invoice')}}" class="btn btn-inline">proceed to checkout</a>
                 </div>
+                {% else %}
+                <div class="checkout-proced">
+                    <a href="{{url_for('shop')}}" class="btn btn-inline">Add an item to cart</a>
+                </div>
+                {% endif %}
             </div>
         </div>
         </div>
