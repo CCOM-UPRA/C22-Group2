@@ -21,7 +21,6 @@ def getPlantType():
 def getSunExpo():
     return getSunExpoModel()
 
-
 def getWatering():
     return getWateringModel()
 

@@ -244,6 +244,11 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
+                            {% set cart_items = [] %}
+                            {% for item in session['cart'] %}
+                            {% set _ = cart_items.append(item['product_id']) %}
+                            {% endfor %}
+                            
                             {% for product in products %}
                             <div class="one-product">
                                 <div class="col">
@@ -269,13 +274,12 @@
                                                 <span>${{product['price']}}</span>
                                             </h6>
                                             {% if product['stock'] > 0 %}
+
+                                            {% if product['product_id'] not in cart_items %}
                                             <button class="product-add" title="Add to Cart">
                                                 <i class="fas fa-shopping-basket"></i>
                                                 <span>add</span>
                                             </button>
-                                            {% else %}
-                                            <p style="color:red">Out of Stock</p>
-                                            {% endif %}
                                             <div class="product-action">
                                                 <form action="{{url_for('addcart')}}" method="POST">
                                                     <input style="width: 50%" class="action-input"
@@ -289,6 +293,28 @@
                                                     <input style="width: 30%" type="submit" value="Add">
                                                 </form>
                                             </div>
+                                            {% else %}
+                                            <button class="product-add" title="Add to Cart">
+                                                <i class="fas fa-shopping-basket"></i>
+                                                <span>edit</span>
+                                            </button>
+                                            <div class="product-action">
+                                                <form action="{{url_for('editcart')}}" method="POST">
+                                                    <input style="width: 50%" class="action-input"
+                                                        title="Quantity Number" type="number" id="quantity"
+                                                        name="quantity" value="1" min="1" max="{{product['stock']}}"
+                                                        onkeyup=enforceMinMax(this)>
+
+                                                    <input type="hidden" id="p_id" name="p_id"
+                                                        value="{{product['product_id']}}">
+
+                                                    <input style="width: 30%" type="submit" value="Edit">
+                                                </form>
+                                            </div>
+                                            {% endif %}
+                                            {% else %}
+                                            <p style="color:red">Out of Stock</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -332,6 +358,8 @@
 
                                                             <div>
                                                                 {% if product['stock'] > 0 %}
+
+                                                                {% if product['product_id'] not in cart_items %}
                                                                 <form id="add-product" action="{{url_for('addcart')}}"
                                                                     method="POST">
                                                                     <div class="view-add-group">
@@ -369,8 +397,48 @@
                                                                             <span>add to cart</span>
                                                                         </button>
                                                                     </div>
-
                                                                 </form>
+                                                                {% else %}
+                                                                <form id="add-product" action="{{url_for('editcart')}}"
+                                                                    method="POST">
+                                                                    <div class="view-add-group">
+                                                                        <button type="button" class="product-add"
+                                                                            title="Add to Cart">
+                                                                            <span>Tap to edit amount</span>
+                                                                        </button>
+                                                                        <div class="product-action">
+                                                                            <button type="button"
+                                                                                class="custom-quantity-minus"
+                                                                                title="Quantity Minus">
+                                                                                <i class="icofont-minus"></i>
+                                                                            </button>
+
+                                                                            <input
+                                                                                class="custom-quantity-input action-input"
+                                                                                title="Quantity Number" type="text"
+                                                                                id="quantity" name="quantity" value="1"
+                                                                                min="1" max="{{product['stock']}}">
+                                                                            <input type="hidden" id="p_id" name="p_id"
+                                                                                value="{{product['product_id']}}">
+
+                                                                            <button type="button"
+                                                                                class="custom-quantity-plus"
+                                                                                title="Quantity Plus">
+                                                                                <i class="icofont-plus"></i>
+                                                                            </button>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="view-action-group">
+                                                                        <button type="submit" class="btn btn-inline">
+                                                                            <i class="fas fa-shopping-cart"></i>
+                                                                            <span>edit cart</span>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                                {% endif %}
+
                                                                 {% else %}
                                                                 <p style="color:red">Out of Stock</p>
                                                                 {% endif %}

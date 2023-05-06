@@ -78,7 +78,7 @@
                     const input = $(`.action-input[data-pid="${pid}"]`);
                     const quantity = parseInt(input.val());
             
-                    form.append(`<input type="hidden" name="id" value="${pid}">`);
+                    form.append(`<input type="hidden" name="p_id" value="${pid}">`);
                     form.append(`<input type="hidden" name="quantity" value="${quantity}">`);
             
                     form.submit();

@@ -197,8 +197,6 @@ def orders():
 
 @app.route("/addcart", methods=["POST"])
 def addcart():
-    # > cartController. For purposes of this phase, the function doesn't work
-    # if request.form.get('submit') == 'add':
 
     product_id = request.form.get('p_id')
     quantity = int(request.form.get('quantity'))
@@ -229,14 +227,13 @@ def delete():
 @app.route("/editcart", methods=["POST"])
 def editcart():
     # edit cart here. not in function
-    p_id = request.form.get('id')
+    p_id = request.form.get('p_id')
     quantity = int(request.form.get('quantity'))
     
     if 'cart' in session:
         for product in session['cart']:
             if int(product['product_id']) == int(p_id):
                 product['quantity'] = int(quantity)
-
 
     total = 0
     amount = 0
