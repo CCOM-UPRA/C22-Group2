@@ -243,7 +243,7 @@ def editcart():
     for item in session['cart']:
             total += float(item['price']) * float(item['quantity'])
             amount += 1 * int(item['quantity'])
-            item['total_price'] = int(item['quantity']) * round(float(item['price']),2)
+            item['total_price'] = round(int(item['quantity']) * float(item['price']),2)
 
     session['total'] = round(total,2)
     session['amount'] = amount
