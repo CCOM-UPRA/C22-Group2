@@ -97,46 +97,46 @@
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
                             {{ product}}
-                            {% for product in products.keys() %}
+                            {% for product in products %}
                             <div class="col">
                                 <div class="product-card">
                                     <div class="product-media">
 
-                                        <a class="product-image" href="static/images/product-images/{{products.get(product)['img']}}">
-                                            <img src="static/images/product-images/{{products.get(product)['img']}}" alt="product">
+                                        <a class="product-image" href="static/images/product-images/{{product['image']}}">
+                                            <img src="static/images/product-images/{{product['image']}}" alt="product">
                                         </a>
                                         <div class="product-widget">
-                                            <a title="Product View" href="{{url_for('product', prod=product[0])}}" class="fas fa-eye"></a>
+                                            <a title="Product View" href="{{url_for('product', prod=product['product_id'])}}" class="fas fa-eye"></a>
                                         </div>
                                     </div>
                                     <div class="product-content">
                                         <h6 class="product-name">
-<!--                                            <a href="product-video.html">{{products.get(product)['name']}}</a>-->
+<!--                                            <a href="product-video.html">{{products['name']}}</a>-->
                                         </h6>
                                          <h6 class="product-name">
-                                            <a>{{products.get(product)['name']}}</a>
+                                            <a>{{product['name']}}</a>
                                         </h6>
                                         <h6 class="product-price">
-                                            <span>${{products.get(product)['price']}}</span>
+                                            <span>${{product['price']}}</span>
                                         </h6>
                                         <h6 class="product-name">
-                                            <a>{{product[8]}} in stock</a>
+                                            <a>{{product['stock']}} in stock</a>
                                         </h6>
                                         <h6 class="product-name">
-                                            <a>Location: {{products.get(product)['location']}}</a>
+                                            <a>Location: {{product['location']}}</a>
                                         </h6>
 
                                         <div class="product-action">
                                             <form action="{{url_for('product', prod=product) }}" method="post">
                                             <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
-                                               <input type="hidden" id="p_id" name="p_id" value="{{product[0]}}">
-                                               <input type="hidden" id="name" name="name" value="{{product[1]}}">
-                                                <input type="hidden" id="price" name="price" value="{{product[10]}}">
-                                                <input type="hidden" id="cost" name="cost" value="{{product[11]}}">
-                                                <input type="hidden" id="stock" name="stock" value="{{product[8]}}">
-                                                <input type="hidden" id="brand" name="brand" value="{{product[2]}}">
-                                                <input type="hidden" id="wifi" name="wifi" value="{{product[4]}}">
-                                                <input type="hidden" id="videores" name="videores" value="{{product[5]}}">
+                                               <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
+                                               <input type="hidden" id="name" name="name" value="{{product['name']}}">
+                                                <input type="hidden" id="price" name="price" value="{{product['price']}}">
+                                                <input type="hidden" id="cost" name="cost" value="{{product['cost']}}">
+                                                <input type="hidden" id="stock" name="stock" value="{{product['stock']}}">
+                                                <input type="hidden" id="plant_type" name="plant_type" value="{{product['plant_type']}}">
+                                                <input type="hidden" id="watering" name="watering" value="{{product['watering']}}">
+                                                <input type="hidden" id="" name="videores" value="{{product[5]}}">
                                                 <input type="hidden" id="desc" name="desc" value="{{product[3]}}">
                                                 <input type="hidden" id="image" name="image" value="{{product[7]}}">
                                               <input style="width: 30%" type="submit" value="Add">
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="product-view-{{product[0]}}">
+                            <div class="modal fade" id="product-view-{{product['product_id']}}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
@@ -156,10 +156,10 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-gallery">
                                     <div class="view-label-group">
-                                        <label class="view-label new">{{products.get(product)['stock']}} in stock</label>
+                                        <label class="view-label new">{{product['stock']}} in stock</label>
                                     </div>
                                     <ul class="preview-slider">
-                                        <li><img src="static/images/product-images/{{products.get(product)['img']}}" alt="product"></li>
+                                        <li><img src="static/images/product-images/{{product['img']}}" alt="product"></li>
                                     </ul>
 
                                 </div>
@@ -167,18 +167,18 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-details">
                                     <h3 class="view-name">
-                                        <a href="product-video.html">{{products.get(product)['name']}}</a>
+                                        <a href="product-video.html">{{product['name']}}</a>
                                     </h3>
                                     <div class="view-meta">
-                                        <p>Location:<span>{{products.get(product)['location']}}</span></p><br>
-                                        <p>Family Type: {{products.get(product)['family type']}}</p><br>
-                                        <p>When to Water: {{products.get(product)['water']}}</p>
+                                        <p>Location:<span>{{product['location']}}</span></p><br>
+                                        <p>Family Type: {{product['plant_type']}}</p><br>
+                                        <p>When to Water: {{product['watering']}}</p>
                                     </div>
                                     <h3 class="view-price">
 <!--                                        <del>{{product[11]}}</del>-->
-                                        <span>${{products.get(product)['price']}}</span>
+                                        <span>${{product['price']}}</span>
                                     </h3>
-                                    <p class="view-desc">{{products.get(product)['desc']}}</p>
+                                    <p class="view-desc">{{product['description']}}</p>
 
                                 </div>
                             </div>

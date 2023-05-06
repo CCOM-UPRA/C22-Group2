@@ -89,7 +89,7 @@
                 <div style='text-align: center'>
 
                         <br><br>
-                        <h2>{{prod[1]}}</h2>
+                        <h2>{{prod['name']}}</h2>
                         <br>
 
                     </div>
@@ -98,7 +98,7 @@
                     <div class="col-lg-6">
                         <div class="details-gallery">
                             <ul class="details-preview"> 
-                                <li><img src="../static/images/product-images/{{prod[7]}}" alt="product"></li>
+                                <li><img src="../static/images/product-images/{{prod['image']}}" alt="product"></li>
                             </ul>
 
                         </div>
@@ -108,18 +108,23 @@
                             <h3 class="details-name"><a href="#">Details</a></h3>
                             <form action="{{url_for('editproduct')}}" method="post">
                             <label for="name">Name: </label>
-                            <input type="text" id="name" title="Name of product" value="{{prod[1]}}"><br>
+                            <input type="text" id="name" title="Name of product" value="{{prod['name']}}"><br>
 
-                            <label for="brand">Brand: </label>
-                            <input type="text" id="brand" title="Brand of product" value="{{prod[2]}}"><br>
+                            <label for="brand">Location: </label>
+                            <input type="text" id="Location" title="Best Location for the product" value="{{prod['location']}}"><br>
 
-                            <label for="color">Color: </label>
-                            <input type="text" id="color" title="Color of product" value="{{prod[6]}}"><br>
+                            <label for="color">Plant Type: </label>
+                            <input type="text" id="plant_type" title="Plant type of the product" value="{{prod['plant_type']}}"><br>
 
-                            <label for="videores">Video Resolution: </label>
-                            <input type="text" id="videores" title="Video Resolution of product" value="{{prod[5]}}">
+                            <label for="videores">Watering: </label>
+                            <input type="text" id="watering" title="Best watering time for the product" value="{{prod['watering']}}"><br>
 
-                            <p>Wi-fi Availability:</p>
+                            <label for="videores">Sun Exposure: </label>
+                            <input type="text" id="sun_exp" title="Best Sun Exposure for the product" value="{{prod['watering']}}"><br>
+
+
+
+                            <!-- <p>Wi-fi Availability:</p>
                             {% if prod[4] == 'Yes' %}
                                     <input type="radio" id="yes" name="wifi" value="Yes" checked>
                                     <label for="yes">Yes</label><br>
@@ -130,24 +135,24 @@
                                     <label for="yes1">Yes</label><br>
                                     <input type="radio" id="no1" name="wifi" value="No" checked>
                                     <label for="no1">No</label><br>
-                            {% endif %}
+                            {% endif %} -->
 
 
                             <label for="cost">Cost in $: </label>
-                            <input type="number" id='cost' value="{{prod[11]}}"><br>
+                            <input type="number" id='cost' value="{{prod['cost']}}"><br>
                             <label for="price">Price in $: </label>
-                            <input type="number" id='price' value="{{prod[10]}}"><br>
+                            <input type="number" id='price' value="{{prod['price']}}"><br>
 
                             <label for="stock">Stock: </label>
-                            <input type="number" id='stock' value="{{prod[8]}}"><br>
+                            <input type="number" id='stock' value="{{prod['stock']}}"><br>
 
 
                             <label for="desc">Description: </label>
-                            <input type="text" id='desc' title="Description" value="{{prod[3]}}">
+                            <textarea class="form-control" id='desc' title="Description" rows="8" cols="80" style="font-size: 16px; line-height: 1.5; padding: 10px;">{{prod['description']}}</textarea>
                             <br>
 
                             <label for="myfile">Select an image:</label>
-                            <input type="file" id="myfile" name="myfile" value="{{prod[7]}}">
+                            <input type="file" id="myfile" name="myfile" value="{{prod[image]}}">
 
                             <p>Status:</p>
                             {% if prod[9] == 'active' %}

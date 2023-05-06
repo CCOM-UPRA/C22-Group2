@@ -1,5 +1,6 @@
-import json
+from classes.db_connect import DBConnect
 from random import randrange
+import json
 
 productsPath = './JSONfiles/products.json'
 
@@ -15,18 +16,17 @@ def MagerDicts(dict1, dict2):
 # Database tuples are normally received in an array
 
 def getProductsModel():
-  # Load JSON data into a dictionary
-  with open(productsPath) as f:
-    data = json.load(f)
-    return data
+    db = DBConnect()
+    query = "SELECT * FROM product"
+    result = db.query(query)
+    return result
 
 # Find the specific product given the ID, found in element 0 of the sub-arrays
 def getsingleproductmodel(prodID):
-    productList=[]
-
-    for product in productList:
-        if product[0] == prodID:
-            return product
+    db = DBConnect()
+    query = "SELECT * FROM product WHERE product_id = %s"
+    result = db.query(query,(prodID)).pop()
+    return result
 
 # Add a new product to the JSON file
 def addproductmodel(prod : dict):
