@@ -50,8 +50,6 @@
     <!-- URBAN GARDENS css-->
     <link rel="stylesheet" href="{{url_for('static',filename='css/urban-gardens.css')}}">
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!--=====================================
                     CSS LINK PART END
         =======================================-->
@@ -334,38 +332,45 @@
 
                                                             <div>
                                                                 {% if product['stock'] > 0 %}
-                                                                <div class="view-add-group">
-                                                                    <button class="product-add" title="Add to Cart">
-                                                                        <span>Tap to add amount</span>
-                                                                    </button>
-                                                                    <div class="product-action">
-                                                                        <button class="custom-quantity-minus"
-                                                                            title="Quantity Minus">
-                                                                            <i class="icofont-minus"></i>
+                                                                <form id="add-product" action="{{url_for('addcart')}}"
+                                                                    method="POST">
+                                                                    <div class="view-add-group">
+                                                                        <button type="button" class="product-add"
+                                                                            title="Add to Cart">
+                                                                            <span>Tap to add amount</span>
                                                                         </button>
+                                                                        <div class="product-action">
+                                                                            <button type="button"
+                                                                                class="custom-quantity-minus"
+                                                                                title="Quantity Minus">
+                                                                                <i class="icofont-minus"></i>
+                                                                            </button>
 
-                                                                        <input
-                                                                            class="custom-quantity-input action-input"
-                                                                            title="Quantity Number" type="text"
-                                                                            name="quantity" value="1" min="1"
-                                                                            max="{{product['stock']}}">
+                                                                            <input
+                                                                                class="custom-quantity-input action-input"
+                                                                                title="Quantity Number" type="text"
+                                                                                id="quantity" name="quantity" value="1"
+                                                                                min="1" max="{{product['stock']}}">
+                                                                            <input type="hidden" id="p_id" name="p_id"
+                                                                                value="{{product['product_id']}}">
 
-                                                                        <button class="custom-quantity-plus"
-                                                                            title="Quantity Plus">
-                                                                            <i class="icofont-plus"></i>
+                                                                            <button type="button"
+                                                                                class="custom-quantity-plus"
+                                                                                title="Quantity Plus">
+                                                                                <i class="icofont-plus"></i>
+                                                                            </button>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="view-action-group">
+                                                                        <button type="submit" class="btn btn-inline">
+                                                                            <i class="fas fa-shopping-cart"></i>
+                                                                            <span>add to cart</span>
                                                                         </button>
                                                                     </div>
 
-
-
-                                                                </div>
-                                                                <div class="view-action-group">
-                                                                    <a class="view-wish wish" href="/shop"
-                                                                        title="Add to Cart">
-                                                                        <i class="fas fa-shopping-cart"></i>
-                                                                        <span>add to cart</span>
-                                                                    </a>
-                                                                </div>
+                                                                </form>
                                                                 {% else %}
                                                                 <p style="color:red">Out of Stock</p>
                                                                 {% endif %}
@@ -403,6 +408,8 @@
     <!--=====================================
                     JS LINK PART START
         =======================================-->
+
+
     <!-- VENDOR -->
     <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
@@ -420,144 +427,12 @@
     <script src="{{url_for('static', filename='js/slick.js')}}"></script>
     <script src="{{url_for('static', filename='js/main.js')}}"></script>
 
-    <script>
-        //This script caps the amount of items you can buy
-        document.addEventListener("DOMContentLoaded", function () {
-            function enforceMinMax(element) {
-                if (element.value !== "") {
-                    if (parseInt(element.value) < parseInt(element.min)) {
-                        element.value = element.min;
-                    }
-                    if (parseInt(element.value) > parseInt(element.max)) {
-                        element.value = element.max;
-                    }
-                }
-            }
+    <!-- To check quantity and clamp it -->
+    <script src="/static/js/quantity-checker.js"></script>
+    <!-- For filter functionality -->
+    <script src="/static/js/filters.js"></script>
 
-            function decreaseQuantity(event) {
-                let inputElement = event.target.closest('.product-action').querySelector(".custom-quantity-input");
-                let currentValue = parseInt(inputElement.value);
-                if (currentValue > parseInt(inputElement.min)) {
-                    inputElement.value = currentValue - 1;
-                }
-            }
-
-            function increaseQuantity(event) {
-                let inputElement = event.target.closest('.product-action').querySelector(".custom-quantity-input");
-                let currentValue = parseInt(inputElement.value);
-                if (currentValue < parseInt(inputElement.max)) {
-                    inputElement.value = currentValue + 1;
-                }
-            }
-
-            let minusButtons = document.querySelectorAll(".custom-quantity-minus");
-            let plusButtons = document.querySelectorAll(".custom-quantity-plus");
-            let inputElements = document.querySelectorAll(".custom-quantity-input");
-
-            minusButtons.forEach(function (minusButton) {
-                minusButton.addEventListener("click", decreaseQuantity);
-            });
-
-            plusButtons.forEach(function (plusButton) {
-                plusButton.addEventListener("click", increaseQuantity);
-            });
-
-            inputElements.forEach(function (inputElement) {
-                inputElement.addEventListener("keyup", function () {
-                    enforceMinMax(this);
-                });
-            });
-        });
-
-    </script>
-
-    <script>
-        // This script handles the filters
-
-        // Checkmarks all who are in the parameters
-        function setCheckedState(inputElements, values) {
-            inputElements.forEach((input) => {
-                if (values.includes(input.value)) {
-                    input.checked = true;
-                }
-            });
-        }
-
-        // Order By defaults to ascending
-        let defaultRadio = document.getElementById("order-1");
-        defaultRadio.checked = true;
-
-        const form = document.getElementById("filters-form");
-        const filterButtons = form.querySelectorAll('button[type="submit"]');
-
-        const urlSearchParams = new URLSearchParams(window.location.search);
-
-        // Extract all parameters from URL
-        const locations = urlSearchParams.getAll("locations");
-        const plantTypes = urlSearchParams.getAll("plant-types");
-        const sunExposures = urlSearchParams.getAll("sun-exps");
-        const waterings = urlSearchParams.getAll("waterings");
-        const sortings = urlSearchParams.getAll("sortings");
-        const orderBy = urlSearchParams.getAll("sorting-order");
-
-
-        // Fill checkmarks
-        setCheckedState(form.querySelectorAll('input[name="locations"]'), locations);
-        setCheckedState(form.querySelectorAll('input[name="plant-types"]'), plantTypes);
-        setCheckedState(form.querySelectorAll('input[name="sun-exps"]'), sunExposures);
-        setCheckedState(form.querySelectorAll('input[name="waterings"]'), waterings);
-        setCheckedState(form.querySelectorAll('input[name="sortings"]'), sortings);
-        setCheckedState(form.querySelectorAll('input[name="sorting-order"]'), orderBy);
-
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const clickedButtonValue = event.submitter.value;
-            const searchParams = new URLSearchParams(window.location.search);
-
-            if (clickedButtonValue === "all") {
-                // Add values of all checkboxes and radio buttons to the searchParams
-                form
-                    .querySelectorAll("input[type='checkbox'], input[type='radio']")
-                    .forEach((input) => {
-                        if (input.checked && input.name === "sorting-order") {
-                            searchParams.delete(input.name);
-                        }
-                        if (input.checked && !searchParams.getAll(input.name).includes(input.value)) {
-                            searchParams.append(input.name, input.value);
-                        }
-                        if (!input.checked && searchParams.getAll(input.name).includes(input.value)) {
-                            searchParams.delete(input.name, input.value);
-                        }
-                    });
-            } else {
-                // Add values of checkboxes and radio buttons within the same category to the searchParams
-                const categoryDiv = event.submitter.closest(".shop-widget");
-                categoryDiv
-                    .querySelectorAll("input[type='checkbox'], input[type='radio']")
-                    .forEach((input) => {
-                        if (input.checked && input.name === "sorting-order") {
-                            searchParams.delete(input.name);
-                        }
-
-                        if (input.checked && !searchParams.getAll(input.name).includes(input.value)) {
-                            searchParams.append(input.name, input.value);
-                        }
-                        if (!input.checked && searchParams.getAll(input.name).includes(input.value)) {
-                            searchParams.delete(input.name, input.value);
-                        }
-                    });
-            }
-            window.location.href = `/shop?${searchParams.toString()}`;
-        });
-    </script>
-
-    <script>
-        function myFunc(e) {
-            e.preventDefault();
-        }
-    </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <!--=====================================
                     JS LINK PART END
         =======================================-->
