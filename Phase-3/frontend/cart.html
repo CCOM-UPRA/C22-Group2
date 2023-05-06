@@ -42,11 +42,18 @@
                 {% endif %}
             </ul>
             {% if 'customer' in session %}
+
+            {% if session['cart'] | length > 0 %}
             <div class="cart-footer">
                 <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
                     <span class="checkout-label">Proceed to Checkout</span>
                     <span class="checkout-price">${{session.get('total')}}</span>
                 </a>
+            {% else %}
+            <div class="cart-footer">
+            <p>Cart is empty.</p>    
+            </div>
+            {% endif %}
                 {% else %}
                 <div class="cart-footer">
                     <a class="cart-checkout-btn" href="{{url_for('login', message='wrong')}}">
