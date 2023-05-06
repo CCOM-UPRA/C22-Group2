@@ -251,8 +251,27 @@ def editcart():
     return redirect(request.referrer)
 
 
-@app.route("/checkout", methods=["POST", "GET"])
+@app.route("/checkout")
 def checkout():
+    # Check if customer is logged in
+    if 'customer' in session:
+        # > cartController
+        user = getUserCheckout(session['customer'])
+        total = session['total']
+
+        # calculate total from the session cart
+        # Reminder: session['cart'] was created in app.route(/shop)
+        # The cart itself is found in cartModel
+        return render_template("checkout.html", user1=user, total=total)
+
+    else:
+        # If customer isn't logged in, create session variable to tell us we're headed to checkout
+        # Redirect us to login with message
+        session['checkout'] = True
+        return redirect("/wrong")
+
+@app.route("/editcheckout", methods=["POST"])
+def editcheckout():
     if request.form.get('edit') == 'profile':
         fname = request.form.get('fname')
         lname = request.form.get('lname')
@@ -285,24 +304,8 @@ def checkout():
     elif request.form.get('edit') == 'phone_number':
         pnumber = request.form.get('pnumber')
         edit_number(pnumber=pnumber)
-    # Check if customer is logged in
-    if 'customer' in session:
-        # > cartController
-        user = getUserCheckout(session['customer'])
-        total = session['total']
-
-        # calculate total from the session cart
-        # Reminder: session['cart'] was created in app.route(/shop)
-        # The cart itself is found in cartModel
-        return render_template("checkout.html", user1=user, total=total)
-
-    else:
-        # If customer isn't logged in, create session variable to tell us we're headed to checkout
-        # Redirect us to login with message
-        session['checkout'] = True
-        return redirect("/wrong")
-
-
+        
+    return redirect("/checkout")
 @app.route("/filter", methods=["POST", "GET"])
 def filter():
     # filter happens here
