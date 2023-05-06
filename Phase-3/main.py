@@ -233,13 +233,17 @@ def editcart():
     if 'cart' in session:
         for product in session['cart']:
             if int(product['product_id']) == int(p_id):
-                product['quantity'] = int(quantity)
+                if int(quantity) == 0:
+                    deleteCartItem(int(p_id))
+                else:
+                    product['quantity'] = int(quantity)
 
     total = 0
     amount = 0
     for item in session['cart']:
             total += float(item['price']) * float(item['quantity'])
             amount += 1 * int(item['quantity'])
+            item['total_price'] = int(item['quantity']) * round(float(item['price']),2)
 
     session['total'] = round(total,2)
     session['amount'] = amount
