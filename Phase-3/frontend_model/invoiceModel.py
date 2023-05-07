@@ -42,7 +42,7 @@ def getOrderModel(id):
 
 def getOrderProductsModel(id):
     db = DBConnect()
-    sql = ("SELECT name, location, name, price, quantity, price, quantity * price AS total_price "
+    sql = ("SELECT name, location, name, price, quantity, price, image, quantity * price AS total_price "
     "FROM orders NATURAL JOIN order_item NATURAL JOIN product WHERE order_id = %s")
     result = db.query(sql, (id))
     return result
@@ -67,6 +67,9 @@ def addOrderModel():
         for item in cart:
             sql = "INSERT INTO order_item (order_id, product_id, quantity) VALUES (%s,%s,%s)"
             db.execute(sql, (order_id, item['product_id'], item['quantity']))
+            
+            sql = "UPDATE product SET stock = stock - {} WHERE product_id = %s".format(int(item['quantity']))
+            db.execute(sql, (item['product_id']))
 
         db.commit()
         session['cart'] = []
