@@ -89,18 +89,16 @@
                 <div style='text-align: center'>
 
                         <br><br>
-                        <h2>Accounts</h2>
+                        <h2>{{userType}} Accounts</h2>
 
                     <div style='padding: 0 40%' class="view-add-group">
-                            <a style= "" href="{{url_for('createaccount', userType='user')}}" class="product-add">Add User</a>
-                            <a style= "" href="{{url_for('createaccount', userType='admin')}}" class="product-add">Add Administrator</a>
-                    
-                          
+                            <a style= "margin-top: 20px" href="{{url_for('createaccount', userType='customer')}}" class="product-add">Add Account</a>
+
                        <ul class="dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">Account list</a>
                                         <ul class="dropdown-position-list">
-                                            <li><a href="{{url_for('accounts', userType='user')}}">Users</a></li>
-                                            <li><a href="{{url_for('accounts', userType='admin')}}">Administrators</a></li>
+                                            <li><a href="{{url_for('accounts', userType='customer')}}">Customers</a></li>
+                                            <li><a href="{{url_for('accounts', userType='administrator')}}">Administrators</a></li>
                                         </ul>
                         </ul>
 
@@ -126,16 +124,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% set prefix = 'a_' if userType == 'admin' else 'c_' %}
-                                {% for key in accounts.keys() %}
+
+                                {% for acc in accounts %}
                                 <tr>
-                                        <td class="table-name"><h6>{{accounts.get(key)[prefix + 'first_name']}}</h6></td>
-                                        <td class="table-name"><h6>{{accounts.get(key)[prefix + 'last_name']}}</h6></td>
-                                        <td class="table-price"><h6>{{accounts.get(key)[prefix + 'phone_number']}}</h6></td>
-                                        <td class="table-brand"><h6>{{accounts.get(key)[prefix + 'email']}}</h6></td>
-                                         <td class="table-brand"><h6>{{accounts.get(key)[prefix + 'status']}}</h6></td>
+                                        <td class="table-name"><h6>{{acc['first_name']}}</h6></td>
+                                        <td class="table-name"><h6>{{acc['last_name']}}</h6></td>
+                                        <td class="table-price"><h6>{{acc['phone_number']}}</h6></td>
+                                        <td class="table-brand"><h6>{{acc['email']}}</h6></td>
+                                         <td class="table-brand"><h6>{{acc['status']}}</h6></td>
                                         <td class="table-action">
-                                            <a class="view" href="{{url_for('editaccount', userType=userType, acc=key)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
+                                            <a class="view" href="{{url_for('editaccount', acc=acc['id'], userType=userType)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}

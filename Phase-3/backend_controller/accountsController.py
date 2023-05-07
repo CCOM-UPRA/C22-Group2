@@ -1,18 +1,18 @@
 from backend_model.accountsModel import *
 
 
-def getaccounts(admin = True):
-    return getaccountsmodel(admin)
+def getaccounts(userType):
+    return getaccountsmodel(userType)
 
-def getaccount(acc, admin=True):
-    return getaccountmodel(acc, admin)
+def getaccount(acc, userType):
+    return getaccountmodel(acc, userType)
 
 def addaccount(acc : dict, admin=True):
     print("Account added")
     addaccountmodel(acc, admin)
 
-def editaccountcontroller(acc, edits : dict, admin=True):
-    editaccountmodel(acc, edits, admin=admin)
+def editaccountcontroller(userInfo, userType, id):
+    return editaccountModel(userInfo, userType, id)
 
 def deleteaccount(acc : str, admin = False):
     deleteaccountmodel(acc, admin=admin)

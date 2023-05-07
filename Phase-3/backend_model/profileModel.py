@@ -1,4 +1,11 @@
 from backend_model.accountsModel import *
 
 def getUserModel(customer):
-    return getaccountmodel(customer, admin=True)
+    return getaccountmodel(acc, userType)
+
+def MagerDicts(dict1, dict2):
+    if isinstance(dict1, list) and isinstance(dict2, list):
+        return dict1 + dict2
+    elif isinstance(dict1, dict) and isinstance(dict2, dict):
+        return dict(list(dict1.items()) + list(dict2.items()))
+    return False

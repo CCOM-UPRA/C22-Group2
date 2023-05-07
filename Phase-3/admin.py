@@ -1,5 +1,11 @@
-from functools import wraps
+import os
+from functools import wraps #TODO check
+from datetime import datetime, timedelta
+from time import strftime
+
 from flask import Flask, render_template, redirect, request, session, url_for
+from werkzeug.utils import secure_filename
+
 from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
 from backend_controller.productsController import *
@@ -38,6 +44,13 @@ def clear():
     # Clear session information
     
     session.clear()
+    return redirect("/")
+
+@app.route("/hashpass")
+def hashpass():
+    # For hashing already established unhashed passwords
+    # changePassController ->
+    changePass()
     return redirect("/")
 
 @app.route("/login")
@@ -131,11 +144,15 @@ def addproduct():
 @app.route("/accounts")
 @login_required
 def accounts():
-    userType = request.args.get('userType')
-    # Retrieve all accounts from 'database' and redirect us to accounts pager'
-    # Check if admin
-    isAdmin = True if userType == "admin" else False    
-    acc = getaccounts(isAdmin)
+    if request.method == 'GET' and 'userType' in request.args:
+        userType = request.args.get('userType')
+    else:
+        # Otherwise default to customer
+        userType = 'customer'
+
+    # Retrieve all accounts from 'database' and redirect us to accounts page
+    # -> accountsController.py
+    acc = getaccounts(userType)
     return render_template("accounts.html", accounts=acc, userType=userType)
 
 
@@ -162,47 +179,47 @@ def accountinfo():
     city = request.form.get('city')
     state = request.form.get('state')
     zipcode = request.form.get('zipcode')
-    cname = request.form.get('cname')
-    cnumber = request.form.get('cnumber')
-    ctype = request.form.get('ctype')
-    cdate = request.form.get('cdate')
+    cname = request.form.get('card_name')
+    cnumber = request.form.get('card_number')
+    ctype = request.form.get('card_type')
+    cdate = request.form.get('exp_date')
         # Process register info here
     
-    isAdmin = True if userType == "admin" else False
+    isAdmin = True if userType == "administrator" else False
 
     if not isAdmin:
         newAccount = {
-        "c_first_name": fname,
-        "c_last_name": lname,
-        "c_email": email,
-        "c_password": pass1,
-        "c_phone_number": pnumber,
-        "c_status": "Active",
-        "c_address_line_1": aline1,
-        "c_address_line_2": aline2,
-        "c_city": city,
-        "c_state": state,
-        "c_zipcode": zipcode,
-        "c_card_name": cname,
-        "c_card_type": ctype,
-        "c_exp_date": cdate,
-        "c_card_num": cnumber
+        "first_name": fname,
+        "last_name": lname,
+        "email": email,
+        "password": pass1,
+        "phone_number": pnumber,
+        "status": "Active",
+        "address_line_1": aline1,
+        "address_line_2": aline2,
+        "city": city,
+        "state": state,
+        "zipcode": zipcode,
+        "card_name": cname,
+        "card_type": ctype,
+        "exp_date": cdate,
+        "card_num": cnumber
         }
     else:
         newAccount = {
-        "a_first_name": fname,
-        "a_last_name": lname,
-        "a_email": email,
-        "a_password": pass1,
-        "a_phone_number": pnumber,
-        "a_status": "Active"
+        "first_name": fname,
+        "last_name": lname,
+        "email": email,
+        "password": pass1,
+        "phone_number": pnumber,
+        "status": "Active"
         } 
     
     addaccount(newAccount, isAdmin)
     return redirect("accounts?userType=" + userType)
 
 
-@app.route("/editaccount")
+@app.route("/editaccount", methods=['POST'])
 @login_required
 def editaccount():
     userType = request.args.get('userType')
@@ -213,6 +230,37 @@ def editaccount():
     isAdmin = True if userType == 'admin' else False
     account = getaccount(acc, isAdmin)
     return render_template("single_account.html", userType=userType, acc=account, account=acc)
+
+@app.route("/updateaccount", methods=['POST'])
+def updateaccount():
+    id = request.form.get('id')
+    userType = request.form.get('userType')
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    phone_number = request.form.get('pnumber')
+    status = request.form.get('group1')
+
+    if userType == 'customer':
+        aline1 = request.form.get('aline1')
+        aline2 = request.form.get('aline2')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        cname = request.form.get('cname')
+        cnumber = request.form.get('cnumber')
+        ctype = request.form.get('ctype')
+        cdate = request.form.get('cdate')
+        userInfo = [fname, lname, aline1, aline2, city, state, zipcode, phone_number, cname,
+                    ctype, cnumber, cdate, status]
+        updateAccountController(userInfo, userType, id)
+    else:
+        userInfo = [fname, lname, phone_number, status]
+        # Our user info will depend on whether we're updating an admin or customer
+        # -> accountsController.py
+        updateAccountController(userInfo, userType, id)
+
+    # Go back to edit page with message
+    return redirect(url_for('editaccount', acc=id, userType=userType, message='added'))
 
 
 @app.route("/editinfo", methods=['POST'])
