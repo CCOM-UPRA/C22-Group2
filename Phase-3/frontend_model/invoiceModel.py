@@ -24,7 +24,7 @@ def get_cart_model():
 def getOrderModel(id):
     db = DBConnect()
     sql = ("SELECT tracking_number, order_date, arrival_date,"
-    "address_line1, address_line2,"
+    "address_line1, address_line2, city, state, zipcode, "
     "card_type,"
     "SUM(quantity * price) AS total "
     "FROM orders "
@@ -65,6 +65,8 @@ def addOrderModel():
 
         # Add each item to order
         for item in cart:
+            
+            
             sql = "INSERT INTO order_item (order_id, product_id, quantity) VALUES (%s,%s,%s)"
             db.execute(sql, (order_id, item['product_id'], item['quantity']))
             

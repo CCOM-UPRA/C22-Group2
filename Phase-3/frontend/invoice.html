@@ -152,11 +152,9 @@
                                 </li>
                                 <li>
                                     <h6>Delivery Address</h6>
-                                    <p>{{order['address_line1']}}</p>
-                                </li>
-                                <li>
-                                    <h6></h6>
-                                    <p>{{order['address_line2']}}</p>
+                                    <p>{{order['address_line1']}} <br>
+                                    {{order['address_line2']}} <br>
+                                    {{order['city']}}, {{order['state']}} {{order['zipcode']}}</p>
                                 </li>
                             </ul>
                         </div>
@@ -188,7 +186,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Product</th>
-                                    <th scope="col">Location</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
@@ -200,9 +197,6 @@
                                 <tr>
                                     <td class="table-image"><img src="static/images/product-images/{{product['image']}}"
                                             alt="product"></td>
-                                    <td class="table-name">
-                                        <h6>{{product['location']}}</h6>
-                                    </td>
                                     <td class="table-name">
                                         <h6>{{product['name']}}</h6>
                                     </td>

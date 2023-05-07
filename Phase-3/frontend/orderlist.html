@@ -71,54 +71,7 @@
     <!--=====================================
                   CART SIDEBAR PART START
         =======================================-->
-    <aside class="cart-sidebar">
-        <div class="cart-header">
-            <div class="cart-total">
-                <i class="fas fa-shopping-basket"></i>
-                <span>total item (order['product_quantity'])</span>
-            </div>
-            <button class="cart-close"><i class="icofont-close"></i></button>
-        </div>
-        <ul class="cart-list">
-
-            {% if session['cart'] %}
-            {% for item in session['cart'] %}
-            <li class="cart-item">
-                <div class="cart-media">
-                    <a href="#"><img src="static/images/product-images/{{item['image']}}" alt="product"></a>
-                    <form action="{{url_for('delete', id=key)}}">
-                        <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
-                    </form>
-                </div>
-                <div class="cart-info-group">
-                    <div class="cart-info">
-                        <h6><a href="product-single.html">{{item['name']}}</a></h6>
-                        <p>Unit Price - {{item['price']}}</p>
-                    </div>
-                    <div class="cart-action-group">
-                        <div class="product-action">
-                            <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                            <input class="action-input" title="Quantity Number" type="text" name="quantity"
-                                value="{{item['quantity']}}">
-                            <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                        </div>
-                        <form action="{{url_for('editcart')}}" method="post">
-                            <button class="action">Edit</button>
-                        </form>
-                        <h6>${{item['total_price']}}</h6>
-                    </div>
-                </div>
-            </li>
-            {% endfor %}
-            {% endif %}
-        </ul>
-        <div class="cart-footer">
-            <a class="cart-checkout-btn" href="{{url_for('checkout')}}">
-                <span class="checkout-label">Proceed to Checkout</span>
-                <span class="checkout-price">${{session['total']}}</span>
-            </a>
-        </div>
-    </aside>
+    {% include 'cart.html' %}
 
     <!--=====================================
                     CART SIDEBAR PART END
@@ -145,135 +98,131 @@
         =======================================-->
     <section class="inner-section orderlist-part">
         <div class="container">
-            <div class="row account-card">
-                {% for order in orders %}
-                <div class="col">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="orderlist-filter">
-
-                                <h5>total orders <span>- (2)</span></h5>
-                                <div class="filter-short">
-                                    <label class="form-label">sort by:</label>
-                                    <select class="form-select">
-
-                                        <option value="all" selected>all orders</option>
-                                        <option value="recieved">received orders</option>
-                                        <option value="processed">processed orders</option>
-                                        <option value="shipped">shipped orders</option>
-                                        <option value="delivered">delivered orders</option>
-
-                                    </select>
-                                </div>
-                            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="orderlist-filter">
+                        <h5>total orders <span>- (2)</span></h5>
+                        <div class="filter-short">
+                            <label class="form-label">sort by:</label>
+                            <select class="form-select">
+                                <option value="all" selected>all orders</option>
+                                <option value="recieved">received orders</option>
+                                <option value="processed">processed orders</option>
+                                <option value="shipped">shipped orders</option>
+                                <option value="delivered">delivered orders</option>
+                            </select>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="orderlist">
-                                    <div class="orderlist-head">
-                                        <h5>order # {{order['order_id']}}</h5>
-                                        <h5>order # {{order['status']}}</h5>
-                                    </div>
-                                    <div class="orderlist-body">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="order-track">
-                                                    <ul class="order-track-list">
-                                                        <li class="order-track-item active">
-                                                            <i class="icofont-check"></i>
-                                                            <span>order received</span>
-                                                        </li>
-                                                        <li class="order-track-item">
-                                                            <i class="icofont-close"></i>
-                                                            <span>order processed</span>
-                                                        </li>
-                                                        <li class="order-track-item">
-                                                            <i class="icofont-close"></i>
-                                                            <span>order shipped</span>
-                                                        </li>
-                                                        <li class="order-track-item">
-                                                            <i class="icofont-close"></i>
-                                                            <span>order delivered</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5">
-                                                <ul class="orderlist-details">
-                                                    <li>
-                                                        <h6>order tracking number</h6>
-                                                        <p>{{order['tracking_number']}}</p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Order Time</h6>
-                                                        <p>{{order['order_date']}}</p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Delivery Time</h6>
-                                                        <p>{{order['arrival_date']}}</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <ul class="orderlist-details">
-                                                    <li>
-                                                        <h6>Total</h6>
-                                                        <p>${{order['total']}}</p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>Amount of items</h6>
-                                                        <p>{{order['amount']}}</p>
-                                                    </li>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
 
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="orderlist-deliver">
-                                                    <h6>Delivery location</h6>
-                                                    <p>{{order['shipping_address1']}}</p> <br>
-                                                    <p>{{order['shipping_address2']}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="table-scroll">
-                                                    <table class="table-list">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">Name</th>
-                                                                <th scope="col">Image</th>
-                                                                <th scope="col">Plant Type</th>
-                                                                <th scope="col">Price</th>
-                                                                <th scope="col">Quantity</th>
-                                                                <th scope="col">Total Price</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="table-serial">
-                                                                    <h6>{{order['name']}}</h6>
-                                                                </td>
-                                                                <td class="table-image"><img
-                                                                        src="static/images/product-images/{{order['image']}}"
-                                                                        alt="product"></td>
-                                                                <td class="table-name">
-                                                                    <h6>{{order['plant_type']}}</h6>
-                                                                </td>
-                                                                <td class="table-price">
-                                                                    <h6>${{order['price']}}</h6>
-                                                                </td>
-                                                                <td class="table-brand">
-                                                                    <h6>{{order['product_quantity']}}</h6>
-                                                                </td>
-                                                                <td class="table-quantity">
-                                                                    <h6>${{order['price'] * order['product_quantity']}}
-                                                                    </h6>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                    {% for order in orders %}
+                    <div class="orderlist">
+                        <div class="orderlist-head">
+                            <h5>order#{{loop.index}}</h5>
+                            <h5>order received</h5>
+                        </div>
+                        <div class="orderlist-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="order-track">
+                                        <ul class="order-track-list">
+                                            <li class="order-track-item active">
+                                                <i class="icofont-check"></i>
+                                                <span>order received</span>
+                                            </li>
+                                            <li class="order-track-item">
+                                                <i class="icofont-close"></i>
+                                                <span>order processed</span>
+                                            </li>
+                                            <li class="order-track-item">
+                                                <i class="icofont-close"></i>
+                                                <span>order shipped</span>
+                                            </li>
+                                            <li class="order-track-item">
+                                                <i class="icofont-close"></i>
+                                                <span>order delivered</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <ul class="orderlist-details">
+                                        <li>
+                                            <h6>order tracking number</h6>
+                                            <p>{{order[0]['tracking_number']}}</p>
+                                        </li>
+                                        <li>
+                                            <h6>Order Time</h6>
+                                            <p>{{order[0]['order_date']}}</p>
+                                        </li>
+                                        <li>
+                                            <h6>Delivery Time</h6>
+                                            <p>{{order[0]['arrival_date']}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4">
+                                    <ul class="orderlist-details">
+                                        <li>
+                                            <h6>Total</h6>
+                                            <p>${{order[0]['total']}}</p>
+                                        </li>
+                                        <li>
+                                            <h6>Amount of items</h6>
+                                            <p>{{order[0]['amount']}}</p>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="orderlist-deliver">
+                                        <h6>Delivery location</h6>
+                                        <p>{{order[0]['address_line1']}} <br>
+                                            {{order[0]['address_line2']}} <br>
+                                            {{order[0]['city']}}, {{order[0]['state']}} {{order[0]['zipcode']}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="table-scroll">
+                                        <table class="table-list">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Family</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for product in order[1] %}
+                                                <tr>
+                                                    <td class="table-serial">
+                                                        <h6>{{product['name']}}</h6>
+                                                    </td>
+                                                    <td class="table-image"><img
+                                                            src="static/images/product-images/{{product['image']}}"
+                                                            alt="product"></td>
+                                                    <td class="table-name">
+                                                        <h6>{{product['family']}}</h6>
+                                                    </td>
+                                                    <td class="table-price">
+                                                        <h6>${{product['price']}}</h6>
+                                                    </td>
+                                                    <td class="table-brand">
+                                                        <h6>{{product['quantity']}}</h6>
+                                                    </td>
+                                                    <td class="table-quantity">
+                                                        <h6>${{product['total_price']}}</h6>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -282,45 +231,48 @@
                     {% endfor %}
                 </div>
             </div>
-            <!--=====================================
+
+        </div>
+    </section>
+    <!--=====================================
                     ORDERLIST PART END
         =======================================-->
 
 
 
 
-            <!--=====================================
+    <!--=====================================
                      FOOTER PART START
         =======================================-->
-            {% include 'footer.html' %}
-            <!--=====================================
+    {% include 'footer.html' %}
+    <!--=====================================
                       FOOTER PART END
         =======================================-->
 
 
-            <!--=====================================
+    <!--=====================================
                     JS LINK PART START
         =======================================-->
 
-            <!-- To check quantity and clamp it -->
-            <script src="/static/js/quantity-checker.js"></script>
-            <!-- VENDOR -->
-            <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
-            <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
-            <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
-            <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
-            <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
-            <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
-            <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
+    <!-- To check quantity and clamp it -->
+    <script src="/static/js/quantity-checker.js"></script>
+    <!-- VENDOR -->
+    <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
 
-            <!-- CUSTOM -->
-            <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
-            <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
-            <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
-            <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
-            <script src="{{url_for('static', filename='js/slick.js')}}"></script>
-            <script src="{{url_for('static', filename='js/main.js')}}"></script>
-            <!--=====================================
+    <!-- CUSTOM -->
+    <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
+    <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
+    <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
+    <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
+    <script src="{{url_for('static', filename='js/slick.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <!--=====================================
                     JS LINK PART END
         =======================================-->
 </body>

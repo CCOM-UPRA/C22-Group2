@@ -7,5 +7,9 @@ def get_customer_order():
     result = db.query(sql, (session['customer']))
     return result
 
-
-
+def getOrdersIDsModel(customer_id):
+    db = DBConnect()
+    
+    sql = "SELECT order_id FROM orders WHERE customer_id = %s"
+    result = db.query(sql, (customer_id))
+    return result
