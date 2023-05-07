@@ -2,7 +2,7 @@ from flask import Flask, redirect, render_template, request, session
 from frontend_controller.cartController import (addCartController,
                                                 deleteCartItem, getCart)
 from frontend_controller.checkoutController import getUserCheckout
-from frontend_controller.invoiceController import getOrder, getOrderProducts
+from frontend_controller.invoiceController import *
 from frontend_controller.loginController import *
 from frontend_controller.ordersController import getorder
 from frontend_controller.profileController import *
@@ -352,18 +352,17 @@ def filter():
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products)
 
-    
-        
-    
 
 @app.route("/invoice")
 def invoice():
+    order_id = addOrder()
     # > invoiceController
-    products = getOrderProducts()
-    orders = getOrder()
+    
+    order = getOrder(order_id)
+    products = getOrderProducts(order_id)
     # Total amount of items in this simulated order:
-    amount = 3
-    return render_template("invoice.html", orders=orders, products=products, amount=amount)
+    amount = len(products)
+    return render_template("invoice.html", order=order, products=products, amount=amount)
 
 
 # Press the green button in the gutter to run the script.
