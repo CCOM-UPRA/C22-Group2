@@ -23,10 +23,11 @@ def get_cart_model():
 
 def getOrderModel(id):
     db = DBConnect()
-    sql = ("SELECT tracking_number, order_date, arrival_date,"
+    sql = ("SELECT tracking_number, order_date, arrival_date, orders.status AS status,"
     "address_line1, address_line2, city, state, zipcode, "
     "card_type,"
-    "SUM(quantity * price) AS total "
+    "SUM(quantity * price) AS total, "
+    "SUM(quantity) AS amount "
     "FROM orders "
     "NATURAL JOIN order_item "
     "NATURAL JOIN customer "

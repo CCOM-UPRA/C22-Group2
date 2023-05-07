@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="orderlist-filter">
-                        <h5>total orders <span>- (2)</span></h5>
+                        <h5>total orders <span>- ({{orders|length}})</span></h5>
                         <div class="filter-short">
                             <label class="form-label">sort by:</label>
                             <select class="form-select">
@@ -122,7 +122,7 @@
                     <div class="orderlist">
                         <div class="orderlist-head">
                             <h5>order#{{loop.index}}</h5>
-                            <h5>order received</h5>
+                            <h5>order {{order[0]['status']}}</h5>
                         </div>
                         <div class="orderlist-body">
                             <div class="row">
@@ -192,7 +192,6 @@
                                                 <tr>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Image</th>
-                                                    <th scope="col">Family</th>
                                                     <th scope="col">Price</th>
                                                     <th scope="col">Quantity</th>
                                                     <th scope="col">Total Price</th>
@@ -207,9 +206,6 @@
                                                     <td class="table-image"><img
                                                             src="static/images/product-images/{{product['image']}}"
                                                             alt="product"></td>
-                                                    <td class="table-name">
-                                                        <h6>{{product['family']}}</h6>
-                                                    </td>
                                                     <td class="table-price">
                                                         <h6>${{product['price']}}</h6>
                                                     </td>
