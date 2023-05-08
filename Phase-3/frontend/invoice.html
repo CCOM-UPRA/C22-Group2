@@ -120,112 +120,102 @@
                         <p>Thank you! We have received your order.</p>
                     </div>
                 </div>
-                {% for i in range(orders | length) %}
-                <div class="col">
-                    <div class="row account-card">
-                        <div class="col-lg-12">
-                            <div class="account-card">
-                                <div class="account-title">
-                                    <h4>order received</h4>
-                                </div>
-                                <div class="account-content">
-                                    <div class="invoice-recieved">
-                                        <h6>order tracking number <span>{{orders[i]['tracking_num']}}</span></h6>
-                                        <h6>order date <span>{{orders[i]['order_date']}}</span></h6>
-                                        <h6>total amount <span>${{orders[i]['total']}}</span></h6>
-                                        <h6>payment method <span>{{orders[i]['payment_method']}}</span></h6>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-lg-12">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>order received</h4>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="account-card">
-                                <div class="account-title">
-                                    <h4>Order Details</h4>
-                                </div>
-                                <div class="account-content">
-                                    <ul class="invoice-details">
-                                        <li>
-                                            <h6>Order Date</h6>
-                                            <p>{{orders[i]['order_date']}}</p>
-                                        </li>
-                                        <li>
-                                            <h6>Arrival Date</h6>
-                                            <p>{{orders[i]['arrival_date']}}</p>
-                                        </li>
-                                        <li>
-                                            <h6>Delivery Address</h6>
-                                            <p>{{orders[i]['address_line_1']}}</p>
-                                        </li>
-                                        <li>
-                                            <h6></h6>
-                                            <p>{{orders[i]['address_line_2']}}</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="account-card">
-                                <div class="account-title">
-                                    <h4>Amount Details</h4>
-                                </div>
-                                <div class="account-content">
-                                    <ul class="invoice-details">
-                                        <li>
-                                            <h6>Total Items</h6>
-                                            <p>{{orders[i]['quantity']}} items</p>
-                                        </li>
-                                        <li>
-                                            <h6>Total</h6>
-                                            <p>${{orders[i]['total']}}</p>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="table-scroll">
-                                <table class="table-list">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Total Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="table-image"><img
-                                                    src="static/images/product-images/{{products[i]['image']}}" alt="product">
-                                            </td>
-                                            <td class="table-name">
-                                                <h6>{{products[i]['location']}}</h6>
-                                            </td>
-                                            <td class="table-name">
-                                                <h6>{{products[i]['name']}}</h6>
-                                            </td>
-                                            <td class="table-price">
-                                                <h6>${{products[i]['price']}}</h6>
-                                            </td>
-                                            <td class="table-brand">
-                                                <h6>{{orders[i]['product_quantity']}}</h6>
-                                            </td>
-                                            <td class="table-brand">
-                                                <h6>${{products[i]['total_price']}}</h6>
-                                            </td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="account-content">
+                            <div class="invoice-recieved">
+                                <h6>order tracking number <span>{{order['tracking_number']}}</span></h6>
+                                <h6>order date <span>{{order['order_date']}}</span></h6>
+                                <h6>total amount <span>${{order['total']}}</span></h6>
+                                <h6>payment method <span>{{order['card_type']}}</span></h6>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+                </div>
+                <div class="col-lg-6">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>Order Details</h4>
+                        </div>
+                        <div class="account-content">
+                            <ul class="invoice-details">
+                                <li>
+                                    <h6>Order Date</h6>
+                                    <p>{{order['order_date']}}</p>
+                                </li>
+                                <li>
+                                    <h6>Arrival Date</h6>
+                                    <p>{{order['arrival_date']}}</p>
+                                </li>
+                                <li>
+                                    <h6>Delivery Address</h6>
+                                    <p>{{order['address_line1']}} <br>
+                                    {{order['address_line2']}} <br>
+                                    {{order['city']}}, {{order['state']}} {{order['zipcode']}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="account-card">
+                        <div class="account-title">
+                            <h4>Amount Details</h4>
+                        </div>
+                        <div class="account-content">
+                            <ul class="invoice-details">
+                                <li>
+                                    <h6>Total Items</h6>
+                                    <p>{{amount}} items</p>
+                                </li>
+                                <li>
+                                    <h6>Total</h6>
+                                    <p>${{order['total']}}</p>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="table-scroll">
+                        <table class="table-list">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                <tr>
+                                    <td class="table-image"><img src="static/images/product-images/{{product['image']}}"
+                                            alt="product"></td>
+                                    <td class="table-name">
+                                        <h6>{{product['name']}}</h6>
+                                    </td>
+                                    <td class="table-price">
+                                        <h6>${{product['price']}}</h6>
+                                    </td>
+                                    <td class="table-brand">
+                                        <h6>{{product['quantity']}}</h6>
+                                    </td>
+                                    <td class="table-brand">
+                                        <h6>${{product['total_price']}}</h6>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -245,74 +235,7 @@
     <!--=====================================
                      FOOTER PART START
         =======================================-->
-    <footer style="background-color: rgb(3, 41, 10)" class="footer-part">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xl-3">
-                    <div class="footer-widget">
-                        <a class="footer-logo" href="#">
-                            <img src="static/images/logo_pagina.png" alt="logo">
-                        </a>
-                        <h3 class="footer-title">Urban Gardens</h3>
-                        <p class="footer-desc">Plants Shop</p>
-
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="footer-widget contact">
-                        <h3 class="footer-title">Team:</h3>
-                        <ul class="footer-contact">
-                            <li>
-                                <!-- <i class="icofont-ui-email"></i> -->
-                                <p>
-                                    <span>Eddy J. Figueroa Pic&oacute;n</span>
-                                    <span>Zulymar Garc&iacute;a Sonera</span>
-                                    <span>Aleph M. Gonz&aacute;lez Pag&aacute;n</span>
-                                    <span>Francisco J Marrero Miranda</span>
-                                    <span>Cesar A. Rivera Tosado</span>
-                                </p>
-                            </li>
-                            <!-- <li>
-                                    <i class="icofont-ui-touch-phone"></i>
-                                    <p>
-                                        <span>+787 597 7369</span>
-                                        <span>N/A</span>
-                                    </p>
-                                </li> -->
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="footer-widget">
-                        <h3 class="footer-title">Resources</h3>
-                        <div class="footer-links">
-                            <ul>
-                                <li><a href="https://github.com/marrero171/plants-ecommerce-site.git">Github</a></li>
-                                <li><a href="http://upra.edu/">upra.edu</a></li>
-                                <li><a
-                                        href="https://cursos.upra.edu/course/search.php?areaids=core_course-course&q=ccom4115-ME5">cursos.upra.edu</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li><a href="https://www.youtube.com/watch?v=Z1RJmh_OqeA">Flask tutorial</a></li>
-                                <li><a href="https://www.youtube.com/watch?v=qz0aGYrrlhU">HTML tutorial</a></li>
-                                <li><a href="https://www.youtube.com/watch?v=kqtD5dpn9C8">Python tutorial</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="footer-widget">
-                        <h3 class="footer-title">Students of CCOM4115</h3>
-                        <p class="footer-desc">Phase-1 ecommerce Data Bases project</p>
-
-                    </div>
-                </div>
-            </div>
-            <br>
-        </div>
-    </footer>
+        {% include 'footer.html' %}
     <!--=====================================
                       FOOTER PART END
         =======================================-->

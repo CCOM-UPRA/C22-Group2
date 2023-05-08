@@ -32,7 +32,6 @@ def deleteCartItemModel(p_id):
 
 def addCartModel(p_id, quantity):
     # make changes to cart here
-    # not in use at the moment
     db = DBConnect()
     query = "SELECT * FROM `product` WHERE product_id = %s"
     result = list(db.query(query, (p_id))).pop()
@@ -42,7 +41,7 @@ def addCartModel(p_id, quantity):
         found = False
         for product in session['cart']:
             if int(product['product_id']) == int(p_id):
-                product['quantity'] += result['quantity']
+                product['quantity'] = result['quantity']
                 product['total_price'] = round(result['total_price'], 2)
                 found = True
                 break

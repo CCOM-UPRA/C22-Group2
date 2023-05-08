@@ -2,9 +2,9 @@ from flask import Flask, redirect, render_template, request, session
 from frontend_controller.cartController import (addCartController,
                                                 deleteCartItem, getCart)
 from frontend_controller.checkoutController import getUserCheckout
-from frontend_controller.invoiceController import getOrder, getOrderProducts
+from frontend_controller.invoiceController import *
 from frontend_controller.loginController import *
-from frontend_controller.ordersController import getorder
+from frontend_controller.ordersController import getorder, get_orders_and_products
 from frontend_controller.profileController import *
 from frontend_controller.shopController import *
 
@@ -93,6 +93,7 @@ def shop():
     fwatering = request.args.getlist('waterings')
     fsorting=request.args.getlist('sortings')
     forderBy=request.args.getlist('sorting-order')
+    print("The search query is: ", search_query)
     products = get_filtered_products(locations=flocations, plantType=fplantType,sun=fsunExp,
                                      watering=fwatering, sortByOrder=forderBy, sortings=fsorting, search_query=search_query)
 
@@ -190,15 +191,14 @@ def password():
 def orders():
     # Redirects us to the orders list page of the user
     # Fetches each order and its products from ordersController
-    orders = getorder()
+    
+    orders = get_orders_and_products(session['customer'])
 
     return render_template("orderlist.html", orders=orders)
 
 
 @app.route("/addcart", methods=["POST"])
 def addcart():
-    # > cartController. For purposes of this phase, the function doesn't work
-    # if request.form.get('submit') == 'add':
 
     product_id = request.form.get('p_id')
     quantity = int(request.form.get('quantity'))
@@ -229,20 +229,23 @@ def delete():
 @app.route("/editcart", methods=["POST"])
 def editcart():
     # edit cart here. not in function
-    p_id = request.form.get('id')
+    p_id = request.form.get('p_id')
     quantity = int(request.form.get('quantity'))
     
     if 'cart' in session:
         for product in session['cart']:
             if int(product['product_id']) == int(p_id):
-                product['quantity'] = int(quantity)
-
+                if int(quantity) == 0:
+                    deleteCartItem(int(p_id))
+                else:
+                    product['quantity'] = int(quantity)
 
     total = 0
     amount = 0
     for item in session['cart']:
             total += float(item['price']) * float(item['quantity'])
             amount += 1 * int(item['quantity'])
+            item['total_price'] = round(int(item['quantity']) * float(item['price']),2)
 
     session['total'] = round(total,2)
     session['amount'] = amount
@@ -250,8 +253,28 @@ def editcart():
     return redirect(request.referrer)
 
 
-@app.route("/checkout", methods=["POST", "GET"])
+@app.route("/checkout")
 def checkout():
+    # Check if customer is logged in
+    if 'customer' in session:
+        # > cartController
+        user = getUserCheckout(session['customer'])
+        total = session['total']
+
+        # calculate total from the session cart
+        # Reminder: session['cart'] was created in app.route(/shop)
+        # The cart itself is found in cartModel
+        return render_template("checkout.html", user1=user, total=total)
+
+    else:
+        # If customer isn't logged in, create session variable to tell us we're headed to checkout
+        # Redirect us to login with message
+        session['checkout'] = True
+        return redirect("/wrong")
+
+
+@app.route("/editcheckout", methods=["POST"])
+def editcheckout():
     if request.form.get('edit') == 'profile':
         fname = request.form.get('fname')
         lname = request.form.get('lname')
@@ -284,22 +307,8 @@ def checkout():
     elif request.form.get('edit') == 'phone_number':
         pnumber = request.form.get('pnumber')
         edit_number(pnumber=pnumber)
-    # Check if customer is logged in
-    if 'customer' in session:
-        # > cartController
-        user = getUserCheckout(session['customer'])
-        total = session['total']
-
-        # calculate total from the session cart
-        # Reminder: session['cart'] was created in app.route(/shop)
-        # The cart itself is found in cartModel
-        return render_template("checkout.html", user1=user, total=total)
-
-    else:
-        # If customer isn't logged in, create session variable to tell us we're headed to checkout
-        # Redirect us to login with message
-        session['checkout'] = True
-        return redirect("/wrong")
+        
+    return redirect("/checkout")
 
 
 @app.route("/filter", methods=["POST", "GET"])
@@ -344,18 +353,19 @@ def filter():
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products)
 
-    
-        
-    
 
 @app.route("/invoice")
 def invoice():
+    order_id = addOrder()
     # > invoiceController
-    products = getOrderProducts()
-    orders = getOrder()
+    
+    order = getOrder(order_id)
+    products = getOrderProducts(order_id)
     # Total amount of items in this simulated order:
-    amount = 3
-    return render_template("invoice.html", orders=orders, products=products, amount=amount)
+    amount = 0
+    for product in products:
+        amount += product['quantity']
+    return render_template("invoice.html", order=order, products=products, amount=amount)
 
 
 # Press the green button in the gutter to run the script.

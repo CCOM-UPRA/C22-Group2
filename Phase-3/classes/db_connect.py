@@ -25,4 +25,12 @@ class DBConnect():
             self.cursor.execute(sql, params)
         else:
             self.cursor.execute(sql)
+        
+        return self.cursor
+    
+    def commit(self):
         self.connection.commit()
+        
+    def rollback(self):
+        self.connection.rollback()
+        

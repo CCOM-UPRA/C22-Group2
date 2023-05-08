@@ -124,7 +124,7 @@
                                             </td>
                                             <td class="table-action">
                                                 <a class="view" href="#" title="Edit Amount" data-bs-toggle="modal"
-                                                    data-bs-target="#product-view-{{key}}"><i
+                                                    data-bs-target="#product-view-{{item['product_id']}}"><i
                                                         class="fas fa-edit"></i></a>
                                                 <!--                                                    <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>-->
                                                 <a>
@@ -138,58 +138,87 @@
                                         </tr>
 
 
-                                        <div class="modal fade" id="product-view-{{key}}">
+                                        <div class="modal fade" id="product-view-{{item['product_id']}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <button class="modal-close icofont-close"
-                                                        data-bs-dismiss="modal"></button>
+                                                    <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
                                                     <div class="product-view">
                                                         <div class="row">
                                                             <div class="col-md-6 col-lg-6">
                                                                 <div class="view-gallery">
                                                                     <div class="view-label-group">
-                                                                        <label class="view-label new">{{item['stock']}}
-                                                                            in stock</label>
+                                                                        <label class="view-label new"
+                                                                            id="stock-label-{{item['product_id']}}">{{item['stock']}}
+                                                                            in
+                                                                            stock</label>
                                                                     </div>
                                                                     <ul class="preview-slider">
                                                                         <li><img src="static/images/product-images/{{item['image']}}"
                                                                                 alt="product"></li>
                                                                     </ul>
-
+        
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 col-lg-6">
                                                                 <div class="view-details">
                                                                     <h3 class="view-name">
-                                                                        <a
-                                                                            href="product-video.html">{{item['name']}}</a>
+                                                                        <a href="">{{item['name']}}</a>
                                                                     </h3>
                                                                     <div class="view-meta">
-                                                                        <p>Location: {{item['location']}}</p><br>
-                                                                        <p>Family Type: {{item['plant_type']}}</p><br>
+                                                                        <p>Location:<span>{{item['location']}}</span></p><br>
+                                                                        <p>Plant Type: {{item['plant_type']}}</p><br>
                                                                         <p>When to Water: {{item['watering']}}</p>
                                                                     </div>
                                                                     <h3 class="view-price">
-                                                                        <!-- <del>${{item['cost']}}0</del> -->
                                                                         <span>${{item['price']}}</span>
                                                                     </h3>
                                                                     <p class="view-desc">{{item['description']}}</p>
-                                                                    <form action="{{url_for('checkout')}}"
-                                                                        method="POST">
-                                                                        <div class="view-add-group">
-                                                                            <input style="width: 75%; text-align:center"
-                                                                                class="action-input"
-                                                                                title="Quantity Number" type="number"
-                                                                                name="quantity"
-                                                                                value="{{item['quantity']}}">
-                                                                            <input type="hidden" id="p_id" name="p_id"
-                                                                                value="{{item['product_id']}}">
-                                                                            <input type="hidden" id="page" name="page"
-                                                                                value="/checkout"><br>
-                                                                            <input type="submit" name="submit"
-                                                                                id="submit" value="Edit amount">
-                                                                        </div>
-                                                                    </form>
+        
+                                                                    <div>
+                                                                        {% if item['stock'] > 0 %}
+                                                                        <form id="add-product" action="{{url_for('editcart')}}"
+                                                                            method="POST">
+                                                                            <div class="view-add-group">
+                                                                                <button type="button" class="product-add"
+                                                                                    title="Add to Cart">
+                                                                                    <span>Tap to edit amount</span>
+                                                                                </button>
+                                                                                <div class="product-action">
+                                                                                    <button type="button"
+                                                                                        class="custom-quantity-minus"
+                                                                                        title="Quantity Minus">
+                                                                                        <i class="icofont-minus"></i>
+                                                                                    </button>
+        
+                                                                                    <input
+                                                                                        class="custom-quantity-input action-input"
+                                                                                        title="Quantity Number" type="text"
+                                                                                        id="quantity" name="quantity" value="{{item['quantity']}}"
+                                                                                        min="1" max="{{item['stock']}}">
+                                                                                    <input type="hidden" id="p_id" name="p_id"
+                                                                                        value="{{item['product_id']}}">
+        
+                                                                                    <button type="button"
+                                                                                        class="custom-quantity-plus"
+                                                                                        title="Quantity Plus">
+                                                                                        <i class="icofont-plus"></i>
+                                                                                    </button>
+        
+                                                                                </div>
+                                                                            </div>
+        
+                                                                            <div class="view-action-group">
+                                                                                <button type="submit" class="btn btn-inline">
+                                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                                    <span>edit cart</span>
+                                                                                </button>
+                                                                            </div>
+        
+                                                                        </form>
+                                                                        {% else %}
+                                                                        <p style="color:red">Out of Stock</p>
+                                                                        {% endif %}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -303,7 +332,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('checkout')}}" method="POST">
+                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
                                 <input class="hidden-form" name="edit" value="phone_number">
                                 <div class="form-title">
                                     <h3>Edit contact number</h3>
@@ -325,7 +354,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('checkout')}}" method="POST">
+                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
                                 <input class="hidden-form" name="edit" value="address">
                                 <div class="form-title">
                                     <h3>edit address info</h3>
@@ -368,7 +397,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('checkout')}}" method="POST">
+                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
                                 <input class="hidden-form" name="edit" value="bill_address">
                                 <div class="form-title">
                                     <h3>edit address info</h3>
@@ -411,7 +440,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('checkout')}}" method="POST">
+                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
                                 <input class="hidden-form" name="edit" value="payment">
                                 <div class="form-title">
                                     <h3>edit payment info</h3>
@@ -446,7 +475,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('checkout')}}" method="POST">
+                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
                                 <input class="hidden-form" name="edit" value="profile">
                                 <div class="form-title">
                                     <h3>edit profile info</h3>

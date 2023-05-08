@@ -5,7 +5,7 @@
             <div class="cart-header">
                 <div class="cart-total">
                     <i class="fas fa-shopping-basket"></i>
-                    <span>total item ({{session.get('amount')}})</span>
+                    <span>total items ({{session.get('amount')}})</span>
                 </div>
                 <button class="cart-close"><i class="icofont-close"></i></button>
             </div>
@@ -34,7 +34,7 @@
                             <form action="{{url_for('editcart')}}" method="POST" class="update-cart-form" data-pid="{{ item['product_id'] }}">
                                 <button class="action">Edit</button>
                             </form>
-                            <h6>${{item['price']}}</h6>
+                            <h6>${{item['total_price']}}</h6>
                         </div>
                     </div>
                 </li>
@@ -78,7 +78,7 @@
                     const input = $(`.action-input[data-pid="${pid}"]`);
                     const quantity = parseInt(input.val());
             
-                    form.append(`<input type="hidden" name="id" value="${pid}">`);
+                    form.append(`<input type="hidden" name="p_id" value="${pid}">`);
                     form.append(`<input type="hidden" name="quantity" value="${quantity}">`);
             
                     form.submit();
