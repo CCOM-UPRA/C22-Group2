@@ -4,7 +4,7 @@ from frontend_controller.cartController import (addCartController,
 from frontend_controller.checkoutController import getUserCheckout
 from frontend_controller.invoiceController import *
 from frontend_controller.loginController import *
-from frontend_controller.ordersController import getorder, getOrderIDs
+from frontend_controller.ordersController import getorder, get_orders_and_products
 from frontend_controller.profileController import *
 from frontend_controller.shopController import *
 
@@ -191,15 +191,8 @@ def password():
 def orders():
     # Redirects us to the orders list page of the user
     # Fetches each order and its products from ordersController
-    orderids = getOrderIDs(session['customer'])
     
-    orders = []
-    
-    for orderid in orderids:
-        order = getOrder(orderid['order_id'])
-        products = getOrderProducts(orderid['order_id'])
-        
-        orders.append([order, products])
+    orders = get_orders_and_products(session['customer'])
 
     return render_template("orderlist.html", orders=orders)
 
