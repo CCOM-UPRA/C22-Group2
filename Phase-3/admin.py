@@ -361,7 +361,7 @@ def reports():
 @login_required
 def report():
     # Initialize variables to use
-    report = {}
+    report = []
     total = 0
 
     # If we're going for any of the reports that have a date, get the information and save in date_report
@@ -372,10 +372,10 @@ def report():
         report = getDatedReportWeek()
     elif request.args.get('report') == 'month':
         report = getDatedReport()
-
+        
     # If we're going for the inventory/stock report, get the data and save in stock_report
-    if 'stock_report' in request.form:
-        stock_report = getStockReport()
+    elif request.args.get('report') == 'inventory':
+        report = getStockReport()
 
     # If we're going for any of the reports with dates, we need a total at the end
     # Calculate the total according to the sum of the total_prices for each item in the report
@@ -386,10 +386,12 @@ def report():
     # We send to the report page all variables whether empty or not
     # The HTML will validate which variable is empty and will show the appropriate information
     
-    print("All report values: ", report)
-    print(type(report[0]))
-    print(type(report[0].items()))
-    return render_template("report.html", report=report)
+    print("Report:", report)
+    report_type = request.args.get('report')
+    if len(report) > 0:
+        return render_template("report.html", report=report, report_type=report_type)
+    else:
+        return redirect("/reports")
 
 
 # Press the green button in the gutter to run the script.
