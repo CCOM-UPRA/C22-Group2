@@ -10,7 +10,7 @@ from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
 from backend_controller.productsController import *
 from backend_controller.accountsController import *
-from backend_controller.reportsController import getDatedReportWeek, getStockReport
+from backend_controller.reportsController import getDatedReportDay, getDatedReportWeek, getStockReport
 from backend_controller.profileController import *
 
 # In this template, you will usually find functions with comments tying them to a specific controller
@@ -362,16 +362,17 @@ def reports():
 def report():
     # Initialize variables to use
     report = []
+    report_cols = []
     total = 0
 
     # If we're going for any of the reports that have a date, get the information and save in date_report
     # All cases give the same results in this case, no matter your date or product input
     if request.args.get('report') == 'day':
-        report = getDatedReport()
+        report, report_cols = getDatedReportDay(request.args.get('report_day'))
     elif request.args.get('report') == 'week':
-        report = getDatedReportWeek()
+        report = getDatedReportWeek(request.args.get('report_week'))
     elif request.args.get('report') == 'month':
-        report = getDatedReport()
+        report = getDatedReportMonth(request.args.get('report_month'))
         
     # If we're going for the inventory/stock report, get the data and save in stock_report
     elif request.args.get('report') == 'inventory':
@@ -388,10 +389,8 @@ def report():
     
     print("Report:", report)
     report_type = request.args.get('report')
-    if len(report) > 0:
-        return render_template("report.html", report=report, report_type=report_type)
-    else:
-        return redirect("/reports")
+
+    return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type)
 
 
 # Press the green button in the gutter to run the script.

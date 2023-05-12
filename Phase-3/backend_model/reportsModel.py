@@ -27,7 +27,7 @@ with open("JSONfiles/inventory_report.json") as f:
 # productsList = MagerDicts(productsList, product6)
 
 
-def getDatedReportWeekModel():
+def getDatedReportWeekModel(date):
     db = DBConnect()
     sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
         FROM product 
@@ -54,6 +54,36 @@ def getDatedReportWeekModel():
 
     return result
 
+def getDatedReportDayModel(date):
+    db = DBConnect()
+    if date == "" or date == None:
+        date = datetime.date(datetime.today())
+
+    sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
+        FROM product 
+        NATURAL JOIN contains
+        NATURAL JOIN orders
+        WHERE order_date = %s
+        GROUP BY product_id, DAY(order_date) 
+        ORDER BY DAY(order_date), MONTH(order_date)"""
+    
+    result = list(db.query(sql, (date)))
+    
+        # Format total_price
+    for row in result:
+        row['total_price'] = '$' + format(row['total_price'], '.2f')
+        date = row['date']
+        
+        day = date.day
+        month = calendar.month_abbr[date.month]
+        year = str(date.year)
+        
+        print(month, type(month))
+        print(year, type(year))
+        row['date'] = year + "-" + month + "-" + str(day)
+
+    columns = [ "name", "date", "sales", "total_price"]
+    return result, columns
 
 def getStockReportModel():
     db = DBConnect()
