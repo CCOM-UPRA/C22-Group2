@@ -1,6 +1,6 @@
 import json
 from classes.db_connect import DBConnect
-from datetime import datetime
+from datetime import datetime, timedelta
 import calendar
 
 # Open reports with dates 
@@ -27,49 +27,58 @@ with open("JSONfiles/inventory_report.json") as f:
 # productsList = MagerDicts(productsList, product6)
 
 
-def getDatedReportWeekModel(date):
+def getDatedReportModel(report_type, date):
     db = DBConnect()
-    sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
-        FROM product 
-        NATURAL JOIN contains
-        NATURAL JOIN orders
-        GROUP BY product_id, WEEK(order_date) 
-        ORDER BY WEEK(order_date), DAY(order_date)"""
     
-    result = list(db.query(sql))
-    
-        # Format total_price
-    for row in result:
-        row['total_price'] = '$' + format(row['total_price'], '.2f')
-        date = row['date']
-        
-        day = date.day
-        month = calendar.month_abbr[date.month]
-        year = str(date.year)
-        
-        print(month, type(month))
-        print(year, type(year))
-        row['date'] = year + "-" + month + "-" + str(day)
-
-
-    return result
-
-def getDatedReportDayModel(date):
-    db = DBConnect()
     if date == "" or date == None:
-        date = datetime.date(datetime.today())
+        date = str(datetime.today().date())
+    
+    if report_type == "day":
+        sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
+            FROM product 
+            NATURAL JOIN contains
+            NATURAL JOIN orders
+            WHERE order_date = %s
+            GROUP BY DAY(order_date), product_id 
+            ORDER BY name, DAY(order_date)"""
+            
+        result = list(db.query(sql, (date)))
+        
+    elif report_type == "week":
+        sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
+            FROM product 
+            NATURAL JOIN contains
+            NATURAL JOIN orders
+            WHERE order_date BETWEEN %s AND %s
+            GROUP BY DAY(order_date), product_id 
+            ORDER BY name, DAY(order_date)"""
+        
+        # Calculate the date of the previous Sunday
+        date_object = datetime.strptime(date, '%Y-%m-%d')
+        sunday = date_object - timedelta(days=date_object.weekday())
 
-    sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
-        FROM product 
-        NATURAL JOIN contains
-        NATURAL JOIN orders
-        WHERE order_date = %s
-        GROUP BY product_id, DAY(order_date) 
-        ORDER BY DAY(order_date), MONTH(order_date)"""
+        # Calculate the date of the next Sunday
+        saturday = sunday + timedelta(days=6)
+        
+        # Extract the first and last day of the week range
+        first_day = sunday.date()
+        last_day = saturday.date()
+        
+        result = list(db.query(sql, (first_day, last_day)))
+    elif report_type == "month":
+        sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
+            FROM product 
+            NATURAL JOIN contains
+            NATURAL JOIN orders
+            WHERE MONTH(order_date) = MONTH(%s) AND YEAR(order_date) = YEAR(%s)
+            GROUP BY DAY(order_date), product_id 
+            ORDER BY name, MONTH(order_date), DAY(order_date)"""
+        result = list(db.query(sql, (date, date)))
+    else:
+        return
     
-    result = list(db.query(sql, (date)))
     
-        # Format total_price
+     # Format total_price
     for row in result:
         row['total_price'] = '$' + format(row['total_price'], '.2f')
         date = row['date']
@@ -81,8 +90,11 @@ def getDatedReportDayModel(date):
         print(month, type(month))
         print(year, type(year))
         row['date'] = year + "-" + month + "-" + str(day)
+
 
     columns = [ "name", "date", "sales", "total_price"]
+    
+    print(result, columns)
     return result, columns
 
 def getStockReportModel():

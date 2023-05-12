@@ -1,13 +1,7 @@
 from backend_model.reportsModel import *
 
-def getDatedReportMonth():
-    return getDatedReportMonthModel()
-
-def getDatedReportWeek():
-    return getDatedReportWeekModel()
-
-def getDatedReportDay(date):
-    return getDatedReportDayModel(date)
+def getDatedReport(date, filter):
+    return getDatedReportModel(date, filter)
 
 def getStockReport():
     return getStockReportModel()

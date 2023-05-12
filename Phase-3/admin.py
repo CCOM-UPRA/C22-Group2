@@ -10,7 +10,7 @@ from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
 from backend_controller.productsController import *
 from backend_controller.accountsController import *
-from backend_controller.reportsController import getDatedReportDay, getDatedReportWeek, getStockReport
+from backend_controller.reportsController import getDatedReport, getStockReport
 from backend_controller.profileController import *
 
 # In this template, you will usually find functions with comments tying them to a specific controller
@@ -365,33 +365,16 @@ def report():
     report_cols = []
     total = 0
 
-    # If we're going for any of the reports that have a date, get the information and save in date_report
-    # All cases give the same results in this case, no matter your date or product input
-    if request.args.get('report') == 'day':
-        report, report_cols = getDatedReportDay(request.args.get('report_day'))
-    elif request.args.get('report') == 'week':
-        report = getDatedReportWeek(request.args.get('report_week'))
-    elif request.args.get('report') == 'month':
-        report = getDatedReportMonth(request.args.get('report_month'))
-        
-    # If we're going for the inventory/stock report, get the data and save in stock_report
-    elif request.args.get('report') == 'inventory':
-        report = getStockReport()
-
-    # If we're going for any of the reports with dates, we need a total at the end
-    # Calculate the total according to the sum of the total_prices for each item in the report
-    # if report != {}:
-    #     for keyorder in report:
-    #         total += order['total_price']
-
-    # We send to the report page all variables whether empty or not
-    # The HTML will validate which variable is empty and will show the appropriate information
-    
-    print("Report:", report)
     report_type = request.args.get('report')
+    report_date = request.args.get('report_date')
+  
+    if request.args.get('report') == 'inventory':
+        report, report_cols = getStockReport()
+    else:
+        report, report_cols = getDatedReport(report_type, report_date)
+
 
     return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type)
-
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__admin__':

@@ -106,19 +106,11 @@
 
                                         <thead>
                                             <tr>
-                                            {% if report | length > 0 %}
-
-                                            {% for key, value in report[0].items() %}
-                                                <th scope="col">{{ key.replace('_', ' ')|capitalize }}</th>
-                                            {% endfor %}
-
-                                            {% else %}
 
                                             {% for col in report_cols %}
                                                 <th scope="col">{{ col.replace('_', ' ')|capitalize }}</th>
                                             {% endfor %}
 
-                                            {% endif %}
                                             </tr>
                                         </thead>
 
