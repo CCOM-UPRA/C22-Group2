@@ -27,30 +27,38 @@ with open("JSONfiles/inventory_report.json") as f:
 # productsList = MagerDicts(productsList, product6)
 
 
-def getDatedReportModel(report_type, date):
+def getDatedReportModel(report_type, date, product_id = None):
     db = DBConnect()
     
     if date == "" or date == None:
         date = str(datetime.today().date())
+    
+    if product_id:
+        product_sql = " AND product_id = %s "
+    else:
+        product_sql = ""
     
     if report_type == "day":
         sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
             FROM product 
             NATURAL JOIN contains
             NATURAL JOIN orders
-            WHERE order_date = %s
-            GROUP BY DAY(order_date), product_id 
+            WHERE order_date = %s""" + product_sql + \
+            """GROUP BY DAY(order_date), product_id 
             ORDER BY name, DAY(order_date)"""
             
-        result = list(db.query(sql, (date)))
+        if product_id:
+            result = list(db.query(sql, (date, product_id)))
+        else:
+            result = list(db.query(sql, (date)))
         
     elif report_type == "week":
         sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
             FROM product 
             NATURAL JOIN contains
             NATURAL JOIN orders
-            WHERE order_date BETWEEN %s AND %s
-            GROUP BY DAY(order_date), product_id 
+            WHERE order_date BETWEEN %s AND %s""" + product_sql + \
+            """GROUP BY DAY(order_date), product_id 
             ORDER BY name, DAY(order_date)"""
         
         # Calculate the date of the previous Sunday
@@ -64,16 +72,23 @@ def getDatedReportModel(report_type, date):
         first_day = sunday.date()
         last_day = saturday.date()
         
-        result = list(db.query(sql, (first_day, last_day)))
+        if product_id:
+            result = list(db.query(sql, (first_day, last_day, product_id)))
+        else:
+            result = list(db.query(sql, (first_day, last_day)))
     elif report_type == "month":
         sql = """SELECT name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
             FROM product 
             NATURAL JOIN contains
             NATURAL JOIN orders
-            WHERE MONTH(order_date) = MONTH(%s) AND YEAR(order_date) = YEAR(%s)
-            GROUP BY DAY(order_date), product_id 
+            WHERE MONTH(order_date) = MONTH(%s) AND YEAR(order_date) = YEAR(%s)""" + product_sql + \
+            """GROUP BY DAY(order_date), product_id 
             ORDER BY name, MONTH(order_date), DAY(order_date)"""
-        result = list(db.query(sql, (date, date)))
+            
+        if product_id:
+            result = list(db.query(sql, (date, date, product_id)))
+        else:
+            result = list(db.query(sql, (date, date)))
     else:
         return
     
@@ -107,3 +122,8 @@ def getStockReportModel():
         row['price'] = '$' + format(row['price'], '.2f')
     
     return result
+
+def getProductsIDModel():
+    db = DBConnect()
+    sql = "SELECT product_id, name FROM product"
+    return db.query(sql)

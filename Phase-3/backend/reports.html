@@ -182,12 +182,11 @@
                                                 <input type="hidden" name="report" value="day">
                                             </li>
                                             <li>
-                                                <label for="products">Choose a product:</label>
-                                                <select id="products" name="products">
-                                                  <option value="Echeveria">Echeveria</option>
-                                                  <option value="Kalanchoe">Kalanchoe</option>
-                                                  <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-                                                  <option value="Sunflower">Sunflower</option>
+                                                <label for="product">Choose a product:</label>
+                                                <select id="product" name="product">
+                                                {% for product in products %}
+                                                  <option value="{{product['product_id']}}">{{product['name']}}</option>
+                                                {% endfor %}
                                                 </select>
                                             </li>
                                             <li>
@@ -208,15 +207,15 @@
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='week1' name='report' value="week">
+                                                <input id='week1' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="week">
                                             </li>
                                             <li>
-                                                <label for="products1">Choose a product:</label>
-                                                <select id="products1" name="products">
-                                                  <option value="Echeveria">Echeveria</option>
-                                                  <option value="Kalanchoe">Kalanchoe</option>
-                                                  <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-                                                  <option value="Sunflower">Sunflower</option>
+                                                <label for="product">Choose a product:</label>
+                                                <select id="product" name="product">
+                                                {% for product in products %}
+                                                  <option value="{{product['product_id']}}">{{product['name']}}</option>
+                                                {% endfor %}
                                                 </select>
                                             </li>
                                             <li>
@@ -236,15 +235,15 @@
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='month1' name='report_month' type="month">
+                                                <input id='month1' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="month">
                                             </li>
                                             <li>
-                                                <label for="products2">Choose a product:</label>
-                                                <select id="products2" name="products">
-                                                  <option value="Echeveria">Echeveria</option>
-                                                  <option value="Kalanchoe">Kalanchoe</option>
-                                                  <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-                                                  <option value="Sunflower">Sunflower</option>
+                                                <label for="product">Choose a product:</label>
+                                                <select id="product" name="product">
+                                                {% for product in products %}
+                                                  <option value="{{product['product_id']}}">{{product['name']}}</option>
+                                                {% endfor %}
                                                 </select>
                                             </li>
                                             <li>

@@ -10,7 +10,7 @@ from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
 from backend_controller.productsController import *
 from backend_controller.accountsController import *
-from backend_controller.reportsController import getDatedReport, getStockReport
+from backend_controller.reportsController import *
 from backend_controller.profileController import *
 
 # In this template, you will usually find functions with comments tying them to a specific controller
@@ -354,7 +354,8 @@ def editorder():
 @app.route("/reports")
 @login_required
 def reports():
-    return render_template("reports.html")
+    products = get_products_id()
+    return render_template("reports.html", products=products)
 
 
 @app.route("/report", methods=['GET'])
@@ -367,11 +368,12 @@ def report():
 
     report_type = request.args.get('report')
     report_date = request.args.get('report_date')
+    product_id = request.args.get('product')
   
     if request.args.get('report') == 'inventory':
         report, report_cols = getStockReport()
     else:
-        report, report_cols = getDatedReport(report_type, report_date)
+        report, report_cols = getDatedReport(report_type, report_date, product_id)
 
 
     return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type)
