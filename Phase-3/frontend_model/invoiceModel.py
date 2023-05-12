@@ -23,28 +23,27 @@ def get_cart_model():
 
 def getOrderModel(id):
     db = DBConnect()
-    sql = ("SELECT tracking_number, order_date, arrival_date, orders.status AS status,"
-    "address_line1, address_line2, city, state, zipcode, "
-    "card_type,"
-    "SUM(quantity * price) AS total, "
-    "SUM(quantity) AS amount "
-    "FROM orders "
-    "NATURAL JOIN order_item "
-    "NATURAL JOIN customer "
-    "NATURAL JOIN payment_method "
-    "NATURAL JOIN shipping_address "
-    "NATURAL JOIN product "
-    "WHERE order_id = %s "
-    "GROUP BY tracking_number, order_date, arrival_date,"
-    "address_line1, address_line2, card_type;")
+    sql = ("""SELECT tracking_number, order_date, arrival_date, orders.status AS status,
+    address_line1, address_line2, city, state, zipcode, 
+    card_type,
+    SUM(product_quantity * product_price) AS total, 
+    SUM(product_quantity) AS amount 
+    FROM orders 
+    NATURAL JOIN contains 
+    NATURAL JOIN customer 
+    NATURAL JOIN payment_method 
+    NATURAL JOIN shipping_address 
+    NATURAL JOIN product 
+    WHERE order_id = %s 
+    GROUP BY tracking_number, order_date, arrival_date, address_line1, address_line2, card_type;""")
     
     result = list(db.query(sql, (id)))
     return result.pop()
 
 def getOrderProductsModel(id):
     db = DBConnect()
-    sql = ("SELECT name, location, name, price, quantity, price, image, quantity * price AS total_price "
-    "FROM orders NATURAL JOIN order_item NATURAL JOIN product WHERE order_id = %s")
+    sql = ("SELECT name, location, name, product_price, product_quantity, price, image, product_quantity * product_price AS total_price "
+    "FROM orders NATURAL JOIN contains NATURAL JOIN product WHERE order_id = %s")
     result = db.query(sql, (id))
     return result
 
@@ -57,22 +56,29 @@ def addOrderModel():
 
     try:
 
+        print("Trying to add order")
         # Create the order
         sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status) VALUES(%s, %s, %s, %s, %s)"
-        cursor = db.execute(sql, (session['customer'], tk, current_date, arrival_date, "Received"))
+        cursor = db.execute(sql, (session['customer'], tk, str(current_date), str(arrival_date), "Received"))
 
         # Get the order id
         order_id = cursor.lastrowid
 
+        print("the order id is: ", order_id)
         # Add each item to order
         for item in cart:
             
             
-            sql = "INSERT INTO order_item (order_id, product_id, quantity) VALUES (%s,%s,%s)"
-            db.execute(sql, (order_id, item['product_id'], item['quantity']))
+            sql = "INSERT INTO contains (order_id, product_id, product_quantity, product_price) VALUES (%s, %s, %s, %s)"
             
-            sql = "UPDATE product SET stock = stock - {} WHERE product_id = %s".format(int(item['quantity']))
+            print("Parameters for product: ", item)
+            db.execute(sql, (order_id, item['product_id'], item['product_quantity'], item['price']))
+            
+            print("new contains id is: ", cursor.lastrowid)
+            
+            sql = "UPDATE product SET stock = stock - {} WHERE product_id = %s".format(int(item['product_quantity']))
             db.execute(sql, (item['product_id']))
+            print("Changed stock of product")
 
         db.commit()
         session['cart'] = []
@@ -80,8 +86,10 @@ def addOrderModel():
     except Exception as e:
         db.rollback()
         print(f"Error occurred: {e}")
+        print("Error coming from addOrderModel()")
         return None
 
+    print("order id is ", order_id)
     return order_id
 
 def getProductsModel():

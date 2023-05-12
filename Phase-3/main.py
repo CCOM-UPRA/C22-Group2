@@ -117,8 +117,8 @@ def shop():
     session['total'] = 0
     # And set the total for the entire site to access
     for item in session['cart']:
-            total += float(item['price']) * float(item['quantity'])
-            amount += 1 * int(item['quantity'])
+            total += float(item['price']) * float(item['product_quantity'])
+            amount += 1 * int(item['product_quantity'])
 
     session['total'] = round(total,2)
     session['amount'] = amount
@@ -218,9 +218,9 @@ def delete():
     session['amount'] = 0
     session['total'] = 0
     for item in session['cart']:
-            total = float(item['price']) * float(item['quantity'])
+            total = float(item['price']) * float(item['product_quantity'])
             session['total'] += round(total,2)
-            amount += 1 * int(item['quantity'])
+            amount += 1 * int(item['product_quantity'])
             session['amount'] = amount
 
     return redirect(request.referrer)
@@ -238,14 +238,14 @@ def editcart():
                 if int(quantity) == 0:
                     deleteCartItem(int(p_id))
                 else:
-                    product['quantity'] = int(quantity)
+                    product['product_quantity'] = int(quantity)
 
     total = 0
     amount = 0
     for item in session['cart']:
-            total += float(item['price']) * float(item['quantity'])
-            amount += 1 * int(item['quantity'])
-            item['total_price'] = round(int(item['quantity']) * float(item['price']),2)
+            total += float(item['price']) * float(item['product_quantity'])
+            amount += 1 * int(item['product_quantity'])
+            item['total_price'] = round(int(item['product_quantity']) * float(item['price']),2)
 
     session['total'] = round(total,2)
     session['amount'] = amount
@@ -364,7 +364,7 @@ def invoice():
     # Total amount of items in this simulated order:
     amount = 0
     for product in products:
-        amount += product['quantity']
+        amount += product['product_quantity']
     return render_template("invoice.html", order=order, products=products, amount=amount)
 
 

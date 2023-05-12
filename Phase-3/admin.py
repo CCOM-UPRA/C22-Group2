@@ -10,7 +10,7 @@ from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
 from backend_controller.productsController import *
 from backend_controller.accountsController import *
-from backend_controller.reportsController import getDatedReport, getStockReport
+from backend_controller.reportsController import getDatedReportWeek, getStockReport
 from backend_controller.profileController import *
 
 # In this template, you will usually find functions with comments tying them to a specific controller
@@ -357,22 +357,21 @@ def reports():
     return render_template("reports.html")
 
 
-@app.route("/report", methods=['POST'])
+@app.route("/report", methods=['GET'])
 @login_required
 def report():
     # Initialize variables to use
-    date_report = {}
-    stock_report = {}
+    report = {}
     total = 0
 
     # If we're going for any of the reports that have a date, get the information and save in date_report
     # All cases give the same results in this case, no matter your date or product input
-    if 'report_day' in request.form:
-        date_report = getDatedReport()
-    if 'report_week' in request.form:
-        date_report = getDatedReport()
-    if 'report_month' in request.form:
-        date_report = getDatedReport()
+    if request.args.get('report') == 'day':
+        report = getDatedReport()
+    elif request.args.get('report') == 'week':
+        report = getDatedReportWeek()
+    elif request.args.get('report') == 'month':
+        report = getDatedReport()
 
     # If we're going for the inventory/stock report, get the data and save in stock_report
     if 'stock_report' in request.form:
@@ -380,13 +379,17 @@ def report():
 
     # If we're going for any of the reports with dates, we need a total at the end
     # Calculate the total according to the sum of the total_prices for each item in the report
-    if date_report != {}:
-        for key, order in date_report.items():
-            total += order['total_price']
+    # if report != {}:
+    #     for keyorder in report:
+    #         total += order['total_price']
 
     # We send to the report page all variables whether empty or not
     # The HTML will validate which variable is empty and will show the appropriate information
-    return render_template("report.html", date_report=date_report, stock_report=stock_report, total=total)
+    
+    print("All report values: ", report)
+    print(type(report[0]))
+    print(type(report[0].items()))
+    return render_template("report.html", report=report)
 
 
 # Press the green button in the gutter to run the script.

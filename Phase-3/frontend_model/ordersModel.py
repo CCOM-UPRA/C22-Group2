@@ -21,10 +21,10 @@ def get_orders_and_products_model(customer_id):
     orders_query = ("""SELECT order_id, tracking_number, order_date, arrival_date, orders.status AS status,
     address_line1, address_line2, city, state, zipcode,
     card_type,
-    SUM(quantity * price) AS total,
-    SUM(quantity) AS amount 
+    SUM(product_quantity * product_price) AS total,
+    SUM(product_quantity) AS amount 
     FROM orders
-    NATURAL JOIN order_item
+    NATURAL JOIN contains
     NATURAL JOIN customer
     NATURAL JOIN payment_method
     NATURAL JOIN shipping_address
@@ -34,8 +34,8 @@ def get_orders_and_products_model(customer_id):
     address_line1, address_line2, card_type
     ORDER BY order_id ASC;""")
 
-    products_query = ("""SELECT order_id, product_id, name, image, price, quantity, (price * quantity) AS total_price
-    FROM order_item
+    products_query = ("""SELECT order_id, product_id, name, image, price, product_quantity, (product_price * product_quantity) AS total_price
+    FROM contains
     NATURAL JOIN product
     WHERE order_id IN (SELECT order_id FROM orders WHERE customer_id = %s);""")
 

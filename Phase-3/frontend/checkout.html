@@ -117,7 +117,7 @@
                                                 <h6>${{item['price']}}</h6>
                                             </td>
                                             <td class="table-brand">
-                                                <h6>{{item['quantity']}}</h6>
+                                                <h6>{{item['product_quantity']}}</h6>
                                             </td>
                                             <td class="table-brand">
                                                 <h6>${{item['total_price']}}</h6>
@@ -193,7 +193,7 @@
                                                                                     <input
                                                                                         class="custom-quantity-input action-input"
                                                                                         title="Quantity Number" type="text"
-                                                                                        id="quantity" name="quantity" value="{{item['quantity']}}"
+                                                                                        id="quantity" name="quantity" value="{{item['product_quantity']}}"
                                                                                         min="1" max="{{item['stock']}}">
                                                                                     <input type="hidden" id="p_id" name="p_id"
                                                                                         value="{{item['product_id']}}">

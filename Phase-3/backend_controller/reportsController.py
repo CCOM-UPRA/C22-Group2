@@ -1,8 +1,8 @@
 from backend_model.reportsModel import *
 
 
-def getDatedReport():
-    return getDatedReportModel()
+def getDatedReportWeek():
+    return getDatedReportWeekModel()
 
 
 def getStockReport():

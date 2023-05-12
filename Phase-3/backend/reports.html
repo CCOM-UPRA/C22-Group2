@@ -100,17 +100,17 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="POST">
+                                             <form action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="day">Report by day</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input id='day' name='report_day' type="date">
+                                                <input type="hidden"id='day' name='report_day' type="date">
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button></div>
                                             </li>
@@ -119,17 +119,17 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="POST">
+                                             <form action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="week">Report by week</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input id='week' name='report_week' type="week">
+                                                <input type="hidden"id='week' name='report' value="week">
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button></div>
                                             </li>
@@ -138,17 +138,17 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="POST">
+                                             <form action="{{url_for('report')}}" method="GET">
                                              <li>
                                                 <label for="month">Report by month</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input id='month' name='report_month' type="month">
+                                                <input type="hidden"id='month' name='report_month' type="month">
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button></div>
                                             </li>
@@ -169,13 +169,13 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                            <form action="{{url_for('report')}}" method="POST">
+                                            <form action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="day1">Report by day</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input id='day1' name='report_day' type="date">
+                                                <input type="hidden"id='day1' name='report_day' type="date">
                                             </li>
                                             <li>
                                                 <label for="products">Choose a product:</label>
@@ -188,7 +188,7 @@
                                             </li>
                                             <li>
                                                  <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button>
                                                     </div>
@@ -198,13 +198,13 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="POST">
+                                             <form action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="week1">Report by week</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input id='week1' name='report_week' type="week">
+                                                <input type="hidden"id='week1' name='report' value="week">
                                             </li>
                                             <li>
                                                 <label for="products1">Choose a product:</label>
@@ -217,7 +217,7 @@
                                             </li>
                                             <li>
                                                  <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button></div>
                                             </li>
@@ -226,13 +226,13 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="POST">
+                                             <form action="{{url_for('report')}}" method="GET">
                                              <li>
                                                 <label for="month1">Report by month</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input id='month1' name='report_month' type="month">
+                                                <input type="hidden"id='month1' name='report_month' type="month">
                                             </li>
                                             <li>
                                                 <label for="products2">Choose a product:</label>
@@ -245,7 +245,7 @@
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button></div>
                                             </li>
@@ -265,14 +265,14 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="POST">
+                                             <form action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <p>Report for all inventory</p>
                                                 <br>
                                             </li>
                                             <li style="display: flex; justify-content: center">
                                                 <div class="details-add-group">
-                                                    <button class="product-add">
+                                                    <button type="submit" class="product-add">
                                                         <span>See Report</span>
                                                     </button></div>
                                             </li>
