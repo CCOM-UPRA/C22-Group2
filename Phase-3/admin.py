@@ -370,13 +370,17 @@ def report():
     report_date = request.args.get('report_date')
     product_id = request.args.get('product')
   
+    if report_date == None or report_date == "":
+        report_day = getTodayDate()
+    else:
+        report_day = report_date
     if request.args.get('report') == 'inventory':
         report, report_cols = getStockReport()
+        return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type, report_date=None, product_id=None)
     else:
         report, report_cols = getDatedReport(report_type, report_date, product_id)
+        return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type, report_date=report_day, product_id=product_id)
 
-
-    return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__admin__':

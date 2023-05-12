@@ -8,3 +8,6 @@ def getStockReport():
 
 def get_products_id():
     return getProductsIDModel()
+
+def getTodayDate():
+    return getTodayDateModel()
