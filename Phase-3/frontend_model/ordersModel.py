@@ -23,12 +23,11 @@ def get_orders_and_products_model(customer_id):
     card_type,
     SUM(product_quantity * product_price) AS total,
     SUM(product_quantity) AS amount 
-    FROM orders
-    NATURAL JOIN contains
-    NATURAL JOIN customer
-    NATURAL JOIN payment_method
-    NATURAL JOIN shipping_address
-    NATURAL JOIN product
+    FROM orders 
+    NATURAL JOIN contains 
+    NATURAL JOIN customer 
+    NATURAL JOIN payment_method 
+    NATURAL JOIN shipping_address 
     WHERE customer_id = %s
     GROUP BY order_id, tracking_number, order_date, arrival_date,
     address_line1, address_line2, card_type
