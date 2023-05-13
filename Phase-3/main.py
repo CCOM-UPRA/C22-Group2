@@ -120,7 +120,7 @@ def shop():
             total += float(item['price']) * float(item['product_quantity'])
             amount += 1 * int(item['product_quantity'])
 
-    session['total'] = round(total,2)
+    session['total'] = f'{total:.2f}'
     session['amount'] = amount
 
     # Redirect to shop page with the variables used
@@ -217,11 +217,13 @@ def delete():
     total = 0
     session['amount'] = 0
     session['total'] = 0
+    
     for item in session['cart']:
-            total = float(item['price']) * float(item['product_quantity'])
-            session['total'] += round(total,2)
+            total += float(item['price']) * float(item['product_quantity'])
             amount += 1 * int(item['product_quantity'])
-            session['amount'] = amount
+            
+    session['total'] = f'{total:.2f}'
+    session['amount'] = amount
 
     return redirect(request.referrer)
 
@@ -247,7 +249,7 @@ def editcart():
             amount += 1 * int(item['product_quantity'])
             item['total_price'] = round(int(item['product_quantity']) * float(item['price']),2)
 
-    session['total'] = round(total,2)
+    session['total'] = f'{total:.2f}'
     session['amount'] = amount
 
     return redirect(request.referrer)

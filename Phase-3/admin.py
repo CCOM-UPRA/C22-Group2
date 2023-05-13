@@ -383,7 +383,9 @@ def report():
         report, report_cols = getDatedReport(report_type, report_date, product_id)
         
         for i in report:
-            total = round(total + float(i['total_price'].split("$")[1]), 2)
+            total += float(i['total_price'].split("$")[1])
+        
+        total = f'{total:.2f}'
         
         return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type, report_date=report_day, product_id=product_id, total=total)
 
