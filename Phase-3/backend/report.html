@@ -141,6 +141,17 @@
                                             {% endif %}
                                         </tbody>
                                     </table>
+                                    {% if report_type != 'inventory' %}
+                                    <div class="checkout-charge">
+                                        <ul>
+                                            <li>
+                                                <span>Total</span>
+                                                <span>${{total}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+    
 
                                 </div>
                             </div>
