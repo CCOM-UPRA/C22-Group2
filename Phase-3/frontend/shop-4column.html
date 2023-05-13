@@ -99,10 +99,15 @@
                 <div class="col-lg-3">
                     <form id="filters-form" action="{{url_for('shop')}}" method="GET">
 
-                        <div class="shop-widget" id="clear-button">
-                            <button class="shop-widget-btn" type="submit" value="clear">
-                                <i class="fas fa-search"></i>
+                        <div class="shop-widget">
+                            <button class="shop-widget-btn" style="margin-bottom:5%" type="submit" value="clear" id="clear-button">
+                                <i class="fas fa-times"></i>
                                 <span>Clear filters</span>
+                            </button>
+
+                            <button class="shop-widget-btn" type="submit" value="all">
+                                <i class="fas fa-search"></i>
+                                <span>Apply All Filters</span>
                             </button>
                         </div>
 
@@ -163,7 +168,7 @@
                             </ul>
                             <button class="shop-widget-btn" type="submit" value="locations">
                                 <i class="fas fa-search"></i>
-                                <span>Search by Recommended location</span>
+                                <span>Apply Recommended location</span>
                             </button>
                         </div>
 
@@ -186,7 +191,7 @@
                             </ul>
                             <button class="shop-widget-btn" type="submit" value="plant-types">
                                 <i class="fas fa-search"></i>
-                                <span>Search by Plant type</span>
+                                <span>Apply Plant type</span>
                             </button>
                         </div>
 
@@ -209,7 +214,7 @@
                             </ul>
                             <button class="shop-widget-btn" type="submit" value="sun-exps">
                                 <i class="fas fa-search"></i>
-                                <span>Search by Sun exposure</span>
+                                <span>Apply Sun exposure</span>
                             </button>
                         </div>
 
@@ -232,15 +237,7 @@
                             </ul>
                             <button class="shop-widget-btn" type="submit" value="waterings">
                                 <i class="fas fa-search"></i>
-                                <span>Search by Watering</span>
-                            </button>
-                        </div>
-
-
-                        <div class="shop-widget">
-                            <button class="shop-widget-btn" type="submit" value="all">
-                                <i class="fas fa-search"></i>
-                                <span>Search by All Filters</span>
+                                <span>Apply Watering</span>
                             </button>
                         </div>
 
