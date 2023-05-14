@@ -93,7 +93,7 @@
                         <br>
 
                     </div>
-                    {% set prefix = 'a_' if userType == 'admin' else 'c_' %}
+                    {% set prefix = 'administrator_' if userType == 'administrator' else 'customer_' %}
                 <div style='display:flex; justify-content:center' class="row">
                     <div class="col-lg-6">
                         <div class="details-content">
@@ -106,25 +106,25 @@
 
                                     <div class="form-group">
                                         <label class="form-label">First Name</label>
-                                        <input type="text" name="fname" class="form-control" value="{{acc[prefix + 'first_name']}}">
+                                        <input type="text" name="fname" class="form-control" value="{{acc['first_name']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Last Name</label>
-                                        <input type="text" name="lname" class="form-control" value="{{acc[prefix + 'last_name']}}">
+                                        <input type="text" name="lname" class="form-control" value="{{acc['last_name']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Phone Number</label>
-                                        <input type="number" name="pnumber" class="form-control" value="{{acc[prefix + 'phone_number']}}">
+                                        <input type="number" name="pnumber" class="form-control" value="{{acc['phone_number']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">email</label>
-                                        <input type="text" name="email" class="form-control" value="{{acc[prefix + 'email']}}">
+                                        <input type="text" name="email" class="form-control" value="{{acc['email']}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">password</label>
-                                        <input type="text" name="pass1" class="form-control" value="{{acc[prefix + 'password']}}">
+                                        <input type="text" name="pass1" class="form-control" value="{{acc['password']}}">
                                     </div>
-                                     {% if acc['c_status'] == 'active' %}
+                                     {% if acc['status'] == 'active' %}
                                          <div class="form-group">
                                             <label class="form-label">status</label><br>
                                              <label for="active">Active</label>
@@ -148,23 +148,23 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Address Line 1</label>
-                                        <input type="text" name="aline1" class="form-control" value="{{acc['c_address_line_1']}}"></input>
+                                        <input type="text" name="aline1" class="form-control" value="{{acc['address_line_1']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Address Line 2</label>
-                                        <input type="text" name="aline2" class="form-control" value="{{acc['c_address_line_2']}}"></input>
+                                        <input type="text" name="aline2" class="form-control" value="{{acc['address_line_2']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">City</label>
-                                        <input type="text" name="city" class="form-control" value="{{acc['c_city']}}"></input>
+                                        <input type="text" name="city" class="form-control" value="{{acc['city']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">State</label>
-                                        <input type="text" name="state" class="form-control" value="{{acc['c_state']}}"></input>
+                                        <input type="text" name="state" class="form-control" value="{{acc['state']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Zipcode</label>
-                                        <input type="text" name="zipcode" class="form-control" value="{{acc['c_zipcode']}}"></input>
+                                        <input type="text" name="zipcode" class="form-control" value="{{acc['zipcode']}}"></input>
                                     </div>
                                     <div class="form-title">
                                         <h3>payment info</h3>
@@ -172,19 +172,19 @@
 
                                     <div class="form-group">
                                         <label class="form-label">Name on card</label>
-                                        <input type="text" name="cname" class="form-control" value="{{acc['c_card_name']}}"></input>
+                                        <input type="text" name="cname" class="form-control" value="{{acc['card_name']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Card number</label>
-                                        <input type="number" name="cnumber" class="form-control" value="{{acc['c_card_num']}}"></input>
+                                        <input type="number" name="cnumber" class="form-control" value="{{acc['card_num']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Card type</label>
-                                        <input type="text" name="ctype" class="form-control" value="{{acc['c_card_type']}}"></input>
+                                        <input type="text" name="ctype" class="form-control" value="{{acc['card_type']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Expiration Date</label>
-                                        <input type="date" name="cdate" class="form-control" value="{{acc['c_exp_date']}}"></input>
+                                        <input type="date" name="cdate" class="form-control" value="{{acc['exp_date']}}"></input>
                                     </div>
                                     {% endif %}
                                     <div class="details-add-group">

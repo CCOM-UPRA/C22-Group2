@@ -1,19 +1,6 @@
 from classes.db_connect import DBConnect
 from passlib.hash import sha256_crypt
 from flask import session
-# import json
-# from random import randrange
-
-# usersPath = './UserData/users.json'
-# adminsPath = './UserData/admins.json'
-
-# Merge dictionaries
-# def MagerDicts(dict1, dict2):
-#     if isinstance(dict1, list) and isinstance(dict2, list):
-#         return dict1 + dict2
-#     elif isinstance(dict1, dict) and isinstance(dict2, dict):
-#         return dict(list(dict1.items()) + list(dict2.items()))
-#     return False
 
 # Get all accounts
 def getaccountsmodel(userType):
@@ -37,27 +24,16 @@ def getaccountsmodel(userType):
 # In this case, we're requesting it via the key
 def getaccountmodel(acc, userType):
     db = DBConnect()
-    usersList = []
     if userType == 'customer':
-        query = "SELECT * from customer join payment_method WHERE cistomer_id = %s"
-        customerFound = db.query(query, acc)
+        query = "SELECT * FROM customer NATURAL JOIN payment_method NATURAL JOIN shipping_address WHERE customer_id = %s"
+        result = db.query(query, (acc)).pop()
+        return result
 
-        for user in customerFound:
-            usersList.append({"id": user['customer_id'], "first_name": user['first_name'], "last_name": user['last_name'],
-                          "email": user['email'], "aline1": user['bill_address_line1'], "aline2": user['bill_address_line2'],
-                          "city": user['bill_city'], "state": user['bill_state'], "zipcode": user['bill_zipcode'],
-                        "phone_number": user['phone_number'], "card_name": user["card_name"], "card_type": user['card_type'],
-                        "card_number": user['card_number'], "exp_date": user['card_exp_date'], "status": user['status']})
     elif userType == 'administrator':
-        query = "SELECT * from administrator WHERE administrator_id = %s"
-        adminFound = db.query(query, acc)
+        query = "SELECT * FROM administrator WHERE administrator_id = %s"
+        result = db.query(query, (acc)).pop()
+        return result
 
-        for user in adminFound:
-            usersList.append(
-                {"id": user['administrator_id'], "first_name": user['first_name'], "last_name": user['last_name'],
-                 "email": user['email'], "phone_number": user['phone_number'],
-                 "status": user['status']})
-    return usersList
 # Assigns key to account and adds to json
 def addaccountmodel(acc : dict, admin = False):
     path = adminsPath if admin else usersPath

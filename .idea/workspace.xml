@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="add_product correction and pruducts update">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Can view customer and administrator accounts in backend.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Phase-3/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Phase-3/backend/accounts.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend/accounts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-3/backend_controller/accountsController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_controller/accountsController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-3/backend/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-3/backend/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-3/backend/single_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend/single_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-3/backend_controller/profileController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_controller/profileController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Phase-3/backend_model/accountsModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_model/accountsModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-3/backend_model/ordersModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_model/ordersModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Phase-3/backend_model/profileModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_model/profileModel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,6 +128,11 @@
       <workItem from="1683399895492" duration="417000" />
       <workItem from="1683400316504" duration="8953000" />
       <workItem from="1683482693070" duration="5084000" />
+      <workItem from="1683487919339" duration="4358000" />
+      <workItem from="1683492861093" duration="21000" />
+      <workItem from="1683492902608" duration="819000" />
+      <workItem from="1683923758523" duration="5790000" />
+      <workItem from="1684019859715" duration="6430000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio foto de logo backend">
       <created>1677021886991</created>
@@ -154,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677550498613</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Can view customer and administrator accounts in backend.">
+      <created>1683492665173</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683492665173</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -178,7 +193,8 @@
     <MESSAGE value="Cambio foto de logo backend" />
     <MESSAGE value="Foto" />
     <MESSAGE value="add_product correction and pruducts update" />
-    <option name="LAST_COMMIT_MESSAGE" value="add_product correction and pruducts update" />
+    <MESSAGE value="Can view customer and administrator accounts in backend." />
+    <option name="LAST_COMMIT_MESSAGE" value="Can view customer and administrator accounts in backend." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/plants_ecommerce_site$main.coverage" NAME="main Coverage Results" MODIFIED="1676913667188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Phase-1-Template-main" />

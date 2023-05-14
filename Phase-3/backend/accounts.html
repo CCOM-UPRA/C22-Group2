@@ -92,7 +92,7 @@
                         <h2>{{userType}} Accounts</h2>
 
                     <div style='padding: 0 40%' class="view-add-group">
-                            <a style= "margin-top: 20px" href="{{url_for('createaccount', userType='customer')}}" class="product-add">Add Account</a>
+                            <a style= "margin-top: 20px" href="{{url_for('createaccount', userType=userType)}}" class="product-add">Add Account</a>
 
                        <ul class="dropdown">
                         <a class="navbar-link dropdown-arrow" href="#">Account list</a>
@@ -124,7 +124,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                {% set prefix = 'administrator_' if userType == 'administrator' else 'customer_' %}
                                 {% for acc in accounts %}
                                 <tr>
                                         <td class="table-name"><h6>{{acc['first_name']}}</h6></td>
@@ -133,7 +133,7 @@
                                         <td class="table-brand"><h6>{{acc['email']}}</h6></td>
                                          <td class="table-brand"><h6>{{acc['status']}}</h6></td>
                                         <td class="table-action">
-                                            <a class="view" href="{{url_for('editaccount', acc=acc['id'], userType=userType)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
+                                            <a class="view" href="{{url_for('editaccount', acc=acc[prefix + 'id'], userType=userType)}}" title="Edit Account"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
