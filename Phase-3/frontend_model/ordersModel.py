@@ -14,6 +14,20 @@ def getOrdersIDsModel(customer_id):
     result = db.query(sql, (customer_id))
     return result
 
+def cancelOrderModel(order_id):
+    db = DBConnect()
+    
+    try:
+        sql = "UPDATE orders SET status = 'Cancelled' WHERE order_id = %s AND customer_id = %s"
+        
+        db.execute(sql, (order_id, session['customer']))
+        
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
 def get_orders_and_products_model(customer_id):
     db = DBConnect()
 

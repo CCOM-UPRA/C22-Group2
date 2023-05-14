@@ -216,7 +216,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {% if order[0]['status'] != 'Cancelled' %}
+                            <div class="row">
+                                <a style="margin-bottom: 5%;" class="cart-checkout-btn" href="{{url_for('cancelorder', order_id=order[0]['order_id'])}}">
+                                    <span class="checkout-label">Cancel Order</span>
+                                </a>
+                            </div>
+                            {% endif %}
                         </div>
+                        
                     </div>
                     {% endfor %}
                 </div>

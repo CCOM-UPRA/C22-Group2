@@ -9,3 +9,6 @@ def get_orders_and_products(customer_id):
 
 def getOrderIDs(customer_id):
     return getOrdersIDsModel(customer_id)
+
+def cancelOrder(order_id):
+    return cancelOrderModel(order_id)

@@ -4,7 +4,7 @@ from frontend_controller.cartController import (addCartController,
 from frontend_controller.checkoutController import getUserCheckout
 from frontend_controller.invoiceController import *
 from frontend_controller.loginController import *
-from frontend_controller.ordersController import getorder, get_orders_and_products
+from frontend_controller.ordersController import getorder, get_orders_and_products, cancelOrder
 from frontend_controller.profileController import *
 from frontend_controller.shopController import *
 
@@ -363,6 +363,13 @@ def createorder():
     order_id = addOrder()
     
     return redirect(url_for("invoice", order_id=order_id))
+
+@app.route("/cancelorder/<order_id>")
+def cancelorder(order_id):
+    
+    cancelOrder(order_id)
+    
+    return redirect(request.referrer)
 
 @app.route("/invoice/<order_id>")
 def invoice(order_id):
