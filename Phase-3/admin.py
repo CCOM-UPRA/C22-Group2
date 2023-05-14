@@ -1,5 +1,7 @@
 from functools import wraps
-from flask import Flask, render_template, redirect, request, session, url_for
+import os
+from flask import Flask, render_template, redirect, request, session, url_for, send_from_directory, flash
+from werkzeug.utils import secure_filename
 from backend_controller.loginController import *
 from backend_controller.ordersController import ordersController, getorder, getorderproducts
 from backend_controller.productsController import *
@@ -11,8 +13,36 @@ from backend_controller.profileController import *
 # main.py accesses the frontend folders
 # Every controller accesses its relevant model and will send the information back to this Flask app
 
+UPLOAD_FOLDER = 'static/images/product-images'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__, template_folder='backend/')
 app.secret_key = 'akeythatissecret'
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/uploads/<name>')
+def download_file(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+
+# @app.route('/upload_image', methods=['POST'])
+# def upload_image():
+#     if request.method == 'POST':
+#         image = request.files['image']
+#         if image:
+#             filename = image.filename
+#             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             return redirect(url_for('show_image', filename=filename))
+#     return redirect(url_for('index'))
+
+# @app.route('/uploads/<filename>')
+# def show_image(filename):
+#     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 
 # Checks if user is logged in before entering page
@@ -95,29 +125,33 @@ def single_product(prodID):
 @login_required
 def editproduct():
     # process the changes to a product's information
+    print(request.files)
     print("Edit product called")
+    if 'image' not in request.files:
+        flash('No file part')
+    file = request.files['image']
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == '':
+        flash('No selected file')
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    product_id = request.form.get('prod_id')
     name = request.form.get('name')
+    plant_type = request.form.get('plant_type')
+    sun_exposure = request.form.get('sun_exposure')
+    watering = request.form.get('watering')
     location = request.form.get('location')
-    family = request.form.get('family')
-    sun = request.form.get('sun')
-    water = request.form.get('water')
-    img = request.form.get('img')
     price = request.form.get('price')
+    cost = request.form.get('cost')
     stock = request.form.get('stock')
     desc = request.form.get('desc')
+    image = filename
+    status = request.form.get('status')
 
-    newProduct = {
-    "name": name,
-    "location": location,
-    "family type": family,
-    "sun": sun,
-    "water": water,
-    "img": img,
-    "price": price,
-    "stock": stock,
-    "desc": desc,
-    }
-    addproductController(newProduct)
+    editproductController(product_id, name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status)
     return redirect('/products')
 
 
@@ -126,6 +160,38 @@ def editproduct():
 def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
+
+@app.route("/add", methods=["POST"])
+@login_required
+def add():
+    # check if the post request has the file part
+    print(request.files)
+    if 'image' not in request.files:
+        flash('No file part')
+    file = request.files['image']
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == '':
+        flash('No selected file')
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+    name = request.form.get('name')
+    plant_type = request.form.get('plant_type')
+    sun_exposure = request.form.get('sun_exposure')
+    watering = request.form.get('watering')
+    location = request.form.get('location')
+    price = request.form.get('price')
+    cost = request.form.get('cost')
+    stock = request.form.get('stock')
+    desc = request.form.get('desc')
+    image = filename
+    status = request.form.get('status')
+
+    addproductController(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status)
+
+    return redirect("/products")
 
 
 @app.route("/accounts")

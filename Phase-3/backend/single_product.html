@@ -98,7 +98,7 @@
                     <div class="col-lg-6">
                         <div class="details-gallery">
                             <ul class="details-preview"> 
-                                <li><img src="../static/images/product-images/{{prod['image']}}" alt="product"></li>
+                                <li><img src="../static/images/product-images/{{prod['image']}}" alt="product" id="image-preview"></li>
                             </ul>
 
                         </div>
@@ -106,21 +106,24 @@
                     <div class="col-lg-6">
                         <div class="details-content">
                             <h3 class="details-name"><a href="#">Details</a></h3>
-                            <form action="{{url_for('editproduct')}}" method="post">
+                            <form action="{{url_for('editproduct')}}" method="POST" enctype="multipart/form-data">
+                            
+                            <input type="hidden" name = "prod_id" value="{{prod['product_id']}}">
+
                             <label for="name">Name: </label>
-                            <input type="text" id="name" title="Name of product" value="{{prod['name']}}"><br>
+                            <input type="text" id="name" name="name" title="Name of product" value="{{prod['name']}}"><br>
 
-                            <label for="brand">Location: </label>
-                            <input type="text" id="Location" title="Best Location for the product" value="{{prod['location']}}"><br>
+                            <label for="plant_type">Plant Type: </label>
+                            <input type="text" id="plant_type" name="plant_type" title="Best Location for the product" value="{{prod['plant_type']}}"><br>
 
-                            <label for="color">Plant Type: </label>
-                            <input type="text" id="plant_type" title="Plant type of the product" value="{{prod['plant_type']}}"><br>
+                            <label for="sun_exposure">Sun Exposure: </label>
+                            <input type="text" id="sun_exposure" name="sun_exposure" title="Plant type of the product" value="{{prod['sun_exp']}}"><br>
 
-                            <label for="videores">Watering: </label>
-                            <input type="text" id="watering" title="Best watering time for the product" value="{{prod['watering']}}"><br>
+                            <label for="watering">Watering: </label>
+                            <input type="text" id="watering" name="watering" title="Best watering time for the product" value="{{prod['watering']}}"><br>
 
-                            <label for="videores">Sun Exposure: </label>
-                            <input type="text" id="sun_exp" title="Best Sun Exposure for the product" value="{{prod['watering']}}"><br>
+                            <label for="location">Location: </label>
+                            <input type="text" id="location" name="location" title="Best Sun Exposure for the product" value="{{prod['location']}}"><br>
 
 
 
@@ -138,32 +141,32 @@
                             {% endif %} -->
 
 
-                            <label for="cost">Cost in $: </label>
-                            <input type="number" id='cost' value="{{prod['cost']}}"><br>
                             <label for="price">Price in $: </label>
-                            <input type="number" id='price' value="{{prod['price']}}"><br>
+                            <input type="number" id='price' name="price" value="{{prod['price']}}"><br>
+                            <label for="cost">Cost in $: </label>
+                            <input type="number" id='cost' name="cost" value="{{prod['cost']}}"><br>
 
                             <label for="stock">Stock: </label>
-                            <input type="number" id='stock' value="{{prod['stock']}}"><br>
+                            <input type="number" id='stock' name="stock" value="{{prod['stock']}}"><br>
 
 
                             <label for="desc">Description: </label>
-                            <textarea class="form-control" id='desc' title="Description" rows="8" cols="80" style="font-size: 16px; line-height: 1.5; padding: 10px;">{{prod['description']}}</textarea>
+                            <textarea class="form-control" id='desc' name="desc" title="Description" rows="8" cols="80" style="font-size: 16px; line-height: 1.5; padding: 10px;">{{prod['description']}}</textarea>
                             <br>
 
                             <label for="myfile">Select an image:</label>
-                            <input type="file" id="myfile" name="myfile" value="{{prod[image]}}">
+                            <input type="file" id="image-input" name="image" value="{{prod[image]}}" onchange="previewImage()">
 
                             <p>Status:</p>
-                            {% if prod[9] == 'active' %}
-                                    <input type="radio" id="active" name="status" value="Active" checked>
+                            {% if prod[9] == 1 %}
+                                    <input type="radio" id="active" name="status" value=1 checked>
                                     <label for="active">Active</label><br>
-                                    <input type="radio" id="inactive" name="status" value="Inactive">
+                                    <input type="radio" id="inactive" name="status" value=0>
                                     <label for="inactive">Inactive</label><br>
                             {% else %}
-                                    <input type="radio" id="act1" name="status" value="Active">
+                                    <input type="radio" id="act1" name="status" value=1>
                                     <label for="act1">Active</label><br>
-                                    <input type="radio" id="inact1" name="status" value="Inactive" checked>
+                                    <input type="radio" id="inact1" name="status" value=0 checked>
                                     <label for="inact1">Inactive</label><br>
                             {% endif %}
 
@@ -214,6 +217,21 @@
         <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
         <script src="{{url_for('static', filename='js/slick.js')}}"></script>
         <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+        <script>
+            function previewImage() {
+              var input = document.getElementById('image-input');
+              var preview = document.getElementById('image-preview');
+            
+              if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  preview.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+              }
+            }
+            </script>
         <!--=====================================
                     JS LINK PART END
         =======================================-->

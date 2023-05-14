@@ -98,7 +98,7 @@
                     <div class="col-lg-6">
                         <div class="details-gallery">
                             <ul class="details-preview">
-                                <li><img src="#" alt="product"></li>
+                                <li><img id="image-preview"></li>
                             </ul>
 
                         </div>
@@ -107,18 +107,18 @@
                         <div class="details-content">
                             <h3 class="details-name"><a href="#">Details</a></h3>
                             <form style="width:100%" class="modal-form"
-                                  action="{{url_for('editproduct')}}" method="POST">
+                                  action="{{url_for('add')}}" method="POST" enctype="multipart/form-data">
                                 <label class="form-label">Name:
                                     <input type="text" name="name" class="form-control" placeholder="Product name"></input></label><br>
 
-                                <label class="form-label">Family Type:
-                                    <input type="text" name="family" class="form-control" placeholder="Product family"></input></label><br>
+                                <label class="form-label">Plant Type:
+                                    <input type="text" name="plant_type" class="form-control" placeholder="Flowers, Cactus..."></input></label><br>
 
                                 <label class="form-label">Sun Exposure:
-                                    <input type="text" name="sun" class="form-control" placeholder="Full sun, full shade..."></input></label><br>
+                                    <input type="text" name="sun_exposure" class="form-control" placeholder="Full sun, Full shade..."></input></label><br>
 
                                 <label class="form-label">Watering frequency:
-                                    <input type="text" name="water" class="form-control" placeholder="Weekly, biweekly..."></input></label><br>
+                                    <input type="text" name="watering" class="form-control" placeholder="Weekly, Biweekly..."></input></label><br>
 
                                 <label class="form-label">Location:
                                     <input type="text" name="location" class="form-control" placeholder="Indoors, Outdoor..."></input></label><br>
@@ -129,19 +129,27 @@
                                 <label class="form-label">Price:
                                     <input type="text" name="price" class="form-control" placeholder="$$..."></input></label><br>
 
+                                <label class="form-label">Cost:
+                                    <input type="text" name="cost" class="form-control" placeholder="$$..."></input></label><br>
+
                                 <label class="form-label">Stock:
                                     <input type="text" name="stock" class="form-control" placeholder="..."></input></label><br>
-
 
                                 <label class="form-label">Description:
                                     <input type="text" name="desc" class="form-control" placeholder="Description..."></input></label><br>
 
                                 <label class="form-label">Image:
-                                    <input type="text" name="desc" class="form-control" placeholder="example.jpg"></input></label><br>
+                                    <input type="file" id="image-input" name="image" onchange="previewImage()">
+                                    </label><br>
+
+                                    <label class="form-label">Status:  </label>
+                                    <input type="radio" id="act1" name="status" value=1>
+                                    <label for="act1">Active</label>
+                                    <input type="radio" id="inact1" name="status" value=0 checked>
+                                    <label for="inact1">Inactive</label><br>
+                                    
 <!--                                <label for="myfile">Select an image:</label>-->
 <!--                                <input type="file" id="myfile" name="myfile">-->
-
-<!--                                <p>Status:</p>-->
 
 <!--                                        <input type="radio" id="active" name="status" value="Active" checked>-->
 <!--                                        <label for="active">Active</label>-->
@@ -196,6 +204,23 @@
         <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
         <script src="{{url_for('static', filename='js/slick.js')}}"></script>
         <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+        <script>
+            function previewImage() {
+              var input = document.getElementById('image-input');
+              var preview = document.getElementById('image-preview');
+            
+              if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  preview.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+              }
+            }
+            </script>
+            
         <!--=====================================
                     JS LINK PART END
         =======================================-->
