@@ -133,9 +133,12 @@ def profile():
     # To open the user's profile page
     # Get user info from getUser() in profileController
     user = getUser(session['customer'])
+    shipping_addresses = getAddress(session['customer'])
+    payment_methods = getPayment(session['customer'])
+
     print(user)
     # Since I specified the variable as user1, that is how it will be called on the html page
-    return render_template("profile.html", user1=user)
+    return render_template("profile.html", user1=user, shipping_addresses=shipping_addresses, payment_methods=payment_methods)
 
 
 # make changes to profile info
