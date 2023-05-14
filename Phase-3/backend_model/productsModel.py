@@ -25,21 +25,30 @@ def getProductsModel():
 def getsingleproductmodel(prodID):
     db = DBConnect()
     query = "SELECT * FROM product WHERE product_id = %s"
-    result = db.query(query,(prodID)).pop()
+    result = list(db.query(query,(prodID))).pop()
     return result
 
 # Add a new product to the JSON file
-def addproductmodel(prod : dict):
-    path = productsPath
-    currentFile = getProductsModel()
-    # assign new key to product
-    newKey = randrange(0, 999999999)
-    while (newKey in currentFile.keys()):
-        newKey = randrange(0, 999999999)
+def addproductmodel(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status):
+    db = DBConnect()
+    sql = "INSERT INTO product (name, location, plant_type, sun_exp, watering, image, price, cost, stock, description, status) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    try:
+        db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status))
 
-    newEntry = {str(newKey): dict(prod)}
-    # add account to dictionary
-    currentFile = MagerDicts(currentFile, newEntry)
-    # write to json
-    with open(path, "w") as f:
-        json.dump(currentFile, f)
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+    
+
+def editproductmodel(product_id, name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status):
+    db = DBConnect()
+    sql = """UPDATE product SET name = %s, location = %s, plant_type = %s, sun_exp = %s, watering = %s, image = %s, price = %s,
+      cost = %s, stock = %s, description = %s, status = %s WHERE product_id = %s"""
+    try:
+        db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status, product_id))
+
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
