@@ -21,7 +21,6 @@ def getaccountsmodel(userType):
 
 
 # Get the specific account requested
-# In this case, we're requesting it via the key
 def getaccountmodel(acc, userType):
     db = DBConnect()
     if userType == 'customer':
@@ -35,7 +34,7 @@ def getaccountmodel(acc, userType):
         return result
 
 # Assigns key to account and adds to json
-def addaccountmodel(acc : dict, admin = False):
+def addaccountmodel(acc, userType):
     path = adminsPath if admin else usersPath
     currentFile = getaccountsmodel(admin=admin)
     # assign new key to account
@@ -51,26 +50,34 @@ def addaccountmodel(acc : dict, admin = False):
         json.dump(currentFile, f)
 
 # Edits the user account
-def editaccountModel(userInfo, userType, id):
-    db = DBconnect()
-    usersList = []
-    if userType == 'administrator':
-        query = "UPDATE admin SET a_firstname = %s, a_lastname = %s, a_phone_number = %s, a_status = %s" \
-                "WHERE admin_id = %s"
-        db.execute(query, (userInfo[0], userInfo[1], userInfo[2], userInfo[3], id))
-    elif userType == 'customer':
-        query = "UPDATE customer SET c_first_name = %s, c_last_name = %s, address_line_1 = %s, address_line_2 = %s, " \
-                "c_city = %s, c_state = %s, c_zipcode = %s, c_phone_number = %s, c_card_name = %s," \
-                "c_card_type = %s, c_card_number = %s, c_exp_date = %s, c_status = %s WHERE c_id = %s"
-        db.execute(query, (userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5], userInfo[6],
-                           userInfo[7], userInfo[8], userInfo[9], userInfo[10], userInfo[11], userInfo[12], id))
+def updateAccountModel(userInfo, userType):
+    db = DBConnect()
+    # usersList = []
+
+    try:
+        if userType == 'administrator':
+            query = "UPDATE administrator SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s" \
+                    "WHERE administrator_id = %s"
+            db.execute(query, userInfo)
+        elif userType == 'customer':
+            query = "UPDATE customer SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s" \
+                    "WHERE customer_id = %s"
+            db.execute(query, userInfo)
+
+        db.commit()
+    except Exception as e:
+        # Log the error to console and rollback changes
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
     return
 
  
  # Pop account 
-def deleteaccountmodel(acc : str, admin = False):
-    path = adminsPath if admin else usersPath
-    currentUsers = getaccountsmodel(admin=admin).pop(acc)
-    # write to json
-    with open(path, "w") as f:
-        json.dump(currentUsers, f)
+# def deleteaccountmodel(acc : str, admin = False):
+#     path = adminsPath if admin else usersPath
+#     currentUsers = getaccountsmodel(admin=admin).pop(acc)
+#     # write to json
+#     with open(path, "w") as f:
+#         json.dump(currentUsers, f)

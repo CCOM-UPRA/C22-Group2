@@ -241,7 +241,7 @@ def editaccount(acc):
     account = getaccount(acc, userType)
     print("Account ID: ", acc)
     print("UserType: ", userType)
-    return render_template("single_account.html", acc=account, userType=userType, message=message)
+    return render_template("single_account.html", acc=account, account=acc, userType=userType, message=message)
 
 # @app.route("/updateaccount", methods=['POST'])
 # def updateaccount():
@@ -278,68 +278,35 @@ def editaccount(acc):
 @app.route("/editinfo", methods=['POST'])
 @login_required
 def editinfo():
-    userType = request.args.get('userType')
-    acc = request.args.get('acc')
-
+    acc = request.form.get('acc')
+    userType = request.form.get('userType')
     fname = request.form.get('fname')
     lname = request.form.get('lname')
-    pnumber = request.form.get('pnumber')
+    phone_number = request.form.get('pnumber')
     email = request.form.get('email')
-    pass1 = request.form.get('pass1')
-    aline1 = request.form.get('aline1')
-    aline2 = request.form.get('aline2')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    zipcode = request.form.get('zipcode')
-    cname = request.form.get('cname')
-    cnumber = request.form.get('cnumber')
-    ctype = request.form.get('ctype')
-    cdate = request.form.get('cdate')
+    password = request.form.get('pass1')
+    status = request.form.get('group1')
 
-    isAdmin = True if userType == 'admin' else False
-    if not isAdmin:
-        editAccount = {
-        "c_first_name": fname,
-        "c_last_name": lname,
-        "c_email": email,
-        "c_password": pass1,
-        "c_phone_number": pnumber,
-        "c_status": "Active",
-        "c_address_line_1": aline1,
-        "c_address_line_2": aline2,
-        "c_city": city,
-        "c_state": state,
-        "c_zipcode": zipcode,
-        "c_card_name": cname,
-        "c_card_type": ctype,
-        "c_exp_date": cdate,
-        "c_card_num": cnumber
-        }
+    if userType == 'customer':
+        # aline1 = request.form.get('aline1')
+        # aline2 = request.form.get('aline2')
+        # city = request.form.get('city')
+        # state = request.form.get('state')
+        # zipcode = request.form.get('zipcode')
+        # cname = request.form.get('cname')
+        # cnumber = request.form.get('cnumber')
+        # ctype = request.form.get('ctype')
+        # cdate = request.form.get('cdate')
+        userInfo = [fname, lname, phone_number, email, password, status, acc]
+        updateAccountcontroller(userInfo, userType)
     else:
-        editAccount = {
-        "a_first_name": fname,
-        "a_last_name": lname,
-        "a_email": email,
-        "a_password": pass1,
-        "a_phone_number": pnumber,
-        "a_status": "Active"
-        } 
-    
-    if userType != None and acc != None:
-        editaccountcontroller(acc, editAccount, isAdmin)
-        acc = getaccounts(isAdmin)
-        return redirect('/accounts?userType=' + userType)
-    else:
-        editAccount = {
-        "a_first_name": fname,
-        "a_last_name": lname,
-        "a_email": email,
-        "a_password": pass1,
-        "a_phone_number": pnumber,
-        "a_status": "Active"
-        } 
-        editaccountcontroller(session['admin'], editAccount, True)
-        return redirect('/profile')
+        userInfo = [fname, lname, phone_number, email, password, status, acc]
+        # Our user info will depend on whether we're updating an admin or customer
+        # -> accountsController.py
+        updateAccountcontroller(userInfo, userType)
+
+    # Go back to edit page with message
+    return redirect("accounts?userType=" + userType)
 
 
 @app.route("/orders")
