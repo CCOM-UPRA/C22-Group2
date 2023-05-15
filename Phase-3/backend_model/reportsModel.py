@@ -12,20 +12,6 @@ with open("JSONfiles/inventory_report_dates.json") as f:
 with open("JSONfiles/inventory_report.json") as f:
     productsList = json.load(f)
 
-# ordersList = dictProd1
-# ordersList = MagerDicts(ordersList, dictProd2)
-# ordersList = MagerDicts(ordersList, dictProd3)
-# ordersList = MagerDicts(ordersList, dictProd4)
-# ordersList = MagerDicts(ordersList, dictProd5)
-
-
-# productsList = product1
-# productsList = MagerDicts(productsList, product2)
-# productsList = MagerDicts(productsList, product3)
-# productsList = MagerDicts(productsList, product4)
-# productsList = MagerDicts(productsList, product5)
-# productsList = MagerDicts(productsList, product6)
-
 
 def getDatedReportModel(report_type, date, product_id = None):
     db = DBConnect()
@@ -55,26 +41,15 @@ def getDatedReportModel(report_type, date, product_id = None):
             result = list(db.query(sql, (date)))
         
     elif report_type == "week":
-        sql = begin_sql + "WHERE order_date BETWEEN %s AND %s" + product_sql + end_sql
-        
-        # Calculate the date of the previous Sunday
-        date_object = datetime.strptime(str(date), '%Y-%m-%d')
-        sunday = date_object - timedelta(days=date_object.weekday())
-
-        # Calculate the date of the next Sunday
-        saturday = sunday + timedelta(days=6)
-        
-        # Extract the first and last day of the week range
-        first_day = sunday.date()
-        last_day = saturday.date()
+        sql = begin_sql + "WHERE WEEK(order_date) = WEEK(%s)" + product_sql + end_sql
         
         if product_id:
-            result = list(db.query(sql, (first_day, last_day, product_id)))
+            result = list(db.query(sql, (str(date), product_id)))
         else:
-            result = list(db.query(sql, (first_day, last_day)))
+            result = list(db.query(sql, (str(date))))
             
     elif report_type == "month":
-        sql = begin_sql + "WHERE MONTH(order_date) = MONTH(%s) AND YEAR(order_date) = YEAR(%s)""" + product_sql + end_sql
+        sql = begin_sql + "WHERE MONTH(order_date) = MONTH(%s) AND YEAR(order_date) = YEAR(%s)" + product_sql + end_sql
             
         if product_id:
             result = list(db.query(sql, (str(date), str(date), product_id)))
