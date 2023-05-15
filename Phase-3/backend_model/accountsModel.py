@@ -56,16 +56,12 @@ def updateAccountModel(userInfo, userType):
 
     try:
         if userType == 'administrator':
-            query = """UPDATE administrator 
-            SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s
-            WHERE administrator_id = %s"""
+            query = "UPDATE administrator SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s" \
+                    "WHERE administrator_id = %s"
             db.execute(query, userInfo)
         elif userType == 'customer':
-            query = """UPDATE customer NATURAL JOIN shipping_address NATURAL JOIN payment_method 
-            SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s,
-             address_line1 = %s, address_line2 = %s, city = %s, state = %s, zipcode = %s,
-             card_name = %s, card_number = %s, card_type = %s, card_exp_date = %s
-            WHERE customer_id = %s"""
+            query = "UPDATE customer SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s" \
+                    "WHERE customer_id = %s"
             db.execute(query, userInfo)
 
         db.commit()
