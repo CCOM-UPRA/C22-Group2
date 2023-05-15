@@ -143,7 +143,7 @@
                                             <input type="radio" id='inactive1' value="Inactive" name="group1">
                                         </div>
                                      {% endif %}
-                                     {% if userType == 'user' %}
+                                     {% if userType == 'customer' %}
                                     <div class="form-title">
                                         <h3>address info</h3>
                                     </div>
@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Card number</label>
-                                        <input type="number" name="cnumber" class="form-control" value="{{acc['card_num']}}"></input>
+                                        <input type="number" name="cnumber" class="form-control" value="{{acc['card_number']}}"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Card type</label>
@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Expiration Date</label>
-                                        <input type="date" name="cdate" class="form-control" value="{{acc['exp_date']}}"></input>
+                                        <input type="date" name="cdate" class="form-control" value="{{acc['card_exp_date']}}"></input>
                                     </div>
                                     {% endif %}
                                     <div class="details-add-group">
