@@ -288,16 +288,16 @@ def editinfo():
     status = request.form.get('group1')
 
     if userType == 'customer':
-        # aline1 = request.form.get('aline1')
-        # aline2 = request.form.get('aline2')
-        # city = request.form.get('city')
-        # state = request.form.get('state')
-        # zipcode = request.form.get('zipcode')
-        # cname = request.form.get('cname')
-        # cnumber = request.form.get('cnumber')
-        # ctype = request.form.get('ctype')
-        # cdate = request.form.get('cdate')
-        userInfo = [fname, lname, phone_number, email, password, status, acc]
+        aline1 = request.form.get('aline1')
+        aline2 = request.form.get('aline2')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        cname = request.form.get('cname')
+        cnumber = request.form.get('cnumber')
+        ctype = request.form.get('ctype')
+        cdate = request.form.get('cdate')
+        userInfo = [fname, lname, phone_number, email, password, status, aline1, aline2, city, state, zipcode, cname, cnumber, ctype, cdate, acc]
         updateAccountcontroller(userInfo, userType)
     else:
         userInfo = [fname, lname, phone_number, email, password, status, acc]
