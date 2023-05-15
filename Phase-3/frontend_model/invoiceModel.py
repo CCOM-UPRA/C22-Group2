@@ -32,9 +32,8 @@ def getOrderModel(id):
     NATURAL JOIN contains 
     NATURAL JOIN customer 
     NATURAL JOIN payment_method 
-    NATURAL JOIN shipping_address 
-    NATURAL JOIN product 
-    WHERE order_id = %s 
+    NATURAL JOIN shipping_address  
+    WHERE order_id = %s
     GROUP BY tracking_number, order_date, arrival_date, address_line1, address_line2, card_type;""")
     
     result = list(db.query(sql, (id)))
@@ -42,8 +41,10 @@ def getOrderModel(id):
 
 def getOrderProductsModel(id):
     db = DBConnect()
-    sql = ("SELECT name, location, name, product_price, product_quantity, price, image, product_quantity * product_price AS total_price "
-    "FROM orders NATURAL JOIN contains NATURAL JOIN product WHERE order_id = %s")
+    sql = ("""SELECT name, location, product_price, product_quantity, price, image, product_quantity * product_price AS total_price 
+    FROM orders RIGHT JOIN contains ON orders.order_id = contains.order_id
+    LEFT JOIN product ON contains.product_id = product.product_id
+    WHERE contains.order_id = %s""")
     result = db.query(sql, (id))
     return result
 

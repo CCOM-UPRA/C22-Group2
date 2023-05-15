@@ -9,7 +9,7 @@ from classes.db_connect import DBConnect
 
 def getProductsModel():
     db = DBConnect()
-    query = "SELECT * FROM product"
+    query = "SELECT * FROM product WHERE status = 1"
     result = db.query(query)
     return result
 
@@ -17,7 +17,7 @@ def getProductsModel():
 def searchProductsModel(search_query, filters = None):
     db = DBConnect()
     to_search = f"%{search_query}%"
-    query = "SELECT * FROM product WHERE name LIKE %s"
+    query = "SELECT * FROM product WHERE status = 1 AND name LIKE %s "
     result = db.query(query, (to_search))
     return result
 
@@ -90,7 +90,7 @@ def get_filtered_products_model(sortings=None, sortByOrder=None, locations=None,
     db = DBConnect()
 
     # Start building the query and parameters
-    query = "SELECT * FROM product WHERE 1=1"
+    query = "SELECT * FROM product WHERE status = 1"
     params = []
 
     # Apply the location filter

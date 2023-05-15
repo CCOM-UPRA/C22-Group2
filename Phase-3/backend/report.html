@@ -24,7 +24,7 @@
         =======================================-->
 
     <!-- WEBPAGE TITLE -->
-    <title>Product Tab - Greeny</title>
+    <title>Report By {{ report_type.replace('_', ' ')|capitalize }} - Urban Gardens</title>
 
     <!--=====================================
                     CSS LINK PART START
@@ -92,8 +92,21 @@
             <div style='text-align: center'>
 
                 <br><br>
-                <h2>Report</h2>
+                <h2>Report By {{ report_type.replace('_', ' ')|capitalize }}</h2>
+                {% if report_date %}
+                <div class="row">
+                    <p class="text-center">Chosen Date: {{report_date }}</p>
+                </div>
+                {% endif %}
 
+                {% if product_id %}
+                <div class="row">
+                    <p class="text-center">Product ID: {{ product_id }}</p>
+                </div>
+                {% endif %}
+                {% if product %}
+
+                {% endif %}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="account-card">
@@ -106,14 +119,16 @@
 
                                         <thead>
                                             <tr>
-                                            {% for key, value in report[0].items() %}
-                                            
-                                                <th scope="col">{{ key.replace('_', ' ')|capitalize }}</th>
+
+                                            {% for col in report_cols %}
+                                                <th scope="col">{{ col.replace('_', ' ')|capitalize }}</th>
                                             {% endfor %}
+
                                             </tr>
                                         </thead>
 
                                         <tbody>
+                                            {% if report | length > 0 %}
                                             {% for item in report %}
                                             <tr>
                                                 {% for key, value in item.items() %}
@@ -123,8 +138,20 @@
                                                 {% endfor %}
                                             </tr>
                                             {% endfor %}
+                                            {% endif %}
                                         </tbody>
                                     </table>
+                                    {% if report_type != 'inventory' %}
+                                    <div class="checkout-charge">
+                                        <ul>
+                                            <li>
+                                                <span>Total</span>
+                                                <span>${{total}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+    
 
                                 </div>
                             </div>

@@ -22,7 +22,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Greeny - Order History</title>
+        <title>Reports - Urban Gardens</title>
 
         <!--=====================================
                     CSS LINK PART START
@@ -100,18 +100,19 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="GET">
+                                             <form class="report-form" action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="day">Report by day</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='day' name='report_day' type="date">
+                                                <input id='day' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="day">
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button></div>
                                             </li>
                                              </form>
@@ -119,18 +120,19 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="GET">
+                                             <form class="report-form" action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="week">Report by week</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='week' name='report' value="week">
+                                                <input id='week' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="week">
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button></div>
                                             </li>
                                              </form>
@@ -138,18 +140,19 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="GET">
+                                             <form class="report-form" action="{{url_for('report')}}" method="GET">
                                              <li>
                                                 <label for="month">Report by month</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='month' name='report_month' type="month">
+                                                <input id='month' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="month">
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button></div>
                                             </li>
                                              </form>
@@ -169,27 +172,27 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                            <form action="{{url_for('report')}}" method="GET">
+                                            <form class="report-form" action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="day1">Report by day</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='day1' name='report_day' type="date">
+                                                <input id='day1' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="day">
                                             </li>
                                             <li>
-                                                <label for="products">Choose a product:</label>
-                                                <select id="products" name="products">
-                                                  <option value="Echeveria">Echeveria</option>
-                                                  <option value="Kalanchoe">Kalanchoe</option>
-                                                  <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-                                                  <option value="Sunflower">Sunflower</option>
+                                                <label for="product">Choose a product:</label>
+                                                <select id="product" name="product">
+                                                {% for product in products %}
+                                                  <option value="{{product['product_id']}}">{{product['name']}}</option>
+                                                {% endfor %}
                                                 </select>
                                             </li>
                                             <li>
                                                  <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button>
                                                     </div>
                                             </li>
@@ -198,27 +201,27 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="GET">
+                                             <form class="report-form" action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <label for="week1">Report by week</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='week1' name='report' value="week">
+                                                <input id='week1' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="week">
                                             </li>
                                             <li>
-                                                <label for="products1">Choose a product:</label>
-                                                <select id="products1" name="products">
-                                                  <option value="Echeveria">Echeveria</option>
-                                                  <option value="Kalanchoe">Kalanchoe</option>
-                                                  <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-                                                  <option value="Sunflower">Sunflower</option>
+                                                <label for="product">Choose a product:</label>
+                                                <select id="product" name="product">
+                                                {% for product in products %}
+                                                  <option value="{{product['product_id']}}">{{product['name']}}</option>
+                                                {% endfor %}
                                                 </select>
                                             </li>
                                             <li>
                                                  <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button></div>
                                             </li>
                                              </form>
@@ -226,27 +229,27 @@
                                     </div>
                                      <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="GET">
+                                             <form class="report-form" action="{{url_for('report')}}" method="GET">
                                              <li>
                                                 <label for="month1">Report by month</label>
                                                 <br>
                                             </li>
                                             <li>
-                                                <input type="hidden"id='month1' name='report_month' type="month">
+                                                <input id='month1' name='report_date' type="date">
+                                                <input type="hidden" name="report" value="month">
                                             </li>
                                             <li>
-                                                <label for="products2">Choose a product:</label>
-                                                <select id="products2" name="products">
-                                                  <option value="Echeveria">Echeveria</option>
-                                                  <option value="Kalanchoe">Kalanchoe</option>
-                                                  <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-                                                  <option value="Sunflower">Sunflower</option>
+                                                <label for="product">Choose a product:</label>
+                                                <select id="product" name="product">
+                                                {% for product in products %}
+                                                  <option value="{{product['product_id']}}">{{product['name']}}</option>
+                                                {% endfor %}
                                                 </select>
                                             </li>
                                             <li>
                                                 <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button></div>
                                             </li>
                                              </form>
@@ -265,18 +268,18 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <ul class="orderlist-details">
-                                             <form action="{{url_for('report')}}" method="GET">
+                                             <form class="report-form" action="{{url_for('report')}}" method="GET">
                                             <li>
                                                 <p>Report for all inventory</p>
                                                 <br>
                                             </li>
                                             <li style="display: flex; justify-content: center">
                                                 <div class="details-add-group">
-                                                    <button type="submit" class="product-add">
-                                                        <span>See Report</span>
+                                                    <button type="submit" class="cart-checkout-btn">
+                                                        <span class="checkout-label">See Report</span>
                                                     </button></div>
                                             </li>
-                                                <input type="hidden" name="stock_report" value="inventory_report">
+                                                <input type="hidden" name="report" value="inventory">
                                              </form>
                                         </ul>
                                     </div>
@@ -327,6 +330,20 @@
         <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
         <script src="{{url_for('static', filename='js/slick.js')}}"></script>
         <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+        <script>
+            var forms = document.getElementsByClassName('report-form');
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].addEventListener('submit', function(event) {
+                    var date = this.querySelector('input[type="date"]').value;
+                    if (date === '') {
+                        event.preventDefault();
+                        alert('Please select a date');
+                    }
+                });
+            }
+        </script>
+
         <!--=====================================
                     JS LINK PART END
         =======================================-->
