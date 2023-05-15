@@ -184,10 +184,8 @@ def accountinfo():
     ctype = request.form.get('card_type')
     cdate = request.form.get('exp_date')
         # Process register info here
-    
-    isAdmin = True if userType == "administrator" else False
 
-    if not isAdmin:
+    if userType == 'customer':
         newAccount = {
         "first_name": fname,
         "last_name": lname,
@@ -215,7 +213,7 @@ def accountinfo():
         "status": "Active"
         } 
     
-    addaccount(newAccount, isAdmin)
+    addaccount(newAccount, userType)
     return redirect("accounts?userType=" + userType)
 
 

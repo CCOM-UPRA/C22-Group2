@@ -34,20 +34,26 @@ def getaccountmodel(acc, userType):
         return result
 
 # Creates new account and adds it to the database
-def addaccountmodel(acc, userType):
-    path = adminsPath if admin else usersPath
-    currentFile = getaccountsmodel(admin=admin)
-    # assign new key to account
-    newKey = randrange(0, 999999999)
-    while(newKey in currentFile.keys()):
-        newKey = randrange(0, 999999999)
+def addaccountmodel(newAccount, userType):
+    db = DBConnect()
 
-    newEntry = {str(newKey):dict(acc)}
-    # add account to dictionary
-    currentFile = MagerDicts(currentFile, newEntry)
-    # write to json
-    with open(path, "w") as f:
-        json.dump(currentFile, f)
+    try:
+        if userType == 'administrator':
+            query = """"""
+            db.execute(query, newAccount)
+        elif userType == 'customer':
+            query = """"""
+            db.execute(query, newAccount)
+
+        db.commit()
+    except Exception as e:
+        # Log the error to console and rollback changes
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
+    return
+
 
 # Edits the user account
 def updateAccountModel(userInfo, userType):

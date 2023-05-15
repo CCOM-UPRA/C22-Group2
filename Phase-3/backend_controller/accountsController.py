@@ -7,9 +7,9 @@ def getaccounts(userType):
 def getaccount(acc, userType):
     return getaccountmodel(acc, userType)
 
-def addaccount(acc, userType):
+def addaccount(newAccount, userType):
     print("Account added")
-    addaccountmodel(acc, userType)
+    addaccountmodel(newAccount, userType)
 
 def updateAccountcontroller(userInfo, userType):
     return updateAccountModel(userInfo, userType)
