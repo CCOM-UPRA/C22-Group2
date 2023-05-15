@@ -33,7 +33,7 @@ def getaccountmodel(acc, userType):
         result = db.query(query, (acc)).pop()
         return result
 
-# Assigns key to account and adds to json
+# Creates new account and adds it to the database
 def addaccountmodel(acc, userType):
     path = adminsPath if admin else usersPath
     currentFile = getaccountsmodel(admin=admin)
@@ -52,7 +52,6 @@ def addaccountmodel(acc, userType):
 # Edits the user account
 def updateAccountModel(userInfo, userType):
     db = DBConnect()
-    # usersList = []
 
     try:
         if userType == 'administrator':
@@ -76,12 +75,3 @@ def updateAccountModel(userInfo, userType):
         return None
 
     return
-
- 
- # Pop account 
-# def deleteaccountmodel(acc : str, admin = False):
-#     path = adminsPath if admin else usersPath
-#     currentUsers = getaccountsmodel(admin=admin).pop(acc)
-#     # write to json
-#     with open(path, "w") as f:
-#         json.dump(currentUsers, f)
