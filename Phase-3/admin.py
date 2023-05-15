@@ -333,41 +333,42 @@ def editorder():
 @app.route("/reports")
 @login_required
 def reports():
-    products = get_products_id()
-    return render_template("reports.html", products=products)
+    return render_template("reports.html")
 
 
 @app.route("/report", methods=['GET'])
 @login_required
 def report():
     # Initialize variables to use
-    report = []
-    report_cols = []
+    report = {}
     total = 0
 
-    report_type = request.args.get('report')
-    report_date = request.args.get('report_date')
-    product_id = request.args.get('product')
-    
-    if report_date == None or report_date == "":
-        report_day = getTodayDate()
-    else:
-        report_day = report_date
-        
-    
-    if request.args.get('report') == 'inventory':
-        report, report_cols = getStockReport()
-        return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type, report_date=None, product_id=None)
-    else:
-        report, report_cols = getDatedReport(report_type, report_date, product_id)
-        
-        for i in report:
-            total += float(i['total_price'].split("$")[1])
-        
-        total = f'{total:.2f}'
-        
-        return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type, report_date=report_day, product_id=product_id, total=total)
+    # If we're going for any of the reports that have a date, get the information and save in date_report
+    # All cases give the same results in this case, no matter your date or product input
+    if request.args.get('report') == 'day':
+        report = getDatedReport()
+    elif request.args.get('report') == 'week':
+        report = getDatedReportWeek()
+    elif request.args.get('report') == 'month':
+        report = getDatedReport()
 
+    # If we're going for the inventory/stock report, get the data and save in stock_report
+    if 'stock_report' in request.form:
+        stock_report = getStockReport()
+
+    # If we're going for any of the reports with dates, we need a total at the end
+    # Calculate the total according to the sum of the total_prices for each item in the report
+    # if report != {}:
+    #     for keyorder in report:
+    #         total += order['total_price']
+
+    # We send to the report page all variables whether empty or not
+    # The HTML will validate which variable is empty and will show the appropriate information
+
+    print("All report values: ", report)
+    print(type(report[0]))
+    print(type(report[0].items()))
+    return render_template("report.html", report=report)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__admin__':
