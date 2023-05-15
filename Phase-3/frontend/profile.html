@@ -233,9 +233,10 @@
                                         <p>{{method['card_number']}} </p>
                                         <h5>{{method['card_type']}}</h5>
                                         <h6>{{method['card_exp_date']}}</h6>
-                                        <p>{{method['bill_address_line1']}}</p><br>
-                                        <p>{{method['bill_address_line2']}}</p><br>
-                                        <p>{{method['bill_city']}}, {{method['bill_state']}} {{method['bill_zipcode']}}</p>
+                                        <p>{{method['bill_address_line1']}}</p>
+                                        <p>{{method['bill_address_line2']}}</p>
+                                        <p>{{method['bill_city']}}, {{method['bill_state']}} {{method['bill_zipcode']}}
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- payment edit form -->
@@ -269,6 +270,31 @@
                                                     <label class="form-label">expiration date (MM/DD/YYYY)</label>
                                                     <input class="form-control" name="cdate" type="date"
                                                         value="{{method['card_exp_date']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 1</label>
+                                                    <input type="text" name="aline1" class="form-control"
+                                                        value="{{method['bill_address_line1']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 2</label>
+                                                    <input type="text" name="aline2" class="form-control"
+                                                        value="{{method['bill_address_line2']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">City</label>
+                                                    <input type="text" name="city" class="form-control"
+                                                        value="{{method['bill_city']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">State</label>
+                                                    <input type="text" name="state" class="form-control"
+                                                        value="{{method['bill_state']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Zipcode</label>
+                                                    <input type="text" name="zipcode" class="form-control"
+                                                        value="{{method['bill_zipcode']}}"></input>
                                                 </div>
                                                 <button class="form-btn" type="submit">save payment info</button>
                                                 <input type="hidden" name="page" value="/profile">
