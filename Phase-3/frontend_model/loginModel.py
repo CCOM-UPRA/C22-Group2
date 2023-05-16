@@ -36,15 +36,6 @@ def addloginmodel(first_name, last_name, email, password):
         sql = "INSERT INTO customer (first_name, last_name, email, password) VALUES (%s, %s, %s, %s)"
         cursor = db.execute(sql, (first_name, last_name, email, encrypted_password))
         
-        # Get the new customer_id from the database. This also confirms that the record was made, otherwise customer_id will be NULL
-        # customer_id = cursor.lastrowid
-        
-        # sql = "INSERT INTO payment_method (customer_id) VALUES (%s)"
-        # db.execute(sql, (customer_id))
-
-        # sql = "INSERT INTO shipping_address (customer_id) VALUES (%s)"
-        # db.execute(sql, (customer_id))
-        
         db.commit()
         
     except Exception as e:
