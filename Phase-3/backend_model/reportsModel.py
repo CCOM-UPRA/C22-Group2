@@ -3,14 +3,14 @@ from classes.db_connect import DBConnect
 from datetime import datetime, timedelta
 import calendar
 
-# Open reports with dates 
-with open("JSONfiles/inventory_report_dates.json") as f:
-    ordersList = json.load(f)
+# # Open reports with dates 
+# with open("JSONfiles/inventory_report_dates.json") as f:
+#     ordersList = json.load(f)
 
 
-# Open reports without dates 
-with open("JSONfiles/inventory_report.json") as f:
-    productsList = json.load(f)
+# # Open reports without dates 
+# with open("JSONfiles/inventory_report.json") as f:
+#     productsList = json.load(f)
 
 
 def getDatedReportModel(report_type, date, product_id = None):
@@ -24,7 +24,7 @@ def getDatedReportModel(report_type, date, product_id = None):
     else:
         product_sql = ""
     
-    begin_sql = """SELECT product.product_id AS product_id, name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
+    begin_sql = """SELECT product.product_id AS product_id, image, name, order_date AS date, COALESCE(SUM(product_quantity), 0) AS sales, COALESCE(SUM(product_quantity * product_price), 0) AS total_price
             FROM orders RIGHT JOIN contains
             ON orders.order_id = contains.order_id
             LEFT JOIN product ON contains.product_id = product.product_id """
@@ -72,7 +72,7 @@ def getDatedReportModel(report_type, date, product_id = None):
         row['date'] = year + "-" + month + "-" + str(day)
 
 
-    columns = [ "product_id", "name", "date", "sales", "total_price"]
+    columns = [ "product_id", "image", "name", "date", "sales", "total_price"]
     
     print("The query: ", sql)
     print(result, columns)
@@ -80,14 +80,14 @@ def getDatedReportModel(report_type, date, product_id = None):
 
 def getStockReportModel():
     db = DBConnect()
-    sql = "SELECT product_id, name, stock, cost, price FROM product"
+    sql = "SELECT product_id, image, name, stock, cost, price FROM product"
     result = db.query(sql)
     
     for row in result:
         row['cost'] = '$' + format(row['cost'], '.2f')
         row['price'] = '$' + format(row['price'], '.2f')
     
-    columns = ["product_id", "name", "stock", "cost", "price"]
+    columns = ["product_id", "image", "name", "stock", "cost", "price"]
     return result, columns
 
 def getProductsIDModel():

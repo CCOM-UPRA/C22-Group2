@@ -260,7 +260,7 @@
 
                                             <a class="product-image"
                                                 href="static/images/product-images/{{product['image']}}">
-                                                <img src="static/images/product-images/{{product['image']}}"
+                                                <img class="img-responsive" src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
                                                     alt="product">
                                             </a>
                                             <div class="product-widget">
@@ -337,7 +337,7 @@
                                                                     stock</label>
                                                             </div>
                                                             <ul class="preview-slider">
-                                                                <li><img src="static/images/product-images/{{product['image']}}"
+                                                                <li><img class="img-responsive" src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
                                                                         alt="product"></li>
                                                             </ul>
 
