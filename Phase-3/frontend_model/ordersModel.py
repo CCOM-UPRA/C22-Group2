@@ -39,10 +39,9 @@ def get_orders_and_products_model(customer_id):
     SUM(product_quantity) AS amount 
     FROM orders 
     NATURAL JOIN contains 
-    NATURAL JOIN customer 
-    NATURAL JOIN payment_method 
-    NATURAL JOIN shipping_address 
-    WHERE customer_id = %s
+    LEFT JOIN payment_method ON orders.payment_id = payment_method.payment_id 
+    LEFT JOIN shipping_address ON orders.payment_id = shipping_address.shipping_address_id
+    WHERE orders.customer_id = %s
     GROUP BY order_id, tracking_number, order_date, arrival_date,
     address_line1, address_line2, card_type
     ORDER BY order_id ASC;""")

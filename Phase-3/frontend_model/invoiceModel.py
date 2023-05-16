@@ -52,7 +52,7 @@ def getOrderProductsModel(id):
     result = db.query(sql, (id))
     return result
 
-def addOrderModel():
+def addOrderModel(shipping_address, payment_method):
     db = DBConnect()
     current_date = date.today()
     arrival_date = date.today() + timedelta(days=7)
@@ -63,8 +63,8 @@ def addOrderModel():
 
         print("Trying to add order")
         # Create the order
-        sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status) VALUES(%s, %s, %s, %s, %s)"
-        cursor = db.execute(sql, (session['customer'], tk, str(current_date), str(arrival_date), "Received"))
+        sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status, shipping_address_id, payement_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"
+        cursor = db.execute(sql, (session['customer'], tk, str(current_date), str(arrival_date), "Received", shipping_address, payment_method))
 
         # Get the order id
         order_id = cursor.lastrowid
