@@ -216,7 +216,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {% if order[0]['status'] != 'Cancelled' %}
+                            <div class="row justify-content-end">
+                                <a style="margin-bottom: 5%;" class="cart-checkout-btn w-25" href="#"
+                                    onclick="confirmCancel('{{url_for('cancelorder', order_id=order[0]['order_id'])}}')">
+                                    <span class="checkout-label">Cancel Order</span>
+                                </a>
+                            </div>
+                            {% endif %}
                         </div>
+
                     </div>
                     {% endfor %}
                 </div>
@@ -243,6 +253,15 @@
     <!--=====================================
                     JS LINK PART START
         =======================================-->
+
+    <script>
+        function confirmCancel(cancelUrl) {
+            if (confirm('Are you sure you want to cancel this order?')) {
+                window.location.href = cancelUrl;
+            }
+        }
+    </script>
+
 
     <!-- To check quantity and clamp it -->
     <script src="/static/js/quantity-checker.js"></script>

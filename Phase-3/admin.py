@@ -17,8 +17,36 @@ from backend_controller.profileController import *
 # main.py accesses the frontend folders
 # Every controller accesses its relevant model and will send the information back to this Flask app
 
+UPLOAD_FOLDER = 'static/images/product-images'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__, template_folder='backend/')
 app.secret_key = 'akeythatissecret'
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/uploads/<name>')
+def download_file(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+
+# @app.route('/upload_image', methods=['POST'])
+# def upload_image():
+#     if request.method == 'POST':
+#         image = request.files['image']
+#         if image:
+#             filename = image.filename
+#             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             return redirect(url_for('show_image', filename=filename))
+#     return redirect(url_for('index'))
+
+# @app.route('/uploads/<filename>')
+# def show_image(filename):
+#     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 
 # Checks if user is logged in before entering page
@@ -108,29 +136,33 @@ def single_product(prodID):
 @login_required
 def editproduct():
     # process the changes to a product's information
+    print(request.files)
     print("Edit product called")
+    if 'image' not in request.files:
+        flash('No file part')
+    file = request.files['image']
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == '':
+        flash('No selected file')
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    product_id = request.form.get('prod_id')
     name = request.form.get('name')
+    plant_type = request.form.get('plant_type')
+    sun_exposure = request.form.get('sun_exposure')
+    watering = request.form.get('watering')
     location = request.form.get('location')
-    family = request.form.get('family')
-    sun = request.form.get('sun')
-    water = request.form.get('water')
-    img = request.form.get('img')
     price = request.form.get('price')
+    cost = request.form.get('cost')
     stock = request.form.get('stock')
     desc = request.form.get('desc')
+    image = filename
+    status = request.form.get('status')
 
-    newProduct = {
-    "name": name,
-    "location": location,
-    "family type": family,
-    "sun": sun,
-    "water": water,
-    "img": img,
-    "price": price,
-    "stock": stock,
-    "desc": desc,
-    }
-    addproductController(newProduct)
+    editproductController(product_id, name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status)
     return redirect('/products')
 
 
@@ -139,6 +171,38 @@ def editproduct():
 def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
+
+@app.route("/add", methods=["POST"])
+@login_required
+def add():
+    # check if the post request has the file part
+    print(request.files)
+    if 'image' not in request.files:
+        flash('No file part')
+    file = request.files['image']
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == '':
+        flash('No selected file')
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+    name = request.form.get('name')
+    plant_type = request.form.get('plant_type')
+    sun_exposure = request.form.get('sun_exposure')
+    watering = request.form.get('watering')
+    location = request.form.get('location')
+    price = request.form.get('price')
+    cost = request.form.get('cost')
+    stock = request.form.get('stock')
+    desc = request.form.get('desc')
+    image = filename
+    status = request.form.get('status')
+
+    addproductController(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status)
+
+    return redirect("/products")
 
 
 @app.route("/accounts")
@@ -219,115 +283,94 @@ def accountinfo():
     return redirect("accounts?userType=" + userType)
 
 
-@app.route("/editaccount", methods=['POST'])
+@app.route("/editaccount/<acc>", methods=['GET'])
 @login_required
-def editaccount():
-    userType = request.args.get('userType')
-    acc = request.args.get('acc')
-
-    print(userType)
+def editaccount(acc):
     # Fetch account given via url and then enter the edit page for that account
-    isAdmin = True if userType == 'admin' else False
-    account = getaccount(acc, isAdmin)
-    return render_template("single_account.html", userType=userType, acc=account, account=acc)
+    # acc = customer or admin ID
 
-@app.route("/updateaccount", methods=['POST'])
-def updateaccount():
-    id = request.form.get('id')
-    userType = request.form.get('userType')
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
-    phone_number = request.form.get('pnumber')
-    status = request.form.get('group1')
+    message = ""
 
-    if userType == 'customer':
-        aline1 = request.form.get('aline1')
-        aline2 = request.form.get('aline2')
-        city = request.form.get('city')
-        state = request.form.get('state')
-        zipcode = request.form.get('zipcode')
-        cname = request.form.get('cname')
-        cnumber = request.form.get('cnumber')
-        ctype = request.form.get('ctype')
-        cdate = request.form.get('cdate')
-        userInfo = [fname, lname, aline1, aline2, city, state, zipcode, phone_number, cname,
-                    ctype, cnumber, cdate, status]
-        updateAccountController(userInfo, userType, id)
+    # Find userType, relevant for the query info
+    if 'userType' in request.args:
+        userType = request.args.get('userType')
     else:
-        userInfo = [fname, lname, phone_number, status]
-        # Our user info will depend on whether we're updating an admin or customer
-        # -> accountsController.py
-        updateAccountController(userInfo, userType, id)
+        userType = 'customer'
 
-    # Go back to edit page with message
-    return redirect(url_for('editaccount', acc=id, userType=userType, message='added'))
+    # Check if updateaccount() sent us a message of form completion to display
+    if 'message' in request.args:
+        message = request.args.get('message')
+
+    # -> accountsController.py
+    account = getaccount(acc, userType)
+    print("Account ID: ", acc)
+    print("UserType: ", userType)
+    return render_template("single_account.html", acc=account, account=acc, userType=userType, message=message)
+
+# @app.route("/updateaccount", methods=['POST'])
+# def updateaccount():
+#     id = request.form.get('id')
+#     userType = request.form.get('userType')
+#     fname = request.form.get('fname')
+#     lname = request.form.get('lname')
+#     phone_number = request.form.get('pnumber')
+#     status = request.form.get('group1')
+#
+#     if userType == 'customer':
+#         aline1 = request.form.get('aline1')
+#         aline2 = request.form.get('aline2')
+#         city = request.form.get('city')
+#         state = request.form.get('state')
+#         zipcode = request.form.get('zipcode')
+#         cname = request.form.get('cname')
+#         cnumber = request.form.get('cnumber')
+#         ctype = request.form.get('ctype')
+#         cdate = request.form.get('cdate')
+#         userInfo = [fname, lname, aline1, aline2, city, state, zipcode, phone_number, cname,
+#                     ctype, cnumber, cdate, status]
+#         updateAccountController(userInfo, userType, id)
+#     else:
+#         userInfo = [fname, lname, phone_number, status]
+#         # Our user info will depend on whether we're updating an admin or customer
+#         # -> accountsController.py
+#         updateAccountController(userInfo, userType, id)
+#
+#     # Go back to edit page with message
+#     return redirect(url_for('editaccount', acc=id, userType=userType, message='added'))
 
 
 @app.route("/editinfo", methods=['POST'])
 @login_required
 def editinfo():
-    userType = request.args.get('userType')
-    acc = request.args.get('acc')
-
+    acc = request.form.get('acc')
+    userType = request.form.get('userType')
     fname = request.form.get('fname')
     lname = request.form.get('lname')
-    pnumber = request.form.get('pnumber')
+    phone_number = request.form.get('pnumber')
     email = request.form.get('email')
-    pass1 = request.form.get('pass1')
-    aline1 = request.form.get('aline1')
-    aline2 = request.form.get('aline2')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    zipcode = request.form.get('zipcode')
-    cname = request.form.get('cname')
-    cnumber = request.form.get('cnumber')
-    ctype = request.form.get('ctype')
-    cdate = request.form.get('cdate')
+    password = request.form.get('pass1')
+    status = request.form.get('group1')
 
-    isAdmin = True if userType == 'admin' else False
-    if not isAdmin:
-        editAccount = {
-        "c_first_name": fname,
-        "c_last_name": lname,
-        "c_email": email,
-        "c_password": pass1,
-        "c_phone_number": pnumber,
-        "c_status": "Active",
-        "c_address_line_1": aline1,
-        "c_address_line_2": aline2,
-        "c_city": city,
-        "c_state": state,
-        "c_zipcode": zipcode,
-        "c_card_name": cname,
-        "c_card_type": ctype,
-        "c_exp_date": cdate,
-        "c_card_num": cnumber
-        }
+    if userType == 'customer':
+        # aline1 = request.form.get('aline1')
+        # aline2 = request.form.get('aline2')
+        # city = request.form.get('city')
+        # state = request.form.get('state')
+        # zipcode = request.form.get('zipcode')
+        # cname = request.form.get('cname')
+        # cnumber = request.form.get('cnumber')
+        # ctype = request.form.get('ctype')
+        # cdate = request.form.get('cdate')
+        userInfo = [fname, lname, phone_number, email, password, status, acc]
+        updateAccountcontroller(userInfo, userType)
     else:
-        editAccount = {
-        "a_first_name": fname,
-        "a_last_name": lname,
-        "a_email": email,
-        "a_password": pass1,
-        "a_phone_number": pnumber,
-        "a_status": "Active"
-        } 
-    
-    if userType != None and acc != None:
-        editaccountcontroller(acc, editAccount, isAdmin)
-        acc = getaccounts(isAdmin)
-        return redirect('/accounts?userType=' + userType)
-    else:
-        editAccount = {
-        "a_first_name": fname,
-        "a_last_name": lname,
-        "a_email": email,
-        "a_password": pass1,
-        "a_phone_number": pnumber,
-        "a_status": "Active"
-        } 
-        editaccountcontroller(session['admin'], editAccount, True)
-        return redirect('/profile')
+        userInfo = [fname, lname, phone_number, email, password, status, acc]
+        # Our user info will depend on whether we're updating an admin or customer
+        # -> accountsController.py
+        updateAccountcontroller(userInfo, userType)
+
+    # Go back to edit page with message
+    return redirect("accounts?userType=" + userType)
 
 
 @app.route("/orders")

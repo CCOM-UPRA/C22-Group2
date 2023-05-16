@@ -502,7 +502,7 @@
 
                 {% if session['cart'] | length > 0 %}
                 <div class="checkout-proced">
-                    <a href="{{url_for('invoice')}}" class="btn btn-inline">proceed to checkout</a>
+                    <a href="{{url_for('createorder')}}" class="btn btn-inline">proceed to checkout</a>
                 </div>
                 {% else %}
                 <div class="checkout-proced">

@@ -4,12 +4,12 @@
         <div class="header-content">
             <div class="header-media-group">
                 <a href="{{url_for('profile')}}"><button class="header-user"><img src="static/images/user.png" alt="user"></button></a>
-                <a href="index.html"><img src="static/images/logo_pagina.png" alt="logo"></a>
+                <a href="index.html"><img src="{{url_for('static', filename='images/logo_pagina.png')}}" alt="logo"></a>
                 <button class="header-src"><i class="fas fa-search"></i></button>
             </div>
 
             <a href="index.html" class="header-logo">
-                <img src="static/images/logo_pagina.png" alt="logo">
+                <img src="{{url_for('static', filename='images/logo_pagina.png')}}" alt="logo">
             </a>
 
             {% if 'customer' in session %}

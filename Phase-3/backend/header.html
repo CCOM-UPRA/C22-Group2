@@ -1,36 +1,25 @@
-
 <header class="header-part">
     <div class="container">
-        <div class="header-content">
+        <div class="header-content justify-content-start">
             <div class="header-media-group">
                 <button class="header-user"><img src="static/images/user.png" alt="user"></button>
-                <a href="{{url_for('enterpage')}}"><img src="static/images/logo_pagina.png" alt="logo"></a>
+                <a href="{{url_for('enterpage')}}"><img src="{{url_for('static', filename='images/logo_pagina.png')}}"
+                        alt="logo"></a>
                 <button class="header-src"><i class="fas fa-search"></i></button>
             </div>
 
             <a href="index.html" class="header-logo">
-                <img src="../static/images/logo_pagina.png" alt="logo">
+                <img src="{{url_for('static', filename='images/logo_pagina.png')}}" alt="logo">
             </a>
-<!--                    <a href="{{url_for('profile')}}" class="header-widget" title="My Account">-->
-<!--                        <img src="static/images/user.png" alt="user">-->
-<!--                        <span>My Account</span>-->
-<!--                    </a>-->
+            
             <ul class="dropdown">
-            <a class="navbar-link dropdown-arrow" href="#">My Account</a>
-                            <ul class="dropdown-position-list">
-                                <li><a href="{{url_for('profile')}}">Account Info</a></li>
-                                <li><a href="{{url_for('clear')}}">Logout</a></li>
-                            </ul>
+                <a class="navbar-link dropdown-arrow" href="#">My Account</a>
+                <ul class="dropdown-position-list">
+                    <li><a href="{{url_for('profile')}}">Account Info</a></li>
+                    <li><a href="{{url_for('clear')}}">Logout</a></li>
+                </ul>
             </ul>
 
-            <form class="header-form">
-                <input type="text" placeholder="Search anything...">
-                <button><i class="fas fa-search"></i></button>
-            </form>
-
-            <div class="header-widget-group">
-
-            </div>
         </div>
     </div>
 </header>

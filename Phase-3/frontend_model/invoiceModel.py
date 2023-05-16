@@ -37,7 +37,11 @@ def getOrderModel(id):
     GROUP BY tracking_number, order_date, arrival_date, address_line1, address_line2, card_type;""")
     
     result = list(db.query(sql, (id)))
-    return result.pop()
+    
+    if len(result) > 0:
+        return result.pop()
+    else:
+        return result
 
 def getOrderProductsModel(id):
     db = DBConnect()

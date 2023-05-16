@@ -1,258 +1,278 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <!--=====================================
+
+<head>
+    <!--=====================================
                     META TAG PART START
         =======================================-->
-        <!-- REQUIRE META -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- REQUIRE META -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- AUTHOR META -->
-        <meta name="author" content="mironcoder">
-        <meta name="email" content="mironcoder@gmail.com">
-        <meta name="profile" content="https://themeforest.net/user/mironcoder">
+    <!-- AUTHOR META -->
+    <meta name="author" content="mironcoder">
+    <meta name="email" content="mironcoder@gmail.com">
+    <meta name="profile" content="https://themeforest.net/user/mironcoder">
 
-        <!-- TEMPLATE META -->
-        <meta name="name" content="Greeny">
-        <meta name="title" content="Greeny - eCommerce HTML Template">
-        <meta name="keywords" content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
-        <!--=====================================
+    <!-- TEMPLATE META -->
+    <meta name="name" content="Greeny">
+    <meta name="title" content="Greeny - eCommerce HTML Template">
+    <meta name="keywords"
+        content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
+    <!--=====================================
                     META-TAG PART END
         =======================================-->
 
-        <!-- WEBPAGE TITLE -->
-        <title>Products - Urban Gardens</title>
+    <!-- WEBPAGE TITLE -->
+    <title>Products - Urban Gardens</title>
 
-        <!--=====================================
+    <!--=====================================
                     CSS LINK PART START
         =======================================-->
-        <!-- FAVICON -->
-        <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}">
+    <!-- FAVICON -->
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}">
 
-        <!-- FONTS -->
-         <link rel="stylesheet" href="{{url_for('static', filename='fonts/flaticon/flaticon.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='fonts/icofont/icofont.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='fonts/fontawesome/fontawesome.min.css')}}">
+    <!-- FONTS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/flaticon/flaticon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/icofont/icofont.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/fontawesome/fontawesome.min.css')}}">
 
-        <!-- VENDOR -->
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/venobox/venobox.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/slickslider/slick.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
+    <!-- VENDOR -->
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/venobox/venobox.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/slickslider/slick.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/niceselect/nice-select.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.css')}}">
 
-        <!-- CUSTOM -->
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <!-- CUSTOM -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <!--=====================================
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!--=====================================
                     CSS LINK PART END
         =======================================-->
-    </head>
-    <body ng-app="">
-        <div class="backdrop"></div>
-        <a class="backtop fas fa-arrow-up" href="#"></a>
+</head>
+
+<body ng-app="">
+    <div class="backdrop"></div>
+    <a class="backtop fas fa-arrow-up" href="#"></a>
 
 
 
-        <!--=====================================
+    <!--=====================================
                     HEADER PART START
         =======================================-->
-        {% include 'header.html' %}
-        <!--=====================================
+    {% include 'header.html' %}
+    <!--=====================================
                     HEADER PART END
         =======================================-->
 
-        <!--=====================================
+    <!--=====================================
                     NAVBAR PART START
         =======================================-->
-        {% include 'navbar.html' %}
-        <!--=====================================
+    {% include 'navbar.html' %}
+    <!--=====================================
                     NAVBAR PART END
         =======================================-->
 
 
-        <!--=====================================
+    <!--=====================================
                     SHOP PART START
         =======================================-->
-        <section class="inner-section shop-part">
-            <div style='text-align: center' class="container">
-                <div class="row content-reverse">
-                    <div style='text-align: center'>
+    <section class="inner-section shop-part">
+        <div style='text-align: center' class="container mx-auto">
 
-                        <br><br>
-                        <h2>Products</h2>
+            <div style='text-align: center'>
 
-                        <div style='padding: 0 40%' class="view-add-group">
-                       <form action="{{url_for('addproduct')}}">
-                           <button style="" class="product-add">Add product</button>
-                       </form>
-                        </div>
+                <br><br>
+                <h2>Products</h2>
 
-                        <br>
+                <div style='padding: 0 40%' class="view-add-group">
+                    <form action="{{url_for('addproduct')}}">
+                        <button style="" class="product-add">Add product</button>
+                    </form>
+                </div>
 
-                    </div>
+                <br>
+            </div>
 
+            <div class="row shop-widget justify-content-center align-self-center">
+                <form class="header-form" action="{{url_for('products')}}" method="GET">
+                    {% if search_query != None %}
+                    <input type="text" name="search_query" placeholder="Search anything..."
+                        value="{{search_query}}">
+                    {% else %}
+                    <input type="text" name="search_query" placeholder="Search anything...">
+                    {% endif %}
+                    <button><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="row content-reverse">
+                
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
+                    {{ product}}
+                    {% for product in products %}
+                    <div class="col">
+                        <div class="product-card">
+                            <div class="product-media">
 
-                        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
-                            {{ product}}
-                            {% for product in products %}
-                            <div class="col">
-                                <div class="product-card">
-                                    <div class="product-media">
-
-                                        <a class="product-image" href="static/images/product-images/{{product['image']}}">
-                                            <img src="static/images/product-images/{{product['image']}}" alt="product">
-                                        </a>
-                                        <div class="product-widget">
-                                            <a title="Product View" href="{{url_for('product', prod=product['product_id'])}}" class="fas fa-eye"></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h6 class="product-name">
-<!--                                            <a href="product-video.html">{{products['name']}}</a>-->
-                                        </h6>
-                                         <h6 class="product-name">
-                                            <a>{{product['name']}}</a>
-                                        </h6>
-                                        <h6 class="product-price">
-                                            <span>${{product['price']}}</span>
-                                        </h6>
-                                        <h6 class="product-name">
-                                            <a>{{product['stock']}} in stock</a>
-                                        </h6>
-                                        <h6 class="product-name">
-                                            <a>Location: {{product['location']}}</a>
-                                        </h6>
-
-                                        <div class="product-action">
-                                            <form action="{{url_for('product', prod=product) }}" method="post">
-                                            <input style="width: 50%" class="action-input" title="Quantity Number" type="number" id="quantity" name="quantity" value="1">
-                                               <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
-                                               <input type="hidden" id="name" name="name" value="{{product['name']}}">
-                                                <input type="hidden" id="price" name="price" value="{{product['price']}}">
-                                                <input type="hidden" id="cost" name="cost" value="{{product['cost']}}">
-                                                <input type="hidden" id="stock" name="stock" value="{{product['stock']}}">
-                                                <input type="hidden" id="plant_type" name="plant_type" value="{{product['plant_type']}}">
-                                                <input type="hidden" id="watering" name="watering" value="{{product['watering']}}">
-                                                <input type="hidden" id="" name="videores" value="{{product[5]}}">
-                                                <input type="hidden" id="desc" name="desc" value="{{product[3]}}">
-                                                <input type="hidden" id="image" name="image" value="{{product[7]}}">
-                                              <input style="width: 30%" type="submit" value="Add">
-                                                <button class="action">View</button>
-                                              </form>
-                                        </div>
-                                    </div>
+                                <a class="product-image" href="static/images/product-images/{{product['image']}}">
+                                    <img src="static/images/product-images/{{product['image']}}" alt="product">
+                                </a>
+                                <div class="product-widget">
+                                    <a title="Product View" href="{{url_for('product', prod=product['product_id'])}}"
+                                        class="fas fa-pen"></a>
                                 </div>
                             </div>
+                            <div class="product-content">
+                                <h6 class="product-name">
+                                    <!--                                            <a href="product-video.html">{{products['name']}}</a>-->
+                                </h6>
+                                <h6 class="product-name">
+                                    <a>{{product['name']}}</a>
+                                </h6>
+                                <h6 class="product-price">
+                                    <span>${{product['price']}}</span>
+                                </h6>
+                                <h6 class="product-name">
+                                    <a>{{product['stock']}} in stock</a>
+                                </h6>
+                                <h6 class="product-name">
+                                    <a>Location: {{product['location']}}</a>
+                                </h6>
 
-                            <div class="modal fade" id="product-view-{{product['product_id']}}">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
-                    <div class="product-view">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6">
-                                <div class="view-gallery">
-                                    <div class="view-label-group">
-                                        <label class="view-label new">{{product['stock']}} in stock</label>
-                                    </div>
-                                    <ul class="preview-slider">
-                                        <li><img src="static/images/product-images/{{product['img']}}" alt="product"></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="view-details">
-                                    <h3 class="view-name">
-                                        <a href="product-video.html">{{product['name']}}</a>
-                                    </h3>
-                                    <div class="view-meta">
-                                        <p>Location:<span>{{product['location']}}</span></p><br>
-                                        <p>Family Type: {{product['plant_type']}}</p><br>
-                                        <p>When to Water: {{product['watering']}}</p>
-                                    </div>
-                                    <h3 class="view-price">
-<!--                                        <del>{{product[11]}}</del>-->
-                                        <span>${{product['price']}}</span>
-                                    </h3>
-                                    <p class="view-desc">{{product['description']}}</p>
-
+                                <div class="product-action">
+                                    <form action="{{url_for('product', prod=product) }}" method="post">
+                                        <input style="width: 50%" class="action-input" title="Quantity Number"
+                                            type="number" id="quantity" name="quantity" value="1">
+                                        <input type="hidden" id="p_id" name="p_id" value="{{product['product_id']}}">
+                                        <input type="hidden" id="name" name="name" value="{{product['name']}}">
+                                        <input type="hidden" id="price" name="price" value="{{product['price']}}">
+                                        <input type="hidden" id="cost" name="cost" value="{{product['cost']}}">
+                                        <input type="hidden" id="stock" name="stock" value="{{product['stock']}}">
+                                        <input type="hidden" id="plant_type" name="plant_type"
+                                            value="{{product['plant_type']}}">
+                                        <input type="hidden" id="watering" name="watering"
+                                            value="{{product['watering']}}">
+                                        <input type="hidden" id="" name="videores" value="{{product[5]}}">
+                                        <input type="hidden" id="desc" name="desc" value="{{product[3]}}">
+                                        <input type="hidden" id="image" name="image" value="{{product[7]}}">
+                                        <input style="width: 30%" type="submit" value="Add">
+                                        <button class="action">View</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="modal fade" id="product-view-{{product['product_id']}}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
+                                <div class="product-view">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-6">
+                                            <div class="view-gallery">
+                                                <div class="view-label-group">
+                                                    <label class="view-label new">{{product['stock']}} in stock</label>
+                                                </div>
+                                                <ul class="preview-slider">
+                                                    <li><img src="static/images/product-images/{{product['img']}}"
+                                                            alt="product"></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-lg-6">
+                                            <div class="view-details">
+                                                <h3 class="view-name">
+                                                    <a href="product-video.html">{{product['name']}}</a>
+                                                </h3>
+                                                <div class="view-meta">
+                                                    <p>Location:<span>{{product['location']}}</span></p><br>
+                                                    <p>Family Type: {{product['plant_type']}}</p><br>
+                                                    <p>When to Water: {{product['watering']}}</p>
+                                                </div>
+                                                <h3 class="view-price">
+                                                    <!--                                        <del>{{product[11]}}</del>-->
+                                                    <span>${{product['price']}}</span>
+                                                </h3>
+                                                <p class="view-desc">{{product['description']}}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
                 </div>
             </div>
         </div>
-                            {% endfor %}
-
-
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-        <!--=====================================
+        </div>
+    </section>
+    <!--=====================================
                     SHOP PART END
         =======================================-->
 
 
-        <!--=====================================
+    <!--=====================================
                      FOOTER PART START
         =======================================-->
-        {% include 'footer.html' %}
-        <!--=====================================
+    {% include 'footer.html' %}
+    <!--=====================================
                       FOOTER PART END
         =======================================-->
 
 
-        <!--=====================================
+    <!--=====================================
                     JS LINK PART START
         =======================================-->
-        <!-- VENDOR -->
-        <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
+    <!-- VENDOR -->
+    <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/countdown/countdown.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/niceselect/nice-select.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/slickslider/slick.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/venobox/venobox.min.js')}}"></script>
 
-        <!-- CUSTOM -->
-        <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
-        <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
-        <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
-        <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
-        <script src="{{url_for('static', filename='js/slick.js')}}"></script>
-        <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <!-- CUSTOM -->
+    <script src="{{url_for('static', filename='js/nice-select.js')}}"></script>
+    <script src="{{url_for('static', filename='js/countdown.js')}}"></script>
+    <script src="{{url_for('static', filename='js/accordion.js')}}"></script>
+    <script src="{{url_for('static', filename='js/venobox.js')}}"></script>
+    <script src="{{url_for('static', filename='js/slick.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
 
-        <script>
-        function myFunc(e){
-       e.preventDefault();
-         }
-        </script>
+    <script>
+        function myFunc(e) {
+            e.preventDefault();
+        }
+    </script>
 
-        <script>
-            window.onload = function(){
-                document.getElementById('submit').onclick = function(){
-                    document.getElementById('quantity').value = document.getElementById('quantity1').value;
+    <script>
+        window.onload = function () {
+            document.getElementById('submit').onclick = function () {
+                document.getElementById('quantity').value = document.getElementById('quantity1').value;
             };
         }
-        </script>
+    </script>
 
-        <script>
-            function onlyOne(checkbox) {
+    <script>
+        function onlyOne(checkbox) {
             var checkboxes = document.getElementsByName('check')
             checkboxes.forEach((item) => {
                 if (item !== checkbox) item.checked = false
             })
         }
-        </script>
-        <!--=====================================
+    </script>
+    <!--=====================================
                     JS LINK PART END
         =======================================-->
-    </body>
+</body>
+
 </html>
