@@ -6916,19 +6916,3 @@ tbody tr td:last-child {
 .hidden-form {
   visibility: hidden;
 }
-
-.aspect-ratio-box {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-}
-
-.product-image-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
