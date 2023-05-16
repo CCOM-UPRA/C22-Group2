@@ -61,6 +61,8 @@ def get_orders_and_products_model(customer_id):
         order_id = order['order_id']
         order_products[order_id] = [product for product in products if product['order_id'] == order_id]
 
+    print("orders: ", [x['order_id'] for x in orders])
+
     # Combine order and product data into a list of tuples
     result = [(order, order_products[order['order_id']]) for order in orders]
 

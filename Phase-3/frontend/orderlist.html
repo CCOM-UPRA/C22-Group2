@@ -115,7 +115,7 @@
                     {% for order in orders %}
                     <div class="orderlist">
                         <div class="orderlist-head">
-                            <h5>order#{{loop.index}}</h5>
+                            <h5>order#{{order[0]['order_id']}}</h5>
                             <h5>order {{order[0]['status']}}</h5>
                         </div>
                         <div class="orderlist-body">
@@ -198,7 +198,7 @@
                                                         <h6>{{product['name']}}</h6>
                                                     </td>
                                                     <td class="table-image"><img
-                                                            src="static/images/product-images/{{product['image']}}"
+                                                            src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
                                                             alt="product"></td>
                                                     <td class="table-price">
                                                         <h6>${{product['price']}}</h6>
