@@ -100,7 +100,8 @@
                     <form id="filters-form" action="{{url_for('shop')}}" method="GET">
 
                         <div class="shop-widget">
-                            <button class="shop-widget-btn" style="margin-bottom:5%" type="submit" value="clear" id="clear-button">
+                            <button class="shop-widget-btn" style="margin-bottom:5%" type="submit" value="clear"
+                                id="clear-button">
                                 <i class="fas fa-times"></i>
                                 <span>Clear filters</span>
                             </button>
@@ -251,24 +252,24 @@
                             {% for item in session['cart'] %}
                             {% set _ = cart_items.append(item['product_id']) %}
                             {% endfor %}
-                            
+
                             {% for product in products %}
                             <div class="one-product">
                                 <div class="col">
                                     <div class="product-card">
                                         <div class="product-media">
-
-                                            <a class="product-image"
-                                                href="static/images/product-images/{{product['image']}}">
-                                                <img class="img-responsive" src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
-                                                    alt="product">
-                                            </a>
-                                            <div class="product-widget">
-                                                <a title="Product View" href="#" class="fas fa-eye"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#product-view-{{product['product_id']}}"></a>
+                                            <div class="aspect-ratio-box">
+                                                <a class="product-image"
+                                                    href="static/images/product-images/{{product['image']}}">
+                                                    <img class="img-responsive product-image-img" src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
+                                                        alt="product">
+                                                </a>
+                                                <div class="product-widget">
+                                                    <a title="Product View" href="#" class="fas fa-eye"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#product-view-{{product['product_id']}}"></a>
+                                                </div>
                                             </div>
-                                        </div>
                                         <div class="product-content">
                                             <h6 class="product-name">
                                                 {{product['name']}}
@@ -337,7 +338,8 @@
                                                                     stock</label>
                                                             </div>
                                                             <ul class="preview-slider">
-                                                                <li><img class="img-responsive" src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
+                                                                <li><img class="img-responsive"
+                                                                        src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
                                                                         alt="product"></li>
                                                             </ul>
 
