@@ -99,8 +99,7 @@
             <div class="row shop-widget justify-content-center align-self-center">
                 <form class="header-form" action="{{url_for('products')}}" method="GET">
                     {% if search_query != None %}
-                    <input type="text" name="search_query" placeholder="Search anything..."
-                        value="{{search_query}}">
+                    <input type="text" name="search_query" placeholder="Search anything..." value="{{search_query}}">
                     {% else %}
                     <input type="text" name="search_query" placeholder="Search anything...">
                     {% endif %}
@@ -108,7 +107,7 @@
                 </form>
             </div>
             <div class="row content-reverse">
-                
+
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
                     {{ product}}
                     {% for product in products %}
@@ -116,13 +115,20 @@
                         <div class="product-card">
                             <div class="product-media">
 
-                                <a class="product-image" href="static/images/product-images/{{product['image']}}">
-                                    <img src="static/images/product-images/{{product['image']}}" alt="product">
-                                </a>
-                                <div class="product-widget">
-                                    <a title="Product View" href="{{url_for('product', prod=product['product_id'])}}"
-                                        class="fas fa-pen"></a>
+                                <div class="aspect-ratio-box">
+                                    <a class="product-image"
+                                        href="{{url_for('static', filename='images/product-images/'+product['image'])}}">
+                                        <img class="img-responsive product-image-img"
+                                            src="{{url_for('static', filename='images/product-images/'+product['image'])}}"
+                                            alt="product">
+                                    </a>
+                                    <div class="product-widget">
+                                        <a title="Product View"
+                                            href="{{url_for('product', prod=product['product_id'])}}"
+                                            class="fas fa-pen"></a>
+                                    </div>
                                 </div>
+                                
                             </div>
                             <div class="product-content">
                                 <h6 class="product-name">
