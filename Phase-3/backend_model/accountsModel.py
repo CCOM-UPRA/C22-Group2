@@ -39,10 +39,11 @@ def addaccountmodel(newAccount, userType):
 
     try:
         if userType == 'administrator':
-            query = """"""
+            query = """INSERT INTO administrator (first_name, last_name, phone_number, email, password, status)
+        VALUES (%s, %s, %s, %s, %s, %s)"""
             db.execute(query, newAccount)
         elif userType == 'customer':
-            query = """"""
+            query = """INSTERT INTO"""
             db.execute(query, newAccount)
 
         db.commit()

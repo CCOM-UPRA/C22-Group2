@@ -210,7 +210,7 @@ def accountinfo():
         "email": email,
         "password": pass1,
         "phone_number": pnumber,
-        "status": "Active"
+        "status": 0
         } 
     
     addaccount(newAccount, userType)
