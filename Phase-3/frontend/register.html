@@ -75,19 +75,19 @@
                             <div style='padding: 0px 30%' class="user-form-group">
                                 <form class="user-form" action="{{url_for('registerinfo')}}" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="fname" placeholder="Enter your first name">
+                                        <input type="text" class="form-control" name="fname" placeholder="Enter your first name" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="lname" placeholder="Enter your last name">
+                                        <input type="text" class="form-control" name="lname" placeholder="Enter your last name" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" placeholder="Enter your email">
+                                        <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" name="pass1" placeholder="Enter your password">
+                                        <input type="password" class="form-control" name="pass1" placeholder="Enter your password" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" name="pass2" placeholder="Enter your password again">
+                                        <input type="password" class="form-control" name="pass2" placeholder="Enter your password again" required>
                                     </div>
                                     <div class="form-button">
                                         <button type="submit">register</button>
@@ -113,6 +113,8 @@
         <!--=====================================
                     JS LINK PART START
         =======================================-->
+
+
         <!-- VENDOR -->
         <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
         <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>

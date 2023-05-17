@@ -340,7 +340,8 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">number</label>
-                        <input class="form-control" name="pnumber" type="tel" value="{{user1['phone_number']}}">
+                        <input type="tel" id="phone" name="pnumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                               maxlength="12" class="form-control" value="{{user1['phone_number']}}">
                     </div>
                     <button class="form-btn" type="submit">save contact number</button>
                     <input type="hidden" name="page" value="/profile">
@@ -361,15 +362,15 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">First Name</label>
-                        <input class="form-control" name="fname" type="text" value="{{user1['first_name']}}">
+                        <input class="form-control" name="fname" type="text" value="{{user1['first_name']}}" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Last Name</label>
-                        <input class="form-control" name="lname" type="text" value="{{user1['last_name']}}">
+                        <input class="form-control" name="lname" type="text" value="{{user1['last_name']}}" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">email</label>
-                        <input class="form-control" name="email" type="text" value="{{user1['email']}}">
+                        <input class="form-control" name="email" type="text" value="{{user1['email']}}" required>
                     </div>
                     <input type="hidden" name="page" id="page" value="/profile">
                     <a><button class="form-btn" type="submit">save profile info</a>
@@ -390,23 +391,23 @@
 
                     <div class="form-group">
                         <label class="form-label">Address Line 1</label>
-                        <input type="text" name="aline1" class="form-control" placeholder="Address Line 1" required></input>
+                        <input type="text" name="aline1" class="form-control" placeholder="Address Line 1" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Address Line 2</label>
-                        <input type="text" name="aline2" class="form-control" placeholder="Address Line 2" required></input>
+                        <input type="text" name="aline2" class="form-control" placeholder="Address Line 2">
                     </div>
                     <div class="form-group">
                         <label class="form-label">City</label>
-                        <input type="text" name="city" class="form-control" placeholder="City" required></input>
+                        <input type="text" name="city" class="form-control" placeholder="City" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">State</label>
-                        <input type="text" name="state" class="form-control" placeholder="State" required></input>
+                        <input type="text" name="state" class="form-control" placeholder="State" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Zipcode</label>
-                        <input type="text" name="zipcode" class="form-control" placeholder="Zipcode" required></input>
+                        <input type="text" name="zipcode" class="form-control" placeholder="Zipcode" required>
                     </div>
                     <button class="form-btn" type="submit">save address info</button>
                     <input type="hidden" name="page" value="/profile">
@@ -428,39 +429,39 @@
 
                     <div class="form-group">
                         <label class="form-label">card name</label>
-                        <input class="form-control" name="cname" type="text" placeholder="Card name">
+                        <input class="form-control" name="cname" type="text" placeholder="Card name" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">card number</label>
-                        <input class="form-control" name="cnumber" type="text"  placeholder="Card number">
+                        <input class="form-control" name="cnumber" type="text"  placeholder="Card number" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">card type</label>
-                        <input class="form-control" name="ctype" type="text"  placeholder="Card type">
+                        <input class="form-control" name="ctype" type="text"  placeholder="Card type" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">expiration date (MM/DD/YYYY)</label>
-                        <input class="form-control" name="cdate" type="date"  placeholder="Expiration date (MM/DD/YYYY)">
+                        <input class="form-control" name="cdate" type="date"  placeholder="Expiration date (MM/DD/YYYY)" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Address Line 1</label>
-                        <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"></input>
+                        <input type="text" name="aline1" class="form-control" placeholder="Address Line 1" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Address Line 2</label>
-                        <input type="text" name="aline2" class="form-control" placeholder="Address Line 2"></input>
+                        <input type="text" name="aline2" class="form-control" placeholder="Address Line 2">
                     </div>
                     <div class="form-group">
                         <label class="form-label">City</label>
-                        <input type="text" name="city" class="form-control" placeholder="City"></input>
+                        <input type="text" name="city" class="form-control" placeholder="City" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">State</label>
-                        <input type="text" name="state" class="form-control" placeholder="State"></input>
+                        <input type="text" name="state" class="form-control" placeholder="State" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Zipcode</label>
-                        <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"></input>
+                        <input type="text" name="zipcode" class="form-control" placeholder="Zipcode" required>
                     </div>
                     <button class="form-btn" type="submit">save payment info</button>
                     <input type="hidden" name="page" value="/profile">
@@ -488,6 +489,24 @@
         =======================================-->
     <!-- To check quantity and clamp it -->
     <script src="/static/js/quantity-checker.js"></script>
+
+    <script>
+        var phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', formatPhoneNumber);
+
+        function formatPhoneNumber() {
+          var phoneNumber = phoneInput.value;
+          phoneNumber = phoneNumber.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+
+          if (phoneNumber.length > 3 && phoneNumber.length <= 6) {
+            phoneNumber = phoneNumber.slice(0, 3) + '-' + phoneNumber.slice(3);
+          } else if (phoneNumber.length > 6) {
+            phoneNumber = phoneNumber.slice(0, 3) + '-' + phoneNumber.slice(3, 6) + '-' + phoneNumber.slice(6);
+          }
+
+          phoneInput.value = phoneNumber;
+        }
+  </script>
     <!-- VENDOR -->
     <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/bootstrap/popper.min.js')}}"></script>
