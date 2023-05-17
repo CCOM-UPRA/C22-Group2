@@ -156,7 +156,7 @@
                         <div class="account-title">
                             <h4>Shipping address</h4>
 
-                            <button data-bs-toggle="modal" data-bs-target="#shipping_address-add">Edit address</button>
+                            <button data-bs-toggle="modal" data-bs-target="#shipping_address-add-{{loop.index}}">Add address</button>
                         </div>
                         <div class="account-content">
                             <div class="row">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <!-- address edit form -->
-                                <div class="modal fade" id="shipping_address-add">
+                                <div class="modal fade" id="shipping_address-add-{{loop.index}}">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <button class="modal-close" data-bs-dismiss="modal"><i
@@ -212,6 +212,8 @@
                                     </div>
                                 </div>
                                 {% endfor %}
+ 
+                               
 
                             </div>
                         </div>
@@ -222,14 +224,14 @@
                     <div class="account-card mb-0">
                         <div class="account-title">
                             <h4>payment option</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#payment-add">edit payment info</button>
+                           <button data-bs-toggle="modal" data-bs-target="#payment-add">Add payment info</button>
                         </div>
                         <div class="account-content">
                             <div class="row">
                                 {% for method in payment_methods %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment active">
-                                        <h2>{{method['card_name']}}</h2>
+                                    <div class="payment-card payment active"  data-bs-toggle="modal" data-bs-target="#payment-add">
+                                        <h3>{{method['card_name']}}</h3>
                                         <p>{{method['card_number']}} </p>
                                         <h5>{{method['card_type']}}</h5>
                                         <h6>{{method['card_exp_date']}}</h6>
@@ -303,6 +305,8 @@
                                     </div>
                                 </div>
                                 {% endfor %}
+
+
 
                             </div>
                         </div>
