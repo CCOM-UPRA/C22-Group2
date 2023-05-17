@@ -160,13 +160,13 @@
                                         <p>{{address['city']}}, {{address['state']}} {{address['zipcode']}}</p>
                                         <ul class="user-action">
                                             <li><button class="edit icofont-edit" title="Edit This"
-                                                    data-bs-toggle="modal" data-bs-target="#shipping_address-edit"></button></li>
+                                                    data-bs-toggle="modal" data-bs-target="#shipping_address-edit-{{loop.index}}"></button></li>
                                         
                                         </ul>
                                     </div>
                                 </div>
                                 <!-- address edit form -->
-                                <div class="modal fade" id="#address-edit-{{loop.index}}">
+                                <div class="modal fade" id="#shipping_address-edit-{{loop.index}}">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <button class="modal-close" data-bs-dismiss="modal"><i
@@ -327,28 +327,23 @@
 
                     <div class="form-group">
                         <label class="form-label">Address Line 1</label>
-                        <input type="text" name="aline1" class="form-control"
-                            value="{{address['address_line1']}}"></input>
+                        <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"></input>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Address Line 2</label>
-                        <input type="text" name="aline2" class="form-control"
-                            value="{{address['address_line2']}}"></input>
+                        <input type="text" name="aline2" class="form-control" placeholder="Address Line 2"></input>
                     </div>
                     <div class="form-group">
                         <label class="form-label">City</label>
-                        <input type="text" name="city" class="form-control"
-                            value="{{address['city']}}"></input>
+                        <input type="text" name="city" class="form-control" placeholder="City"></input>
                     </div>
                     <div class="form-group">
                         <label class="form-label">State</label>
-                        <input type="text" name="state" class="form-control"
-                            value="{{address['state']}}"></input>
+                        <input type="text" name="state" class="form-control" placeholder="State"></input>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Zipcode</label>
-                        <input type="text" name="zipcode" class="form-control"
-                            value="{{address['zipcode']}}"></input>
+                        <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"></input>
                     </div>
                     <button class="form-btn" type="submit">save address info</button>
                     <input type="hidden" name="page" value="/profile">
