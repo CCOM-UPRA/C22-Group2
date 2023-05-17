@@ -144,41 +144,70 @@ def profile():
 # make changes to profile info
 @app.route("/editinfo", methods=["POST"])
 def editinfo():
+    #------------Your profile--------------
     if request.form.get('edit') == 'profile':
         fname = request.form.get('fname')
         lname = request.form.get('lname')
         email = request.form.get('email')
         edit_profile(fname=fname, lname=lname, email=email)
+
+    #------------Contact Number--------------
+    elif request.form.get('edit') == 'phone_number':
+        pnumber = request.form.get('pnumber')
+        edit_number(pnumber=pnumber)
         
-    elif request.form.get('edit') == 'payment':
+   #------------Shipping-------------------------
+    elif request.form.get('edit') == 'shipping_address-add':
+        address_line1 = request.form.get('aline1')
+        address_line2 = request.form.get('aline2')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        
+        add_address(address_line1, address_line2, city, state, zipcode)
+
+
+    elif request.form.get('edit') == 'shipping_address':
+        address_line1 = request.form.get('aline1')
+        address_line2 = request.form.get('aline2')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        shipping_address_id = request.form.get('shipping_address_id')
+        edit_address(address_line1, address_line2, city, state, zipcode,shipping_address_id)
+
+        #------------Payment----------------------
+    
+    elif request.form.get('edit') == 'payment_method-add':
         cname = request.form.get('cname')
         cnumber = request.form.get('cnumber')
         ctype = request.form.get('ctype')
         cdate = request.form.get('cdate')
-        edit_payment(name=cname, c_type=ctype, number=cnumber, exp_date=cdate)
-        
-    elif request.form.get('edit') == 'address':
         aline1 = request.form.get('aline1')
         aline2 = request.form.get('aline2')
         state = request.form.get('state')
         city = request.form.get('city')
         zipcode = request.form.get('zipcode')
-        edit_address(aline1, aline2, state, zipcode, city)
+        
+        add_payment(card_name=cname, card_type=ctype, card_exp_date=cdate, card_number=cnumber, bill_address_line1=aline1 ,  bill_address_line2=aline2, bill_city=city, bill_state=state, bill_zipcode=zipcode)
     
-    elif request.form.get('edit') == 'bill_address':
-        aline1 = request.form.get('billline1')
-        aline2 = request.form.get('billline2')
-        state = request.form.get('billstate')
-        city = request.form.get('billcity')
-        zipcode = request.form.get('billzipcode')
-        edit_billaddress(aline1, aline2, state, zipcode, city)
-    
-    elif request.form.get('edit') == 'phone_number':
-        pnumber = request.form.get('pnumber')
-        edit_number(pnumber=pnumber)
+    elif request.form.get('edit') == 'payment':
+        cname = request.form.get('cname')
+        cnumber = request.form.get('cnumber')
+        ctype = request.form.get('ctype')
+        cdate = request.form.get('cdate')
+        aline1 = request.form.get('aline1')
+        aline2 = request.form.get('aline2')
+        state = request.form.get('state')
+        city = request.form.get('city')
+        zipcode = request.form.get('zipcode')
+        payment_id = request.form.get('payment_id')
+        edit_payment(card_name=cname, card_type=ctype, card_exp_date=cdate, card_number=cnumber, bill_address_line1=aline1 ,  bill_address_line2=aline2, bill_city=city, bill_state=state, bill_zipcode=zipcode, payment_id=payment_id)
+        
+  
             
     # Process register info here
-    pass1 = request.form.get('pass1')
+    #  pass1 = request.form.get('pass1')
     
     # changeinfo(session['customer'], editAccount)
     return redirect("/profile")
@@ -301,13 +330,13 @@ def editcheckout():
         zipcode = request.form.get('zipcode')
         edit_address(aline1, aline2, state, zipcode, city)
 
-    elif request.form.get('edit') == 'bill_address':
-        aline1 = request.form.get('billline1')
-        aline2 = request.form.get('billline2')
-        state = request.form.get('billstate')
-        city = request.form.get('billcity')
-        zipcode = request.form.get('billzipcode')
-        edit_billaddress(aline1, aline2, state, zipcode, city)
+    # elif request.form.get('edit') == 'bill_address':
+    #     aline1 = request.form.get('billline1')
+    #     aline2 = request.form.get('billline2')
+    #     state = request.form.get('billstate')
+    #     city = request.form.get('billcity')
+    #     zipcode = request.form.get('billzipcode')
+    #     edit_billaddress(aline1, aline2, state, zipcode, city)
 
     elif request.form.get('edit') == 'phone_number':
         pnumber = request.form.get('pnumber')
@@ -316,51 +345,11 @@ def editcheckout():
     return redirect("/checkout")
 
 
-@app.route("/filter", methods=["POST", "GET"])
-def filter():
-    # filter happens here
-    # not in function currently
-    # return redirect("/shop")
-
-    if request.args.get('filter_query'):
-        products = getProductsByWatering(request.args.get('filter_query'))
-        products = getProductsByWatering(request.args.get('filter_query'))
-
-    else:
-        products = getProducts()
-
-    # # Then we create the shopping cart by accessing getCart in shopController
-    # getCart()
-
-    # # Find the different filter options for the products by accessing the functions from shopController
-    # sortings=getSortingPreference() 
-    # sortByOrder=getSortingByOrderPreference()
-
-    # locations = getLocation()
-    # plantType = getPlantType()
-    # sun = getSunExpo()
-    # watering = getWatering()
-
-    # # Set the amount of items user currently has in cart
-    # amount = 0
-    # # And set the amount for the entire site to access
-    # session['amount'] = amount
-    # total = 0
-    # # Set the cart's total amount for the page
-    # session['total'] = 0
-    # # And set the total for the entire site to access
-    # for item in session['cart']:
-    #         total = float(item['price']) * float(item['quantity'])
-    #         session['total'] += round(total,2)
-    #         amount += 1 * int(item['quantity'])
-    #         session['amount'] = amount
-
-    # Redirect to shop page with the variables used
-    return render_template("shop-4column.html", products=products)
-
-@app.route("/createorder")
+@app.route("/createorder", methods=['POST'])
 def createorder():
-    order_id = addOrder()
+    shipping_address = request.form.get('shipping_address_id')
+    payment_method = request.form.get('payment_method_id')
+    order_id = addOrder(shipping_address, payment_method)
     
     return redirect(url_for("invoice", order_id=order_id))
 
