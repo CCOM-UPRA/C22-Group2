@@ -120,9 +120,9 @@
                                         <thead>
                                             <tr>
 
-                                            {% for col in report_cols %}
+                                                {% for col in report_cols %}
                                                 <th scope="col">{{ col.replace('_', ' ')|capitalize }}</th>
-                                            {% endfor %}
+                                                {% endfor %}
 
                                             </tr>
                                         </thead>
@@ -132,9 +132,18 @@
                                             {% for item in report %}
                                             <tr>
                                                 {% for key, value in item.items() %}
-                                                <td class="table-{{ key }}">
+
+                                                {% if key == "image" %}
+                                                <td class="table-{{key}}">
+                                                    <img class="img-fluid"
+                                                        src="{{url_for('static', filename='images/product-images/'+value)}}">
+                                                </td>
+                                                {% else %}
+
+                                                <td class="table-{{key}}">
                                                     <h6>{{ value }}</h6>
                                                 </td>
+                                                {% endif %}
                                                 {% endfor %}
                                             </tr>
                                             {% endfor %}
@@ -151,7 +160,7 @@
                                         </ul>
                                     </div>
                                     {% endif %}
-    
+
 
                                 </div>
                             </div>

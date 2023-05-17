@@ -110,11 +110,13 @@ def password():
     return render_template("change-password.html")
 
 
-@app.route("/products")
+@app.route("/products", methods=['GET'])
 @login_required
 def products():
-    productsp = getProducts()
-    return render_template("products.html", products=productsp)
+    
+    search_query = request.args.get("search_query")
+    products = getProducts(search_query)
+    return render_template("products.html", products=products, search_query=search_query)
 
 
 @app.route("/product/<prod>")
@@ -248,38 +250,44 @@ def accountinfo():
     ctype = request.form.get('card_type')
     cdate = request.form.get('exp_date')
         # Process register info here
-    
-    isAdmin = True if userType == "administrator" else False
 
-    if not isAdmin:
-        newAccount = {
-        "first_name": fname,
-        "last_name": lname,
-        "email": email,
-        "password": pass1,
-        "phone_number": pnumber,
-        "status": "Active",
-        "address_line_1": aline1,
-        "address_line_2": aline2,
-        "city": city,
-        "state": state,
-        "zipcode": zipcode,
-        "card_name": cname,
-        "card_type": ctype,
-        "exp_date": cdate,
-        "card_num": cnumber
-        }
+    if userType == 'customer':
+        newAccount = [
+            fname,
+            lname,
+            email,
+            pass1,
+            pnumber,
+            1
+        ]
+        # newAccount = {
+        # "first_name": fname,
+        # "last_name": lname,
+        # "email": email,
+        # "password": pass1,
+        # "phone_number": pnumber,
+        # "status": "Active",
+        # "address_line_1": aline1,
+        # "address_line_2": aline2,
+        # "city": city,
+        # "state": state,
+        # "zipcode": zipcode,
+        # "card_name": cname,
+        # "card_type": ctype,
+        # "exp_date": cdate,
+        # "card_num": cnumber
+        # }
     else:
-        newAccount = {
-        "first_name": fname,
-        "last_name": lname,
-        "email": email,
-        "password": pass1,
-        "phone_number": pnumber,
-        "status": "Active"
-        } 
+        newAccount = [
+        fname,
+        lname,
+        email,
+        pass1,
+        pnumber,
+        1
+        ]
     
-    addaccount(newAccount, isAdmin)
+    addaccount(newAccount, userType)
     return redirect("accounts?userType=" + userType)
 
 
@@ -361,6 +369,7 @@ def editinfo():
         # cnumber = request.form.get('cnumber')
         # ctype = request.form.get('ctype')
         # cdate = request.form.get('cdate')
+        # userInfo = [fname, lname, phone_number, email, password, status, aline1, aline2, city, state, zipcode, cname, cnumber, ctype, cdate, acc]
         userInfo = [fname, lname, phone_number, email, password, status, acc]
         updateAccountcontroller(userInfo, userType)
     else:
@@ -370,7 +379,7 @@ def editinfo():
         updateAccountcontroller(userInfo, userType)
 
     # Go back to edit page with message
-    return redirect("accounts?userType=" + userType)
+    return redirect(url_for('editaccount', acc=acc, userType=userType, message='updated'))
 
 
 @app.route("/orders")
