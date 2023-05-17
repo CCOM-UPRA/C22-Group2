@@ -140,11 +140,11 @@ from classes.db_connect import DBConnect
 
 def ordersModel():
     db = DBConnect()
-    sql = """SELECT order_id, tracking_number, status, order_date, arrival_date, 
+    sql = """SELECT orders.order_id, tracking_number, status, order_date, arrival_date, 
     SUM(product_quantity * product_price) AS total
     FROM orders
-    NATURAL JOIN contains
-    GROUP BY order_id;"""
+    LEFT JOIN contains ON orders.order_id = contains.order_id 
+    GROUP BY orders.order_id;"""
     result = db.query(sql)
     return result 
 
