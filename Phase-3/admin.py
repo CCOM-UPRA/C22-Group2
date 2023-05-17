@@ -110,11 +110,13 @@ def password():
     return render_template("change-password.html")
 
 
-@app.route("/products")
+@app.route("/products", methods=['GET'])
 @login_required
 def products():
-    productsp = getProducts()
-    return render_template("products.html", products=productsp)
+    
+    search_query = request.args.get("search_query")
+    products = getProducts(search_query)
+    return render_template("products.html", products=products, search_query=search_query)
 
 
 @app.route("/product/<prod>")

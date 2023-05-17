@@ -1,8 +1,8 @@
 from backend_model.productsModel import *
 
 
-def getProducts():
-    return getProductsModel()
+def getProducts(search_query):
+    return getProductsModel(search_query)
 
 
 def getsingleproduct(prodID):

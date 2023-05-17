@@ -15,10 +15,16 @@ def MagerDicts(dict1, dict2):
 # Done in array instead of dictionaries to portray the differences between dictionaries and arrays
 # Database tuples are normally received in an array
 
-def getProductsModel():
+def getProductsModel(search_query):
     db = DBConnect()
-    query = "SELECT * FROM product"
-    result = db.query(query)
+    query = "SELECT * FROM product WHERE 1=1 "
+    if search_query:
+        to_search = f"%{search_query}%"
+        query += " AND name LIKE %s"
+        result = db.query(query, (to_search))
+    else:
+        result = db.query(query)
+        
     return result
 
 # Find the specific product given the ID, found in element 0 of the sub-arrays
