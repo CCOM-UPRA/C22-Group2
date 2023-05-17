@@ -168,10 +168,10 @@ def getorderproductsmodel(ID):
     #                num += 1
     #                returnList = MagerDicts(returnList, {str(num): product})
     #    print(returnList)
-    #    return returnList
-    db = DBConnect()
-    sql = ("SELECT * FROM products NATURAL JOIN contains WHERE order_id = %s")
-                                                                                                                                                            
-
+    #    return returnLists
+   db = DBConnect()
+   sql = ("SELECT product_id, image, name, plant_type, price, product_quantity, SUM(product_quantity * product_price) AS total FROM product NATURAL JOIN contains WHERE order_id = %s")
+   result=db.query(sql, (ID))
+   return result
 
 

@@ -168,15 +168,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for key, prod in products.items() %}
+                                {% for prod in products %}
                                 <tr>
-                                        <td class="table-name"><h6>{{key}}</h6></td>
+					<td class="table-name"><h6>{{prod['product_id']}}</h6></td>
                                         <td class="table-name"><h6>{{prod['name']}}</h6></td>
                                         <td class="table-image"><h6><img src="static/images/product-images/{{prod['image']}}" alt="product"></h6></td>
-                                        <td class="table-name"><h6>{{prod['family type']}}</h6></td>
+                                        <td class="table-name"><h6>{{prod['plant_type']}}</h6></td>
                                         <td class="table-price"><h6>${{prod['price']}}</h6></td>
-                                        <td class="table-brand"><h6>{{prod['quantity']}}</h6></td>
-                                         <td class="table-brand"><h6>${{prod['total_price']}}</h6></td>
+                                        <td class="table-brand"><h6>{{prod['product_quantity']}}</h6></td>
+                                         <td class="table-brand"><h6>${{prod['total']}}</h6></td>
 
                                     </tr>
                                 {% endfor %}
