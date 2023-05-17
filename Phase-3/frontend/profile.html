@@ -5,21 +5,21 @@
     <!--=====================================
                     META TAG PART START
         =======================================-->
-       <!-- REQUIRE META -->
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
-       <!-- AUTHOR META -->
-       <meta name="author" content="mironcoder">
-       <meta name="email" content="mironcoder@gmail.com">
-       <meta name="profile" content="https://themeforest.net/user/mironcoder">
-   
-       <!-- TEMPLATE META -->
-       <meta name="name" content="Greeny">
-       <meta name="title" content="Greeny - eCommerce HTML Template">
-       <meta name="keywords"
-           content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
-       <!--=====================================
+    <!-- REQUIRE META -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- AUTHOR META -->
+    <meta name="author" content="mironcoder">
+    <meta name="email" content="mironcoder@gmail.com">
+    <meta name="profile" content="https://themeforest.net/user/mironcoder">
+
+    <!-- TEMPLATE META -->
+    <meta name="name" content="Greeny">
+    <meta name="title" content="Greeny - eCommerce HTML Template">
+    <meta name="keywords"
+        content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store">
+    <!--=====================================
                     META-TAG PART END
         =======================================-->
 
@@ -56,7 +56,7 @@
 
 <body>
     <div class="backdrop">
-    <a class="backtop fas fa-arrow-up" href="#"></a>
+        <a class="backtop fas fa-arrow-up" href="#"></a>
     </div>
 
 
@@ -119,7 +119,7 @@
                                         <input class="form-control" type="email" placeholder="{{user1['email']}}">
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -159,8 +159,10 @@
                                         <p>{{address['address_line2']}}</p><br>
                                         <p>{{address['city']}}, {{address['state']}} {{address['zipcode']}}</p>
                                         <ul class="user-action">
-                                            <li><button data-bs-toggle="modal" data-bs-target="#shipping_address-edit-{{loop.index}}" class="edit icofont-edit" title="Edit This"></button></li>
-                                        
+                                            <li><button data-bs-toggle="modal"
+                                                    data-bs-target="#shipping_address-edit-{{loop.index}}"
+                                                    class="edit icofont-edit" title="Edit This"></button></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -218,7 +220,7 @@
                     <div class="account-card mb-0">
                         <div class="account-title">
                             <h4>payment option</h4>
-                           <button data-bs-toggle="modal" data-bs-target="#payment-add">Add payment info</button>
+                            <button data-bs-toggle="modal" data-bs-target="#payment_method-add">Add payment info</button>
                         </div>
                         <div class="account-content">
                             <div class="row">
@@ -234,13 +236,76 @@
                                         <p>{{method['bill_city']}}, {{method['bill_state']}} {{method['bill_zipcode']}}
                                         </p>
                                         <ul class="user-action">
-                                            <li><button data-bs-toggle="modal" data-bs-target="#billing-edit" class="edit icofont-edit" title="Edit This"></button></li>
-                                        
+                                            <li><button data-bs-toggle="modal" data-bs-target="#payment_method-edit-{{loop.index}}"
+                                                    class="edit icofont-edit" title="Edit This"></button></li>
+
                                         </ul>
                                     </div>
                                 </div>
                                 <!-- payment edit form -->
-                               
+                                <div class="modal fade" id="payment_method-edit-{{loop.index}}">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <button class="modal-close" data-bs-dismiss="modal"><i
+                                                    class="icofont-close"></i></button>
+                                            <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                                                <input class="hidden-form" name="edit" value="payment">
+                                                <div class="form-title">
+                                                    <h3>edit payment info</h3>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">card name</label>
+                                                    <input class="form-control" name="cname" type="text"
+                                                        value="{{method['card_name']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">card number</label>
+                                                    <input class="form-control" name="cnumber" type="text"
+                                                        value="{{method['card_number']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">card type</label>
+                                                    <input class="form-control" name="ctype" type="text"
+                                                        value="{{method['card_type']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">expiration date (MM/DD/YYYY)</label>
+                                                    <input class="form-control" name="cdate" type="date"
+                                                        value="{{method['card_exp_date']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 1</label>
+                                                    <input type="text" name="aline1" class="form-control"
+                                                        value="{{method['bill_address_line1']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 2</label>
+                                                    <input type="text" name="aline2" class="form-control"
+                                                        value="{{method['bill_address_line2']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">City</label>
+                                                    <input type="text" name="city" class="form-control"
+                                                        value="{{method['bill_city']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">State</label>
+                                                    <input type="text" name="state" class="form-control"
+                                                        value="{{method['bill_state']}}"></input>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Zipcode</label>
+                                                    <input type="text" name="zipcode" class="form-control"
+                                                        value="{{method['bill_zipcode']}}"></input>
+                                                </div>
+                                                <input type="hidden" name="payment_id" value="{{method['payment_id']}}">
+                                                <button class="form-btn" type="submit">save payment info</button>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 {% endfor %}
 
 
@@ -311,18 +376,71 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="shipping_address-add">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                    <input class="hidden-form" name="edit" value="shipping_address-add">
+                    <div class="form-title">
+                        <h3>Add address info</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Address Line 1</label>
+                        <input type="text" name="aline1" class="form-control" placeholder="Address Line 1" required></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address Line 2</label>
+                        <input type="text" name="aline2" class="form-control" placeholder="Address Line 2" required></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" name="city" class="form-control" placeholder="City" required></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" name="state" class="form-control" placeholder="State" required></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Zipcode</label>
+                        <input type="text" name="zipcode" class="form-control" placeholder="Zipcode" required></input>
+                    </div>
+                    <button class="form-btn" type="submit">save address info</button>
+                    <input type="hidden" name="page" value="/profile">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="payment_method-add">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <button class="modal-close" data-bs-dismiss="modal"><i
                         class="icofont-close"></i></button>
                 <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
-                    <input class="hidden-form" name="edit" value="shipping_address-add">
+                    <input class="hidden-form" name="edit" value="payment_method-add">
                     <div class="form-title">
-                        <h3>edit address info</h3>
+                        <h3>Add payment info</h3>
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label">card name</label>
+                        <input class="form-control" name="cname" type="text" placeholder="Card name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">card number</label>
+                        <input class="form-control" name="cnumber" type="text"  placeholder="Card number">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">card type</label>
+                        <input class="form-control" name="ctype" type="text"  placeholder="Card type">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">expiration date (MM/DD/YYYY)</label>
+                        <input class="form-control" name="cdate" type="date"  placeholder="Expiration date (MM/DD/YYYY)">
+                    </div>
                     <div class="form-group">
                         <label class="form-label">Address Line 1</label>
                         <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"></input>
@@ -343,13 +461,13 @@
                         <label class="form-label">Zipcode</label>
                         <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"></input>
                     </div>
-                    <button class="form-btn" type="submit">save address info</button>
+                    <button class="form-btn" type="submit">save payment info</button>
                     <input type="hidden" name="page" value="/profile">
                 </form>
             </div>
         </div>
     </div>
-    
+
     <!--=====================================
                     MODAL ADD FORM END
         =======================================-->
