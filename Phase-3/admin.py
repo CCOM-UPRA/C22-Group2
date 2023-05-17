@@ -313,7 +313,7 @@ def editinfo():
         updateAccountcontroller(userInfo, userType)
 
     # Go back to edit page with message
-    return redirect("accounts?userType=" + userType)
+    return redirect(url_for('editaccount', acc=acc, userType=userType, message='updated'))
 
 
 @app.route("/orders")
