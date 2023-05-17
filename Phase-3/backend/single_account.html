@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">password</label>
-                                        <input type="text" name="pass1" class="form-control" value="{{acc['password']}}">
+                                        <input type="password" name="pass1" class="form-control" placeholder="New Password" required>
                                     </div>
                                      {% if acc['status'] == 'active' %}
                                          <div class="form-group">
@@ -143,7 +143,7 @@
                                             <input type="radio" id='inactive1' value="Inactive" name="group1">
                                         </div>
                                      {% endif %}
-                                     {% if userType == 'customer' %}
+                                     {% if userType == 'user' %}
                                     <div class="form-title">
                                         <h3>address info</h3>
                                     </div>

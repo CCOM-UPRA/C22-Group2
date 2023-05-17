@@ -24,25 +24,25 @@ def getaccountsmodel(userType):
 def getaccountmodel(acc, userType):
     db = DBConnect()
     if userType == 'customer':
-        query = "SELECT * FROM customer NATURAL JOIN payment_method NATURAL JOIN shipping_address WHERE customer_id = %s"
-        result = db.query(query, (acc)).pop()
+        query = "SELECT * FROM customer WHERE customer_id = %s"
+        result = list(db.query(query, (acc))).pop()
         return result
 
     elif userType == 'administrator':
         query = "SELECT * FROM administrator WHERE administrator_id = %s"
-        result = db.query(query, (acc)).pop()
+        result = list(db.query(query, (acc))).pop()
         return result
 
 # Creates new account and adds it to the database
 def addaccountmodel(newAccount, userType):
     db = DBConnect()
-
+    newAccount[3] = sha256_crypt.encrypt(newAccount[3])
     try:
         if userType == 'administrator':
-            query = """INSERT INTO administrator (first_name, last_name, phone_number, email, password, status) VALUES (%s, %s, %s, %s, %s, %s)"""
+            query = """INSERT INTO administrator (first_name, last_name, email,  password, phone_number, status) VALUES (%s, %s, %s, %s, %s, %s)"""
             db.execute(query, newAccount)
         elif userType == 'customer':
-            query = """INSTERT INTO"""
+            query = """INSERT INTO customer (first_name, last_name, email,  password, phone_number, status) VALUES (%s, %s, %s, %s, %s, %s)"""
             db.execute(query, newAccount)
 
         db.commit()
@@ -66,11 +66,14 @@ def updateAccountModel(userInfo, userType):
             WHERE administrator_id = %s"""
             db.execute(query, userInfo)
         elif userType == 'customer':
-            query = """UPDATE customer NATURAL JOIN shipping_address NATURAL JOIN payment_method 
-            SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s,
-             address_line1 = %s, address_line2 = %s, city = %s, state = %s, zipcode = %s,
-             card_name = %s, card_number = %s, card_type = %s, card_exp_date = %s
+            query = """UPDATE customer 
+            SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s
             WHERE customer_id = %s"""
+            # query = """UPDATE customer NATURAL JOIN shipping_address NATURAL JOIN payment_method
+            # SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s,
+            #  address_line1 = %s, address_line2 = %s, city = %s, state = %s, zipcode = %s,
+            #  card_name = %s, card_number = %s, card_type = %s, card_exp_date = %s
+            # WHERE customer_id = %s"""
             db.execute(query, userInfo)
 
         db.commit()

@@ -186,23 +186,31 @@ def accountinfo():
         # Process register info here
 
     if userType == 'customer':
-        newAccount = {
-        "first_name": fname,
-        "last_name": lname,
-        "email": email,
-        "password": pass1,
-        "phone_number": pnumber,
-        "status": "Active",
-        "address_line_1": aline1,
-        "address_line_2": aline2,
-        "city": city,
-        "state": state,
-        "zipcode": zipcode,
-        "card_name": cname,
-        "card_type": ctype,
-        "exp_date": cdate,
-        "card_num": cnumber
-        }
+        newAccount = [
+            fname,
+            lname,
+            email,
+            pass1,
+            pnumber,
+            0
+        ]
+        # newAccount = {
+        # "first_name": fname,
+        # "last_name": lname,
+        # "email": email,
+        # "password": pass1,
+        # "phone_number": pnumber,
+        # "status": "Active",
+        # "address_line_1": aline1,
+        # "address_line_2": aline2,
+        # "city": city,
+        # "state": state,
+        # "zipcode": zipcode,
+        # "card_name": cname,
+        # "card_type": ctype,
+        # "exp_date": cdate,
+        # "card_num": cnumber
+        # }
     else:
         newAccount = [
         fname,
@@ -286,16 +294,17 @@ def editinfo():
     status = request.form.get('group1')
 
     if userType == 'customer':
-        aline1 = request.form.get('aline1')
-        aline2 = request.form.get('aline2')
-        city = request.form.get('city')
-        state = request.form.get('state')
-        zipcode = request.form.get('zipcode')
-        cname = request.form.get('cname')
-        cnumber = request.form.get('cnumber')
-        ctype = request.form.get('ctype')
-        cdate = request.form.get('cdate')
-        userInfo = [fname, lname, phone_number, email, password, status, aline1, aline2, city, state, zipcode, cname, cnumber, ctype, cdate, acc]
+        # aline1 = request.form.get('aline1')
+        # aline2 = request.form.get('aline2')
+        # city = request.form.get('city')
+        # state = request.form.get('state')
+        # zipcode = request.form.get('zipcode')
+        # cname = request.form.get('cname')
+        # cnumber = request.form.get('cnumber')
+        # ctype = request.form.get('ctype')
+        # cdate = request.form.get('cdate')
+        # userInfo = [fname, lname, phone_number, email, password, status, aline1, aline2, city, state, zipcode, cname, cnumber, ctype, cdate, acc]
+        userInfo = [fname, lname, phone_number, email, password, status, acc]
         updateAccountcontroller(userInfo, userType)
     else:
         userInfo = [fname, lname, phone_number, email, password, status, acc]
