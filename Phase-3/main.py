@@ -358,9 +358,11 @@ def editcheckout():
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products)
 
-@app.route("/createorder")
+@app.route("/createorder", methods=['POST'])
 def createorder():
-    order_id = addOrder()
+    shipping_address = request.form.get('shipping_address_id')
+    payment_method = request.form.get('payment_method_id')
+    order_id = addOrder(shipping_address, payment_method)
     
     return redirect(url_for("invoice", order_id=order_id))
 

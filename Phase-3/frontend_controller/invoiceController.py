@@ -6,8 +6,8 @@ def getOrderProducts(id):
 def getOrder(id):
     return getOrderModel(id)
 
-def addOrder():
-    return addOrderModel()
+def addOrder(shipping_address, payment_method):
+    return addOrderModel(shipping_address, payment_method)
 
 # def getOrderProducts():
 #     return getProductsModel()
