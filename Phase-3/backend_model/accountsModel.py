@@ -24,45 +24,23 @@ def getaccountsmodel(userType):
 def getaccountmodel(acc, userType):
     db = DBConnect()
     if userType == 'customer':
-        query = "SELECT * FROM customer NATURAL JOIN payment_method NATURAL JOIN shipping_address WHERE customer_id = %s"
-        result = db.query(query, (acc)).pop()
+        query = "SELECT * FROM customer WHERE customer_id = %s"
+        result = list(db.query(query, (acc))).pop()
         return result
 
     elif userType == 'administrator':
         query = "SELECT * FROM administrator WHERE administrator_id = %s"
-        result = db.query(query, (acc)).pop()
+        result = list(db.query(query, (acc))).pop()
         return result
 
-# Assigns key to account and adds to json
-def addaccountmodel(acc, userType):
-    path = adminsPath if admin else usersPath
-    currentFile = getaccountsmodel(admin=admin)
-    # assign new key to account
-    newKey = randrange(0, 999999999)
-    while(newKey in currentFile.keys()):
-        newKey = randrange(0, 999999999)
-
-    newEntry = {str(newKey):dict(acc)}
-    # add account to dictionary
-    currentFile = MagerDicts(currentFile, newEntry)
-    # write to json
-    with open(path, "w") as f:
-        json.dump(currentFile, f)
-
-# Edits the user account
-def updateAccountModel(userInfo, userType):
+# Creates new account and adds it to the database
+def addaccountmodel(newAccount, userType):
     db = DBConnect()
-    # usersList = []
-
+    newAccount[3] = sha256_crypt.encrypt(newAccount[3])
     try:
-        if userType == 'administrator':
-            query = "UPDATE administrator SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s" \
-                    "WHERE administrator_id = %s"
-            db.execute(query, userInfo)
-        elif userType == 'customer':
-            query = "UPDATE customer SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s" \
-                    "WHERE customer_id = %s"
-            db.execute(query, userInfo)
+        if userType == 'administrator' or userType == 'customer':
+            query = "INSERT INTO "+userType+" (first_name, last_name, email,  password, phone_number, status) VALUES (%s, %s, %s, %s, %s, %s)"
+            db.execute(query, newAccount)
 
         db.commit()
     except Exception as e:
@@ -73,11 +51,38 @@ def updateAccountModel(userInfo, userType):
 
     return
 
- 
- # Pop account 
-# def deleteaccountmodel(acc : str, admin = False):
-#     path = adminsPath if admin else usersPath
-#     currentUsers = getaccountsmodel(admin=admin).pop(acc)
-#     # write to json
-#     with open(path, "w") as f:
-#         json.dump(currentUsers, f)
+
+# Edits the user account
+def updateAccountModel(userInfo, userType):
+    db = DBConnect()
+
+    info = list(userInfo)
+
+    try:
+        if userType == 'administrator' or userType == 'customer':
+            
+            query = "UPDATE " + userType + \
+            " SET first_name = %s, last_name = %s, phone_number = %s, email = %s, status = %s" \
+            "WHERE " + userType + "_id = %s"
+            
+            # Remove password from info
+            password = info.pop(4)
+            db.execute(query, info)
+            
+            # Only update password when password
+            if password != '':
+                query = "UPDATE " + userType + \
+                    " SET password = %s WHERE " + userType + "_id = %s"
+                    
+                params = (sha256_crypt.encrypt(password), info.pop())
+                db.execute(query, params)
+
+
+        db.commit()
+    except Exception as e:
+        # Log the error to console and rollback changes
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
+    return
