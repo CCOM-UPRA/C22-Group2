@@ -210,7 +210,7 @@ def editinfo():
     #  pass1 = request.form.get('pass1')
     
     # changeinfo(session['customer'], editAccount)
-    return redirect("/profile")
+    return redirect(request.referrer)
     
 @app.route("/password", methods=["POST"])
 def password():
@@ -294,11 +294,13 @@ def checkout():
         # > cartController
         user = getUserCheckout(session['customer'])
         total = session['total']
+        shipping_addresses = getAddress(session['customer'])
+        payment_methods = getPayment(session['customer'])
 
         # calculate total from the session cart
         # Reminder: session['cart'] was created in app.route(/shop)
         # The cart itself is found in cartModel
-        return render_template("checkout.html", user1=user, total=total)
+        return render_template("checkout.html", user1=user, total=total, shipping_addresses=shipping_addresses, payment_methods=payment_methods)
 
     else:
         # If customer isn't logged in, create session variable to tell us we're headed to checkout
