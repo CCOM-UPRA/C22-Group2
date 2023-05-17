@@ -159,14 +159,13 @@
                                         <p>{{address['address_line2']}}</p><br>
                                         <p>{{address['city']}}, {{address['state']}} {{address['zipcode']}}</p>
                                         <ul class="user-action">
-                                            <li><button class="edit icofont-edit" title="Edit This"
-                                                    data-bs-toggle="modal" data-bs-target="#shipping_address-edit-{{loop.index}}"></button></li>
+                                            <li><button data-bs-toggle="modal" data-bs-target="#shipping_address-edit-{{loop.index}}" class="edit icofont-edit" title="Edit This"></button></li>
                                         
                                         </ul>
                                     </div>
                                 </div>
                                 <!-- address edit form -->
-                                <div class="modal fade" id="#shipping_address-edit-{{loop.index}}">
+                                <div class="modal fade" id="shipping_address-edit-{{loop.index}}">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <button class="modal-close" data-bs-dismiss="modal"><i
@@ -235,8 +234,7 @@
                                         <p>{{method['bill_city']}}, {{method['bill_state']}} {{method['bill_zipcode']}}
                                         </p>
                                         <ul class="user-action">
-                                            <li><button class="edit icofont-edit" title="Edit This"
-                                                    data-bs-toggle="modal" data-bs-target="#billing-edit"></button></li>
+                                            <li><button data-bs-toggle="modal" data-bs-target="#billing-edit" class="edit icofont-edit" title="Edit This"></button></li>
                                         
                                         </ul>
                                     </div>
@@ -314,7 +312,7 @@
         </div>
     </div>
     
-    <div class="modal fade" id="#shipping_address-add">
+    <div class="modal fade" id="shipping_address-add">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <button class="modal-close" data-bs-dismiss="modal"><i
