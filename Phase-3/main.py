@@ -349,8 +349,8 @@ def editcheckout():
 
 @app.route("/createorder", methods=['POST'])
 def createorder():
-    shipping_address = request.form.get('shipping_address_id')
-    payment_method = request.form.get('payment_method_id')
+    shipping_address = request.form.get('shipping_address')
+    payment_method = request.form.get('payment_method')
     order_id = addOrder(shipping_address, payment_method)
     
     return redirect(url_for("invoice", order_id=order_id))

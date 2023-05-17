@@ -142,7 +142,8 @@
                                         <div class="modal fade" id="product-view-{{item['product_id']}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
+                                                    <button class="modal-close icofont-close"
+                                                        data-bs-dismiss="modal"></button>
                                                     <div class="product-view">
                                                         <div class="row">
                                                             <div class="col-md-6 col-lg-6">
@@ -157,7 +158,7 @@
                                                                         <li><img src="static/images/product-images/{{item['image']}}"
                                                                                 alt="product"></li>
                                                                     </ul>
-        
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 col-lg-6">
@@ -166,7 +167,8 @@
                                                                         <a href="">{{item['name']}}</a>
                                                                     </h3>
                                                                     <div class="view-meta">
-                                                                        <p>Location:<span>{{item['location']}}</span></p><br>
+                                                                        <p>Location:<span>{{item['location']}}</span>
+                                                                        </p><br>
                                                                         <p>Plant Type: {{item['plant_type']}}</p><br>
                                                                         <p>When to Water: {{item['watering']}}</p>
                                                                     </div>
@@ -174,13 +176,15 @@
                                                                         <span>${{item['price']}}</span>
                                                                     </h3>
                                                                     <p class="view-desc">{{item['description']}}</p>
-        
+
                                                                     <div>
                                                                         {% if item['stock'] > 0 %}
-                                                                        <form id="add-product" action="{{url_for('editcart')}}"
+                                                                        <form id="add-product"
+                                                                            action="{{url_for('editcart')}}"
                                                                             method="POST">
                                                                             <div class="view-add-group">
-                                                                                <button type="button" class="product-add"
+                                                                                <button type="button"
+                                                                                    class="product-add"
                                                                                     title="Add to Cart">
                                                                                     <span>Tap to edit amount</span>
                                                                                 </button>
@@ -190,31 +194,35 @@
                                                                                         title="Quantity Minus">
                                                                                         <i class="icofont-minus"></i>
                                                                                     </button>
-        
+
                                                                                     <input
                                                                                         class="custom-quantity-input action-input"
-                                                                                        title="Quantity Number" type="text"
-                                                                                        id="quantity" name="quantity" value="{{item['product_quantity']}}"
+                                                                                        title="Quantity Number"
+                                                                                        type="text" id="quantity"
+                                                                                        name="quantity"
+                                                                                        value="{{item['product_quantity']}}"
                                                                                         min="1" max="{{item['stock']}}">
-                                                                                    <input type="hidden" id="p_id" name="p_id"
+                                                                                    <input type="hidden" id="p_id"
+                                                                                        name="p_id"
                                                                                         value="{{item['product_id']}}">
-        
+
                                                                                     <button type="button"
                                                                                         class="custom-quantity-plus"
                                                                                         title="Quantity Plus">
                                                                                         <i class="icofont-plus"></i>
                                                                                     </button>
-        
+
                                                                                 </div>
                                                                             </div>
-        
+
                                                                             <div class="view-action-group">
-                                                                                <button type="submit" class="btn btn-inline">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-inline">
                                                                                     <i class="fas fa-shopping-cart"></i>
                                                                                     <span>edit cart</span>
                                                                                 </button>
                                                                             </div>
-        
+
                                                                         </form>
                                                                         {% else %}
                                                                         <p style="color:red">Out of Stock</p>
@@ -275,7 +283,8 @@
                             <div class="row">
                                 {% for address in shipping_addresses %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card address">
+                                    <div class="profile-card address"
+                                        data-address-id="{{address['shipping_address_id']}}">
                                         <p>{{address['address_line1']}}</p><br>
                                         <p>{{address['address_line2']}}</p><br>
                                         <p>{{address['city']}}, {{address['state']}} {{address['zipcode']}}</p>
@@ -324,9 +333,10 @@
                                                     <input type="text" name="zipcode" class="form-control"
                                                         value="{{address['zipcode']}}">
                                                 </div>
-                                                <input type="hidden" name="shipping_address_id" value="{{address['shipping_address_id']}}">
+                                                <input type="hidden" name="shipping_address_id"
+                                                    value="{{address['shipping_address_id']}}">
                                                 <button class="form-btn" type="submit">save address info</button>
-                                                
+
                                             </form>
                                         </div>
                                     </div>
@@ -341,13 +351,14 @@
                     <div class="account-card mb-0">
                         <div class="account-title">
                             <h4>payment option</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#payment_method-add">Add payment info</button>
+                            <button data-bs-toggle="modal" data-bs-target="#payment_method-add">Add payment
+                                info</button>
                         </div>
                         <div class="account-content">
                             <div class="row">
                                 {% for method in payment_methods %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment">
+                                    <div class="payment-card payment" data-payment-id="{{method['payment_id']}}">
                                         <h3>{{method['card_name']}}</h3>
                                         <p>{{method['card_number']}} </p>
                                         <h5>{{method['card_type']}}</h5>
@@ -357,7 +368,8 @@
                                         <p>{{method['bill_city']}}, {{method['bill_state']}} {{method['bill_zipcode']}}
                                         </p>
                                         <ul class="user-action">
-                                            <li><button data-bs-toggle="modal" data-bs-target="#payment_method-edit-{{loop.index}}"
+                                            <li><button data-bs-toggle="modal"
+                                                    data-bs-target="#payment_method-edit-{{loop.index}}"
                                                     class="edit icofont-edit" title="Edit This"></button></li>
 
                                         </ul>
@@ -422,7 +434,7 @@
                                                 </div>
                                                 <input type="hidden" name="payment_id" value="{{method['payment_id']}}">
                                                 <button class="form-btn" type="submit">save payment info</button>
-                                                
+
                                             </form>
                                         </div>
                                     </div>
@@ -468,10 +480,11 @@
                                 <div class="form-title">
                                     <h3>Add address info</h3>
                                 </div>
-            
+
                                 <div class="form-group">
                                     <label class="form-label">Address Line 1</label>
-                                    <input type="text" name="aline1" class="form-control" placeholder="Address Line 1" required>
+                                    <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Address Line 2</label>
@@ -487,7 +500,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Zipcode</label>
-                                    <input type="text" name="zipcode" class="form-control" placeholder="Zipcode" required>
+                                    <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"
+                                        required>
                                 </div>
                                 <button class="form-btn" type="submit">save address info</button>
                                 <input type="hidden" name="page" value="/profile">
@@ -500,33 +514,37 @@
                 <div class="modal fade" id="payment_method-add">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <button class="modal-close" data-bs-dismiss="modal"><i
-                                    class="icofont-close"></i></button>
+                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                             <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
                                 <input class="hidden-form" name="edit" value="payment_method-add">
                                 <div class="form-title">
                                     <h3>Add payment info</h3>
                                 </div>
-            
+
                                 <div class="form-group">
                                     <label class="form-label">card name</label>
-                                    <input class="form-control" name="cname" type="text" placeholder="Card name" required>
+                                    <input class="form-control" name="cname" type="text" placeholder="Card name"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">card number</label>
-                                    <input class="form-control" name="cnumber" type="text"  placeholder="Card number" required>
+                                    <input class="form-control" name="cnumber" type="text" placeholder="Card number"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">card type</label>
-                                    <input class="form-control" name="ctype" type="text"  placeholder="Card type" required>
+                                    <input class="form-control" name="ctype" type="text" placeholder="Card type"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">expiration date (MM/DD/YYYY)</label>
-                                    <input class="form-control" name="cdate" type="date"  placeholder="Expiration date (MM/DD/YYYY)" required>
+                                    <input class="form-control" name="cdate" type="date"
+                                        placeholder="Expiration date (MM/DD/YYYY)" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Address Line 1</label>
-                                    <input type="text" name="aline1" class="form-control" placeholder="Address Line 1" required>
+                                    <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Address Line 2</label>
@@ -542,7 +560,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Zipcode</label>
-                                    <input type="text" name="zipcode" class="form-control" placeholder="Zipcode" required>
+                                    <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"
+                                        required>
                                 </div>
                                 <button class="form-btn" type="submit">save payment info</button>
                                 <input type="hidden" name="page" value="/profile">
@@ -582,9 +601,15 @@
                 </div>
 
                 {% if session['cart'] | length > 0 %}
-                <div class="checkout-proced">
-                    <a href="{{url_for('createorder')}}" class="btn btn-inline">proceed to checkout</a>
-                </div>
+                <form id="checkout-form" action="{{url_for('createorder')}}" method="POST">
+                    <div class="row">
+                        <button type="submit" class="cart-checkout-btn">
+                            <span class="checkout-label">Proceed to Checkout</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="shipping_address" value="">
+                    <input type="hidden" name="payment_method" value="">
+                </form>
                 {% else %}
                 <div class="checkout-proced">
                     <a href="{{url_for('shop')}}" class="btn btn-inline">Add an item to cart</a>
@@ -616,6 +641,53 @@
 
     <!-- To check quantity and clamp it -->
     <script src="/static/js/quantity-checker.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var form = document.querySelector('#checkout-form');
+
+            form.addEventListener('submit', function (event) {
+                var shippingAddress = document.querySelector('input[name="shipping_address"]').value;
+                var paymentMethod = document.querySelector('input[name="payment_method"]').value;
+
+                if (!shippingAddress || !paymentMethod) {
+                    alert('Select shipping address and payment method before proceeding.');
+                    event.preventDefault(); // stop form submission
+                }
+            });
+
+            // Address selection
+            var addresses = document.querySelectorAll('.profile-card.address');
+            addresses.forEach(function (address) {
+                address.addEventListener('click', function () {
+                    var _this = this; // preserve the reference to 'this'
+                    setTimeout(function () {
+                        if (_this.classList.contains('active')) {
+                            var addressId = _this.getAttribute('data-address-id');
+                            document.querySelector('input[name="shipping_address"]').value = addressId;
+                        }
+                    }, 100); // 100 millisecond delay
+                });
+            });
+
+            // Payment method selection
+            var paymentMethods = document.querySelectorAll('.payment-card.payment');
+            paymentMethods.forEach(function (paymentMethod) {
+                paymentMethod.addEventListener('click', function () {
+                    var _this = this; // preserve the reference to 'this'
+                    setTimeout(function () {
+                        if (_this.classList.contains('active')) {
+                            var paymentId = _this.getAttribute('data-payment-id');
+                            document.querySelector('input[name="payment_method"]').value = paymentId;
+                        }
+                    }, 100); // 100 millisecond delay
+                });
+            });
+        });
+    </script>
+
+
 
     <!-- VENDOR -->
     <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>

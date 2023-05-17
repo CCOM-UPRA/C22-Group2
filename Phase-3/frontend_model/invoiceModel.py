@@ -63,7 +63,7 @@ def addOrderModel(shipping_address, payment_method):
 
         print("Trying to add order")
         # Create the order
-        sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status, shipping_address_id, payement_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status, shipping_address_id, payment_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"
         cursor = db.execute(sql, (session['customer'], tk, str(current_date), str(arrival_date), "Received", shipping_address, payment_method))
 
         # Get the order id
