@@ -127,7 +127,7 @@
                                         <label class="form-label">password</label>
                                         <input type="password" name="pass1" class="form-control" placeholder="New Password">
                                     </div>
-                                     {% if acc['status'] == '1' %}
+                                     {% if acc['status'] == 1 %}
                                          <div class="form-group">
                                             <label class="form-label">status</label><br>
                                              <label for="active">Active</label>
@@ -139,9 +139,9 @@
                                         <div class="form-group">
                                             <label class="form-label">status</label><br>
                                              <label for="active1">Active</label>
-                                            <input type="radio" id='active1' value="1" name="group1" checked><br>
+                                            <input type="radio" id='active1' value="1" name="group1"><br>
                                              <label for="inactive1">Inactive</label>
-                                            <input type="radio" id='inactive1' value="0" name="group1">
+                                            <input type="radio" id='inactive1' value="0" name="group1" checked>
                                         </div>
                                      {% endif %}
                                      {% if userType == 'user' %}
