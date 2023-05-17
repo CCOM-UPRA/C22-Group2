@@ -275,7 +275,7 @@
                             <div class="row">
                                 {% for address in shipping_addresses %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card address active">
+                                    <div class="profile-card address">
                                         <p>{{address['address_line1']}}</p><br>
                                         <p>{{address['address_line2']}}</p><br>
                                         <p>{{address['city']}}, {{address['state']}} {{address['zipcode']}}</p>
@@ -347,7 +347,7 @@
                             <div class="row">
                                 {% for method in payment_methods %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment active">
+                                    <div class="payment-card payment">
                                         <h3>{{method['card_name']}}</h3>
                                         <p>{{method['card_number']}} </p>
                                         <h5>{{method['card_type']}}</h5>
