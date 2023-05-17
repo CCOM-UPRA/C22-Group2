@@ -7,7 +7,7 @@ from flask import Flask, render_template, redirect, request, session, url_for
 from werkzeug.utils import secure_filename
 
 from backend_controller.loginController import *
-from backend_controller.ordersController import ordersController, getorder, getorderproducts
+from backend_controller.ordersController import ordersController, getorder, getorderproducts, edit_order
 from backend_controller.productsController import *
 from backend_controller.accountsController import *
 from backend_controller.reportsController import *
@@ -388,19 +388,32 @@ def orders():
     return render_template("orders.html", orders=all_orders)
 
 
-@app.route('/editorder', methods=['GET'])
-@login_required
-def editorder():
-
-    order = request.args.get('order')
-    print(order)
-    # Receive from orders page an order via its id -> order
+@app.route('/order', methods = ['GET'])
+@login_required 
+def order():
+    order = request.args.get('order')    
     # Fetch the products in that order
     orderProducts = getorderproducts(order)
     # Fetch the order itself. Overwrite order as the ID alone is no longer needed
     order = getorder(order)
-    # Go to separate page for that order
     return render_template('order.html', products=orderProducts, order=order)
+
+
+
+@app.route('/editorder', methods=['POST'])
+@login_required
+def editorder():
+
+    order = request.form.get('order')
+    status = request.form.get('status')
+    # Receive from orders page an order via its id -> order
+    # Fetch the products in that order
+    #orderProducts = getorderproducts(order)
+    # Fetch the order itself. Overwrite order as the ID alone is no longer needed
+    edit_order(status, order)
+    #order = getorder(order)
+    # Go to separate page for that order
+    return redirect(request.referrer)
 
   
 @app.route("/reports")

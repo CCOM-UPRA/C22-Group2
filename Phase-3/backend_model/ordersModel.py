@@ -154,7 +154,15 @@ def getordermodel(ID):
     #    if key == ID:
     #        return order
     db = DBConnect()
-    sql = "SELECT "
+    sql = """SELECT order_id,order_date, arrival_date, status,
+    SUM(product_quantity * product_price) AS total,
+    SUM(product_quantity) as total_items
+    FROM orders
+    NATURAL JOIN contains
+    WHERE order_id = %s
+    GROUP BY order_id"""
+    result=db.query(sql, (ID))
+    return list(result).pop()
 
 
 def getorderproductsmodel(ID):
@@ -175,3 +183,17 @@ def getorderproductsmodel(ID):
    return result
 
 
+def edit_order(Status, ID):
+    print("JMMMMM")
+    print(Status +" "+ ID)
+    db = DBConnect()
+    try:
+        sql = ("UPDATE orders SET status = %s where order_id = %s")
+        db.execute(sql, (Status, ID))
+        db.commit()
+    except Exception as e:
+        print("NOOOOOO")
+        db.rollback()
+        print(f"Error occurred: {e}")
+
+    
