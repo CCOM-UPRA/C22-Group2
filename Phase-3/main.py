@@ -156,14 +156,25 @@ def editinfo():
         pnumber = request.form.get('pnumber')
         edit_number(pnumber=pnumber)
         
-   
-    elif request.form.get('edit') == 'address':
-        aline1 = request.form.get('aline1')
-        aline2 = request.form.get('aline2')
-        state = request.form.get('state')
+   #------------Shipping-------------------------
+    elif request.form.get('edit') == 'shipping_address-add':
+        address_line1 = request.form.get('aline1')
+        address_line2 = request.form.get('aline2')
         city = request.form.get('city')
+        state = request.form.get('state')
         zipcode = request.form.get('zipcode')
-        edit_address(aline1, aline2, state, zipcode, city)
+        
+        add_address(address_line1, address_line2, city, state, zipcode)
+
+
+    elif request.form.get('edit') == 'shipping_address':
+        address_line1 = request.form.get('aline1')
+        address_line2 = request.form.get('aline2')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        shipping_address_id = request.form.get('shipping_address_id')
+        edit_address(address_line1, address_line2, city, state, zipcode,shipping_address_id)
 
         #------------Payment----------------------
     

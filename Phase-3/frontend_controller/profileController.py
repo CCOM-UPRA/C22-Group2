@@ -1,16 +1,21 @@
 from frontend_model.profileModel import *
 
-#access user
+#-------------------- user in session --------------------
 
 def getUser(customer):
     user = getUserModel(customer)
     
     return user
 
-#edit profile info
+#-------------------- profile info--------------------
 
 def edit_profile(fname, lname, email):
     editprofilemodel(fname, lname, email)
+
+#--------------------Contact number----------------------
+    
+def edit_number(pnumber):
+    editnumbermodel(pnumber)
 
 #-------------------payment info-----------------------------
 def edit_payment(card_name, card_type, card_exp_date, card_number, bill_address_line1 ,  bill_address_line2, bill_city, bill_state, bill_zipcode, payment_id):
@@ -22,18 +27,14 @@ def add_payment(card_name, card_type, card_exp_date, card_number, bill_address_l
 def getPayment(customer):
     return getPaymentModel(customer)
 
-#shipping ifo
+#----------------------shipping info------------------------------
 
 def getAddress(customer):
     return getAddressModel(customer)
 
-def edit_address(aline1, aline2, state, zipcode, city):
-    editaddressmodel(aline1, aline2, state, zipcode, city)
+def edit_address(address_line1, address_line2, city, state, zipcode,shipping_address_id):
+    editaddressmodel(address_line1, address_line2, city, state, zipcode,shipping_address_id)
 
+def add_address(address_line1, address_line2, city, state, zipcode):
+    addaddressmodel(address_line1, address_line2, city, state, zipcode)
 
-
-# def edit_billaddress(aline1, aline2, state, zipcode, city):
-#     edit_billaddressmodel(aline1, aline2, state, zipcode, city)
-    
-def edit_number(pnumber):
-    editnumbermodel(pnumber)

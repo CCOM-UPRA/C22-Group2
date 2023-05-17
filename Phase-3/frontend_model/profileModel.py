@@ -37,7 +37,7 @@ def editnumbermodel(pnumber):
         print(f"Error occurred: {e}")
         return None
     
-#S
+# ------------------------------Address Methods------------------------------------
 def getAddressModel(customer):
     db = DBConnect()
     sql = "SELECT * FROM shipping_address WHERE customer_id = %s"
@@ -45,25 +45,38 @@ def getAddressModel(customer):
     print(result)
     return result
 
-def editaddressmodel(aline1, aline2, state, zipcode, city):
+def editaddressmodel(address_line1, address_line2, city, state, zipcode,shipping_address_id):
     db = DBConnect()
-    db.execute("UPDATE shipping_address SET address_line1 = %s, address_line2 = %s, "
-                "city = %s, state = %s, zipcode = %s WHERE customer_id = %s",
-                (aline1, aline2, city, state, zipcode, session['customer']))
-    
+    try:
+        db.execute("UPDATE shipping_address SET address_line1 = %s, address_line2 = %s, "
+                "city = %s, state = %s, zipcode = %s WHERE customer_id = %s AND shipping_address_id= %s",
+                (address_line1, address_line2, city, state, zipcode, session['customer'], shipping_address_id))
+        db.commit()
 
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+    
+def addaddressmodel(address_line1, address_line2, city, state, zipcode):
+    db = DBConnect()
+    try:
+        db.execute("INSERT INTO shipping_address (address_line1, address_line2, city, state, zipcode, customer_id) VALUES ( %s, %s, %s, %s, %s, %s)",(address_line1, address_line2, city, state, zipcode, session['customer']))
+        db.commit()
+
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
+
+# ------------------------------Payment Methods------------------------------------
 def getPaymentModel(customer):
     db = DBConnect()
     sql = "SELECT * FROM payment_method WHERE customer_id = %s"
     result = db.query(sql, (customer))
     print(result)
     return result
-
-# def edit_billaddressmodel(aline1, aline2, state, zipcode, city):
-#     db = DBConnect()
-#     db.execute("UPDATE payment_method SET bill_address_line1 = %s, bill_address_line2 = %s, "
-#                 "bill_city = %s, bill_state = %s, bill_zipcode = %s WHERE customer_id = %s",
-#                 (aline1, aline2, city, state, zipcode, session['customer']))
 
 def editpaymentmodel(card_name, card_type, card_exp_date, card_number, bill_address_line1 ,  bill_address_line2, bill_city, bill_state, bill_zipcode, payment_id):
     db = DBConnect()
