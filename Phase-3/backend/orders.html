@@ -116,16 +116,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for key, order in orders.items() %}
+                                {% for order in orders %}
                                 <tr>
-                                        <td class="table-name"><h6>{{key}}</h6></td>
-                                        <td class="table-name"><h6>{{order['tracking_num']}}</h6></td>
+                                        <td class="table-name"><h6>{{order['order_id']}}</h6></td>
+                                        <td class="table-name"><h6>{{order['tracking_number']}}</h6></td>
                                         <td class="table-name"><h6>{{order['status']}}</h6></td>
                                         <td class="table-price"><h6>{{order['order_date']}}</h6></td>
                                         <td class="table-brand"><h6>{{order['arrival_date']}}</h6></td>
                                          <td class="table-brand"><h6>${{order['total']}}</h6></td>
                                         <td class="table-action">
-                                            <a class="view" href="{{url_for('editorder', order=key)}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
+                                            <a class="view" href="{{url_for('order', order=order['order_id'])}}" title="Edit Amount"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}

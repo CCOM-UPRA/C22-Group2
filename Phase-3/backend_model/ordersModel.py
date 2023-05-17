@@ -1,3 +1,4 @@
+from classes.db_connect import DBConnect 
 # from backend_model.profileModel import MagerDicts
 #
 # # ORDER 1
@@ -138,28 +139,61 @@
 #
 
 def ordersModel():
-    return ordersList
+    db = DBConnect()
+    sql = """SELECT order_id, tracking_number, status, order_date, arrival_date, 
+    SUM(product_quantity * product_price) AS total
+    FROM orders
+    NATURAL JOIN contains
+    GROUP BY order_id;"""
+    result = db.query(sql)
+    return result 
 
 
 def getordermodel(ID):
-    for key, order in ordersList.items():
-        if key == ID:
-            return order
+    #for key, order in ordersList.items():
+    #    if key == ID:
+    #        return order
+    db = DBConnect()
+    sql = """SELECT order_id,order_date, arrival_date, status,
+    SUM(product_quantity * product_price) AS total,
+    SUM(product_quantity) as total_items
+    FROM orders
+    NATURAL JOIN contains
+    WHERE order_id = %s
+    GROUP BY order_id"""
+    result=db.query(sql, (ID))
+    return list(result).pop()
 
 
 def getorderproductsmodel(ID):
-    returnList = {}
-    num = 1
-    for key, product in productsList.items():
-        if product['order_id'] == ID:
-            if returnList == {}:
-                returnList = {'1': product}
-            else:
-                num += 1
-                returnList = MagerDicts(returnList, {str(num): product})
-    print(returnList)
-    return returnList
+    #    returnList = {}
+    #    num = 1
+    #    for key, product in productsList.items():
+    #        if product['order_id'] == ID:
+    #            if returnList == {}:
+    #                returnList = {'1': product}
+    #            else:
+    #                num += 1
+    #                returnList = MagerDicts(returnList, {str(num): product})
+    #    print(returnList)
+    #    return returnLists
+   db = DBConnect()
+   sql = ("SELECT product_id, image, name, plant_type, price, product_quantity, SUM(product_quantity * product_price) AS total FROM product NATURAL JOIN contains WHERE order_id = %s")
+   result=db.query(sql, (ID))
+   return result
 
 
+def edit_order(Status, ID):
+    print("JMMMMM")
+    print(Status +" "+ ID)
+    db = DBConnect()
+    try:
+        sql = ("UPDATE orders SET status = %s where order_id = %s")
+        db.execute(sql, (Status, ID))
+        db.commit()
+    except Exception as e:
+        print("NOOOOOO")
+        db.rollback()
+        print(f"Error occurred: {e}")
 
-
+    

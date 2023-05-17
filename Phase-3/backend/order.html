@@ -92,9 +92,10 @@
                         <h2>Order</h2>
 
                      <div style='padding: 0 40%' class="view-add-group">
-                         <form action="{{url_for('orders')}}">
+                         <form action="{{url_for('editorder')}}" method = POST>
+
                            <button style="" class="product-add">Save changes</button>
-                       </form>
+			   <input type = "hidden" value="{{order['order_id']}}" name = "order">
                     </div>
 
 
@@ -117,12 +118,13 @@
                                     <li>
                                         <h6>Status</h6>
                                         <select id="status" name="status">
-                                              <option value="cancelled">Cancelled</option>
-                                              <option value="processed">Processed</option>
-                                              <option value="shipped">Shipped</option>
-                                              <option value="delivered">Delivered</option>
-                                              <option value="received">Recieved</option>
-                                        </select>
+						{% set statuses = ['Cancelled', 'Processed', 'Shipped', 'Delivered', 'Received'] %}
+						{% for status in statuses %}
+						
+							<option value="{{ status }}" {% if order['status'] == status %}selected{% endif %}>{{ status | capitalize }}</option>
+        {% endfor %}
+					</select>
+					</form>
                                     </li>
                                 </ul>
                             </div>
@@ -168,15 +170,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for key, prod in products.items() %}
+                                {% for prod in products %}
                                 <tr>
-                                        <td class="table-name"><h6>{{key}}</h6></td>
+					<td class="table-name"><h6>{{prod['product_id']}}</h6></td>
                                         <td class="table-name"><h6>{{prod['name']}}</h6></td>
                                         <td class="table-image"><h6><img src="static/images/product-images/{{prod['image']}}" alt="product"></h6></td>
-                                        <td class="table-name"><h6>{{prod['family type']}}</h6></td>
+                                        <td class="table-name"><h6>{{prod['plant_type']}}</h6></td>
                                         <td class="table-price"><h6>${{prod['price']}}</h6></td>
-                                        <td class="table-brand"><h6>{{prod['quantity']}}</h6></td>
-                                         <td class="table-brand"><h6>${{prod['total_price']}}</h6></td>
+                                        <td class="table-brand"><h6>{{prod['product_quantity']}}</h6></td>
+                                         <td class="table-brand"><h6>${{prod['total']}}</h6></td>
 
                                     </tr>
                                 {% endfor %}
