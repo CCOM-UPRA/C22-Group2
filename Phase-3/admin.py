@@ -204,14 +204,14 @@ def accountinfo():
         "card_num": cnumber
         }
     else:
-        newAccount = {
-        "first_name": fname,
-        "last_name": lname,
-        "email": email,
-        "password": pass1,
-        "phone_number": pnumber,
-        "status": 0
-        } 
+        newAccount = [
+        fname,
+        lname,
+        email,
+        pass1,
+        pnumber,
+        0
+        ]
     
     addaccount(newAccount, userType)
     return redirect("accounts?userType=" + userType)
