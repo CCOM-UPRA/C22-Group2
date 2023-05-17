@@ -38,11 +38,8 @@ def addaccountmodel(newAccount, userType):
     db = DBConnect()
     newAccount[3] = sha256_crypt.encrypt(newAccount[3])
     try:
-        if userType == 'administrator':
-            query = """INSERT INTO administrator (first_name, last_name, email,  password, phone_number, status) VALUES (%s, %s, %s, %s, %s, %s)"""
-            db.execute(query, newAccount)
-        elif userType == 'customer':
-            query = """INSERT INTO customer (first_name, last_name, email,  password, phone_number, status) VALUES (%s, %s, %s, %s, %s, %s)"""
+        if userType == 'administrator' or userType == 'customer':
+            query = "INSERT INTO "+userType+" (first_name, last_name, email,  password, phone_number, status) VALUES (%s, %s, %s, %s, %s, %s)"
             db.execute(query, newAccount)
 
         db.commit()
@@ -59,22 +56,27 @@ def addaccountmodel(newAccount, userType):
 def updateAccountModel(userInfo, userType):
     db = DBConnect()
 
+    info = list(userInfo)
+
     try:
-        if userType == 'administrator':
-            query = """UPDATE administrator 
-            SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s
-            WHERE administrator_id = %s"""
-            db.execute(query, userInfo)
-        elif userType == 'customer':
-            query = """UPDATE customer 
-            SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s
-            WHERE customer_id = %s"""
-            # query = """UPDATE customer NATURAL JOIN shipping_address NATURAL JOIN payment_method
-            # SET first_name = %s, last_name = %s, phone_number = %s, email = %s, password = %s, status = %s,
-            #  address_line1 = %s, address_line2 = %s, city = %s, state = %s, zipcode = %s,
-            #  card_name = %s, card_number = %s, card_type = %s, card_exp_date = %s
-            # WHERE customer_id = %s"""
-            db.execute(query, userInfo)
+        if userType == 'administrator' or userType == 'customer':
+            
+            query = "UPDATE " + userType + \
+            " SET first_name = %s, last_name = %s, phone_number = %s, email = %s, status = %s" \
+            "WHERE " + userType + "_id = %s"
+            
+            # Remove password from info
+            password = info.pop(4)
+            db.execute(query, info)
+            
+            # Only update password when password
+            if password != '':
+                query = "UPDATE " + userType + \
+                    " SET password = %s WHERE " + userType + "_id = %s"
+                    
+                params = (sha256_crypt.encrypt(password), info.pop())
+                db.execute(query, params)
+
 
         db.commit()
     except Exception as e:
