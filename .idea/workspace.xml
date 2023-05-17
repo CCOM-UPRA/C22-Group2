@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Can view single accounts and account info. Products eye button changed to pen.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-3/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-3/backend/create_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend/create_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-3/backend/single_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend/single_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-3/backend_controller/accountsController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_controller/accountsController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-3/backend_model/accountsModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-3/backend_model/accountsModel.py" afterDir="false" />
-    </list>
+    <list default="true" id="154ae46d-eb34-4a9b-9e38-3dc5f7a0c148" name="Default Changelist" comment="Status fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,7 +193,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684291151980</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="addacount &amp; updateaccount query fix">
+      <created>1684294432607</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1684294432607</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Status fix">
+      <created>1684297826955</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684297826955</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -229,7 +236,9 @@
     <MESSAGE value="Edit accounts" />
     <MESSAGE value="fix" />
     <MESSAGE value="addaccount query" />
-    <option name="LAST_COMMIT_MESSAGE" value="addaccount query" />
+    <MESSAGE value="addacount &amp; updateaccount query fix" />
+    <MESSAGE value="Status fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Status fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/plants_ecommerce_site$main.coverage" NAME="main Coverage Results" MODIFIED="1676913667188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Phase-1-Template-main" />

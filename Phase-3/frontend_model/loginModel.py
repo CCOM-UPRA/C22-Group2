@@ -33,7 +33,7 @@ def addloginmodel(first_name, last_name, email, password):
     encrypted_password = sha256_crypt.encrypt(password)
     
     try:
-        sql = "INSERT INTO customer (first_name, last_name, email, password) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO customer (first_name, last_name, email, password, status) VALUES (%s, %s, %s, %s, 1)"
         cursor = db.execute(sql, (first_name, last_name, email, encrypted_password))
         
         db.commit()

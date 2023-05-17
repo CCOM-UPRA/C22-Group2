@@ -256,7 +256,7 @@ def accountinfo():
             email,
             pass1,
             pnumber,
-            0
+            1
         ]
         # newAccount = {
         # "first_name": fname,
@@ -282,7 +282,7 @@ def accountinfo():
         email,
         pass1,
         pnumber,
-        0
+        1
         ]
     
     addaccount(newAccount, userType)
