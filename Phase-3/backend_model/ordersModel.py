@@ -1,3 +1,4 @@
+from classes.db_connect import DBConnect 
 # from backend_model.profileModel import MagerDicts
 #
 # # ORDER 1
@@ -138,28 +139,39 @@
 #
 
 def ordersModel():
-    return ordersList
+    db = DBConnect()
+    sql = """SELECT order_id, tracking_number, status, order_date, arrival_date, 
+    SUM(product_quantity * product_price) AS total
+    FROM orders
+    NATURAL JOIN contains
+    GROUP BY order_id;"""
+    result = db.query(sql)
+    return result 
 
 
 def getordermodel(ID):
-    for key, order in ordersList.items():
-        if key == ID:
-            return order
+    #for key, order in ordersList.items():
+    #    if key == ID:
+    #        return order
+    db = DBConnect()
+    sql = "SELECT "
 
 
 def getorderproductsmodel(ID):
-    returnList = {}
-    num = 1
-    for key, product in productsList.items():
-        if product['order_id'] == ID:
-            if returnList == {}:
-                returnList = {'1': product}
-            else:
-                num += 1
-                returnList = MagerDicts(returnList, {str(num): product})
-    print(returnList)
-    return returnList
-
+    #    returnList = {}
+    #    num = 1
+    #    for key, product in productsList.items():
+    #        if product['order_id'] == ID:
+    #            if returnList == {}:
+    #                returnList = {'1': product}
+    #            else:
+    #                num += 1
+    #                returnList = MagerDicts(returnList, {str(num): product})
+    #    print(returnList)
+    #    return returnList
+    db = DBConnect()
+    sql = ("SELECT * FROM products NATURAL JOIN contains WHERE order_id = %s")
+                                                                                                                                                            
 
 
 
