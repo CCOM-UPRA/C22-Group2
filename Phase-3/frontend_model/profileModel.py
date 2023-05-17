@@ -27,6 +27,19 @@ def editprofilemodel(fname, lname, email):
 def editnumbermodel(pnumber):
     db = DBConnect()
     try:
+        db.execute("UPDATE customer SET first_name = %s, last_name = %s, "
+                    "email = %s WHERE customer_id = %s",
+                    (fname, lname, email, session['customer']))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
+#Change contact number
+def editnumbermodel(pnumber):
+    db = DBConnect()
+    try:
         db.execute("UPDATE customer SET phone_number = %s"
                     "WHERE customer_id = %s",
                     (pnumber, session['customer']))

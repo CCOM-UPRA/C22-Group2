@@ -316,18 +316,18 @@ def editcheckout():
     return redirect("/checkout")
 
 
-@app.route("/filter", methods=["POST", "GET"])
-def filter():
-    # filter happens here
-    # not in function currently
-    # return redirect("/shop")
+# @app.route("/filter", methods=["POST", "GET"])
+# def filter():
+#     # filter happens here
+#     # not in function currently
+#     # return redirect("/shop")
 
-    if request.args.get('filter_query'):
-        products = getProductsByWatering(request.args.get('filter_query'))
-        products = getProductsByWatering(request.args.get('filter_query'))
+#     if request.args.get('filter_query'):
+#         products = getProductsByWatering(request.args.get('filter_query'))
+#         products = getProductsByWatering(request.args.get('filter_query'))
 
-    else:
-        products = getProducts()
+#     else:
+#         products = getProducts()
 
     # # Then we create the shopping cart by accessing getCart in shopController
     # getCart()
