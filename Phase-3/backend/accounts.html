@@ -126,7 +126,7 @@
                                 <tbody>
                                 {% set prefix = 'administrator_' if userType == 'administrator' else 'customer_' %}
                                 {% for acc in accounts %}
-                                {% set state = 'Active' if  acc['status'] == 0 else 'Inactive' %}
+                                {% set state = 'Active' if  acc['status'] == 1 else 'Inactive' %}
                                 <tr>
                                         <td class="table-name"><h6>{{acc['first_name']}}</h6></td>
                                         <td class="table-name"><h6>{{acc['last_name']}}</h6></td>
