@@ -63,6 +63,9 @@ def login_required(f):
 def enterpage(message):
     # Defaults to product page if logged in
     if session.get('admin'):
+        
+        if message:
+            return render_template('404.html')
         return redirect("/products")
     
     return redirect("/login")
