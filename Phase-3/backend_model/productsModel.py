@@ -39,6 +39,11 @@ def getsingleproductmodel(prodID):
 
     return result
 
+def getproductimagemodel(product_id):
+    db = DBConnect()
+    sql = "SELECT image FROM product WHERE product_id = %s"
+    return list(db.query(sql, [product_id])).pop()
+
 # Add a new product to the JSON file
 def addproductmodel(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status):
     db = DBConnect()
@@ -46,7 +51,6 @@ def addproductmodel(name, plant_type, sun_exposure, watering, location, price, c
     try:
         db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status))
         db.commit()
-        print("Product added")
     except Exception as e:
         db.rollback()
         print(f"Error occurred: {e}")

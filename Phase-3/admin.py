@@ -137,21 +137,22 @@ def single_product(prodID):
 @app.route("/editproduct", methods=['POST'])
 @login_required
 def editproduct():
+    product_id = request.form.get('prod_id')
     # process the changes to a product's information
     print(request.files)
     print("Edit product called")
     if 'image' not in request.files:
-        flash('No file part')
+        filename = getproductimage(product_id)['image']
     file = request.files['image']
     # If the user does not select a file, the browser submits an
     # empty file without a filename.
     if file.filename == '':
-        flash('No selected file')
+        filename = getproductimage(product_id)['image']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    product_id = request.form.get('prod_id')
+    
     name = request.form.get('name')
     plant_type = request.form.get('plant_type')
     sun_exposure = request.form.get('sun_exposure')
