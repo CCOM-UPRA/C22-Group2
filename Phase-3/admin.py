@@ -240,6 +240,7 @@ def accountinfo():
     pnumber = request.form.get('pnumber')
     email = request.form.get('email')
     pass1 = request.form.get('pass1')
+    status = request.form.get('status')
     aline1 = request.form.get('aline1')
     aline2 = request.form.get('aline2')
     city = request.form.get('city')
@@ -258,7 +259,7 @@ def accountinfo():
             email,
             pass1,
             pnumber,
-            1
+            status
         ]
         # newAccount = {
         # "first_name": fname,
@@ -284,7 +285,7 @@ def accountinfo():
         email,
         pass1,
         pnumber,
-        1
+        status
         ]
     
     addaccount(newAccount, userType)
