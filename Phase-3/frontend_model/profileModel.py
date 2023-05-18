@@ -75,7 +75,13 @@ def getPaymentModel(customer):
     db = DBConnect()
     sql = "SELECT * FROM payment_method WHERE customer_id = %s"
     result = db.query(sql, (customer))
-    print(result)
+    
+    for payment in result:
+        new_payment_num = '*'*(len(payment['card_number']) - 4)
+        last_numbers = payment['card_number'][(len(payment['card_number']) - 4):len(payment['card_number'])]
+        new_payment_num += last_numbers
+        payment['placeholder_number'] = new_payment_num
+    
     return result
 
 def editpaymentmodel(card_name, card_type, card_exp_date, card_number, bill_address_line1 ,  bill_address_line2, bill_city, bill_state, bill_zipcode, payment_id):
