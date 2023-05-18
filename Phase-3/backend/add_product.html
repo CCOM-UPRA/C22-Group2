@@ -22,7 +22,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Product Tab - Urban Gardens</title>
+        <title>New Product - Urban Gardens</title>
 
         <!--=====================================
                     CSS LINK PART START
@@ -89,7 +89,7 @@
                 <div style='text-align: center'>
 
                         <br><br>
-                        <h2>Product Name</h2>
+                        <h2>New Product</h2>
                         <br>
 
                     </div>
@@ -127,16 +127,17 @@
     <!--                            <label for="cost">Cost in $: </label>-->
     <!--                            <input type="number" id='cost' value="Cost"><br>-->
                                 <label class="form-label">Price:
-                                    <input type="text" name="price" class="form-control" placeholder="$$..." required></input></label><br>
+                                    <input type="number" step="0.01" name="price" class="form-control" placeholder="$$..." required></input></label><br>
 
                                 <label class="form-label">Cost:
-                                    <input type="text" name="cost" class="form-control" placeholder="$$..." required></input></label><br>
+                                    <input type="number" step="0.01" name="cost" class="form-control" placeholder="$$..." required></input></label><br>
 
                                 <label class="form-label">Stock:
-                                    <input type="text" name="stock" class="form-control" placeholder="..." required></input></label><br>
+                                    <input type="number"     name="stock" class="form-control" placeholder="..." required></input></label><br>
 
                                 <label class="form-label">Description:
-                                    <input type="text" name="desc" class="form-control" placeholder="Description..." required></input></label><br>
+                                    <textarea class="form-control" id='desc' name="desc" title="Description" placeholder="Write a Brief Description for the product" rows="8" cols="80" style="font-size: 16px; line-height: 1.5; padding: 10px;" required></textarea>
+                            <br>
 
                                 <label class="form-label">Image:
                                     <input type="file" id="image-input" name="image" onchange="previewImage()" required>
@@ -159,8 +160,8 @@
 
 
                                 <div class="details-add-group">
-                                    <button type="submit" class="product-add" title="Save changes">
-                                        <span>Add Product</span></button>
+                                    <button type="submit" class="cart-checkout-btn" title="Save changes">
+                                        <span class="checkout-label">Add Product</span></button>
                                     </div>
                             </form>
 
