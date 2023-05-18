@@ -434,9 +434,16 @@ def report():
     
     if request.args.get('report') == 'inventory':
         report, report_cols = getStockReport()
+        
+        if len(report) == 0:
+            return render_template('404.html')
+        
         return render_template("report.html", report=report, report_cols=report_cols, report_type=report_type, report_date=None, product_id=None)
     else:
         report, report_cols = getDatedReport(report_type, report_date, product_id)
+        
+        if len(report) == 0:
+            return render_template('404.html')
         
         for i in report:
             total += float(i['total_price'].split("$")[1])

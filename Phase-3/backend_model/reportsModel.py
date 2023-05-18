@@ -17,7 +17,7 @@ def getDatedReportModel(report_type, date, product_id = None):
     db = DBConnect()
     
     if date == "" or date == None:
-        date = datetime.today().date()
+        return [], []
     
     if product_id:
         product_sql = " AND contains.product_id = %s "
@@ -56,7 +56,7 @@ def getDatedReportModel(report_type, date, product_id = None):
         else:
             result = list(db.query(sql, (str(date), str(date))))
     else:
-        return
+        return [], []
     
      # Format total_price and date
     for row in result:
