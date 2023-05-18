@@ -315,37 +315,6 @@ def editaccount(acc):
     print("UserType: ", userType)
     return render_template("single_account.html", acc=account, account=acc, userType=userType, message=message)
 
-# @app.route("/updateaccount", methods=['POST'])
-# def updateaccount():
-#     id = request.form.get('id')
-#     userType = request.form.get('userType')
-#     fname = request.form.get('fname')
-#     lname = request.form.get('lname')
-#     phone_number = request.form.get('pnumber')
-#     status = request.form.get('group1')
-#
-#     if userType == 'customer':
-#         aline1 = request.form.get('aline1')
-#         aline2 = request.form.get('aline2')
-#         city = request.form.get('city')
-#         state = request.form.get('state')
-#         zipcode = request.form.get('zipcode')
-#         cname = request.form.get('cname')
-#         cnumber = request.form.get('cnumber')
-#         ctype = request.form.get('ctype')
-#         cdate = request.form.get('cdate')
-#         userInfo = [fname, lname, aline1, aline2, city, state, zipcode, phone_number, cname,
-#                     ctype, cnumber, cdate, status]
-#         updateAccountController(userInfo, userType, id)
-#     else:
-#         userInfo = [fname, lname, phone_number, status]
-#         # Our user info will depend on whether we're updating an admin or customer
-#         # -> accountsController.py
-#         updateAccountController(userInfo, userType, id)
-#
-#     # Go back to edit page with message
-#     return redirect(url_for('editaccount', acc=id, userType=userType, message='added'))
-
 
 @app.route("/editinfo", methods=['POST'])
 @login_required
@@ -360,16 +329,6 @@ def editinfo():
     status = request.form.get('group1')
 
     if userType == 'customer':
-        # aline1 = request.form.get('aline1')
-        # aline2 = request.form.get('aline2')
-        # city = request.form.get('city')
-        # state = request.form.get('state')
-        # zipcode = request.form.get('zipcode')
-        # cname = request.form.get('cname')
-        # cnumber = request.form.get('cnumber')
-        # ctype = request.form.get('ctype')
-        # cdate = request.form.get('cdate')
-        # userInfo = [fname, lname, phone_number, email, password, status, aline1, aline2, city, state, zipcode, cname, cnumber, ctype, cdate, acc]
         userInfo = [fname, lname, phone_number, email, password, status, acc]
         updateAccountcontroller(userInfo, userType)
     else:
@@ -381,6 +340,21 @@ def editinfo():
     # Go back to edit page with message
     return redirect(url_for('editaccount', acc=acc, userType=userType, message='updated'))
 
+@app.route("/editprofile", methods=["POST"])
+def editprofile():
+    #------------Your profile--------------
+    if request.form.get('edit') == 'profile':
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        email = request.form.get('email')
+        edit_profile(fname=fname, lname=lname, email=email)
+
+    #------------Contact Number--------------
+    elif request.form.get('edit') == 'phone_number':
+        pnumber = request.form.get('pnumber')
+        edit_number(pnumber=pnumber)
+
+    return redirect("/profile")
 
 @app.route("/orders")
 @login_required

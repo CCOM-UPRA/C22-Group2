@@ -111,19 +111,19 @@
                             <input type="hidden" name = "prod_id" value="{{prod['product_id']}}">
 
                             <label for="name">Name: </label>
-                            <input type="text" id="name" name="name" title="Name of product" value="{{prod['name']}}"><br>
+                            <input type="text" id="name" name="name" title="Name of product" value="{{prod['name']}}" required><br>
 
                             <label for="plant_type">Plant Type: </label>
-                            <input type="text" id="plant_type" name="plant_type" title="Best Location for the product" value="{{prod['plant_type']}}"><br>
+                            <input type="text" id="plant_type" name="plant_type" title="Best Location for the product" value="{{prod['plant_type']}}" required><br>
 
                             <label for="sun_exposure">Sun Exposure: </label>
-                            <input type="text" id="sun_exposure" name="sun_exposure" title="Plant type of the product" value="{{prod['sun_exp']}}"><br>
+                            <input type="text" id="sun_exposure" name="sun_exposure" title="Plant type of the product" value="{{prod['sun_exp']}}" required><br>
 
                             <label for="watering">Watering: </label>
-                            <input type="text" id="watering" name="watering" title="Best watering time for the product" value="{{prod['watering']}}"><br>
+                            <input type="text" id="watering" name="watering" title="Best watering time for the product" value="{{prod['watering']}}" required><br>
 
                             <label for="location">Location: </label>
-                            <input type="text" id="location" name="location" title="Best Sun Exposure for the product" value="{{prod['location']}}"><br>
+                            <input type="text" id="location" name="location" title="Best Sun Exposure for the product" value="{{prod['location']}}" required><br>
 
 
 
@@ -142,38 +142,38 @@
 
 
                             <label for="price">Price in $: </label>
-                            <input type="number" id='price' name="price" value="{{prod['price']}}"><br>
+                            <input type="number" step='0.01' id='price' name="price" value="{{prod['price']}}" required><br>
                             <label for="cost">Cost in $: </label>
-                            <input type="number" id='cost' name="cost" value="{{prod['cost']}}"><br>
+                            <input type="number" step='0.01' id='cost' name="cost" value="{{prod['cost']}}"required><br>
 
                             <label for="stock">Stock: </label>
-                            <input type="number" id='stock' name="stock" value="{{prod['stock']}}"><br>
+                            <input type="number" id='stock' name="stock" value="{{prod['stock']}}" required><br>
 
 
                             <label for="desc">Description: </label>
-                            <textarea class="form-control" id='desc' name="desc" title="Description" rows="8" cols="80" style="font-size: 16px; line-height: 1.5; padding: 10px;">{{prod['description']}}</textarea>
+                            <textarea class="form-control" id='desc' name="desc" title="Description" rows="8" cols="80" style="font-size: 16px; line-height: 1.5; padding: 10px;" required>{{prod['description']}}</textarea>
                             <br>
 
                             <label for="myfile">Select an image:</label>
-                            <input type="file" id="image-input" name="image" value="{{prod[image]}}" onchange="previewImage()">
+                            <input type="file" id="image-input" name="image"  onchange="previewImage()" required>
 
                             <p>Status:</p>
                             {% if prod[9] == 1 %}
-                                    <input type="radio" id="active" name="status" value=1 checked>
+                                    <input type="radio" id="active" name="status" value=1>
                                     <label for="active">Active</label><br>
-                                    <input type="radio" id="inactive" name="status" value=0>
+                                    <input type="radio" id="inactive" name="status" value=0 checked>
                                     <label for="inactive">Inactive</label><br>
                             {% else %}
-                                    <input type="radio" id="act1" name="status" value=1>
+                                    <input type="radio" id="act1" name="status" value=1 checked>
                                     <label for="act1">Active</label><br>
-                                    <input type="radio" id="inact1" name="status" value=0 checked>
+                                    <input type="radio" id="inact1" name="status" value=0>
                                     <label for="inact1">Inactive</label><br>
                             {% endif %}
 
 
                             <div class="details-add-group">
-                                <button class="product-add" title="Save changes">
-                                    <span>Save changes</span>
+                                <button class="cart-checkout-btn" title="Save changes">
+                                    <span class="checkout-label">Save changes</span>
                                 </button>
                             </form>
 
