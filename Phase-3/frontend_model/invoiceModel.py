@@ -80,8 +80,8 @@ def addOrderModel(shipping_address, payment_method):
             
             print("new contains id is: ", cursor.lastrowid)
             
-            sql = "UPDATE product SET stock = stock - {} WHERE product_id = %s".format(int(item['product_quantity']))
-            db.execute(sql, (item['product_id']))
+            sql = "UPDATE product SET stock = stock - %s WHERE product_id = %s"
+            db.execute(sql, (item['product_quantity'], item['product_id']))
             print("Changed stock of product")
 
         db.commit()
