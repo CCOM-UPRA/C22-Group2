@@ -150,9 +150,10 @@ def ordersModel():
 
 
 def getordermodel(ID):
-    #for key, order in ordersList.items():
-    #    if key == ID:
-    #        return order
+    
+    if ID == '' or ID == None:
+        return []
+    
     db = DBConnect()
     sql = """SELECT order_id,order_date, arrival_date, status,
     SUM(product_quantity * product_price) AS total,
@@ -162,25 +163,21 @@ def getordermodel(ID):
     WHERE order_id = %s
     GROUP BY order_id"""
     result=db.query(sql, (ID))
-    return list(result).pop()
+    if len(result) > 0:
+        return list(result).pop()
+    else:
+        return []
 
 
 def getorderproductsmodel(ID):
-    #    returnList = {}
-    #    num = 1
-    #    for key, product in productsList.items():
-    #        if product['order_id'] == ID:
-    #            if returnList == {}:
-    #                returnList = {'1': product}
-    #            else:
-    #                num += 1
-    #                returnList = MagerDicts(returnList, {str(num): product})
-    #    print(returnList)
-    #    return returnLists
-   db = DBConnect()
-   sql = ("SELECT product_id, image, name, plant_type, price, product_quantity, SUM(product_quantity * product_price) AS total FROM product NATURAL JOIN contains WHERE order_id = %s")
-   result=db.query(sql, (ID))
-   return result
+    
+    if ID == '' or ID == None:
+        return []
+    
+    db = DBConnect()
+    sql = ("SELECT product_id, image, name, plant_type, price, product_quantity, SUM(product_quantity * product_price) AS total FROM product NATURAL JOIN contains WHERE order_id = %s")
+    result=db.query(sql, (ID))
+    return result
 
 
 def edit_order(Status, ID):

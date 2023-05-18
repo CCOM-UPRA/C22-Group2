@@ -64,6 +64,7 @@ def enterpage(message):
     # Defaults to product page if logged in
     if session.get('admin'):
         return redirect("/products")
+    
     return redirect("/login")
     
 
@@ -374,7 +375,11 @@ def order():
     orderProducts = getorderproducts(order)
     # Fetch the order itself. Overwrite order as the ID alone is no longer needed
     order = getorder(order)
-    return render_template('order.html', products=orderProducts, order=order)
+    
+    if len(order) == 0:
+        return render_template('404.html')
+    else:
+        return render_template('order.html', products=orderProducts, order=order)
 
 
 
