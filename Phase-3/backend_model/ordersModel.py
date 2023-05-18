@@ -168,7 +168,6 @@ def getordermodel(ID):
     else:
         return []
 
-
 def getorderproductsmodel(ID):
     
     if ID == '' or ID == None:

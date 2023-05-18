@@ -214,6 +214,8 @@ def add():
 def accounts():
     if request.method == 'GET' and 'userType' in request.args:
         userType = request.args.get('userType')
+        if userType != 'customer' and userType != 'administrator':
+            return render_template('404.html')
     else:
         # Otherwise default to customer
         userType = 'customer'
@@ -314,6 +316,9 @@ def editaccount(acc):
 
     # -> accountsController.py
     account = getaccount(acc, userType)
+    
+    if len(account) == 0:
+        return render_template('404.html')
     print("Account ID: ", acc)
     print("UserType: ", userType)
     return render_template("single_account.html", acc=account, account=acc, userType=userType, message=message)

@@ -23,15 +23,19 @@ def getaccountsmodel(userType):
 # Get the specific account requested
 def getaccountmodel(acc, userType):
     db = DBConnect()
+    result = []
     if userType == 'customer':
         query = "SELECT * FROM customer WHERE customer_id = %s"
-        result = list(db.query(query, (acc))).pop()
-        return result
-
+        
+        result = list(db.query(query, (acc)))
     elif userType == 'administrator':
         query = "SELECT * FROM administrator WHERE administrator_id = %s"
-        result = list(db.query(query, (acc))).pop()
-        return result
+        result = list(db.query(query, (acc)))
+    
+    if len(result) > 0:
+        return result.pop()
+    else:
+        return []
 
 # Creates new account and adds it to the database
 def addaccountmodel(newAccount, userType):
