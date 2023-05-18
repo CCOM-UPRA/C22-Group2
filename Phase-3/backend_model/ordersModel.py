@@ -155,11 +155,14 @@ def getordermodel(ID):
         return []
     
     db = DBConnect()
-    sql = """SELECT order_id,order_date, arrival_date, status,
-    SUM(product_quantity * product_price) AS total,
+    sql = """SELECT order_id,order_date, arrival_date, orders.status,
+    SUM(product_quantity * product_price) AS total, first_name, last_name, address_line1, address_line2, city, state, zipcode,
     SUM(product_quantity) as total_items
     FROM orders
     NATURAL JOIN contains
+    LEFT JOIN customer ON orders.customer_id = customer.customer_id
+    LEFT JOIN payment_method ON orders.payment_id = payment_method.payment_id
+    LEFT JOIN shipping_address ON orders.shipping_address_id = shipping_address.shipping_address_id
     WHERE order_id = %s
     GROUP BY order_id"""
     result=db.query(sql, (ID))
