@@ -35,7 +35,7 @@ def getsingleproductmodel(prodID):
     if result:
         result = result.pop()
     else:
-        result = None 
+        result = []
 
     return result
 

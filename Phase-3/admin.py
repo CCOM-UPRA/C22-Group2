@@ -132,6 +132,9 @@ def single_product(prodID):
     # Return product page for single product selected
     product = getsingleproduct(prodID)
     print("The product: ", product)
+    if len(product) == 0:
+        return render_template('404.html')
+    
     return render_template("single_product.html", prod=product)
 
 
