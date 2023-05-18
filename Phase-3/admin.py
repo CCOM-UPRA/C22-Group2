@@ -236,6 +236,10 @@ def accounts():
 @login_required
 def createaccount():
     userType = request.args.get('userType')
+    
+    if userType != 'customer' and userType != 'administrator':
+        return render_template('404.html')
+    
     # Redirect us to account creation page
     return render_template("create_account.html", userType=userType)
 
