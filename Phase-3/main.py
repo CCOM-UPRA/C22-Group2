@@ -122,6 +122,15 @@ def shop():
 
     session['total'] = f'{total:.2f}'
     session['amount'] = amount
+    
+    # Replace 
+    for product in products:
+        for item in session['cart']:
+            if item['product_id'] == product['product_id']:
+                product['default_quantity'] = item['product_quantity']
+                print("The default quantity: ", product['default_quantity'])
+            else:
+                product['default_quantity'] = 1
 
     # Redirect to shop page with the variables used
     return render_template("shop-4column.html", products=products, amount=amount, sortings=sortings, sortByOrder=sortByOrder, plantType=plantType, locations=locations,
