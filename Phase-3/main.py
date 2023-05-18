@@ -377,7 +377,7 @@ def invoice(order_id):
         amount += product['product_quantity']
 
     if len(order) == 0:
-        return redirect("/shop")
+        return render_template('404.html')
     else:
         return render_template("invoice.html", order=order, products=products, amount=amount)
 
