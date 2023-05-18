@@ -1,4 +1,5 @@
 import os
+import uuid
 from functools import wraps #TODO check
 from datetime import datetime, timedelta
 from time import strftime
@@ -157,7 +158,15 @@ def editproduct():
         filename = getproductimage(product_id)['image']
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # split filename into name and extension
+        name_only, ext = os.path.splitext(filename)
+        # use product_id for the new filename
+        filename = "{}_{}{}".format(name_only, product_id, ext)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        # delete old file if it exists
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+        file.save(file_path)
 
     
     name = request.form.get('name')
@@ -196,7 +205,11 @@ def add():
         flash('No selected file')
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # split filename into name and extension
+        name_only, ext = os.path.splitext(filename)
+        # use UUID for the temporary filename
+        temp_filename = "{}{}".format(uuid.uuid4(), ext)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], temp_filename))
             
     name = request.form.get('name')
     plant_type = request.form.get('plant_type')
@@ -207,11 +220,25 @@ def add():
     cost = request.form.get('cost')
     stock = request.form.get('stock')
     desc = request.form.get('desc')
-    image = filename
+    image = temp_filename
     status = request.form.get('status')
 
-    addproductController(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status)
-
+    # get product_id from addproductController
+    product_id = addproductController(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status)
+    
+    if product_id is not None:
+        # generate new filename with product_id and original filename
+        new_filename = "{}_{}{}".format(name_only, product_id, ext)
+        old_path = os.path.join(app.config['UPLOAD_FOLDER'], temp_filename)
+        new_path = os.path.join(app.config['UPLOAD_FOLDER'], new_filename)
+        os.rename(old_path, new_path)
+        
+        # Update the image in the database with the new filename
+        updateImageFilename(product_id, new_filename)
+    else:
+        print("Error: Product was not added to the database.")
+        return redirect("/products")
+        
     return redirect("/products")
 
 
@@ -255,18 +282,10 @@ def accountinfo():
     email = request.form.get('email')
     pass1 = request.form.get('pass1')
     status = request.form.get('status')
-    aline1 = request.form.get('aline1')
-    aline2 = request.form.get('aline2')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    zipcode = request.form.get('zipcode')
-    cname = request.form.get('card_name')
-    cnumber = request.form.get('card_number')
-    ctype = request.form.get('card_type')
-    cdate = request.form.get('exp_date')
-        # Process register info here
+    
+    # Process register info here
 
-    if userType == 'customer':
+    if userType == 'customer' or userType == 'administrator':
         newAccount = [
             fname,
             lname,
@@ -275,32 +294,8 @@ def accountinfo():
             pnumber,
             status
         ]
-        # newAccount = {
-        # "first_name": fname,
-        # "last_name": lname,
-        # "email": email,
-        # "password": pass1,
-        # "phone_number": pnumber,
-        # "status": "Active",
-        # "address_line_1": aline1,
-        # "address_line_2": aline2,
-        # "city": city,
-        # "state": state,
-        # "zipcode": zipcode,
-        # "card_name": cname,
-        # "card_type": ctype,
-        # "exp_date": cdate,
-        # "card_num": cnumber
-        # }
     else:
-        newAccount = [
-        fname,
-        lname,
-        email,
-        pass1,
-        pnumber,
-        status
-        ]
+        return render_template('404.html')
     
     addaccount(newAccount, userType)
     return redirect("accounts?userType=" + userType)

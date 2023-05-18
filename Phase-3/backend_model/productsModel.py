@@ -44,18 +44,20 @@ def getproductimagemodel(product_id):
     sql = "SELECT image FROM product WHERE product_id = %s"
     return list(db.query(sql, [product_id])).pop()
 
-# Add a new product to the JSON file
+
 def addproductmodel(name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status):
     db = DBConnect()
     sql = "INSERT INTO product (name, location, plant_type, sun_exp, watering, image, price, cost, stock, description, status) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     try:
         db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status))
         db.commit()
+        product_id = db.cursor.lastrowid  # get the ID of the last inserted row
+        return product_id
     except Exception as e:
         db.rollback()
         print(f"Error occurred: {e}")
         return None
-    
+
 
 def editproductmodel(product_id, name, plant_type, sun_exposure, watering, location, price, cost, stock, desc, image, status):
     db = DBConnect()
@@ -63,6 +65,18 @@ def editproductmodel(product_id, name, plant_type, sun_exposure, watering, locat
       cost = %s, stock = %s, description = %s, status = %s WHERE product_id = %s"""
     try:
         db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status, product_id))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print(f"Error occurred: {e}")
+        return None
+
+def updateImageFilenamemodel(product_id, new_filename):
+    db = DBConnect()
+    sql = """UPDATE product SET image = %s WHERE product_id = %s"""
+    
+    try:
+        db.execute(sql,(new_filename, product_id))
         db.commit()
     except Exception as e:
         db.rollback()
