@@ -14,8 +14,6 @@ from backend_controller.accountsController import *
 from backend_controller.reportsController import *
 from backend_controller.profileController import *
 
-# In this template, you will usually find functions with comments tying them to a specific controller
-# main.py accesses the frontend folders
 # Every controller accesses its relevant model and will send the information back to this Flask app
 
 UPLOAD_FOLDER = 'static/images/product-images'
@@ -34,21 +32,6 @@ def allowed_file(filename):
 def download_file(name):
     return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
-# @app.route('/upload_image', methods=['POST'])
-# def upload_image():
-#     if request.method == 'POST':
-#         image = request.files['image']
-#         if image:
-#             filename = image.filename
-#             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#             return redirect(url_for('show_image', filename=filename))
-#     return redirect(url_for('index'))
-
-# @app.route('/uploads/<filename>')
-# def show_image(filename):
-#     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-
 
 # Checks if user is logged in before entering page
 def login_required(f):
@@ -58,6 +41,7 @@ def login_required(f):
             return f(*args, **kwargs)      
         return redirect('/login')
     return decorated_function
+
 
 @app.route("/", defaults={'message': None})
 @app.route("/<message>")
@@ -79,17 +63,12 @@ def clear():
     session.clear()
     return redirect("/")
 
-@app.route("/hashpass")
-def hashpass():
-    # For hashing already established unhashed passwords
-    # changePassController ->
-    changePass()
-    return redirect("/")
 
 @app.route("/login")
 @app.route("/login/<message>")
 def login(message = None):
     return render_template('login (2).html', message=message)
+
 
 @app.route("/attemptlogin", methods=['POST'])
 def attemptlogin():
@@ -99,6 +78,7 @@ def attemptlogin():
     # POINTER: loginModel creates a session['admin'] instead
     # Always advisable to name your frontend and backend sessions differently to not cause errors via lingering sessions
     return logincontroller(email=email, password=password)
+
 
 @app.route("/profile")
 @login_required
@@ -190,6 +170,7 @@ def editproduct():
 def addproduct():
     # Redirect us to the product creation page
     return render_template("add_product.html")
+
 
 @app.route("/add", methods=["POST"])
 @login_required
@@ -353,6 +334,7 @@ def editinfo():
     # Go back to edit page with message
     return redirect(url_for('editaccount', acc=acc, userType=userType, message='updated'))
 
+
 @app.route("/editprofile", methods=["POST"])
 def editprofile():
     #------------Your profile--------------
@@ -368,6 +350,7 @@ def editprofile():
         edit_number(pnumber=pnumber)
 
     return redirect("/profile")
+
 
 @app.route("/orders")
 @login_required
@@ -390,7 +373,6 @@ def order():
         return render_template('404.html')
     else:
         return render_template('order.html', products=orderProducts, order=order)
-
 
 
 @app.route('/editorder', methods=['POST'])

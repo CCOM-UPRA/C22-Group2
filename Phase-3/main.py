@@ -11,7 +11,6 @@ from frontend_controller.shopController import *
 app = Flask(__name__, template_folder='frontend/')
 app.secret_key = 'akeythatissecret'
 
-# In this template, you will usually find functions with comments tying them to a specific controller
 # main.py accesses the frontend folders
 # Every controller accesses its relevant model and will send the information back to this Flask app
 
@@ -80,6 +79,7 @@ def registerinfo():
         return redirect('/shop')
     else:
         return redirect('/register/passwordnotmatched')
+
 
 @app.route("/shop", methods=['GET'])
 def shop():
@@ -212,14 +212,13 @@ def editinfo():
         zipcode = request.form.get('zipcode')
         payment_id = request.form.get('payment_id')
         edit_payment(card_name=cname, card_type=ctype, card_exp_date=cdate, card_number=cnumber, bill_address_line1=aline1 ,  bill_address_line2=aline2, bill_city=city, bill_state=state, bill_zipcode=zipcode, payment_id=payment_id)
-        
-  
             
     # Process register info here
     #  pass1 = request.form.get('pass1')
     
     # changeinfo(session['customer'], editAccount)
     return redirect(request.referrer)
+    
     
 @app.route("/password", methods=["POST"])
 def password():
@@ -250,7 +249,7 @@ def addcart():
 
 @app.route("/delete", methods=["POST"])
 def delete():
-    # > cartController. For purposes of this phase, the function doesn't work
+    
     p_id = request.form.get("id")
     deleteCartItem(p_id)
 
@@ -320,6 +319,7 @@ def checkout():
 
 @app.route("/editcheckout", methods=["POST"])
 def editcheckout():
+    
     if request.form.get('edit') == 'profile':
         fname = request.form.get('fname')
         lname = request.form.get('lname')
@@ -341,14 +341,6 @@ def editcheckout():
         zipcode = request.form.get('zipcode')
         edit_address(aline1, aline2, state, zipcode, city)
 
-    # elif request.form.get('edit') == 'bill_address':
-    #     aline1 = request.form.get('billline1')
-    #     aline2 = request.form.get('billline2')
-    #     state = request.form.get('billstate')
-    #     city = request.form.get('billcity')
-    #     zipcode = request.form.get('billzipcode')
-    #     edit_billaddress(aline1, aline2, state, zipcode, city)
-
     elif request.form.get('edit') == 'phone_number':
         pnumber = request.form.get('pnumber')
         edit_number(pnumber=pnumber)
@@ -364,12 +356,14 @@ def createorder():
     
     return redirect(url_for("invoice", order_id=order_id))
 
+
 @app.route("/cancelorder/<order_id>")
 def cancelorder(order_id):
     
     cancelOrder(order_id)
     
     return redirect(request.referrer)
+
 
 @app.route("/invoice/<order_id>")
 def invoice(order_id):
@@ -389,6 +383,7 @@ def invoice(order_id):
         return render_template('404.html')
     else:
         return render_template("invoice.html", order=order, products=products, amount=amount)
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':

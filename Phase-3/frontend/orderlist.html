@@ -222,7 +222,7 @@
                                 </div>
                             </div>
 
-                            {% if order[0]['status'] != 'Cancelled' %}
+                            {% if order[0]['status'] != 'Cancelled' and orderstat < 2 %}
                             <div class="row justify-content-end">
                                 <a style="margin-bottom: 5%;" class="cart-checkout-btn w-25" href="#"
                                     onclick="confirmCancel('{{url_for('cancelorder', order_id=order[0]['order_id'])}}')">
