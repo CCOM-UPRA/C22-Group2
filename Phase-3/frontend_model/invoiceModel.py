@@ -86,6 +86,8 @@ def addOrderModel(shipping_address, payment_method):
 
         db.commit()
         session['cart'] = []
+        session['total'] = '0.00'
+        session['amount'] = 0
 
     except Exception as e:
         db.rollback()
