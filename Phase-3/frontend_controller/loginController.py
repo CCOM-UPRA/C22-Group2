@@ -14,6 +14,8 @@ def logincontroller(email, password):
     if result is "true":
         # If user exists, enter shop
         return redirect("/shop")
-    else:
+    elif result is "deactivated":
         # If user doesn't exist, return to login and trigger error message
+        return redirect("/login/deactivated")
+    else:
         return redirect("/login/incorrect")

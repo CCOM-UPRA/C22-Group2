@@ -7,17 +7,19 @@ def loginmodel(email : str, password : str):
     # Receive email and password to check in the "database"
 
     db = DBConnect()
-    sql = "SELECT email, customer_id, password FROM customer WHERE email = %s AND status = 1"
+    sql = "SELECT email, customer_id, password, status FROM customer WHERE email = %s"
     # Save user info in list
     userFound = db.query(sql, (email))
     # sha256_crypt.encrypt("password") = this is what is used to encrypt a password
     # sha256_crypt.verify(password_unhashed, password_hashed) = this is what is used to compare an unhashed and hashed password
 
     for u in userFound:
-        if email == u['email'] and sha256_crypt.verify(password, u['password']) is True:
+        if email == u['email'] and u['status'] == 1 and sha256_crypt.verify(password, u['password']) is True:
             session['customer'] = u['customer_id']
             # Create the session['customer'] saving the customer ID if user is found
             return "true"
+        elif email == u['email'] and u['status'] == 0:
+            return "deactivated"
         else:
             # If it didn't find user
             return "false"
