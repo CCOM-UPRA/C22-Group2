@@ -31,7 +31,12 @@ def getProductsModel(search_query):
 def getsingleproductmodel(prodID):
     db = DBConnect()
     query = "SELECT * FROM product WHERE product_id = %s"
-    result = list(db.query(query,(prodID))).pop()
+    result = db.query(query,(prodID))
+    if result:
+        result = result.pop()
+    else:
+        result = None 
+
     return result
 
 # Add a new product to the JSON file
