@@ -109,37 +109,37 @@
                             <form style="width:100%" class="modal-form"
                                   action="{{url_for('add')}}" method="POST" enctype="multipart/form-data">
                                 <label class="form-label">Name:
-                                    <input type="text" name="name" class="form-control" placeholder="Product name"></input></label><br>
+                                    <input type="text" name="name" class="form-control" placeholder="Product name" required></input></label><br>
 
                                 <label class="form-label">Plant Type:
-                                    <input type="text" name="plant_type" class="form-control" placeholder="Flowers, Cactus..."></input></label><br>
+                                    <input type="text" name="plant_type" class="form-control" placeholder="Flowers, Cactus..." required></input></label><br>
 
                                 <label class="form-label">Sun Exposure:
-                                    <input type="text" name="sun_exposure" class="form-control" placeholder="Full sun, Full shade..."></input></label><br>
+                                    <input type="text" name="sun_exposure" class="form-control" placeholder="Full sun, Full shade..." required></input></label><br>
 
                                 <label class="form-label">Watering frequency:
-                                    <input type="text" name="watering" class="form-control" placeholder="Weekly, Biweekly..."></input></label><br>
+                                    <input type="text" name="watering" class="form-control" placeholder="Weekly, Biweekly..." required></input></label><br>
 
                                 <label class="form-label">Location:
-                                    <input type="text" name="location" class="form-control" placeholder="Indoors, Outdoor..."></input></label><br>
+                                    <input type="text" name="location" class="form-control" placeholder="Indoors, Outdoor..." required></input></label><br>
 
 
     <!--                            <label for="cost">Cost in $: </label>-->
     <!--                            <input type="number" id='cost' value="Cost"><br>-->
                                 <label class="form-label">Price:
-                                    <input type="text" name="price" class="form-control" placeholder="$$..."></input></label><br>
+                                    <input type="text" name="price" class="form-control" placeholder="$$..." required></input></label><br>
 
                                 <label class="form-label">Cost:
-                                    <input type="text" name="cost" class="form-control" placeholder="$$..."></input></label><br>
+                                    <input type="text" name="cost" class="form-control" placeholder="$$..." required></input></label><br>
 
                                 <label class="form-label">Stock:
-                                    <input type="text" name="stock" class="form-control" placeholder="..."></input></label><br>
+                                    <input type="text" name="stock" class="form-control" placeholder="..." required></input></label><br>
 
                                 <label class="form-label">Description:
-                                    <input type="text" name="desc" class="form-control" placeholder="Description..."></input></label><br>
+                                    <input type="text" name="desc" class="form-control" placeholder="Description..." required></input></label><br>
 
                                 <label class="form-label">Image:
-                                    <input type="file" id="image-input" name="image" onchange="previewImage()">
+                                    <input type="file" id="image-input" name="image" onchange="previewImage()" required>
                                     </label><br>
 
                                     <label class="form-label">Status:  </label>
