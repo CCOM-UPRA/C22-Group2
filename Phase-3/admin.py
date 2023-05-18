@@ -3,7 +3,7 @@ from functools import wraps #TODO check
 from datetime import datetime, timedelta
 from time import strftime
 
-from flask import Flask, render_template, redirect, request, session, url_for
+from flask import Flask, render_template, redirect, request, session, url_for, send_from_directory, flash
 from werkzeug.utils import secure_filename
 
 from backend_controller.loginController import *

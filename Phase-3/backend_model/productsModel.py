@@ -45,7 +45,8 @@ def addproductmodel(name, plant_type, sun_exposure, watering, location, price, c
     sql = "INSERT INTO product (name, location, plant_type, sun_exp, watering, image, price, cost, stock, description, status) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     try:
         db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status))
-
+        db.commit()
+        print("Product added")
     except Exception as e:
         db.rollback()
         print(f"Error occurred: {e}")
@@ -58,7 +59,7 @@ def editproductmodel(product_id, name, plant_type, sun_exposure, watering, locat
       cost = %s, stock = %s, description = %s, status = %s WHERE product_id = %s"""
     try:
         db.execute(sql,(name, location, plant_type, sun_exposure, watering, image, price, cost, stock, desc, status, product_id))
-
+        db.commit()
     except Exception as e:
         db.rollback()
         print(f"Error occurred: {e}")
