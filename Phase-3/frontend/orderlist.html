@@ -129,19 +129,23 @@
                                     <div class="order-track">
                                         <ul class="order-track-list">
                                             <li class="order-track-item {% if orderstat >= 1 %}active{% endif %}">
-                                                <i class="icofont-{% if orderstat >= 1 %}check{% else %}close{% endif %}"></i>
+                                                <i
+                                                    class="icofont-{% if orderstat >= 1 %}check{% else %}close{% endif %}"></i>
                                                 <span>order received</span>
                                             </li>
                                             <li class="order-track-item {% if orderstat >= 2 %}active{% endif %}">
-                                                <i class="icofont-{% if orderstat >= 2 %}check{% else %}close{% endif %}"></i>
+                                                <i
+                                                    class="icofont-{% if orderstat >= 2 %}check{% else %}close{% endif %}"></i>
                                                 <span>order processed</span>
                                             </li>
                                             <li class="order-track-item {% if orderstat >= 3 %}active{% endif %}">
-                                                <i class="icofont-{% if orderstat >= 3 %}check{% else %}close{% endif %}"></i>
+                                                <i
+                                                    class="icofont-{% if orderstat >= 3 %}check{% else %}close{% endif %}"></i>
                                                 <span>order shipped</span>
                                             </li>
                                             <li class="order-track-item {% if orderstat >= 4 %}active{% endif %}">
-                                                <i class="icofont-{% if orderstat >= 4 %}check{% else %}close{% endif %}"></i>
+                                                <i
+                                                    class="icofont-{% if orderstat >= 4 %}check{% else %}close{% endif %}"></i>
                                                 <span>order delivered</span>
                                             </li>
                                         </ul>
@@ -184,6 +188,23 @@
                                             {{order[0]['city']}}, {{order[0]['state']}} {{order[0]['zipcode']}}</p>
                                     </div>
                                 </div>
+                                <div class="col-lg-5">
+                                    <div class="orderlist-details">
+                                        <h6>Payment Method</h6>
+                                        <li>
+                                            <h6>Card name</h6>
+                                            <p>{{order[0]['card_name']}}</p>
+                                        </li>
+                                        <li>
+                                            <h6>Card Type</h6>
+                                            <p>{{order[0]['card_type']}}</p>
+                                        </li>
+                                        <li>
+                                            <h6>Card Number</h6>
+                                            <p>{{order[0]['card_number']}}</p>
+                                        </li>
+                                    </div>
+                                </div>
                                 <div class="col-lg-12">
                                     <div class="table-scroll">
                                         <table class="table-list">
@@ -222,20 +243,20 @@
                                 </div>
                             </div>
 
-                            {% if order[0]['status'] != 'Cancelled' and orderstat < 2 %}
-                            <div class="row justify-content-end">
+                            {% if order[0]['status'] != 'Cancelled' and orderstat < 2 %} <div
+                                class="row justify-content-end">
                                 <a style="margin-bottom: 5%;" class="cart-checkout-btn w-25" href="#"
                                     onclick="confirmCancel('{{url_for('cancelorder', order_id=order[0]['order_id'])}}')">
                                     <span class="checkout-label">Cancel Order</span>
                                 </a>
-                            </div>
-                            {% endif %}
                         </div>
-
+                        {% endif %}
                     </div>
-                    {% endfor %}
+
                 </div>
+                {% endfor %}
             </div>
+        </div>
 
         </div>
     </section>

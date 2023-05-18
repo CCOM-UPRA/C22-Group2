@@ -34,7 +34,7 @@ def get_orders_and_products_model(customer_id):
     print("Getting orders and products")
     orders_query = ("""SELECT order_id, tracking_number, order_date, arrival_date, orders.status AS status,
     address_line1, address_line2, city, state, zipcode,
-    card_type,
+    card_type, card_name, card_number,
     SUM(product_quantity * product_price) AS total,
     SUM(product_quantity) AS amount 
     FROM orders 
@@ -58,6 +58,11 @@ def get_orders_and_products_model(customer_id):
     for order in orders:
         order_id = order['order_id']
         order_products[order_id] = [product for product in products if product['order_id'] == order_id]
+        
+        new_payment_num = '*'*(len(order['card_number']) - 4)
+        last_numbers = order['card_number'][(len(order['card_number']) - 4):len(order['card_number'])]
+        new_payment_num += last_numbers
+        order['card_number'] = new_payment_num
 
     print("orders: ", [x['order_id'] for x in orders])
 
