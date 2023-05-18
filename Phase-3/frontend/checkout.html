@@ -64,6 +64,7 @@
                     HEADER PART START
         =======================================-->
     {% include 'header.html' %}
+    {% include 'cart.html' %}
     <!--=====================================
                     HEADER PART END
         =======================================-->
@@ -141,7 +142,8 @@
                                         <div class="modal fade" id="product-view-{{item['product_id']}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
+                                                    <button class="modal-close icofont-close"
+                                                        data-bs-dismiss="modal"></button>
                                                     <div class="product-view">
                                                         <div class="row">
                                                             <div class="col-md-6 col-lg-6">
@@ -156,7 +158,7 @@
                                                                         <li><img src="static/images/product-images/{{item['image']}}"
                                                                                 alt="product"></li>
                                                                     </ul>
-        
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 col-lg-6">
@@ -165,7 +167,8 @@
                                                                         <a href="">{{item['name']}}</a>
                                                                     </h3>
                                                                     <div class="view-meta">
-                                                                        <p>Location:<span>{{item['location']}}</span></p><br>
+                                                                        <p>Location:<span>{{item['location']}}</span>
+                                                                        </p><br>
                                                                         <p>Plant Type: {{item['plant_type']}}</p><br>
                                                                         <p>When to Water: {{item['watering']}}</p>
                                                                     </div>
@@ -173,13 +176,15 @@
                                                                         <span>${{item['price']}}</span>
                                                                     </h3>
                                                                     <p class="view-desc">{{item['description']}}</p>
-        
+
                                                                     <div>
                                                                         {% if item['stock'] > 0 %}
-                                                                        <form id="add-product" action="{{url_for('editcart')}}"
+                                                                        <form id="add-product"
+                                                                            action="{{url_for('editcart')}}"
                                                                             method="POST">
                                                                             <div class="view-add-group">
-                                                                                <button type="button" class="product-add"
+                                                                                <button type="button"
+                                                                                    class="product-add"
                                                                                     title="Add to Cart">
                                                                                     <span>Tap to edit amount</span>
                                                                                 </button>
@@ -189,31 +194,35 @@
                                                                                         title="Quantity Minus">
                                                                                         <i class="icofont-minus"></i>
                                                                                     </button>
-        
+
                                                                                     <input
                                                                                         class="custom-quantity-input action-input"
-                                                                                        title="Quantity Number" type="text"
-                                                                                        id="quantity" name="quantity" value="{{item['product_quantity']}}"
+                                                                                        title="Quantity Number"
+                                                                                        type="text" id="quantity"
+                                                                                        name="quantity"
+                                                                                        value="{{item['product_quantity']}}"
                                                                                         min="1" max="{{item['stock']}}">
-                                                                                    <input type="hidden" id="p_id" name="p_id"
+                                                                                    <input type="hidden" id="p_id"
+                                                                                        name="p_id"
                                                                                         value="{{item['product_id']}}">
-        
+
                                                                                     <button type="button"
                                                                                         class="custom-quantity-plus"
                                                                                         title="Quantity Plus">
                                                                                         <i class="icofont-plus"></i>
                                                                                     </button>
-        
+
                                                                                 </div>
                                                                             </div>
-        
+
                                                                             <div class="view-action-group">
-                                                                                <button type="submit" class="btn btn-inline">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-inline">
                                                                                     <i class="fas fa-shopping-cart"></i>
                                                                                     <span>edit cart</span>
                                                                                 </button>
                                                                             </div>
-        
+
                                                                         </form>
                                                                         {% else %}
                                                                         <p style="color:red">Out of Stock</p>
@@ -267,38 +276,73 @@
                 <div class="col-lg-12">
                     <div class="account-card">
                         <div class="account-title">
-                            <h4>delivery address</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#address-add">edit address</button>
+                            <h4>Delivery address</h4>
+                            <button data-bs-toggle="modal" data-bs-target="#shipping_address-add">Add address</button>
                         </div>
                         <div class="account-content">
                             <div class="row">
+                                {% for address in shipping_addresses %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card address active">
-                                        <p>{{user1['address_line1']}}</p><br>
-                                        <p>{{user1['address_line2']}}</p><br>
-                                        <p>{{user1['city']}}, {{user1['state']}} &nbsp {{user1['zipcode']}}</p>
+                                    <div class="profile-card address"
+                                        data-address-id="{{address['shipping_address_id']}}">
+                                        <p>{{address['address_line1']}}</p><br>
+                                        <p>{{address['address_line2']}}</p><br>
+                                        <p>{{address['city']}}, {{address['state']}} {{address['zipcode']}}</p>
+                                        <ul class="user-action">
+                                            <li><button data-bs-toggle="modal"
+                                                    data-bs-target="#shipping_address-edit-{{loop.index}}"
+                                                    class="edit icofont-edit" title="Edit This"></button></li>
+
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="account-card">
-                        <div class="account-title">
-                            <h4>Billing address</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#bill-address-add">edit address</button>
-                        </div>
-                        <div class="account-content">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="profile-card address active">
-                                        <p>{{user1['bill_address_line1']}}</p><br>
-                                        <p>{{user1['bill_address_line2']}}</p><br>
-                                        <p>{{user1['bill_city']}}, {{user1['bill_state']}} &nbsp
-                                            {{user1['bill_zipcode']}}</p>
+                                <!-- address edit form -->
+                                <div class="modal fade" id="shipping_address-edit-{{loop.index}}">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <button class="modal-close" data-bs-dismiss="modal"><i
+                                                    class="icofont-close"></i></button>
+                                            <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                                                <input class="hidden-form" name="edit" value="shipping_address">
+                                                <div class="form-title">
+                                                    <h3>edit address info</h3>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 1</label>
+                                                    <input type="text" name="aline1" class="form-control"
+                                                        value="{{address['address_line1']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 2</label>
+                                                    <input type="text" name="aline2" class="form-control"
+                                                        value="{{address['address_line2']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">City</label>
+                                                    <input type="text" name="city" class="form-control"
+                                                        value="{{address['city']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">State</label>
+                                                    <input type="text" name="state" class="form-control"
+                                                        value="{{address['state']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Zipcode</label>
+                                                    <input type="text" name="zipcode" class="form-control"
+                                                        value="{{address['zipcode']}}">
+                                                </div>
+                                                <input type="hidden" name="shipping_address_id"
+                                                    value="{{address['shipping_address_id']}}">
+                                                <button class="form-btn" type="submit">save address info</button>
+
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>
@@ -307,18 +351,95 @@
                     <div class="account-card mb-0">
                         <div class="account-title">
                             <h4>payment option</h4>
-                            <button data-bs-toggle="modal" data-bs-target="#payment-add">edit payment info</button>
+                            <button data-bs-toggle="modal" data-bs-target="#payment_method-add">Add payment
+                                info</button>
                         </div>
                         <div class="account-content">
                             <div class="row">
+                                {% for method in payment_methods %}
                                 <div class="col-md-6 col-lg-4 alert fade show">
-                                    <div class="payment-card payment active">
-                                        <h2>{{user1['card_name']}}</h2>
-                                        <p>{{user1['card_number']}} </p>
-                                        <h5>{{user1['card_type']}}</h5>
-                                        <h6>{{user1['card_exp_date']}}</h6>
+                                    <div class="payment-card payment" data-payment-id="{{method['payment_id']}}">
+                                        <h3>{{method['card_name']}}</h3>
+                                        <p>{{method['card_number']}} </p>
+                                        <h5>{{method['card_type']}}</h5>
+                                        <h6>{{method['card_exp_date']}}</h6>
+                                        <p>{{method['bill_address_line1']}}</p>
+                                        <p>{{method['bill_address_line2']}}</p>
+                                        <p>{{method['bill_city']}}, {{method['bill_state']}} {{method['bill_zipcode']}}
+                                        </p>
+                                        <ul class="user-action">
+                                            <li><button data-bs-toggle="modal"
+                                                    data-bs-target="#payment_method-edit-{{loop.index}}"
+                                                    class="edit icofont-edit" title="Edit This"></button></li>
+
+                                        </ul>
                                     </div>
                                 </div>
+                                <!-- payment edit form -->
+                                <div class="modal fade" id="payment_method-edit-{{loop.index}}">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <button class="modal-close" data-bs-dismiss="modal"><i
+                                                    class="icofont-close"></i></button>
+                                            <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                                                <input class="hidden-form" name="edit" value="payment">
+                                                <div class="form-title">
+                                                    <h3>edit payment info</h3>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">card name</label>
+                                                    <input class="form-control" name="cname" type="text"
+                                                        value="{{method['card_name']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">card number</label>
+                                                    <input class="form-control" name="cnumber" type="text"
+                                                        value="{{method['card_number']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">card type</label>
+                                                    <input class="form-control" name="ctype" type="text"
+                                                        value="{{method['card_type']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">expiration date (MM/DD/YYYY)</label>
+                                                    <input class="form-control" name="cdate" type="date"
+                                                        value="{{method['card_exp_date']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 1</label>
+                                                    <input type="text" name="aline1" class="form-control"
+                                                        value="{{method['bill_address_line1']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Address Line 2</label>
+                                                    <input type="text" name="aline2" class="form-control"
+                                                        value="{{method['bill_address_line2']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">City</label>
+                                                    <input type="text" name="city" class="form-control"
+                                                        value="{{method['bill_city']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">State</label>
+                                                    <input type="text" name="state" class="form-control"
+                                                        value="{{method['bill_state']}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Zipcode</label>
+                                                    <input type="text" name="zipcode" class="form-control"
+                                                        value="{{method['bill_zipcode']}}">
+                                                </div>
+                                                <input type="hidden" name="payment_id" value="{{method['payment_id']}}">
+                                                <button class="form-btn" type="submit">save payment info</button>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -349,41 +470,38 @@
                     </div>
                 </div>
 
-                <!-- address edit form -->
-                <div class="modal fade" id="address-add">
+                <!-- address add form -->
+                <div class="modal fade" id="shipping_address-add">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
-                                <input class="hidden-form" name="edit" value="address">
+                            <form class="modal-form" action="{{url_for('editinfo')}}" method="POST">
+                                <input class="hidden-form" name="edit" value="shipping_address-add">
                                 <div class="form-title">
-                                    <h3>edit address info</h3>
+                                    <h3>Add address info</h3>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">Address Line 1</label>
-                                    <input type="text" name="aline1" class="form-control"
-                                        value="{{user1['address_line1']}}">
+                                    <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Address Line 2</label>
-                                    <input type="text" name="aline2" class="form-control"
-                                        value="{{user1['address_line2']}}">
+                                    <input type="text" name="aline2" class="form-control" placeholder="Address Line 2">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">City</label>
-                                    <input type="text" name="city" class="form-control"
-                                        value="{{user1['city']}}">
+                                    <input type="text" name="city" class="form-control" placeholder="City" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">State</label>
-                                    <input type="text" name="state" class="form-control"
-                                        value="{{user1['state']}}">
+                                    <input type="text" name="state" class="form-control" placeholder="State" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Zipcode</label>
-                                    <input type="text" name="zipcode" class="form-control"
-                                        value="{{user1['zipcode']}}">
+                                    <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"
+                                        required>
                                 </div>
                                 <button class="form-btn" type="submit">save address info</button>
                                 <input type="hidden" name="page" value="/profile">
@@ -392,76 +510,58 @@
                     </div>
                 </div>
 
-                <!-- billing address edit form -->
-                <div class="modal fade" id="bill-address-add">
+                <!-- payment method add form -->
+                <div class="modal fade" id="payment_method-add">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
-                                <input class="hidden-form" name="edit" value="bill_address">
+                            <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                                <input class="hidden-form" name="edit" value="payment_method-add">
                                 <div class="form-title">
-                                    <h3>edit address info</h3>
+                                    <h3>Add payment info</h3>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Address Line 1</label>
-                                    <input type="text" name="billline1" class="form-control"
-                                        value="{{user1['bill_address_line1']}}">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Address Line 2</label>
-                                    <input type="text" name="billline2" class="form-control"
-                                        value="{{user1['bill_address_line2']}}">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">City</label>
-                                    <input type="text" name="billcity" class="form-control"
-                                        value="{{user1['bill_city']}}">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">State</label>
-                                    <input type="text" name="billstate" class="form-control"
-                                        value="{{user1['bill_state']}}">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Zipcode</label>
-                                    <input type="text" name="billzipcode" class="form-control"
-                                        value="{{user1['bill_zipcode']}}">
-                                </div>
-                                <button class="form-btn" type="submit">save address info</button>
-                                <input type="hidden" name="page" value="/profile">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- payment edit form -->
-                <div class="modal fade" id="payment-add">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                            <form class="modal-form" action="{{url_for('editcheckout')}}" method="POST">
-                                <input class="hidden-form" name="edit" value="payment">
-                                <div class="form-title">
-                                    <h3>edit payment info</h3>
-                                </div>
                                 <div class="form-group">
                                     <label class="form-label">card name</label>
-                                    <input class="form-control" name="cname" type="text" value="{{user1['card_name']}}">
+                                    <input class="form-control" name="cname" type="text" placeholder="Card name"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">card number</label>
-                                    <input class="form-control" name="cnumber" type="number"
-                                        value="{{user1['card_number']}}">
+                                    <input class="form-control" name="cnumber" type="text" placeholder="Card number"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">card type</label>
-                                    <input class="form-control" name="ctype" type="text" value="{{user1['card_type']}}">
+                                    <input class="form-control" name="ctype" type="text" placeholder="Card type"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">expiration date (MM/DD/YYYY)</label>
                                     <input class="form-control" name="cdate" type="date"
-                                        value="{{user1['card_exp_date']}}">
+                                        placeholder="Expiration date (MM/DD/YYYY)" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Address Line 1</label>
+                                    <input type="text" name="aline1" class="form-control" placeholder="Address Line 1"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Address Line 2</label>
+                                    <input type="text" name="aline2" class="form-control" placeholder="Address Line 2">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">City</label>
+                                    <input type="text" name="city" class="form-control" placeholder="City" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">State</label>
+                                    <input type="text" name="state" class="form-control" placeholder="State" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Zipcode</label>
+                                    <input type="text" name="zipcode" class="form-control" placeholder="Zipcode"
+                                        required>
                                 </div>
                                 <button class="form-btn" type="submit">save payment info</button>
                                 <input type="hidden" name="page" value="/profile">
@@ -501,9 +601,15 @@
                 </div>
 
                 {% if session['cart'] | length > 0 %}
-                <div class="checkout-proced">
-                    <a href="{{url_for('createorder')}}" class="btn btn-inline">proceed to checkout</a>
-                </div>
+                <form id="checkout-form" action="{{url_for('createorder')}}" method="POST">
+                    <div class="row">
+                        <button type="submit" class="cart-checkout-btn">
+                            <span class="checkout-label">Proceed to Checkout</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="shipping_address" value="">
+                    <input type="hidden" name="payment_method" value="">
+                </form>
                 {% else %}
                 <div class="checkout-proced">
                     <a href="{{url_for('shop')}}" class="btn btn-inline">Add an item to cart</a>
@@ -535,6 +641,53 @@
 
     <!-- To check quantity and clamp it -->
     <script src="/static/js/quantity-checker.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var form = document.querySelector('#checkout-form');
+
+            form.addEventListener('submit', function (event) {
+                var shippingAddress = document.querySelector('input[name="shipping_address"]').value;
+                var paymentMethod = document.querySelector('input[name="payment_method"]').value;
+
+                if (!shippingAddress || !paymentMethod) {
+                    alert('Select shipping address and payment method before proceeding.');
+                    event.preventDefault(); // stop form submission
+                }
+            });
+
+            // Address selection
+            var addresses = document.querySelectorAll('.profile-card.address');
+            addresses.forEach(function (address) {
+                address.addEventListener('click', function () {
+                    var _this = this; // preserve the reference to 'this'
+                    setTimeout(function () {
+                        if (_this.classList.contains('active')) {
+                            var addressId = _this.getAttribute('data-address-id');
+                            document.querySelector('input[name="shipping_address"]').value = addressId;
+                        }
+                    }, 100); // 100 millisecond delay
+                });
+            });
+
+            // Payment method selection
+            var paymentMethods = document.querySelectorAll('.payment-card.payment');
+            paymentMethods.forEach(function (paymentMethod) {
+                paymentMethod.addEventListener('click', function () {
+                    var _this = this; // preserve the reference to 'this'
+                    setTimeout(function () {
+                        if (_this.classList.contains('active')) {
+                            var paymentId = _this.getAttribute('data-payment-id');
+                            document.querySelector('input[name="payment_method"]').value = paymentId;
+                        }
+                    }, 100); // 100 millisecond delay
+                });
+            });
+        });
+    </script>
+
+
 
     <!-- VENDOR -->
     <script src="{{url_for('static', filename='vendor/bootstrap/jquery-1.12.4.min.js')}}"></script>

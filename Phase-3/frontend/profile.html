@@ -181,27 +181,27 @@
                                                 <div class="form-group">
                                                     <label class="form-label">Address Line 1</label>
                                                     <input type="text" name="aline1" class="form-control"
-                                                        value="{{address['address_line1']}}"></input>
+                                                        value="{{address['address_line1']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">Address Line 2</label>
                                                     <input type="text" name="aline2" class="form-control"
-                                                        value="{{address['address_line2']}}"></input>
+                                                        value="{{address['address_line2']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">City</label>
                                                     <input type="text" name="city" class="form-control"
-                                                        value="{{address['city']}}"></input>
+                                                        value="{{address['city']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">State</label>
                                                     <input type="text" name="state" class="form-control"
-                                                        value="{{address['state']}}"></input>
+                                                        value="{{address['state']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">Zipcode</label>
                                                     <input type="text" name="zipcode" class="form-control"
-                                                        value="{{address['zipcode']}}"></input>
+                                                        value="{{address['zipcode']}}">
                                                 </div>
                                                 <input type="hidden" name="shipping_address_id" value="{{address['shipping_address_id']}}">
                                                 <button class="form-btn" type="submit">save address info</button>
@@ -278,27 +278,27 @@
                                                 <div class="form-group">
                                                     <label class="form-label">Address Line 1</label>
                                                     <input type="text" name="aline1" class="form-control"
-                                                        value="{{method['bill_address_line1']}}"></input>
+                                                        value="{{method['bill_address_line1']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">Address Line 2</label>
                                                     <input type="text" name="aline2" class="form-control"
-                                                        value="{{method['bill_address_line2']}}"></input>
+                                                        value="{{method['bill_address_line2']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">City</label>
                                                     <input type="text" name="city" class="form-control"
-                                                        value="{{method['bill_city']}}"></input>
+                                                        value="{{method['bill_city']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">State</label>
                                                     <input type="text" name="state" class="form-control"
-                                                        value="{{method['bill_state']}}"></input>
+                                                        value="{{method['bill_state']}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="form-label">Zipcode</label>
                                                     <input type="text" name="zipcode" class="form-control"
-                                                        value="{{method['bill_zipcode']}}"></input>
+                                                        value="{{method['bill_zipcode']}}">
                                                 </div>
                                                 <input type="hidden" name="payment_id" value="{{method['payment_id']}}">
                                                 <button class="form-btn" type="submit">save payment info</button>
@@ -308,8 +308,6 @@
                                     </div>
                                 </div>
                                 {% endfor %}
-
-
 
                             </div>
                         </div>
@@ -383,7 +381,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                <form class="modal-form" action="{{url_for('editinfo')}}" method="post">
+                <form class="modal-form" action="{{url_for('editinfo')}}" method="POST">
                     <input class="hidden-form" name="edit" value="shipping_address-add">
                     <div class="form-title">
                         <h3>Add address info</h3>

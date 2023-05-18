@@ -29,14 +29,13 @@ def getOrderModel(id):
     SUM(product_quantity * product_price) AS total, 
     SUM(product_quantity) AS amount 
     FROM orders 
-    NATURAL JOIN contains 
-    NATURAL JOIN customer 
-    NATURAL JOIN payment_method 
-    NATURAL JOIN shipping_address  
-    WHERE order_id = %s
+    LEFT JOIN contains ON orders.order_id = contains.order_id 
+    LEFT JOIN payment_method ON orders.payment_id = payment_method.payment_id
+    LEFT JOIN shipping_address ON orders.shipping_address_id = shipping_address.shipping_address_id
+    WHERE orders.order_id = %s AND orders.customer_id = %s
     GROUP BY tracking_number, order_date, arrival_date, address_line1, address_line2, card_type;""")
     
-    result = list(db.query(sql, (id)))
+    result = list(db.query(sql, (id, session['customer'])))
     
     if len(result) > 0:
         return result.pop()
@@ -63,7 +62,7 @@ def addOrderModel(shipping_address, payment_method):
 
         print("Trying to add order")
         # Create the order
-        sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status, shipping_address_id, payement_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO orders (customer_id, tracking_number, order_date, arrival_date, status, shipping_address_id, payment_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"
         cursor = db.execute(sql, (session['customer'], tk, str(current_date), str(arrival_date), "Received", shipping_address, payment_method))
 
         # Get the order id
